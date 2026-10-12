@@ -48,22 +48,21 @@
           M.shadow(hero, { w: L, d: D, ext: 30 });
           const heroBody = M.obj(hero, {});
           const main = M.barMordu(heroBody, { len: HALF, d: D, h: H, cut: true, shadow: false, seed: 5 });
-          // Trace du croc : bord dentelé sur la coupe + encoches de dents sur le dessus.
+          // Trace du croc : bord dentelé sur la coupe.
           const biteFace = M.decal(main.body.faces.e, '<svg viewBox="0 0 ' + D + " " + H + '" preserveAspectRatio="none"><path d="M0 0 H' + D + ' V12 Q' + D * 0.86 + ' 26 ' + D * 0.72 + ' 12 Q' + D * 0.58 + ' 28 ' + D * 0.44 + ' 12 Q' + D * 0.3 + ' 26 ' + D * 0.16 + ' 12 Q' + D * 0.08 + ' 22 0 14 Z" fill="var(--choco)"/></svg>');
-          const biteTop = M.decal(main.body.faces.top, '<svg viewBox="0 0 ' + HALF + " " + D + '"><circle cx="' + HALF + '" cy="' + D * 0.16 + '" r="13" fill="var(--rouge)"/><circle cx="' + HALF + '" cy="' + D * 0.5 + '" r="15" fill="var(--rouge)"/><circle cx="' + HALF + '" cy="' + D * 0.84 + '" r="13" fill="var(--rouge)"/></svg>');
-          gsap.set([biteFace, biteTop], { visibility: "hidden" });
+          gsap.set(biteFace, { visibility: "hidden" });
           const chunk = M.barMordu(heroBody, { x: HALF, len: HALF, d: D, h: H, shadow: false, seed: 6 });
           gsap.set(hero, { visibility: "hidden" });
 
           // ---- caméra : recul plein décor, puis plein cadre sur la barre.
           tl.fromTo(S.cam, { ...M.CAM.s6 }, { ...M.CAM.factory, duration: 0.4, ease: "power3.out" }, 0);
-          const hero1 = M.focus({ x: 0, y: 0, z: 30 }, 2.2, 0, 300);
+          const hero1 = M.focus({ x: 0, y: 0, z: 30 }, 1.8, 0, 190);
           tl.to(S.cam, { ...hero1, duration: 0.6, ease: "power3.inOut" }, B.hero + 0.1);
 
           // ---- le revers : tout file vers la gauche de l'écran et sort du cadre.
           // Déplacement (−x, +y) = horizontal à l'écran ; masqué seulement une fois sorti.
           const SW = 2700, SWD = 0.5;
-          const swept = [F.s6, F.s4, F.s5, F.wordmark, F.console, F.s3];
+          const swept = [F.wordmark, F.console, F.s4, F.s3, F.s6, F.s5]; // le wordmark part en premier
           swept.forEach(function (g, i) {
             const x0 = gsap.getProperty(g, "x"), y0 = gsap.getProperty(g, "y");
             const t = B.sweep + i * 0.035;
@@ -85,7 +84,8 @@
           logo.appendChild(lsp);
           S.hud.appendChild(logo);
           gsap.set(lsp, { yPercent: 110 });
-          tl.fromTo(lsp, { yPercent: 110 }, { yPercent: 0, duration: 0.3, ease: "power3.out" }, B.sweep);
+          // Le logo entre une fois le wordmark 3D sorti du cadre (jamais deux MORDU superposés).
+          tl.fromTo(lsp, { yPercent: 110 }, { yPercent: 0, duration: 0.3, ease: "power3.out" }, B.sweep + SWD);
 
           // ---- titre sur une ligne, en deux temps.
           const title = document.createElement("div");
@@ -127,7 +127,7 @@
 
           // ---- un seul croc, sec : la moitié de la barre disparaît.
           tl.set(chunk, { visibility: "hidden" }, B.bite);
-          tl.set([biteFace, biteTop], { visibility: "inherit" }, B.bite);
+          tl.set(biteFace, { visibility: "inherit" }, B.bite);
 
           window.__timelines["s7"] = tl;
         })();

@@ -20,8 +20,8 @@
   // Boule de caramel en volumes simples (base + dôme), centrée sur (x, y).
   function caramelBlob(parent, o) {
     const g = M.obj(parent, { x: o.x, y: o.y, z: o.z });
-    M.cuboid(g, { x: -16, y: -13, z: 0, w: 32, d: 26, h: 14, mat: "caramel" });
-    M.cuboid(g, { x: -10, y: -8, z: 14, w: 20, d: 16, h: 8, mat: "caramel" });
+    M.cuboid(g, { x: -19, y: -16, z: 0, w: 38, d: 32, h: 18, mat: "caramel" });
+    M.cuboid(g, { x: -12, y: -10, z: 18, w: 24, d: 20, h: 12, mat: "caramel" });
     return g;
   }
 
@@ -164,7 +164,7 @@
     factory: M.focus({ x: 40, y: 40, z: 60 }, 0.56, 0, 20),
     console: M.focus({ x: -540, y: -430, z: 130 }, 1.25, 0, 40),
     s3: M.focus({ x: -330, y: 150, z: 110 }, 1.6, 40, -70),
-    s4: M.focus({ x: 540, y: -230, z: 90 }, 1.5, -40, -40),
+    s4: M.focus({ x: 460, y: -310, z: 90 }, 1.8, 190, -200),
     s5: M.focus({ x: -60, y: 690, z: 110 }, 1.55, 0, 30),
     s6: M.focus({ x: 470, y: 330, z: 80 }, 1.25, 0, 0),
   });
@@ -224,17 +224,17 @@
     R.s4 = s4;
     M.shadow(s4, { w: 560, d: 180, ext: 40 });
     M.cuboid(s4, { w: 560, d: 180, h: 70, mat: "rouge" });
-    M.cuboid(s4, { x: 30, y: 56, z: 70, w: 50, d: 60, h: 44, mat: "creme" });
-    s4.pincer = M.obj(s4, { x: 80, y: 56, z: 70 });
-    M.cuboid(s4.pincer, { x: 0, y: 0, z: 0, w: 50, d: 60, h: 44, mat: "creme" });
-    M.cuboid(s4.pincer, { x: 16, y: 16, z: 44, w: 18, d: 28, h: 40, mat: "creme" });
+    M.cuboid(s4, { x: 30, y: 56, z: 70, w: 50, d: 60, h: 20, mat: "creme" }); // mâchoire fixe (basse)
+    s4.pincer = M.obj(s4, { x: 124, y: 56, z: 70 }); // repos : écart de 44 pour la boule
+    M.cuboid(s4.pincer, { x: 0, y: 0, z: 0, w: 50, d: 60, h: 20, mat: "creme" });
+    M.cuboid(s4.pincer, { x: 16, y: 16, z: 20, w: 18, d: 28, h: 56, mat: "creme" });
     // Caramel : une boule tenue entre les mâchoires ; le fil s'étire depuis elle.
-    s4.blobL = caramelBlob(s4, { x: 92, y: 86, z: 76 });
-    s4.fil = M.obj(s4, { x: 92, y: 78, z: 80 });
+    s4.blobL = caramelBlob(s4, { x: 102, y: 86, z: 70 });
+    s4.fil = M.obj(s4, { x: 102, y: 78, z: 74 });
     M.cuboid(s4.fil, { w: 288, d: 16, h: 16, mat: "caramel" });
     gsap.set(s4.fil, { scaleX: 0.001 });
     // Moitié droite après rupture : reste au bout de la pince mobile.
-    s4.blobR = caramelBlob(s4, { x: 70, y: 86, z: 76 });
+    s4.blobR = caramelBlob(s4, { x: 140, y: 86, z: 70 });
     gsap.set(s4.blobR, { scale: 0 });
     s4.ruler = M.ruler(s4, { x: 80, y: 140, z: 70, len: 330, step: 20 });
     const mark = M.obj(s4, { x: 378, y: 136, z: 70 });
@@ -244,7 +244,7 @@
     s4.light = M.obj(s4, { x: 500, y: 30, z: 70 });
     M.cuboid(s4.light, { x: 6, y: 6, z: 0, w: 14, d: 14, h: 50, mat: "choco" });
     s4.bulb = M.cuboid(s4.light, { x: -9, y: -9, z: 50, w: 44, d: 44, h: 36, mat: "choco" });
-    s4.bin = M.obj(s4, { x: 440, y: 230 });
+    s4.bin = M.obj(s4, { x: 470, y: 192 });
     M.shadow(s4.bin, { w: 100, d: 90, ext: 30 });
     const bin = M.cuboid(s4.bin, { w: 100, d: 90, h: 86, mat: "choco" });
     M.decal(bin.faces.top, '<svg viewBox="0 0 100 90"><rect x="8" y="8" width="84" height="74" fill="var(--bracelet)"/></svg>');

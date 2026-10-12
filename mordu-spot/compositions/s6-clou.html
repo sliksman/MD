@@ -40,7 +40,10 @@
           // ---- caméra.
           tl.fromTo(S.cam, { ...M.CAM.s5 }, { ...M.CAM.s6, duration: 1.0, ease: "power3.inOut" }, 0);
           const bench = M.focus({ x: 380, y: 250, z: 110 }, 1.7, 0, 0);
-          tl.to(S.cam, { ...bench, duration: 0.35, ease: "power3.inOut" }, B.mordu - 0.5);
+          // Plan serré sur l'établi pour chaque test lisible, plan large pour les portes.
+          tl.to(S.cam, { ...bench, duration: 0.45, ease: "power3.inOut" }, B.nail1 - 1.6);
+          tl.to(S.cam, { ...M.CAM.s6, duration: 0.5, ease: "power3.inOut" }, B.wedge1 - 0.65);
+          tl.to(S.cam, { ...bench, duration: 0.35, ease: "power3.inOut" }, B.sink - 0.95);
           tl.to(S.cam, { ...M.CAM.s6, duration: 0.6, ease: "power3.inOut" }, B.draft - 0.9);
 
           // ---- badge + compteur.
@@ -124,13 +127,13 @@
             tl.fromTo(s6.doors[k].wedge, { scale: 0 }, { scale: 1, duration: 0.06, ease: "power2.out" }, t + CYC * 0.5);
             setCount(k + 1, t + CYC * 0.5);
           }
-          tl.set(s6.testBar, { visibility: "hidden" }, B.rush + 12 * CYC);
+          tl.set(s6.testBar, { visibility: "hidden" }, B.rush + 11 * CYC + CYC * 0.5);
           // La 13e porte calée reste ouverte.
           const lastDoor = s6.doors[12];
           tl.to(lastDoor.panel, { rotationZ: -75, duration: 0.2, ease: "power3.out" }, B.rush + 11 * CYC + 0.08);
 
           // ---- la MORDU : le clou s'enfonce sans résistance. Elle reste sur l'établi.
-          dropBar(B.sink - 0.68, true);
+          dropBar(B.sink - 0.66, true);
           placeNail(B.sink - 0.4);
           strike(B.sink, 0.14);
           tl.to(s6.hammer, { z: 128, duration: 0.3, ease: "power2.out" }, B.sink);
