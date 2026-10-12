@@ -254,62 +254,67 @@
   }
 
   // ---------- l'opérateur ---------------------------------------------------
-  // Face au sud. Origine : centre des pieds. Hauteur ≈ 260.
+  // Style « jouet » : peu de blocs, grands, silhouette nette. Face au sud.
+  // Origine : centre des pieds. Hauteur ≈ 270. Aucun volume ne s'interpénètre
+  // (les contacts se font face contre face) pour un tri de profondeur propre.
   function operator(parent, o) {
     o = o || {};
     const g = obj(parent, { x: o.x, y: o.y, z: o.z, id: o.id });
     const parts = {};
-    shadow(g, { x: -48, y: -27, w: 96, d: 54, ext: 40 });
-    cuboid(g, { x: -42, y: -17, z: 0, w: 36, d: 34, h: 64, mat: "choco" });
-    cuboid(g, { x: 6, y: -17, z: 0, w: 36, d: 34, h: 64, mat: "choco" });
-    parts.torso = cuboid(g, { x: -50, y: -28, z: 64, w: 100, d: 56, h: 98, mat: "tshirt" });
-    // Bras : pivots à l'épaule pour pouvoir tamponner / pointer.
+    shadow(g, { x: -54, y: -30, w: 108, d: 60, ext: 44 });
+    // Chaussures, jambes.
+    cuboid(g, { x: -46, y: -18, z: 0, w: 40, d: 48, h: 14, mat: "bracelet" });
+    cuboid(g, { x: 6, y: -18, z: 0, w: 40, d: 48, h: 14, mat: "bracelet" });
+    cuboid(g, { x: -43, y: -16, z: 14, w: 34, d: 32, h: 50, mat: "choco" });
+    cuboid(g, { x: 9, y: -16, z: 14, w: 34, d: 32, h: 50, mat: "choco" });
+    // Torse large.
+    parts.torso = cuboid(g, { x: -54, y: -30, z: 64, w: 108, d: 60, h: 92, mat: "tshirt" });
+    // Bras : pivot à l'épaule (rotationX / rotationY pour tamponner, pointer).
     function arm(side) {
-      const sx = side < 0 ? -78 : 50;
-      const pivot = obj(g, { x: sx + 14, y: 0, z: 156 });
-      cuboid(pivot, { x: -14, y: -15, z: -40, w: 28, d: 30, h: 40, mat: "tshirt" });
-      cuboid(pivot, { x: -12, y: -13, z: -96, w: 24, d: 26, h: 58, mat: "peau" });
-      cuboid(pivot, { x: -13, y: -14, z: -86, w: 26, d: 28, h: 9, mat: "bracelet" });
-      cuboid(pivot, { x: -13, y: -14, z: -74, w: 26, d: 28, h: 5, mat: "bracelet" });
+      const pivot = obj(g, { x: side * 69, y: 0, z: 152 });
+      cuboid(pivot, { x: -15, y: -17, z: -44, w: 30, d: 34, h: 44, mat: "tshirt" });
+      cuboid(pivot, { x: -12, y: -14, z: -104, w: 24, d: 28, h: 60, mat: "peau" });
+      cuboid(pivot, { x: -13, y: -15, z: -92, w: 26, d: 30, h: 9, mat: "bracelet" });
+      cuboid(pivot, { x: -13, y: -15, z: -79, w: 26, d: 30, h: 4, mat: "bracelet" });
       return pivot;
     }
     parts.armL = arm(-1);
     parts.armR = arm(1);
-    // Tête.
-    const head = obj(g, { z: 162 });
+    // Tête : grosse, comme un jouet.
+    const head = obj(g, { z: 156 });
     parts.head = head;
-    const skull = cuboid(head, { x: -40, y: -40, z: 0, w: 80, d: 80, h: 80, mat: "peau" });
+    const skull = cuboid(head, { x: -42, y: -42, z: 0, w: 84, d: 84, h: 84, mat: "peau" });
     decal(
       skull.faces.s,
-      '<svg viewBox="0 0 80 80">' +
-        '<rect x="15" y="17" width="18" height="4" fill="var(--roux)"/>' +
-        '<rect x="47" y="17" width="18" height="4" fill="var(--roux)"/>' +
-        '<circle cx="25" cy="31" r="2.8" fill="var(--choco)"/>' +
-        '<circle cx="55" cy="31" r="2.8" fill="var(--choco)"/>' +
-        '<circle cx="25" cy="31" r="10.5" fill="none" stroke="var(--or)" stroke-width="1.8"/>' +
-        '<circle cx="55" cy="31" r="10.5" fill="none" stroke="var(--or)" stroke-width="1.8"/>' +
-        '<path d="M35.5 30 Q40 27 44.5 30" fill="none" stroke="var(--or)" stroke-width="1.6"/>' +
-        '<path d="M14.5 29 L1 27" stroke="var(--or)" stroke-width="1.6"/><path d="M65.5 29 L79 27" stroke="var(--or)" stroke-width="1.6"/>' +
+      '<svg viewBox="0 0 84 84">' +
+        '<rect x="14" y="22" width="22" height="5" fill="var(--roux)"/>' +
+        '<rect x="48" y="22" width="22" height="5" fill="var(--roux)"/>' +
+        '<circle cx="25" cy="37" r="3.2" fill="var(--choco)"/>' +
+        '<circle cx="59" cy="37" r="3.2" fill="var(--choco)"/>' +
+        '<circle cx="25" cy="37" r="12.5" fill="none" stroke="var(--or)" stroke-width="2.2"/>' +
+        '<circle cx="59" cy="37" r="12.5" fill="none" stroke="var(--or)" stroke-width="2.2"/>' +
+        '<path d="M37.5 36 Q42 32.5 46.5 36" fill="none" stroke="var(--or)" stroke-width="2"/>' +
+        '<path d="M12.5 35 L0 33" stroke="var(--or)" stroke-width="2"/><path d="M71.5 35 L84 33" stroke="var(--or)" stroke-width="2"/>' +
         "</svg>"
     );
-    decal(skull.faces.e, '<svg viewBox="0 0 80 80"><path d="M0 26 L52 24" stroke="var(--or)" stroke-width="1.6"/></svg>');
-    // Barbe fournie, en gradins : moustache, masse, menton, favoris.
-    cuboid(head, { x: -24, y: 38, z: 30, w: 48, d: 6, h: 7, mat: "roux" });
-    cuboid(head, { x: -38, y: 34, z: 0, w: 76, d: 12, h: 31, mat: "roux" });
-    cuboid(head, { x: -30, y: 30, z: -16, w: 60, d: 18, h: 18, mat: "roux" });
-    cuboid(head, { x: -18, y: 26, z: -26, w: 36, d: 18, h: 12, mat: "roux" });
-    cuboid(head, { x: 36, y: -4, z: 6, w: 7, d: 40, h: 40, mat: "roux" });
-    cuboid(head, { x: -43, y: -4, z: 6, w: 7, d: 40, h: 40, mat: "roux" });
-    // Cheveux : masse épaisse, blocs décalés.
-    cuboid(head, { x: -46, y: -48, z: 70, w: 92, d: 70, h: 28, mat: "roux" });
-    cuboid(head, { x: -48, y: -50, z: 20, w: 96, d: 22, h: 60, mat: "roux" });
-    cuboid(head, { x: -50, y: -30, z: 92, w: 44, d: 44, h: 20, mat: "roux" });
-    cuboid(head, { x: -2, y: -44, z: 96, w: 46, d: 40, h: 18, mat: "roux" });
-    cuboid(head, { x: -28, y: -6, z: 90, w: 52, d: 40, h: 16, mat: "roux" });
-    cuboid(head, { x: -40, y: 14, z: 74, w: 52, d: 26, h: 16, mat: "roux" });
-    cuboid(head, { x: 16, y: 10, z: 78, w: 28, d: 26, h: 12, mat: "roux" });
-    cuboid(head, { x: 38, y: -36, z: 50, w: 12, d: 44, h: 30, mat: "roux" });
-    cuboid(head, { x: -52, y: -36, z: 50, w: 12, d: 44, h: 30, mat: "roux" });
+    decal(skull.faces.e, '<svg viewBox="0 0 84 84"><path d="M0 33 L56 31" stroke="var(--or)" stroke-width="2"/></svg>');
+    // Nez, moustache, barbe en deux gradins, favoris.
+    cuboid(head, { x: -6, y: 42, z: 30, w: 12, d: 7, h: 15, mat: "peau" });
+    cuboid(head, { x: -26, y: 42, z: 22, w: 52, d: 7, h: 8, mat: "roux" });
+    cuboid(head, { x: -43, y: 42, z: -6, w: 86, d: 12, h: 28, mat: "roux" });
+    cuboid(head, { x: -31, y: 30, z: -26, w: 62, d: 28, h: 20, mat: "roux" });
+    cuboid(head, { x: 42, y: 0, z: 10, w: 6, d: 42, h: 40, mat: "roux" });
+    cuboid(head, { x: -48, y: 0, z: 10, w: 6, d: 42, h: 40, mat: "roux" });
+    // Tignasse : calotte, arrière, côtés, frange balayée, deux mèches pivotées.
+    cuboid(head, { x: -48, y: -50, z: 84, w: 96, d: 92, h: 24, mat: "roux" });
+    cuboid(head, { x: -48, y: -52, z: 22, w: 96, d: 10, h: 62, mat: "roux" });
+    cuboid(head, { x: 42, y: -42, z: 44, w: 8, d: 42, h: 40, mat: "roux" });
+    cuboid(head, { x: -50, y: -42, z: 44, w: 8, d: 42, h: 40, mat: "roux" });
+    cuboid(head, { x: -46, y: 42, z: 70, w: 64, d: 5, h: 14, mat: "roux" });
+    const tuftA = cuboid(head, { x: -40, y: -34, z: 108, w: 50, d: 46, h: 18, mat: "roux" });
+    gsap.set(tuftA, { rotationZ: 12 });
+    const tuftB = cuboid(head, { x: 6, y: -6, z: 108, w: 38, d: 40, h: 13, mat: "roux" });
+    gsap.set(tuftB, { rotationZ: -14 });
     g.parts = parts;
     return g;
   }
