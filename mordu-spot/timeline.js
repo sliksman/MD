@@ -128,7 +128,9 @@ window.MORDU_TIMELINE = {
     "title": 1.4,
     "title2": 2.7,
     "small": 3.7,
-    "bite": 4.9
+    "bite": 4.25,
+    "bite2": 4.85,
+    "bite3": 5.45
    }
   }
  },

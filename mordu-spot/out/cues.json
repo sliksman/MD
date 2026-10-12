@@ -269,11 +269,25 @@
       "frame": 1740
     },
     {
-      "t": 61.9,
-      "name": "croc sec (fin)",
+      "t": 61.25,
+      "name": "croc 1 (bout de barre)",
       "scene": "s7",
       "beat": "bite",
-      "frame": 1857
+      "frame": 1838
+    },
+    {
+      "t": 61.85,
+      "name": "croc 2",
+      "scene": "s7",
+      "beat": "bite2",
+      "frame": 1856
+    },
+    {
+      "t": 62.45,
+      "name": "croc 3 (moitié mangée, fin)",
+      "scene": "s7",
+      "beat": "bite3",
+      "frame": 1874
     }
   ]
 }

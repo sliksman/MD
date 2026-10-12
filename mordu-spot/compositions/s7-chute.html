@@ -45,13 +45,31 @@
           // ---- la barre héroïne : coupe visible, en deux moitiés pour le croc.
           const L = 320, D = 96, H = 70, HALF = L / 2;
           const hero = M.obj(S.iso, { x: -L / 2, y: -D / 2, id: "s7-hero" });
-          M.shadow(hero, { w: L, d: D, ext: 30 });
+          const heroSh = M.shadow(hero, { w: L, d: D, ext: 30 });
           const heroBody = M.obj(hero, {});
+          // Trace de dents : bord dentelé sur la coupe (face est = bout de barre exposé).
+          function biteMark(face, k) {
+            const a = 10 + k * 3, b = 24 + k * 2;
+            const m = M.decal(face, '<svg viewBox="0 0 ' + D + " " + H + '" preserveAspectRatio="none"><path d="M0 0 H' + D + ' V' + a + ' Q' + D * 0.86 + ' ' + b + ' ' + D * 0.72 + ' ' + a + ' Q' + D * 0.58 + ' ' + (b + 2) + ' ' + D * 0.44 + ' ' + a + ' Q' + D * 0.3 + ' ' + b + ' ' + D * 0.16 + ' ' + a + ' Q' + D * 0.08 + ' ' + (b - 4) + ' 0 ' + (a + 2) + ' Z" fill="var(--choco)"/></svg>');
+            gsap.set(m, { visibility: "hidden" });
+            return m;
+          }
+          // La moitié avant est mangée en trois crocs : trois tranches, retirées du bout vers le centre.
+          // Chaque tranche porte la coupe intérieure sur sa face est (cachée par la tranche suivante).
           const main = M.barMordu(heroBody, { len: HALF, d: D, h: H, cut: true, shadow: false, seed: 5 });
-          // Trace du croc : bord dentelé sur la coupe.
-          const biteFace = M.decal(main.body.faces.e, '<svg viewBox="0 0 ' + D + " " + H + '" preserveAspectRatio="none"><path d="M0 0 H' + D + ' V12 Q' + D * 0.86 + ' 26 ' + D * 0.72 + ' 12 Q' + D * 0.58 + ' 28 ' + D * 0.44 + ' 12 Q' + D * 0.3 + ' 26 ' + D * 0.16 + ' 12 Q' + D * 0.08 + ' 22 0 14 Z" fill="var(--choco)"/></svg>');
-          gsap.set(biteFace, { visibility: "hidden" });
-          const chunk = M.barMordu(heroBody, { x: HALF, len: HALF, d: D, h: H, shadow: false, seed: 6 });
+          const CUTS = [HALF, HALF + 55, HALF + 110, L]; // bornes des tranches
+          const slices = [];
+          for (let i = 0; i < 3; i++) {
+            const sl = M.barMordu(heroBody, { x: CUTS[i], len: CUTS[i + 1] - CUTS[i], d: D, h: H, cut: i < 2, shadow: false, seed: 6 + i });
+            slices.push(sl);
+          }
+          // Bout exposé après chaque croc : tranche 2, tranche 1, puis la moitié restante.
+          const ends = [
+            { face: slices[1].body.faces.e, x: CUTS[2] },
+            { face: slices[0].body.faces.e, x: CUTS[1] },
+            { face: main.body.faces.e, x: CUTS[0] },
+          ];
+          ends.forEach(function (e, k) { e.mark = biteMark(e.face, k); });
           gsap.set(hero, { visibility: "hidden" });
 
           // ---- caméra : recul plein décor, puis plein cadre sur la barre.
@@ -125,9 +143,31 @@
           gsap.set(legal, { yPercent: 110 });
           tl.fromTo(legal, { yPercent: 110 }, { yPercent: 0, duration: 0.3, ease: "power3.out" }, B.small - 0.6);
 
-          // ---- un seul croc, sec : la moitié de la barre disparaît.
-          tl.set(chunk, { visibility: "hidden" }, B.bite);
-          tl.set(biteFace, { visibility: "inherit" }, B.bite);
+          // ---- trois crocs secs, du bout vers le centre : la moitié de la barre y passe.
+          // À chaque croc, quelques miettes sautent du bout et restent au sol.
+          const bites = [B.bite, B.bite2, B.bite3];
+          const rc = M.rng(77);
+          bites.forEach(function (t, k) {
+            const e = ends[k];
+            tl.set(slices[2 - k], { visibility: "hidden" }, t);
+            tl.set(heroSh, { width: e.x + 30 }, t); // l'ombre raccourcit avec la barre
+            tl.set(e.mark, { visibility: "inherit" }, t);
+            if (k > 0) tl.set(ends[k - 1].mark, { visibility: "hidden" }, t);
+            // Le reste de la barre encaisse le croc : petit recul sec vers l'ouest, sans rebond.
+            tl.fromTo(heroBody, { x: -6 }, { x: 0, duration: 0.16, ease: "power3.out", immediateRender: false }, t);
+            for (let c = 0; c < 4; c++) {
+              const sz = 7 + Math.round(rc() * 7);
+              const cy = 10 + rc() * (D - 20);
+              const crumb = M.obj(hero, { x: e.x + 2, y: cy, z: H - 6 });
+              M.cuboid(crumb, { w: sz, d: sz, h: sz, mat: c % 3 === 1 ? "peau" : "choco" });
+              gsap.set(crumb, { visibility: "hidden" });
+              const dx = 24 + rc() * 70, dy = (rc() - 0.5) * 70, up = 30 + rc() * 40, d = 0.32 + rc() * 0.12;
+              tl.set(crumb, { visibility: "inherit" }, t);
+              tl.to(crumb, { x: e.x + 2 + dx, y: cy + dy, duration: d, ease: "none" }, t);
+              tl.to(crumb, { z: H - 6 + up, duration: d * 0.35, ease: "power2.out" }, t);
+              tl.to(crumb, { z: 0, duration: d * 0.65, ease: "power2.in" }, t + d * 0.35);
+            }
+          });
 
           window.__timelines["s7"] = tl;
         })();

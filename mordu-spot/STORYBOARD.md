@@ -51,4 +51,4 @@ Gag : la dernière porte reste ouverte, panneau « COURANT D'AIR », plan serré
 status: built · src: compositions/s7-chute.html
 Tout est balayé d'un revers, une barre MORDU reste au centre, plein cadre.
 « ENFIN UNE BARRE. PAS UNE BRIQUE. » · « 20 G DE PROTÉINES · CARAMEL CACAHUÈTE » · « Marque fictive. Projet personnel. »
-Un seul croc, sec, puis ~3 s de plan tenu sur le packshot.
+Trois crocs secs du bout vers le centre (miettes au sol, ombre qui raccourcit), moitié mangée, puis ~2,5 s de packshot tenu.

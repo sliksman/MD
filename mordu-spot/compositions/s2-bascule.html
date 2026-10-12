@@ -70,12 +70,14 @@
             gsap.set(g, { visibility: "hidden" });
             tl.set(g, { visibility: "inherit" }, t);
             tl.fromTo(g, { z: DROP_Z }, { z: 0, duration: DROP_D, ease: "power3.in" }, t);
+            M.dropShadows(tl, g, DROP_Z, DROP_D, "power3.in", t);
           });
           // Gag : l'opérateur arrive en retard à son poste, seul, après le « PRÊT ». Impassible.
           const op = F.s3.op;
           gsap.set(op, { visibility: "hidden" });
           tl.set(op, { visibility: "inherit" }, B.late - DROP_D);
           tl.fromTo(op, { z: DROP_Z }, { z: 0, duration: DROP_D, ease: "power3.in" }, B.late - DROP_D);
+          M.dropShadows(tl, op, DROP_Z, DROP_D, "power3.in", B.late - DROP_D);
 
           // ---- wordmark : couché sur la dalle, puis les cinq lettres se dressent dans l'ordre.
           const L = F.wordmark.letters;

@@ -99,7 +99,7 @@
         "title": { "vo": "vo7b" },
         "title2": { "vo": "vo7c" },
         "small": { "vo": "vo7c", "end": true },
-        "bite": 4.9
+        "bite": 4.25, "bite2": 4.85, "bite3": 5.45
       }
     }
   ],
@@ -177,6 +177,8 @@
     { "scene": "s6", "beat": "sink", "name": "clou qui s'enfonce sans résistance (MORDU moelleuse)" },
     { "scene": "s7", "beat": "sweep", "name": "balayage" },
     { "scene": "s7", "beat": "hero", "name": "la barre MORDU se pose" },
-    { "scene": "s7", "beat": "bite", "name": "croc sec (fin)" }
+    { "scene": "s7", "beat": "bite", "name": "croc 1 (bout de barre)" },
+    { "scene": "s7", "beat": "bite2", "name": "croc 2" },
+    { "scene": "s7", "beat": "bite3", "name": "croc 3 (moitié mangée, fin)" }
   ]
 }

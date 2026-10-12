@@ -99,8 +99,19 @@
     const s = el("div", "shadow", parent);
     s.style.width = px(o.w + (o.ext == null ? 18 : o.ext));
     s.style.height = px(o.d);
-    s.style.transform = "translate3d(" + px(o.x || 0) + "," + px(o.y || 0) + ",0.6px)";
+    // --sz : compensation verticale (voir dropShadows), 0 au repos.
+    s.style.transform = "translate3d(" + px(o.x || 0) + "," + px(o.y || 0) + ",calc(var(--sz, 0px) + 0.6px))";
     return s;
+  }
+
+  // Chute d'un groupe : ses ombres restent collées au sol pendant que le volume tombe
+  // (on compense le z du groupe sur chaque ombre, même courbe, même durée).
+  function dropShadows(tl, g, fromZ, dur, ease, t) {
+    g.querySelectorAll(".shadow").forEach(function (sh) {
+      // Marge de 6 px au départ : avec un groupe très haut, la précision du compositeur
+      // ferait passer l'ombre sous la dalle. La marge disparaît avec la chute.
+      tl.fromTo(sh, { "--sz": 6 - fromZ + "px" }, { "--sz": "0px", duration: dur, ease: ease, immediateRender: false }, t);
+    });
   }
 
   // Objet posable : racine au sol (glisse en x/y), corps en z (tombe), ombre fixe au sol.
@@ -567,6 +578,7 @@
     peanutSVG: peanutSVG,
     barMordu: barMordu,
     barPlaco: barPlaco,
+    dropShadows: dropShadows,
     operator: operator,
     conveyor: conveyor,
     stamp: stamp,
