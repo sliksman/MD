@@ -17,6 +17,14 @@
     s1end: M.focus({ x: 100, y: 60, z: 100 }, 0.78, 0, 30),
   };
 
+  // Boule de caramel en volumes simples (base + dôme), centrée sur (x, y).
+  function caramelBlob(parent, o) {
+    const g = M.obj(parent, { x: o.x, y: o.y, z: o.z });
+    M.cuboid(g, { x: -16, y: -13, z: 0, w: 32, d: 26, h: 14, mat: "caramel" });
+    M.cuboid(g, { x: -10, y: -8, z: 14, w: 20, d: 16, h: 8, mat: "caramel" });
+    return g;
+  }
+
   // ---------- CHANTIER (scènes 0 et 1, monde gris) --------------------------
   function chantier(iso, o) {
     o = o || {};
@@ -220,10 +228,14 @@
     s4.pincer = M.obj(s4, { x: 80, y: 56, z: 70 });
     M.cuboid(s4.pincer, { x: 0, y: 0, z: 0, w: 50, d: 60, h: 44, mat: "creme" });
     M.cuboid(s4.pincer, { x: 16, y: 16, z: 44, w: 18, d: 28, h: 40, mat: "creme" });
-    s4.fil = M.obj(s4, { x: 80, y: 78, z: 82 });
-    M.cuboid(s4.fil, { w: 300, d: 16, h: 16, mat: "caramel" });
+    // Caramel : une boule tenue entre les mâchoires ; le fil s'étire depuis elle.
+    s4.blobL = caramelBlob(s4, { x: 92, y: 86, z: 76 });
+    s4.fil = M.obj(s4, { x: 92, y: 78, z: 80 });
+    M.cuboid(s4.fil, { w: 288, d: 16, h: 16, mat: "caramel" });
     gsap.set(s4.fil, { scaleX: 0.001 });
-    M.cuboid(s4, { x: 60, y: 74, z: 114, w: 22, d: 24, h: 10, mat: "caramel" });
+    // Moitié droite après rupture : reste au bout de la pince mobile.
+    s4.blobR = caramelBlob(s4, { x: 70, y: 86, z: 76 });
+    gsap.set(s4.blobR, { scale: 0 });
     s4.ruler = M.ruler(s4, { x: 80, y: 140, z: 70, len: 330, step: 20 });
     const mark = M.obj(s4, { x: 378, y: 136, z: 70 });
     M.cuboid(mark, { w: 4, d: 36, h: 30, mat: "caramel-vif" });
@@ -237,9 +249,6 @@
     const bin = M.cuboid(s4.bin, { w: 100, d: 90, h: 86, mat: "choco" });
     M.decal(bin.faces.top, '<svg viewBox="0 0 100 90"><rect x="8" y="8" width="84" height="74" fill="var(--bracelet)"/></svg>');
     M.faceText(bin.faces.s, "MENSONGES", { size: 19, color: "var(--creme)" });
-    s4.blob = M.obj(s4, { x: 380, y: 76, z: 82 });
-    M.cuboid(s4.blob, { w: 30, d: 22, h: 20, mat: "caramel" });
-    gsap.set(s4.blob, { scale: 0 });
 
     // ---- S5 chocolat : convoyeur, rideau, panneau BRILLANT, éjecteur.
     const s5 = M.obj(iso, { x: -560, y: 700, id: P + "-s5" });
@@ -296,16 +305,18 @@
     M.cuboid(s6, { w: 480, d: 120, h: 60, mat: "rouge" });
     M.cuboid(s6, { x: 200, y: -60, z: 0, w: 24, d: 24, h: 300, mat: "rouge" });
     M.cuboid(s6, { x: 200, y: -60, z: 300, w: 24, d: 150, h: 24, mat: "rouge" });
-    s6.hammer = M.obj(s6, { x: 212, y: 60, z: 160 });
+    s6.hammer = M.obj(s6, { x: 212, y: 60, z: 230 }); // marteau levé au repos
     M.cuboid(s6.hammer, { x: -8, y: -8, z: 40, w: 16, d: 16, h: 100, mat: "creme" });
     M.cuboid(s6.hammer, { x: -26, y: -20, z: 0, w: 52, d: 40, h: 40, mat: "choco" });
     s6.nail = M.obj(s6, { x: 208, y: 56, z: 96 });
     M.cuboid(s6.nail, { x: 0, y: 0, z: 0, w: 8, d: 8, h: 54, mat: "creme" });
     M.cuboid(s6.nail, { x: -5, y: -5, z: 54, w: 18, d: 18, h: 4, mat: "creme" });
+    gsap.set(s6.nail, { visibility: "hidden" }); // posé par la scène 6
     s6.testBar = M.obj(s6, { x: 162, y: 30, z: 60 });
     s6.placo = M.barPlaco(s6.testBar, { len: 100, d: 60, h: 36, seed: 70, shadow: false });
     s6.mordu = M.barMordu(s6.testBar, { len: 100, d: 60, h: 36, seed: 71, shadow: false });
     gsap.set(s6.mordu, { visibility: "hidden" });
+    gsap.set(s6.testBar, { visibility: "hidden" }); // l'établi est vide au repos
     // 13 portes miniatures, le long de y, à l'est de l'établi.
     s6.doors = [];
     for (let i = 0; i < 13; i++) {

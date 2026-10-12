@@ -58,6 +58,10 @@
           tl.to(s3.op.parts.head, { rotationZ: -42, duration: 0.22, ease: "power3.out" }, B.glance);
           tl.to(s3.op.parts.head, { rotationZ: 0, duration: 0.22, ease: "power3.inOut" }, B.glance + 0.85);
 
+          // ---- l'interface sort par bloc avant le raccord (jamais de disparition sèche).
+          const OUT = M.T().scenes.s3.dur - 0.32;
+          tl.to([badge.inner], { yPercent: -110, duration: 0.22, ease: "power2.in" }, OUT);
+
           window.__timelines["s3"] = tl;
         })();
       </script>

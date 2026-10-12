@@ -40,7 +40,7 @@
         "letters": { "vo": "vo2b", "word": 3 },
         "screen": { "vo": "vo2b", "word": 7 },
         "ready": { "vo": "vo2c", "word": 0 },
-        "sign": { "vo": "vo2c", "word": 2 }
+        "late": { "vo": "vo2c", "word": 2 }
       }
     },
     {
@@ -61,6 +61,7 @@
         "badge": { "vo": "vo4a" },
         "pull1": { "vo": "vo4b" },
         "valid": { "vo": "vo4b", "word": 3 },
+        "refill": { "vo": "vo4b", "word": 4, "+": -0.35 },
         "pull2": { "vo": "vo4b", "word": 4 },
         "fail": { "vo": "vo4b", "word": 6 },
         "toss": { "vo": "vo4c", "word": 4 },
@@ -82,11 +83,11 @@
       "id": "s6", "title": "ÉTAPE 4 — TEST DU CLOU", "src": "compositions/s6-clou.html", "start": 45, "end": 55,
       "beats": {
         "badge": { "vo": "vo6a" },
-        "nail1": { "vo": "vo6b", "word": 3 },
-        "wedge1": { "vo": "vo6b", "word": 8 },
+        "nail1": { "vo": "vo6b", "word": 4 },
+        "wedge1": { "vo": "vo6b", "word": 10 },
         "rush": { "vo": "vo6c" },
         "mordu": { "vo": "vo6d" },
-        "bounce": { "vo": "vo6d", "word": 1 },
+        "sink": { "vo": "vo6d", "word": 1 },
         "draft": { "vo": "vo6d", "end": true, "+": 0.25 }
       }
     },
@@ -94,6 +95,7 @@
       "id": "s7", "title": "LA CHUTE", "src": "compositions/s7-chute.html", "start": 55, "end": 60,
       "beats": {
         "sweep": { "vo": "vo7a" },
+        "hero": 1.0,
         "title": { "vo": "vo7b" },
         "title2": { "vo": "vo7c" },
         "small": { "vo": "vo7c", "end": true },
@@ -127,7 +129,7 @@
     { "id": "vo5c", "scene": "s5", "start": 42.3, "end": 44.3, "text": "Si ça brille, c'est du plastique." },
 
     { "id": "vo6a", "scene": "s6", "start": 45.4, "end": 47.2, "text": "Dernière étape : le test du clou." },
-    { "id": "vo6b", "scene": "s6", "start": 47.6, "end": 50.4, "text": "Si le clou rentre, la barre part caler une porte." },
+    { "id": "vo6b", "scene": "s6", "start": 47.6, "end": 50.6, "text": "Si le clou ne rentre pas, la barre part caler une porte." },
     { "id": "vo6c", "scene": "s6", "start": 51.0, "end": 52.1, "text": "Quatorze testées." },
     { "id": "vo6d", "scene": "s6", "start": 52.5, "end": 53.9, "text": "Treize portes calées." },
 
@@ -153,6 +155,7 @@
     { "scene": "s2", "beat": "build", "name": "montage mécanique des machines" },
     { "scene": "s2", "beat": "letters", "name": "lettres MORDU qui se dressent" },
     { "scene": "s2", "beat": "ready", "name": "bip écran tactile (PRÊT)" },
+    { "scene": "s2", "beat": "late", "name": "l'opérateur atterrit à son poste, en retard" },
     { "scene": "s3", "beat": "belt", "name": "convoyeur (démarrage)" },
     { "scene": "s3", "beat": "ok1", "name": "tampon OK" },
     { "scene": "s3", "beat": "ok2", "name": "tampon OK" },
@@ -160,18 +163,20 @@
     { "scene": "s3", "beat": "ok3", "name": "tampon OK" },
     { "scene": "s4", "beat": "pull1", "name": "étirement humide" },
     { "scene": "s4", "beat": "valid", "name": "bip validation" },
+    { "scene": "s4", "beat": "refill", "name": "nouvelle boule de caramel posée" },
     { "scene": "s4", "beat": "pull2", "name": "étirement humide" },
-    { "scene": "s4", "beat": "fail", "name": "bip refus" },
+    { "scene": "s4", "beat": "fail", "name": "caramel qui casse + bip refus" },
     { "scene": "s4", "beat": "binLand", "name": "caramel dans la poubelle" },
     { "scene": "s5", "beat": "pour", "name": "coulée de chocolat" },
     { "scene": "s5", "beat": "cross", "name": "croix sur BRILLANT" },
     { "scene": "s5", "beat": "eject", "name": "éjection" },
-    { "scene": "s6", "beat": "nail1", "name": "coup de marteau + clou qui traverse" },
+    { "scene": "s6", "beat": "nail1", "name": "coup de marteau + clou qui se tord (barre dure)" },
     { "scene": "s6", "beat": "wedge1", "name": "porte calée" },
     { "scene": "s6", "beat": "rush", "name": "rafale de coups de marteau" },
     { "scene": "s6", "beat": "mordu", "name": "coup de marteau sur MORDU" },
-    { "scene": "s6", "beat": "bounce", "name": "clou qui rebondit" },
+    { "scene": "s6", "beat": "sink", "name": "clou qui s'enfonce sans résistance (MORDU moelleuse)" },
     { "scene": "s7", "beat": "sweep", "name": "balayage" },
+    { "scene": "s7", "beat": "hero", "name": "la barre MORDU se pose" },
     { "scene": "s7", "beat": "bite", "name": "croc sec (fin)" }
   ]
 }

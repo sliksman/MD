@@ -12,7 +12,7 @@
         (function () {
           // SCÈNE 2 — LE BASCULEMENT. La dalle bordeaux se déroule sur le chantier,
           // le gris s'enfonce, l'usine MORDU tombe d'un coup, le wordmark se dresse.
-          // Gag : le « U » se lève avec un temps de retard.
+          // Gag : l'opérateur arrive en retard à son poste.
           const M = window.MORDU;
           const B = M.T().scenes.s2.beats;
           const root = document.querySelector('[data-composition-id="s2"]');
@@ -62,25 +62,29 @@
             tl.set(o, { visibility: "hidden" }, t + 0.22);
           });
 
-          // ---- l'usine tombe d'un coup (chute sèche, échelonnée).
+          // ---- l'usine tombe d'un coup : chute depuis hors du cadre (jamais d'apparition en l'air).
+          const DROP_Z = 2400, DROP_D = 0.5;
           const drops = [F.s3, F.console, F.s4, F.s5, F.s6];
           drops.forEach(function (g, i) {
             const t = B.build + i * 0.11;
             gsap.set(g, { visibility: "hidden" });
             tl.set(g, { visibility: "inherit" }, t);
-            tl.fromTo(g, { z: 760 }, { z: 0, duration: 0.34, ease: "power3.in" }, t);
+            tl.fromTo(g, { z: DROP_Z }, { z: 0, duration: DROP_D, ease: "power3.in" }, t);
           });
+          // Gag : l'opérateur arrive en retard à son poste, seul, après le « PRÊT ». Impassible.
+          const op = F.s3.op;
+          gsap.set(op, { visibility: "hidden" });
+          tl.set(op, { visibility: "inherit" }, B.late - DROP_D);
+          tl.fromTo(op, { z: DROP_Z }, { z: 0, duration: DROP_D, ease: "power3.in" }, B.late - DROP_D);
 
-          // ---- wordmark : couché sur la dalle, puis les lettres se dressent.
+          // ---- wordmark : couché sur la dalle, puis les cinq lettres se dressent dans l'ordre.
           const L = F.wordmark.letters;
           L.forEach(function (h) { gsap.set(h, { rotationX: 90 }); });
           gsap.set(F.wordmark, { visibility: "hidden" });
           tl.set(F.wordmark, { visibility: "inherit" }, B.carpet + D * 0.45);
-          L.slice(0, 4).forEach(function (h, i) {
+          L.forEach(function (h, i) {
             tl.to(h, { rotationX: 0, duration: 0.3, ease: "power3.out" }, B.letters + i * 0.16);
           });
-          // Gag : le U attend son tour… puis se lève, seul.
-          tl.to(L[4], { rotationX: 0, duration: 0.3, ease: "power3.out" }, B.sign);
 
           // ---- écran tactile : s'allume, puis « PRÊT ».
           gsap.set(F.screen.face, { backgroundColor: "transparent" });

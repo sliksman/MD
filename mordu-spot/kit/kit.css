@@ -315,19 +315,51 @@
 .hud-label { left: 162px; right: 162px; }
 
 /* Fin : titres, ligne produit, mention. */
-.end-title {
+.end-logo {
   position: absolute;
   left: 162px;
   right: 162px;
+  top: 84px;
+  height: 172px;
   display: flex;
   justify-content: center;
   overflow: hidden;
 }
-.end-title > span { display: block; padding: 0 30px; background: var(--fond); color: var(--creme); }
+.end-logo > span {
+  display: block;
+  padding: 0 36px;
+  background: var(--creme);
+  color: var(--rouge);
+  font-size: 150px;
+  line-height: 172px;
+}
+.end-title {
+  position: absolute;
+  left: 162px;
+  right: 162px;
+  top: 282px;
+  height: 112px;
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  overflow: hidden;
+}
+.end-title > span {
+  display: block;
+  padding: 0 18px;
+  background: var(--fond);
+  color: var(--creme);
+  font-size: 88px;
+  line-height: 112px;
+}
+.end-title > span:first-child { padding-left: 32px; }
+.end-title > span:last-child { padding-right: 32px; }
 .end-small {
   position: absolute;
   left: 192px;
   right: 192px;
+  top: 412px;
+  height: 62px;
   display: flex;
   justify-content: center;
   overflow: hidden;

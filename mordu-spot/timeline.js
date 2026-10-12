@@ -49,7 +49,7 @@ window.MORDU_TIMELINE = {
     "letters": 3.3,
     "screen": 4.767,
     "ready": 5.7,
-    "sign": 6.045
+    "late": 6.045
    }
   },
   "s3": {
@@ -78,6 +78,7 @@ window.MORDU_TIMELINE = {
     "badge": 0.4,
     "pull1": 2.3,
     "valid": 3.861,
+    "refill": 4.17,
     "pull2": 4.52,
     "fail": 5.041,
     "toss": 7.422,
@@ -107,11 +108,11 @@ window.MORDU_TIMELINE = {
    "dur": 10,
    "beats": {
     "badge": 0.4,
-    "nail1": 3.267,
-    "wedge1": 4.778,
+    "nail1": 3.422,
+    "wedge1": 5.025,
     "rush": 6,
     "mordu": 7.5,
-    "bounce": 7.741,
+    "sink": 7.741,
     "draft": 9.15
    }
   },
@@ -123,6 +124,7 @@ window.MORDU_TIMELINE = {
    "dur": 5,
    "beats": {
     "sweep": 0.4,
+    "hero": 1,
     "title": 1.4,
     "title2": 2.7,
     "small": 3.7,
@@ -659,8 +661,8 @@ window.MORDU_TIMELINE = {
   },
   "vo6b": {
    "start": 47.6,
-   "end": 50.4,
-   "text": "Si le clou rentre, la barre part caler une porte.",
+   "end": 50.6,
+   "text": "Si le clou ne rentre pas, la barre part caler une porte.",
    "words": [
     {
      "w": "Si",
@@ -668,39 +670,47 @@ window.MORDU_TIMELINE = {
     },
     {
      "w": "le",
-     "t": 47.822
+     "t": 47.805
     },
     {
      "w": "clou",
-     "t": 48.044
+     "t": 48.011
     },
     {
-     "w": "rentre,",
-     "t": 48.267
+     "w": "ne",
+     "t": 48.216
+    },
+    {
+     "w": "rentre",
+     "t": 48.422
+    },
+    {
+     "w": "pas,",
+     "t": 48.627
     },
     {
      "w": "la",
-     "t": 48.667
+     "t": 48.997
     },
     {
      "w": "barre",
-     "t": 48.889
+     "t": 49.203
     },
     {
      "w": "part",
-     "t": 49.111
+     "t": 49.408
     },
     {
      "w": "caler",
-     "t": 49.333
+     "t": 49.614
     },
     {
      "w": "une",
-     "t": 49.778
+     "t": 50.025
     },
     {
      "w": "porte.",
-     "t": 50
+     "t": 50.23
     }
    ]
   },
@@ -1319,7 +1329,7 @@ window.MORDU_TIMELINE = {
    },
    {
     "start": 47.6,
-    "end": 50.75,
+    "end": 48.957,
     "words": [
      {
       "w": "Si",
@@ -1327,39 +1337,53 @@ window.MORDU_TIMELINE = {
      },
      {
       "w": "le",
-      "t": 47.822
+      "t": 47.805
      },
      {
       "w": "clou",
-      "t": 48.044
+      "t": 48.011
      },
      {
-      "w": "rentre,",
-      "t": 48.267
+      "w": "ne",
+      "t": 48.216
      },
+     {
+      "w": "rentre",
+      "t": 48.422
+     },
+     {
+      "w": "pas,",
+      "t": 48.627
+     }
+    ]
+   },
+   {
+    "start": 48.997,
+    "end": 50.95,
+    "words": [
      {
       "w": "la",
-      "t": 48.667
+      "t": 48.997
      },
      {
       "w": "barre",
-      "t": 48.889
+      "t": 49.203
      },
      {
       "w": "part",
-      "t": 49.111
+      "t": 49.408
      },
      {
       "w": "caler",
-      "t": 49.333
+      "t": 49.614
      },
      {
       "w": "une",
-      "t": 49.778
+      "t": 50.025
      },
      {
       "w": "porte.",
-      "t": 50
+      "t": 50.23
      }
     ]
    },

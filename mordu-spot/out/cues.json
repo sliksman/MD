@@ -115,6 +115,13 @@
       "frame": 561
     },
     {
+      "t": 19.045,
+      "name": "l'opérateur atterrit à son poste, en retard",
+      "scene": "s2",
+      "beat": "late",
+      "frame": 571
+    },
+    {
       "t": 20.3,
       "name": "convoyeur (démarrage)",
       "scene": "s3",
@@ -164,6 +171,13 @@
       "frame": 986
     },
     {
+      "t": 33.17,
+      "name": "nouvelle boule de caramel posée",
+      "scene": "s4",
+      "beat": "refill",
+      "frame": 995
+    },
+    {
       "t": 33.52,
       "name": "étirement humide",
       "scene": "s4",
@@ -172,7 +186,7 @@
     },
     {
       "t": 34.041,
-      "name": "bip refus",
+      "name": "caramel qui casse + bip refus",
       "scene": "s4",
       "beat": "fail",
       "frame": 1021
@@ -206,18 +220,18 @@
       "frame": 1299
     },
     {
-      "t": 48.267,
-      "name": "coup de marteau + clou qui traverse",
+      "t": 48.422,
+      "name": "coup de marteau + clou qui se tord (barre dure)",
       "scene": "s6",
       "beat": "nail1",
-      "frame": 1448
+      "frame": 1453
     },
     {
-      "t": 49.778,
+      "t": 50.025,
       "name": "porte calée",
       "scene": "s6",
       "beat": "wedge1",
-      "frame": 1493
+      "frame": 1501
     },
     {
       "t": 51,
@@ -235,9 +249,9 @@
     },
     {
       "t": 52.741,
-      "name": "clou qui rebondit",
+      "name": "clou qui s'enfonce sans résistance (MORDU moelleuse)",
       "scene": "s6",
-      "beat": "bounce",
+      "beat": "sink",
       "frame": 1582
     },
     {
@@ -246,6 +260,13 @@
       "scene": "s7",
       "beat": "sweep",
       "frame": 1662
+    },
+    {
+      "t": 56,
+      "name": "la barre MORDU se pose",
+      "scene": "s7",
+      "beat": "hero",
+      "frame": 1680
     },
     {
       "t": 59.45,

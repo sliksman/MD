@@ -70,6 +70,10 @@
           tl.to(shiny, { rotationX: -12, duration: 0.1, ease: "power1.out" }, B.eject + 0.2);
           tl.to(shiny, { rotationX: 0, duration: 0.12, ease: "power2.out" }, B.eject + 0.38);
 
+          // ---- l'interface sort par bloc avant le raccord (jamais de disparition sèche).
+          const OUT = M.T().scenes.s5.dur - 0.32;
+          tl.to([badge.inner, lbl.inner], { yPercent: -110, duration: 0.22, ease: "power2.in" }, OUT);
+
           window.__timelines["s5"] = tl;
         })();
       </script>

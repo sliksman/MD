@@ -9,8 +9,9 @@
       <div id="root" data-composition-id="s6" data-width="1920" data-height="1080"></div>
       <script>
         (function () {
-          // SCÈNE 6 — ÉTAPE 4, LE TEST DU CLOU. Les barres grises se font transpercer et
-          // partent caler des portes (compteur 13 / 14). La MORDU renvoie le clou.
+          // SCÈNE 6 — ÉTAPE 4, LE TEST DU CLOU. Sur les barres grises (dures), le clou se
+          // tord : elles partent caler des portes (compteur 13 / 14). Sur la MORDU
+          // (moelleuse), le clou s'enfonce sans résistance : elle reste sur l'établi.
           // Gag : la dernière porte calée reste ouverte, panneau « COURANT D'AIR ».
           const M = window.MORDU;
           const B = M.T().scenes.s6.beats;
@@ -75,56 +76,73 @@
             tl.set(nums[n], { visibility: "inherit" }, t);
           }
 
-          // ---- marteau : levé au départ.
-          gsap.set(s6.hammer, { z: 230 });
-          function strike(t, depth, d) {
-            d = d || 0.12;
-            tl.to(s6.hammer, { z: 150, duration: d, ease: "power3.in" }, t - d);
-            if (depth) {
-              tl.to(s6.hammer, { z: 150 - depth, duration: 0.05, ease: "power2.out" }, t);
-              tl.to(s6.nail, { z: 96 - depth, duration: 0.05, ease: "power2.out" }, t);
-            }
-            tl.to(s6.hammer, { z: 230, duration: Math.max(0.05, d * 1.6), ease: "power2.out" }, t + (depth ? 0.06 : 0.02));
+          // ---- cloueur : le clou est chargé sous la tête du marteau et descend avec lui.
+          // Marteau levé z 230 ↔ clou z 172 ; contact : marteau 154 ↔ clou 96 (dessus de barre).
+          function strike(t, d) {
+            tl.to(s6.hammer, { z: 154, duration: d, ease: "power3.in" }, t - d);
+            tl.to(s6.nail, { z: 96, duration: d, ease: "power3.in" }, t - d);
+          }
+          function hammerUp(t, d) {
+            tl.to(s6.hammer, { z: 230, duration: d, ease: "power2.out" }, t);
+          }
+          // Une barre tombe sur la partie gauche de l'établi (hors de l'axe du marteau),
+          // puis glisse sous le marteau. Fin à t + 0.5.
+          function dropBar(t, mordu) {
+            tl.set(s6.placo, { visibility: mordu ? "hidden" : "inherit" }, t);
+            tl.set(s6.mordu, { visibility: mordu ? "inherit" : "hidden" }, t);
+            tl.set(s6.testBar, { visibility: "inherit", x: 30 }, t);
+            tl.fromTo(s6.testBar, { z: 700 }, { z: 60, duration: 0.3, ease: "power3.in" }, t);
+            tl.fromTo(s6.testBar, { x: 30 }, { x: 162, duration: 0.2, ease: "power3.inOut" }, t + 0.3);
+          }
+          // Un clou sort de la tête du marteau (chargement). Fin à t + 0.12.
+          function placeNail(t) {
+            tl.set(s6.nail, { visibility: "inherit", x: 208, y: 56, rotationY: 0 }, t);
+            tl.fromTo(s6.nail, { z: 212 }, { z: 172, duration: 0.12, ease: "power2.out" }, t);
           }
 
-          // ---- barre 1 : arrive, clou traversant, part caler la porte 1.
-          tl.fromTo(s6.testBar, { x: -220 }, { x: 162, duration: 0.4, ease: "power3.out" }, B.nail1 - 1.4);
-          tl.fromTo(s6.nail, { z: 420 }, { z: 96, duration: 0.25, ease: "power3.in" }, B.nail1 - 0.75);
-          strike(B.nail1, 34);
+          // ---- barre 1 (grise) : le clou se tord, la barre part caler la porte 1.
+          dropBar(B.nail1 - 1.3, false);
+          placeNail(B.nail1 - 0.6);
+          strike(B.nail1, 0.12);
+          tl.to(s6.nail, { rotationY: 78, duration: 0.08, ease: "power3.out" }, B.nail1);
+          hammerUp(B.nail1 + 0.06, 0.25);
+          tl.to(s6.nail, { y: -40, z: 0, rotationY: 90, duration: 0.3, ease: "power2.in" }, B.nail1 + 0.45);
+          tl.set(s6.nail, { visibility: "hidden" }, B.nail1 + 0.75);
           tl.to(s6.testBar, { x: 462, duration: 0.45, ease: "power3.in" }, B.wedge1 - 0.5);
-          tl.to(s6.nail, { x: 508, duration: 0.45, ease: "power3.in" }, B.wedge1 - 0.5);
-          tl.set([s6.testBar, s6.nail], { visibility: "hidden" }, B.wedge1 - 0.05);
+          tl.set(s6.testBar, { visibility: "hidden" }, B.wedge1 - 0.05);
           tl.fromTo(s6.doors[0].wedge, { scale: 0 }, { scale: 1, duration: 0.08, ease: "power2.out" }, B.wedge1);
           setCount(1, B.wedge1);
 
-          // ---- rafale : 12 barres, 12 clous, 12 portes.
-          const CYC = 0.11;
-          tl.set(s6.testBar, { x: 162, visibility: "inherit" }, B.rush - 0.2);
-          tl.set(s6.nail, { x: 208, z: 62, visibility: "inherit" }, B.rush - 0.2);
+          // ---- rafale : 12 barres dures, 12 clous tordus, 12 portes calées.
+          const CYC = 0.09;
+          tl.set(s6.testBar, { x: 162, z: 60, visibility: "inherit" }, B.rush - 0.2);
           for (let k = 1; k <= 12; k++) {
             const t = B.rush + (k - 1) * CYC;
-            tl.to(s6.hammer, { z: 118, duration: CYC * 0.45, ease: "power3.in" }, t);
+            tl.to(s6.hammer, { z: 150, duration: CYC * 0.45, ease: "power3.in" }, t);
             tl.to(s6.hammer, { z: 230, duration: CYC * 0.45, ease: "power2.out" }, t + CYC * 0.5);
             tl.fromTo(s6.testBar, { x: 120 }, { x: 162, duration: CYC * 0.3, ease: "none" }, t);
             tl.fromTo(s6.doors[k].wedge, { scale: 0 }, { scale: 1, duration: 0.06, ease: "power2.out" }, t + CYC * 0.5);
             setCount(k + 1, t + CYC * 0.5);
           }
+          tl.set(s6.testBar, { visibility: "hidden" }, B.rush + 12 * CYC);
           // La 13e porte calée reste ouverte.
           const lastDoor = s6.doors[12];
           tl.to(lastDoor.panel, { rotationZ: -75, duration: 0.2, ease: "power3.out" }, B.rush + 11 * CYC + 0.08);
 
-          // ---- la MORDU : le clou rebondit.
-          tl.set(s6.placo, { visibility: "hidden" }, B.mordu - 0.3);
-          tl.set(s6.mordu, { visibility: "inherit" }, B.mordu - 0.3);
-          tl.fromTo(s6.testBar, { x: -220 }, { x: 162, duration: 0.25, ease: "power3.out" }, B.mordu - 0.3);
-          tl.fromTo(s6.nail, { x: 208, z: 420, rotationY: 0 }, { z: 96, duration: 0.18, ease: "power3.in" }, B.mordu - 0.3);
-          strike(B.mordu, 0, 0.14);
-          tl.to(s6.nail, { z: 300, x: 290, rotationY: 300, duration: 0.3, ease: "power2.out" }, B.bounce);
-          tl.to(s6.nail, { z: 62, x: 330, rotationY: 450, duration: 0.3, ease: "power2.in" }, B.bounce + 0.3);
-          tl.to(s6.nail, { rotationY: 450, rotationX: 90, duration: 0.08, ease: "none" }, B.bounce + 0.6);
+          // ---- la MORDU : le clou s'enfonce sans résistance. Elle reste sur l'établi.
+          dropBar(B.sink - 0.68, true);
+          placeNail(B.sink - 0.4);
+          strike(B.sink, 0.14);
+          tl.to(s6.hammer, { z: 128, duration: 0.3, ease: "power2.out" }, B.sink);
+          tl.to(s6.nail, { z: 70, duration: 0.3, ease: "power2.out" }, B.sink);
+          hammerUp(B.sink + 0.55, 0.35);
 
           // ---- gag : panneau « COURANT D'AIR ».
           tl.fromTo(s6.draftSign, { scale: 0 }, { scale: 1, duration: 0.18, ease: "power3.out" }, B.draft);
+
+          // ---- l'interface sort par bloc avant le raccord (jamais de disparition sèche).
+          const OUT = M.T().scenes.s6.dur - 0.32;
+          tl.to([badge.inner, cin], { yPercent: -110, duration: 0.22, ease: "power2.in" }, OUT);
 
           window.__timelines["s6"] = tl;
         })();

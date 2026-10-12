@@ -32,36 +32,50 @@
           const badge = M.badge(S.hud, "02", "CARAMEL", "s4-badge");
           tl.fromTo(badge.inner, { yPercent: 110 }, { yPercent: 0, duration: 0.34, ease: "power3.out" }, B.badge);
 
-          const X0 = 80;
-          const FULL = 300; // 15 cm sur la règle
+          const X0 = 80;      // pince mobile au repos (contre la boule)
+          const FULL = 300;   // 15 cm sur la règle
+          const SHORT = 150;  // essai raté : casse avant la marque
+          const FIL = 288;    // longueur du fil à scaleX 1
 
-          // ---- étirement 1 : atteint la marque → voyant ambre.
+          // ---- essai 1 : la boule s'étire en fil jusqu'à la marque → voyant ambre.
           const d1 = B.valid - B.pull1;
           tl.fromTo(s4.pincer, { x: X0 }, { x: X0 + FULL, duration: d1, ease: "power2.inOut" }, B.pull1);
-          tl.fromTo(s4.fil, { scaleX: 0.001, scaleY: 1 }, { scaleX: 1, scaleY: 0.55, duration: d1, ease: "power2.inOut" }, B.pull1);
+          tl.fromTo(s4.fil, { scaleX: 0.001, scaleY: 1 }, { scaleX: (FULL - 12) / FIL, scaleY: 0.55, duration: d1, ease: "power2.inOut" }, B.pull1);
+          tl.to(s4.blobL, { scaleX: 0.7, scaleY: 0.8, duration: d1, ease: "power2.inOut" }, B.pull1);
           tl.set(s4.bulb, { "--base": "var(--caramel-vif)" }, B.valid);
-          // Coupe nette et retour au départ.
-          tl.to(s4.fil, { scaleX: 0.001, duration: 0.14, ease: "power3.in" }, B.pull2 - 0.42);
-          tl.to(s4.pincer, { x: X0, duration: 0.3, ease: "power3.inOut" }, B.pull2 - 0.36);
-          tl.set(s4.bulb, { "--base": "var(--choco)" }, B.pull2 - 0.1);
+          // Validé : le caramel étiré part en production (vers le haut), la pince revient.
+          tl.to(s4.fil, { z: 700, duration: 0.24, ease: "power3.in" }, B.valid + 0.06);
+          tl.to(s4.blobL, { z: 696, duration: 0.24, ease: "power3.in" }, B.valid + 0.06);
+          tl.to(s4.pincer, { x: X0, duration: 0.28, ease: "power3.inOut" }, B.valid + 0.08);
+          tl.set(s4.bulb, { "--base": "var(--choco)" }, B.refill);
+          // Une nouvelle boule tombe entre les mâchoires.
+          tl.set(s4.fil, { scaleX: 0.001, scaleY: 1, z: 80 }, B.refill);
+          tl.fromTo(s4.blobL, { z: 700, scaleX: 1, scaleY: 1 }, { z: 76, duration: 0.3, ease: "power3.in" }, B.refill);
 
-          // ---- étirement 2 : trop court, le fil casse → voyant bordeaux vif.
-          const SHORT = 170;
+          // ---- essai 2 : le fil casse avant la marque → voyant bordeaux vif.
           const d2 = B.fail - B.pull2;
           tl.to(s4.pincer, { x: X0 + SHORT, duration: d2, ease: "power2.out" }, B.pull2);
-          tl.fromTo(s4.fil, { scaleX: 0.001, scaleY: 1 }, { scaleX: SHORT / FULL, scaleY: 0.8, duration: d2, ease: "power2.out" }, B.pull2);
+          tl.fromTo(s4.fil, { scaleX: 0.001, scaleY: 1 }, { scaleX: (SHORT - 12) / FIL, scaleY: 0.8, duration: d2, ease: "power2.out" }, B.pull2);
+          // Rupture : chaque moitié se rétracte en boule à son extrémité.
           tl.to(s4.fil, { scaleX: 0.001, duration: 0.1, ease: "power2.in" }, B.fail);
+          tl.fromTo(s4.blobR, { x: X0 + SHORT - 10, scale: 0 }, { scale: 1, duration: 0.1, ease: "power2.out" }, B.fail);
           tl.set(s4.bulb, { "--base": "var(--rouge-vif)" }, B.fail);
-          // Le caramel raté reste au bout de la pince : une boule.
-          tl.fromTo(s4.blob, { scale: 0, x: X0 + SHORT + 20, y: 76, z: 82 }, { scale: 1, duration: 0.12, ease: "power2.out" }, B.fail);
-          tl.to(s4.pincer, { x: X0, duration: 0.4, ease: "power3.inOut" }, B.fail + 0.5);
+          // La pince revient, la moitié ratée avec elle.
+          tl.to(s4.pincer, { x: X0 + 60, duration: 0.35, ease: "power3.inOut" }, B.fail + 0.5);
+          tl.to(s4.blobR, { x: X0 + 50, duration: 0.35, ease: "power3.inOut" }, B.fail + 0.5);
 
-          // ---- gag : la pince donne une pichenette, la boule file dans « MENSONGES ».
+          // ---- gag : pichenette, la moitié ratée file dans « MENSONGES ».
           const dT = B.binLand - B.toss;
-          tl.to(s4.blob, { x: 475, y: 265, duration: dT, ease: "none" }, B.toss);
-          tl.to(s4.blob, { z: 330, duration: dT * 0.45, ease: "power2.out" }, B.toss);
-          tl.to(s4.blob, { z: 70, duration: dT * 0.55, ease: "power2.in" }, B.toss + dT * 0.45);
-          tl.to(s4.blob, { scale: 0, duration: 0.06, ease: "none" }, B.binLand);
+          tl.to(s4.pincer, { x: X0 + 80, duration: 0.08, ease: "power3.out" }, B.toss - 0.04);
+          tl.to(s4.blobR, { x: 490, y: 275, duration: dT, ease: "none" }, B.toss);
+          tl.to(s4.blobR, { z: 330, duration: dT * 0.45, ease: "power2.out" }, B.toss);
+          tl.to(s4.blobR, { z: 70, duration: dT * 0.55, ease: "power2.in" }, B.toss + dT * 0.45);
+          tl.set(s4.blobR, { scale: 0 }, B.binLand);
+          tl.to(s4.pincer, { x: X0, duration: 0.3, ease: "power3.inOut" }, B.toss + 0.3);
+
+          // ---- l'interface sort par bloc avant le raccord (jamais de disparition sèche).
+          const OUT = M.T().scenes.s4.dur - 0.32;
+          tl.to([badge.inner], { yPercent: -110, duration: 0.22, ease: "power2.in" }, OUT);
 
           window.__timelines["s4"] = tl;
         })();
