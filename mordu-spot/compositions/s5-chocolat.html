@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+        #root { position: absolute; inset: 0; }
+      </style>
+      <div id="root" data-composition-id="s5" data-width="1920" data-height="1080"></div>
+      <script>
+        (function () {
+          // STUB — scène pas encore construite.
+          const root = document.querySelector('[data-composition-id="s5"]');
+          const S = window.MORDU.stage(root);
+          const t = document.createElement("div");
+          t.className = "label-big";
+          t.innerHTML = '<span class="t-display">ÉTAPE 3 — CHOCOLAT</span>';
+          S.hud.appendChild(t);
+          window.__timelines["s5"] = gsap.timeline({ paused: true });
+        })();
+      </script>
+    </template>
+  </body>
+</html>

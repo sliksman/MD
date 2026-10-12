@@ -1,0 +1,258 @@
+{
+  "fps": 30,
+  "duration": 60,
+  "cues": [
+    {
+      "t": 0.55,
+      "name": "plaque posée",
+      "scene": "s0",
+      "beat": "plateIn",
+      "frame": 17
+    },
+    {
+      "t": 1.05,
+      "name": "visseuse",
+      "scene": "s0",
+      "beat": "screw1",
+      "frame": 32
+    },
+    {
+      "t": 1.6,
+      "name": "visseuse",
+      "scene": "s0",
+      "beat": "screw2",
+      "frame": 48
+    },
+    {
+      "t": 2.15,
+      "name": "plaque posée",
+      "scene": "s0",
+      "beat": "plate2",
+      "frame": 65
+    },
+    {
+      "t": 2.65,
+      "name": "visseuse",
+      "scene": "s0",
+      "beat": "screw3",
+      "frame": 80
+    },
+    {
+      "t": 3.15,
+      "name": "visseuse",
+      "scene": "s0",
+      "beat": "screw4",
+      "frame": 95
+    },
+    {
+      "t": 3.75,
+      "name": "niveau à bulle (bulle qui se cale)",
+      "scene": "s0",
+      "beat": "level",
+      "frame": 113
+    },
+    {
+      "t": 6.224,
+      "name": "poudre qui tombe",
+      "scene": "s1",
+      "beat": "powder",
+      "frame": 187
+    },
+    {
+      "t": 7.586,
+      "name": "presse hydraulique",
+      "scene": "s1",
+      "beat": "pressHit",
+      "frame": 228
+    },
+    {
+      "t": 7.736,
+      "name": "nuage de poussière",
+      "scene": "s1",
+      "beat": "dust",
+      "frame": 232
+    },
+    {
+      "t": 8.7,
+      "name": "claie de séchage",
+      "scene": "s1",
+      "beat": "dry",
+      "frame": 261
+    },
+    {
+      "t": 11.747,
+      "name": "silence sec (couper tout) sur « UN MUR »",
+      "scene": "s1",
+      "beat": "wall",
+      "frame": 352
+    },
+    {
+      "t": 13.3,
+      "name": "déploiement de la dalle",
+      "scene": "s2",
+      "beat": "carpet",
+      "frame": 399
+    },
+    {
+      "t": 15.5,
+      "name": "montage mécanique des machines",
+      "scene": "s2",
+      "beat": "build",
+      "frame": 465
+    },
+    {
+      "t": 16.3,
+      "name": "lettres MORDU qui se dressent",
+      "scene": "s2",
+      "beat": "letters",
+      "frame": 489
+    },
+    {
+      "t": 18.7,
+      "name": "bip écran tactile (PRÊT)",
+      "scene": "s2",
+      "beat": "ready",
+      "frame": 561
+    },
+    {
+      "t": 20.3,
+      "name": "convoyeur (démarrage)",
+      "scene": "s3",
+      "beat": "belt",
+      "frame": 609
+    },
+    {
+      "t": 22.4,
+      "name": "tampon OK",
+      "scene": "s3",
+      "beat": "ok1",
+      "frame": 672
+    },
+    {
+      "t": 23.857,
+      "name": "tampon OK",
+      "scene": "s3",
+      "beat": "ok2",
+      "frame": 716
+    },
+    {
+      "t": 25.654,
+      "name": "tampon REFUSÉE",
+      "scene": "s3",
+      "beat": "refuse",
+      "frame": 770
+    },
+    {
+      "t": 27.7,
+      "name": "tampon OK",
+      "scene": "s3",
+      "beat": "ok3",
+      "frame": 831
+    },
+    {
+      "t": 31.3,
+      "name": "étirement humide",
+      "scene": "s4",
+      "beat": "pull1",
+      "frame": 939
+    },
+    {
+      "t": 32.861,
+      "name": "bip validation",
+      "scene": "s4",
+      "beat": "valid",
+      "frame": 986
+    },
+    {
+      "t": 33.52,
+      "name": "étirement humide",
+      "scene": "s4",
+      "beat": "pull2",
+      "frame": 1006
+    },
+    {
+      "t": 34.041,
+      "name": "bip refus",
+      "scene": "s4",
+      "beat": "fail",
+      "frame": 1021
+    },
+    {
+      "t": 37.3,
+      "name": "caramel dans la poubelle",
+      "scene": "s4",
+      "beat": "binLand",
+      "frame": 1119
+    },
+    {
+      "t": 38.6,
+      "name": "coulée de chocolat",
+      "scene": "s5",
+      "beat": "pour",
+      "frame": 1158
+    },
+    {
+      "t": 42.717,
+      "name": "croix sur BRILLANT",
+      "scene": "s5",
+      "beat": "cross",
+      "frame": 1282
+    },
+    {
+      "t": 43.3,
+      "name": "éjection",
+      "scene": "s5",
+      "beat": "eject",
+      "frame": 1299
+    },
+    {
+      "t": 48.267,
+      "name": "coup de marteau + clou qui traverse",
+      "scene": "s6",
+      "beat": "nail1",
+      "frame": 1448
+    },
+    {
+      "t": 49.778,
+      "name": "porte calée",
+      "scene": "s6",
+      "beat": "wedge1",
+      "frame": 1493
+    },
+    {
+      "t": 51,
+      "name": "rafale de coups de marteau",
+      "scene": "s6",
+      "beat": "rush",
+      "frame": 1530
+    },
+    {
+      "t": 52.5,
+      "name": "coup de marteau sur MORDU",
+      "scene": "s6",
+      "beat": "mordu",
+      "frame": 1575
+    },
+    {
+      "t": 52.741,
+      "name": "clou qui rebondit",
+      "scene": "s6",
+      "beat": "bounce",
+      "frame": 1582
+    },
+    {
+      "t": 55.4,
+      "name": "balayage",
+      "scene": "s7",
+      "beat": "sweep",
+      "frame": 1662
+    },
+    {
+      "t": 59.45,
+      "name": "croc sec (fin)",
+      "scene": "s7",
+      "beat": "bite",
+      "frame": 1784
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+        #root { position: absolute; inset: 0; }
+      </style>
+      <div id="root" data-composition-id="s6" data-width="1920" data-height="1080"></div>
+      <script>
+        (function () {
+          // STUB — scène pas encore construite.
+          const root = document.querySelector('[data-composition-id="s6"]');
+          const S = window.MORDU.stage(root);
+          const t = document.createElement("div");
+          t.className = "label-big";
+          t.innerHTML = '<span class="t-display">ÉTAPE 4 — TEST DU CLOU</span>';
+          S.hud.appendChild(t);
+          window.__timelines["s6"] = gsap.timeline({ paused: true });
+        })();
+      </script>
+    </template>
+  </body>
+</html>

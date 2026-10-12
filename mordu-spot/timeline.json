@@ -1,0 +1,177 @@
+{
+  "_doc": [
+    "SOURCE UNIQUE DES TIMINGS. Après toute modification : npm run sync",
+    "scenes[].start/end : secondes absolues. La somme doit couvrir exactement 0 → duration.",
+    "vo[].start/end : secondes absolues de chaque réplique. words (optionnel) : [[mot, t_absolu], ...] pour caler au mot près ; sinon estimation au prorata des syllabes.",
+    "scenes[].beats : instants clés de l'animation, en secondes RELATIVES au début de la scène.",
+    "  Un beat peut être un nombre, ou une référence à la voix : {\"vo\": \"id\"} (début de réplique), {\"vo\": \"id\", \"word\": n} (n-ième mot, 0 = premier), {\"vo\": \"id\", \"end\": true}, avec un décalage optionnel {\"+\": 0.2}.",
+    "  Ainsi, recaler la voix déplace automatiquement les labels et gestes qui y sont accrochés.",
+    "cues : repères sonores → out/cues.json. Chaque cue pointe un beat de scène.",
+    "subtitles.enabled : false pour livrer sans sous-titres."
+  ],
+  "fps": 30,
+  "duration": 60,
+  "width": 1920,
+  "height": 1080,
+  "subtitles": { "enabled": true, "maxWords": 6, "minHold": 1.2, "tail": 0.35 },
+
+  "scenes": [
+    {
+      "id": "s0", "title": "LE CRIME", "src": "compositions/s0-crime.html", "start": 0, "end": 5,
+      "beats": { "plateIn": 0.55, "screw1": 1.05, "screw2": 1.6, "plate2": 2.15, "screw3": 2.65, "screw4": 3.15, "level": 3.75 }
+    },
+    {
+      "id": "s1", "title": "LE PROCÉDÉ ORDINAIRE", "src": "compositions/s1-procede.html", "start": 5, "end": 13,
+      "beats": {
+        "glide": 0,
+        "mix": { "vo": "vo1a" }, "powder": { "vo": "vo1a", "word": 3 },
+        "press": { "vo": "vo1b" }, "pressHit": { "vo": "vo1b", "word": 1 },
+        "dust": { "vo": "vo1b", "word": 1, "+": 0.15 },
+        "dry": { "vo": "vo1c" },
+        "wall": { "vo": "vo1d", "word": 4 }
+      }
+    },
+    {
+      "id": "s2", "title": "LE BASCULEMENT", "src": "compositions/s2-bascule.html", "start": 13, "end": 20,
+      "beats": {
+        "carpet": { "vo": "vo2a", "word": 0 },
+        "sink": { "vo": "vo2a", "word": 1 },
+        "build": { "vo": "vo2b" },
+        "letters": { "vo": "vo2b", "word": 3 },
+        "screen": { "vo": "vo2b", "word": 7 },
+        "ready": { "vo": "vo2c", "word": 0 },
+        "sign": { "vo": "vo2c", "word": 2 }
+      }
+    },
+    {
+      "id": "s3", "title": "ÉTAPE 1 — CACAHUÈTES", "src": "compositions/s3-cacahuetes.html", "start": 20, "end": 29,
+      "beats": {
+        "badge": { "vo": "vo3a" },
+        "belt": 0.3,
+        "ok1": { "vo": "vo3b" },
+        "ok2": { "vo": "vo3c", "word": 1 },
+        "refuse": { "vo": "vo3c", "word": 6 },
+        "glance": { "vo": "vo3c", "word": 9 },
+        "ok3": { "vo": "vo3c", "end": true, "+": 0.3 }
+      }
+    },
+    {
+      "id": "s4", "title": "ÉTAPE 2 — CARAMEL", "src": "compositions/s4-caramel.html", "start": 29, "end": 38,
+      "beats": {
+        "badge": { "vo": "vo4a" },
+        "pull1": { "vo": "vo4b" },
+        "valid": { "vo": "vo4b", "word": 3 },
+        "pull2": { "vo": "vo4b", "word": 4 },
+        "fail": { "vo": "vo4b", "word": 6 },
+        "toss": { "vo": "vo4c", "word": 4 },
+        "binLand": { "vo": "vo4c", "end": true, "+": -0.1 }
+      }
+    },
+    {
+      "id": "s5", "title": "ÉTAPE 3 — CHOCOLAT", "src": "compositions/s5-chocolat.html", "start": 38, "end": 45,
+      "beats": {
+        "badge": { "vo": "vo5a" },
+        "pour": 0.6,
+        "label": { "vo": "vo5b" },
+        "shiny": { "vo": "vo5c" },
+        "cross": { "vo": "vo5c", "word": 2 },
+        "eject": { "vo": "vo5c", "word": 4 }
+      }
+    },
+    {
+      "id": "s6", "title": "ÉTAPE 4 — TEST DU CLOU", "src": "compositions/s6-clou.html", "start": 45, "end": 55,
+      "beats": {
+        "badge": { "vo": "vo6a" },
+        "nail1": { "vo": "vo6b", "word": 3 },
+        "wedge1": { "vo": "vo6b", "word": 8 },
+        "rush": { "vo": "vo6c" },
+        "mordu": { "vo": "vo6d" },
+        "bounce": { "vo": "vo6d", "word": 1 },
+        "draft": { "vo": "vo6d", "end": true, "+": 0.25 }
+      }
+    },
+    {
+      "id": "s7", "title": "LA CHUTE", "src": "compositions/s7-chute.html", "start": 55, "end": 60,
+      "beats": {
+        "sweep": { "vo": "vo7a" },
+        "title": { "vo": "vo7b" },
+        "title2": { "vo": "vo7c" },
+        "small": { "vo": "vo7c", "end": true },
+        "bite": 4.45
+      }
+    }
+  ],
+
+  "vo": [
+    { "id": "vo0", "scene": "s0", "start": 0.4, "end": 4.3, "text": "Une barre protéinée, en général, ça se fabrique comme une cloison." },
+
+    { "id": "vo1a", "scene": "s1", "start": 5.4, "end": 6.8, "text": "On mélange de la poudre." },
+    { "id": "vo1b", "scene": "s1", "start": 7.3, "end": 8.1, "text": "On presse." },
+    { "id": "vo1c", "scene": "s1", "start": 8.7, "end": 9.9, "text": "On laisse sécher." },
+    { "id": "vo1d", "scene": "s1", "start": 10.6, "end": 12.3, "text": "Et toi, tu manges un mur." },
+
+    { "id": "vo2a", "scene": "s2", "start": 13.3, "end": 15.1, "text": "Chez MORDU, on a repris à zéro." },
+    { "id": "vo2b", "scene": "s2", "start": 15.5, "end": 18.4, "text": "Une usine propre, lumineuse, avec des écrans tactiles." },
+    { "id": "vo2c", "scene": "s2", "start": 18.7, "end": 19.7, "text": "On est modernes." },
+
+    { "id": "vo3a", "scene": "s3", "start": 20.4, "end": 22.0, "text": "Étape un : les cacahuètes." },
+    { "id": "vo3b", "scene": "s3", "start": 22.4, "end": 23.1, "text": "Entières." },
+    { "id": "vo3c", "scene": "s3", "start": 23.6, "end": 27.4, "text": "Triées une par une par quelqu'un qui n'a que ça à faire." },
+
+    { "id": "vo4a", "scene": "s4", "start": 29.4, "end": 30.9, "text": "Étape deux : le caramel." },
+    { "id": "vo4b", "scene": "s4", "start": 31.3, "end": 34.7, "text": "Quinze centimètres d'étirement minimum, sinon on recommence." },
+    { "id": "vo4c", "scene": "s4", "start": 35.2, "end": 37.4, "text": "Un caramel qui ne s'étire pas ment." },
+
+    { "id": "vo5a", "scene": "s5", "start": 38.4, "end": 39.9, "text": "Étape trois : le chocolat." },
+    { "id": "vo5b", "scene": "s5", "start": 40.3, "end": 41.8, "text": "Mat. Pas de vernis." },
+    { "id": "vo5c", "scene": "s5", "start": 42.3, "end": 44.3, "text": "Si ça brille, c'est du plastique." },
+
+    { "id": "vo6a", "scene": "s6", "start": 45.4, "end": 47.2, "text": "Dernière étape : le test du clou." },
+    { "id": "vo6b", "scene": "s6", "start": 47.6, "end": 50.4, "text": "Si le clou rentre, la barre part caler une porte." },
+    { "id": "vo6c", "scene": "s6", "start": 51.0, "end": 52.1, "text": "Quatorze testées." },
+    { "id": "vo6d", "scene": "s6", "start": 52.5, "end": 53.9, "text": "Treize portes calées." },
+
+    { "id": "vo7a", "scene": "s7", "start": 55.4, "end": 56.0, "text": "MORDU." },
+    { "id": "vo7b", "scene": "s7", "start": 56.4, "end": 57.4, "text": "Enfin une barre." },
+    { "id": "vo7c", "scene": "s7", "start": 57.7, "end": 58.7, "text": "Pas une brique." }
+  ],
+
+  "cues": [
+    { "scene": "s0", "beat": "plateIn", "name": "plaque posée" },
+    { "scene": "s0", "beat": "screw1", "name": "visseuse" },
+    { "scene": "s0", "beat": "screw2", "name": "visseuse" },
+    { "scene": "s0", "beat": "plate2", "name": "plaque posée" },
+    { "scene": "s0", "beat": "screw3", "name": "visseuse" },
+    { "scene": "s0", "beat": "screw4", "name": "visseuse" },
+    { "scene": "s0", "beat": "level", "name": "niveau à bulle (bulle qui se cale)" },
+    { "scene": "s1", "beat": "powder", "name": "poudre qui tombe" },
+    { "scene": "s1", "beat": "pressHit", "name": "presse hydraulique" },
+    { "scene": "s1", "beat": "dust", "name": "nuage de poussière" },
+    { "scene": "s1", "beat": "dry", "name": "claie de séchage" },
+    { "scene": "s1", "beat": "wall", "name": "silence sec (couper tout) sur « UN MUR »" },
+    { "scene": "s2", "beat": "carpet", "name": "déploiement de la dalle" },
+    { "scene": "s2", "beat": "build", "name": "montage mécanique des machines" },
+    { "scene": "s2", "beat": "letters", "name": "lettres MORDU qui se dressent" },
+    { "scene": "s2", "beat": "ready", "name": "bip écran tactile (PRÊT)" },
+    { "scene": "s3", "beat": "belt", "name": "convoyeur (démarrage)" },
+    { "scene": "s3", "beat": "ok1", "name": "tampon OK" },
+    { "scene": "s3", "beat": "ok2", "name": "tampon OK" },
+    { "scene": "s3", "beat": "refuse", "name": "tampon REFUSÉE" },
+    { "scene": "s3", "beat": "ok3", "name": "tampon OK" },
+    { "scene": "s4", "beat": "pull1", "name": "étirement humide" },
+    { "scene": "s4", "beat": "valid", "name": "bip validation" },
+    { "scene": "s4", "beat": "pull2", "name": "étirement humide" },
+    { "scene": "s4", "beat": "fail", "name": "bip refus" },
+    { "scene": "s4", "beat": "binLand", "name": "caramel dans la poubelle" },
+    { "scene": "s5", "beat": "pour", "name": "coulée de chocolat" },
+    { "scene": "s5", "beat": "cross", "name": "croix sur BRILLANT" },
+    { "scene": "s5", "beat": "eject", "name": "éjection" },
+    { "scene": "s6", "beat": "nail1", "name": "coup de marteau + clou qui traverse" },
+    { "scene": "s6", "beat": "wedge1", "name": "porte calée" },
+    { "scene": "s6", "beat": "rush", "name": "rafale de coups de marteau" },
+    { "scene": "s6", "beat": "mordu", "name": "coup de marteau sur MORDU" },
+    { "scene": "s6", "beat": "bounce", "name": "clou qui rebondit" },
+    { "scene": "s7", "beat": "sweep", "name": "balayage" },
+    { "scene": "s7", "beat": "bite", "name": "croc sec (fin)" }
+  ]
+}

@@ -250,3 +250,22 @@
 }
 .subs-word { display: inline; }
 .subs-word + .subs-word { margin-left: 0.28em; }
+
+/* Label plein cadre, tiers haut, entrée par bloc masquée. */
+.hud-label {
+  position: absolute;
+  left: 192px;
+  right: 192px;
+  top: 108px;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+.hud-label-inner {
+  display: block;
+  color: var(--creme);
+}
+.hud-label-inner.band {
+  padding: 0 34px;
+  background: var(--fond-gris);
+}
