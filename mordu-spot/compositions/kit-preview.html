@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+        #root { position: absolute; inset: 0; }
+      </style>
+      <div id="root" data-composition-id="kit-preview" data-width="1920" data-height="1080"></div>
+      <script>
+        (function () {
+          const M = window.MORDU;
+          const root = document.querySelector('[data-composition-id="kit-preview"]');
+          const S = M.stage(root);
+          M.slab(S.iso, { size: 1200 });
+          const conv = M.conveyor(S.iso, { x: -520, y: -330, len: 640, w: 90, h: 70 });
+          M.barMordu(S.iso, { x: -380, y: -320, z: 75, cut: true });
+          M.barPlaco(S.iso, { x: -120, y: -320, z: 75, seed: 11 });
+          M.operator(S.iso, { x: -200, y: 180 });
+          M.barMordu(S.iso, { x: 120, y: 120, cut: true, seed: 2 });
+          M.barMordu(S.iso, { x: 120, y: 260, wrapped: true });
+          M.barPlaco(S.iso, { x: 120, y: -20, seed: 5 });
+          M.stamp(S.iso, { x: 420, y: 160, text: "OK" });
+          M.ruler(S.iso, { x: -300, y: 470, len: 520 });
+          M.stampMark(S.iso, { x: 380, y: 300, z: 0.8, ok: false });
+          M.wordmark(S.iso, { x: 120, y: -460, size: 200 });
+          const tl = gsap.timeline({ paused: true });
+          tl.set(S.cam, M.focus({ x: 0, y: 0, z: 0 }, 0.6), 0);
+          tl.set(S.cam, M.focus({ x: -200, y: 180, z: 190 }, 2.6), 1);
+          tl.set(S.cam, M.focus({ x: 120, y: -460, z: 100 }, 1.15), 2);
+          M.subtitles(root, [{ start: 1.05, end: 2.0, words: [
+            { w: "Triées", t: 1.1 }, { w: "une", t: 1.2 }, { w: "par", t: 1.25 }, { w: "une", t: 1.3 },
+            { w: "par", t: 1.35 }, { w: "quelqu'un", t: 1.4 }, { w: "qui", t: 1.6 }, { w: "n'a", t: 1.65 },
+            { w: "que", t: 1.7 }, { w: "ça", t: 1.75 }, { w: "à", t: 1.8 }, { w: "faire.", t: 1.85 } ] }], tl);
+          window.__timelines["kit-preview"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>
