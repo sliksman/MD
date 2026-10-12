@@ -10,7 +10,7 @@
     "subtitles.enabled : false pour livrer sans sous-titres."
   ],
   "fps": 30,
-  "duration": 60,
+  "duration": 65,
   "width": 1920,
   "height": 1080,
   "subtitles": { "enabled": true, "maxWords": 6, "minHold": 1.2, "tail": 0.35 },
@@ -36,7 +36,7 @@
       "beats": {
         "carpet": { "vo": "vo2a", "word": 0 },
         "sink": { "vo": "vo2a", "word": 1 },
-        "build": { "vo": "vo2b" },
+        "build": 1.55,
         "letters": { "vo": "vo2b", "word": 3 },
         "screen": { "vo": "vo2b", "word": 7 },
         "ready": { "vo": "vo2c", "word": 0 },
@@ -80,7 +80,7 @@
       }
     },
     {
-      "id": "s6", "title": "ÉTAPE 4 — TEST DU CLOU", "src": "compositions/s6-clou.html", "start": 45, "end": 55,
+      "id": "s6", "title": "ÉTAPE 4 — TEST DU CLOU", "src": "compositions/s6-clou.html", "start": 45, "end": 57,
       "beats": {
         "badge": { "vo": "vo6a" },
         "nail1": { "vo": "vo6b", "word": 4 },
@@ -92,14 +92,14 @@
       }
     },
     {
-      "id": "s7", "title": "LA CHUTE", "src": "compositions/s7-chute.html", "start": 55, "end": 60,
+      "id": "s7", "title": "LA CHUTE", "src": "compositions/s7-chute.html", "start": 57, "end": 65,
       "beats": {
         "sweep": { "vo": "vo7a" },
         "hero": 1.0,
         "title": { "vo": "vo7b" },
         "title2": { "vo": "vo7c" },
         "small": { "vo": "vo7c", "end": true },
-        "bite": 4.45
+        "bite": 4.9
       }
     }
   ],
@@ -133,9 +133,9 @@
     { "id": "vo6c", "scene": "s6", "start": 51.0, "end": 52.1, "text": "Quatorze testées." },
     { "id": "vo6d", "scene": "s6", "start": 52.5, "end": 53.9, "text": "Treize portes calées." },
 
-    { "id": "vo7a", "scene": "s7", "start": 55.4, "end": 56.0, "text": "MORDU." },
-    { "id": "vo7b", "scene": "s7", "start": 56.4, "end": 57.4, "text": "Enfin une barre." },
-    { "id": "vo7c", "scene": "s7", "start": 57.7, "end": 58.7, "text": "Pas une brique." }
+    { "id": "vo7a", "scene": "s7", "start": 57.4, "end": 58.0, "text": "MORDU." },
+    { "id": "vo7b", "scene": "s7", "start": 58.4, "end": 59.4, "text": "Enfin une barre." },
+    { "id": "vo7c", "scene": "s7", "start": 59.7, "end": 60.7, "text": "Pas une brique." }
   ],
 
   "cues": [

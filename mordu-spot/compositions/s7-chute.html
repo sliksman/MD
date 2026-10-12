@@ -38,8 +38,8 @@
           gsap.set(F.s6.draftSign, { scale: 1 });
           gsap.set(F.s6.placo, { visibility: "hidden" });
           gsap.set(F.s6.mordu, { visibility: "inherit" });
-          gsap.set(F.s6.testBar, { visibility: "inherit", x: 162, z: 60 });
-          gsap.set(F.s6.nail, { visibility: "inherit", x: 208, y: 56, z: 70, rotationY: 0 });
+          gsap.set(F.s6.testBar, { visibility: "inherit", x: 182, y: 43, z: 60 });
+          gsap.set(F.s6.nail, { visibility: "inherit", x: 208, y: 56, z: 64, rotationY: 0 });
           gsap.set(F.s6.hammer, { z: 230 });
 
           // ---- la barre héroïne : coupe visible, en deux moitiés pour le croc.
@@ -55,7 +55,7 @@
           gsap.set(hero, { visibility: "hidden" });
 
           // ---- caméra : recul plein décor, puis plein cadre sur la barre.
-          tl.fromTo(S.cam, { ...M.CAM.s6 }, { ...M.CAM.factory, duration: 0.4, ease: "power3.out" }, 0);
+          tl.fromTo(S.cam, { ...M.CAM.s6end }, { ...M.CAM.factory, duration: 0.5, ease: "power3.out" }, 0);
           const hero1 = M.focus({ x: 0, y: 0, z: 30 }, 1.8, 0, 190);
           tl.to(S.cam, { ...hero1, duration: 0.6, ease: "power3.inOut" }, B.hero + 0.1);
 

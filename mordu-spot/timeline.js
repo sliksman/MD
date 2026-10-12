@@ -1,7 +1,7 @@
 // GÉNÉRÉ par scripts/sync.mjs depuis timeline.json — ne pas éditer à la main.
 window.MORDU_TIMELINE = {
  "fps": 30,
- "duration": 60,
+ "duration": 65,
  "scenes": {
   "s0": {
    "id": "s0",
@@ -45,7 +45,7 @@ window.MORDU_TIMELINE = {
    "beats": {
     "carpet": 0.3,
     "sink": 0.455,
-    "build": 2.5,
+    "build": 1.55,
     "letters": 3.3,
     "screen": 4.767,
     "ready": 5.7,
@@ -104,8 +104,8 @@ window.MORDU_TIMELINE = {
    "id": "s6",
    "title": "ÉTAPE 4 — TEST DU CLOU",
    "start": 45,
-   "end": 55,
-   "dur": 10,
+   "end": 57,
+   "dur": 12,
    "beats": {
     "badge": 0.4,
     "nail1": 3.422,
@@ -119,16 +119,16 @@ window.MORDU_TIMELINE = {
   "s7": {
    "id": "s7",
    "title": "LA CHUTE",
-   "start": 55,
-   "end": 60,
-   "dur": 5,
+   "start": 57,
+   "end": 65,
+   "dur": 8,
    "beats": {
     "sweep": 0.4,
     "hero": 1,
     "title": 1.4,
     "title2": 2.7,
     "small": 3.7,
-    "bite": 4.45
+    "bite": 4.9
    }
   }
  },
@@ -749,51 +749,51 @@ window.MORDU_TIMELINE = {
    ]
   },
   "vo7a": {
-   "start": 55.4,
-   "end": 56,
+   "start": 57.4,
+   "end": 58,
    "text": "MORDU.",
    "words": [
     {
      "w": "MORDU.",
-     "t": 55.4
+     "t": 57.4
     }
    ]
   },
   "vo7b": {
-   "start": 56.4,
-   "end": 57.4,
+   "start": 58.4,
+   "end": 59.4,
    "text": "Enfin une barre.",
    "words": [
     {
      "w": "Enfin",
-     "t": 56.4
+     "t": 58.4
     },
     {
      "w": "une",
-     "t": 56.817
+     "t": 58.817
     },
     {
      "w": "barre.",
-     "t": 57.025
+     "t": 59.025
     }
    ]
   },
   "vo7c": {
-   "start": 57.7,
-   "end": 58.7,
+   "start": 59.7,
+   "end": 60.7,
    "text": "Pas une brique.",
    "words": [
     {
      "w": "Pas",
-     "t": 57.7
+     "t": 59.7
     },
     {
      "w": "une",
-     "t": 57.908
+     "t": 59.908
     },
     {
      "w": "brique.",
-     "t": 58.117
+     "t": 60.117
     }
    ]
   }
@@ -1420,42 +1420,42 @@ window.MORDU_TIMELINE = {
     ]
    },
    {
-    "start": 55.4,
-    "end": 57.66,
+    "start": 57.4,
+    "end": 59.66,
     "words": [
      {
       "w": "MORDU.",
-      "t": 55.4
+      "t": 57.4
      },
      {
       "w": "Enfin",
-      "t": 56.4
+      "t": 58.4
      },
      {
       "w": "une",
-      "t": 56.817
+      "t": 58.817
      },
      {
       "w": "barre.",
-      "t": 57.025
+      "t": 59.025
      }
     ]
    },
    {
-    "start": 57.7,
-    "end": 59.05,
+    "start": 59.7,
+    "end": 61.05,
     "words": [
      {
       "w": "Pas",
-      "t": 57.7
+      "t": 59.7
      },
      {
       "w": "une",
-      "t": 57.908
+      "t": 59.908
      },
      {
       "w": "brique.",
-      "t": 58.117
+      "t": 60.117
      }
     ]
    }

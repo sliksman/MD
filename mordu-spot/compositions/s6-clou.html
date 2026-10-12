@@ -44,7 +44,8 @@
           tl.to(S.cam, { ...bench, duration: 0.45, ease: "power3.inOut" }, B.nail1 - 1.6);
           tl.to(S.cam, { ...M.CAM.s6, duration: 0.5, ease: "power3.inOut" }, B.wedge1 - 0.65);
           tl.to(S.cam, { ...bench, duration: 0.35, ease: "power3.inOut" }, B.sink - 0.95);
-          tl.to(S.cam, { ...M.CAM.s6, duration: 0.6, ease: "power3.inOut" }, B.draft - 0.9);
+          // Fin : serré sur la porte restée ouverte, on laisse le temps de lire le panneau.
+          tl.to(S.cam, { ...M.CAM.s6end, duration: 0.7, ease: "power3.inOut" }, B.draft - 0.9);
 
           // ---- badge + compteur.
           const badge = M.badge(S.hud, "04", "TEST DU CLOU", "s6-badge");
@@ -80,10 +81,14 @@
           }
 
           // ---- cloueur : le clou est chargé sous la tête du marteau et descend avec lui.
-          // Marteau levé z 230 ↔ clou z 172 ; contact : marteau 154 ↔ clou 96 (dessus de barre).
+          // Barre posée : dessus z 82. Marteau levé z 230 ↔ clou z 172 ;
+          // contact : marteau 140 ↔ clou 82 (pointe sur le dessus de la barre).
+          const BAR = s6.BAR;
+          const TOP = 60 + BAR.h;
+          const BX = 182, BY = 43; // barre centrée sous le marteau
           function strike(t, d) {
-            tl.to(s6.hammer, { z: 154, duration: d, ease: "power3.in" }, t - d);
-            tl.to(s6.nail, { z: 96, duration: d, ease: "power3.in" }, t - d);
+            tl.to(s6.hammer, { z: TOP + 58, duration: d, ease: "power3.in" }, t - d);
+            tl.to(s6.nail, { z: TOP, duration: d, ease: "power3.in" }, t - d);
           }
           function hammerUp(t, d) {
             tl.to(s6.hammer, { z: 230, duration: d, ease: "power2.out" }, t);
@@ -93,9 +98,9 @@
           function dropBar(t, mordu) {
             tl.set(s6.placo, { visibility: mordu ? "hidden" : "inherit" }, t);
             tl.set(s6.mordu, { visibility: mordu ? "inherit" : "hidden" }, t);
-            tl.set(s6.testBar, { visibility: "inherit", x: 30 }, t);
-            tl.fromTo(s6.testBar, { z: 700 }, { z: 60, duration: 0.3, ease: "power3.in" }, t);
-            tl.fromTo(s6.testBar, { x: 30 }, { x: 162, duration: 0.2, ease: "power3.inOut" }, t + 0.3);
+            tl.set(s6.testBar, { visibility: "inherit", x: 40, y: BY }, t);
+            tl.fromTo(s6.testBar, { z: 700 }, { z: 60, duration: 0.3, ease: "power3.in", immediateRender: false }, t);
+            tl.fromTo(s6.testBar, { x: 40 }, { x: BX, duration: 0.2, ease: "power3.inOut", immediateRender: false }, t + 0.3);
           }
           // Un clou sort de la tête du marteau (chargement). Fin à t + 0.12.
           function placeNail(t) {
@@ -103,7 +108,8 @@
             tl.fromTo(s6.nail, { z: 212 }, { z: 172, duration: 0.12, ease: "power2.out" }, t);
           }
 
-          // ---- barre 1 (grise) : le clou se tord, la barre part caler la porte 1.
+          // ---- barre 1 (grise) : le clou se tord, la barre est expédiée par-dessus les
+          // portes et se pose, telle quelle, au pied de la porte 4 : même objet, même taille.
           dropBar(B.nail1 - 1.3, false);
           placeNail(B.nail1 - 0.6);
           strike(B.nail1, 0.12);
@@ -111,22 +117,34 @@
           hammerUp(B.nail1 + 0.06, 0.25);
           tl.to(s6.nail, { y: -40, z: 0, rotationY: 90, duration: 0.3, ease: "power2.in" }, B.nail1 + 0.45);
           tl.set(s6.nail, { visibility: "hidden" }, B.nail1 + 0.75);
-          tl.to(s6.testBar, { x: 462, duration: 0.45, ease: "power3.in" }, B.wedge1 - 0.5);
-          tl.set(s6.testBar, { visibility: "hidden" }, B.wedge1 - 0.05);
-          tl.fromTo(s6.doors[0].wedge, { scale: 0 }, { scale: 1, duration: 0.08, ease: "power2.out" }, B.wedge1);
+          // Porte 4 (index 3) : pile en face de l'établi. Cale en (560+14, -120+3*46+6) = (574, 24).
+          const W0 = s6.doors[3];
+          const WX = 574, WY = 24, dTo = 0.55;
+          // Le déplacement horizontal finit avant la chute : la barre passe au-dessus des
+          // portes (h 98) puis descend à la verticale sur sa place.
+          tl.to(s6.testBar, { x: WX, y: WY, duration: dTo * 0.7, ease: "power1.out" }, B.wedge1 - dTo);
+          tl.to(s6.testBar, { z: 260, duration: dTo * 0.4, ease: "power2.out" }, B.wedge1 - dTo);
+          tl.to(s6.testBar, { z: 0, duration: dTo * 0.6, ease: "power2.in" }, B.wedge1 - dTo * 0.6);
+          // Arrivée : la barre devient la cale (géométrie identique, aucune variation de taille).
+          tl.set(s6.testBar, { visibility: "hidden" }, B.wedge1);
+          tl.set(W0.wedge, { scale: 1 }, B.wedge1);
           setCount(1, B.wedge1);
 
           // ---- rafale : 12 barres dures, 12 clous tordus, 12 portes calées.
           const CYC = 0.09;
-          tl.set(s6.testBar, { x: 162, z: 60, visibility: "inherit" }, B.rush - 0.2);
-          for (let k = 1; k <= 12; k++) {
-            const t = B.rush + (k - 1) * CYC;
-            tl.to(s6.hammer, { z: 150, duration: CYC * 0.45, ease: "power3.in" }, t);
+          tl.set(s6.testBar, { x: BX, y: BY, z: 60, visibility: "inherit" }, B.rush - 0.2);
+          const order = [0, 1, 2, 4, 5, 6, 7, 8, 9, 10, 11, 12]; // la porte 4 est déjà calée
+          order.forEach(function (di, j) {
+            const k = j + 1;
+            const t = B.rush + j * CYC;
+            tl.to(s6.hammer, { z: TOP + 58, duration: CYC * 0.45, ease: "power3.in" }, t);
             tl.to(s6.hammer, { z: 230, duration: CYC * 0.45, ease: "power2.out" }, t + CYC * 0.5);
-            tl.fromTo(s6.testBar, { x: 120 }, { x: 162, duration: CYC * 0.3, ease: "none" }, t);
-            tl.fromTo(s6.doors[k].wedge, { scale: 0 }, { scale: 1, duration: 0.06, ease: "power2.out" }, t + CYC * 0.5);
-            setCount(k + 1, t + CYC * 0.5);
-          }
+            tl.fromTo(s6.testBar, { x: BX - 42 }, { x: BX, duration: CYC * 0.3, ease: "none", immediateRender: false }, t);
+            // Chaque cale tombe d'en haut à sa place, même taille que la barre de l'établi.
+            tl.set(s6.doors[di].wedge, { scale: 1 }, t + CYC * 0.2);
+            tl.fromTo(s6.doors[di].wedge, { z: 260 }, { z: 0, duration: CYC * 0.8, ease: "power2.in", immediateRender: false }, t + CYC * 0.2);
+            setCount(k + 1, t + CYC);
+          });
           tl.set(s6.testBar, { visibility: "hidden" }, B.rush + 11 * CYC + CYC * 0.5);
           // La 13e porte calée reste ouverte.
           const lastDoor = s6.doors[12];
@@ -136,12 +154,16 @@
           dropBar(B.sink - 0.66, true);
           placeNail(B.sink - 0.4);
           strike(B.sink, 0.14);
-          tl.to(s6.hammer, { z: 128, duration: 0.3, ease: "power2.out" }, B.sink);
-          tl.to(s6.nail, { z: 70, duration: 0.3, ease: "power2.out" }, B.sink);
+          tl.to(s6.hammer, { z: 122, duration: 0.3, ease: "power2.out" }, B.sink);
+          tl.to(s6.nail, { z: 64, duration: 0.3, ease: "power2.out" }, B.sink);
           hammerUp(B.sink + 0.55, 0.35);
 
           // ---- gag : panneau « COURANT D'AIR ».
           tl.fromTo(s6.draftSign, { scale: 0 }, { scale: 1, duration: 0.18, ease: "power3.out" }, B.draft);
+          // Le courant d'air fait battre la porte (souple, sans rebond), et elle revient à -75.
+          tl.to(lastDoor.panel, { rotationZ: -88, duration: 0.55, ease: "sine.inOut" }, B.draft + 0.4);
+          tl.to(lastDoor.panel, { rotationZ: -66, duration: 0.7, ease: "sine.inOut" }, B.draft + 0.95);
+          tl.to(lastDoor.panel, { rotationZ: -75, duration: 0.6, ease: "sine.inOut" }, B.draft + 1.65);
 
           // ---- l'interface sort par bloc avant le raccord (jamais de disparition sèche).
           const OUT = M.T().scenes.s6.dur - 0.32;

@@ -167,6 +167,8 @@
     s4: M.focus({ x: 460, y: -310, z: 90 }, 1.8, 190, -200),
     s5: M.focus({ x: -60, y: 690, z: 110 }, 1.55, 0, 30),
     s6: M.focus({ x: 470, y: 330, z: 80 }, 1.25, 0, 0),
+    // Fin de scène 6 : serré sur la dernière porte et le panneau, le temps de lire.
+    s6end: M.focus({ x: 770, y: 520, z: 60 }, 2.7, 0, 0),
   });
 
   function factory(iso, o) {
@@ -312,9 +314,12 @@
     M.cuboid(s6.nail, { x: 0, y: 0, z: 0, w: 8, d: 8, h: 54, mat: "creme" });
     M.cuboid(s6.nail, { x: -5, y: -5, z: 54, w: 18, d: 18, h: 4, mat: "creme" });
     gsap.set(s6.nail, { visibility: "hidden" }); // posé par la scène 6
-    s6.testBar = M.obj(s6, { x: 162, y: 30, z: 60 });
-    s6.placo = M.barPlaco(s6.testBar, { len: 100, d: 60, h: 36, seed: 70, shadow: false });
-    s6.mordu = M.barMordu(s6.testBar, { len: 100, d: 60, h: 36, seed: 71, shadow: false });
+    // Une seule taille de barre dans toute la scène : sur l'établi = calée sous une porte.
+    // Centrée sous le marteau (x 212, y 60).
+    s6.BAR = { len: 60, d: 34, h: 22 };
+    s6.testBar = M.obj(s6, { x: 182, y: 43, z: 60 });
+    s6.placo = M.barPlaco(s6.testBar, { ...s6.BAR, seed: 70, shadow: false });
+    s6.mordu = M.barMordu(s6.testBar, { ...s6.BAR, seed: 71, shadow: false });
     gsap.set(s6.mordu, { visibility: "hidden" });
     gsap.set(s6.testBar, { visibility: "hidden" }); // l'établi est vide au repos
     // 13 portes miniatures, le long de y, à l'est de l'établi.
@@ -326,8 +331,9 @@
       M.cuboid(d, { x: 0, y: 0, z: 92, w: 12, d: 46, h: 6, mat: "creme" });
       d.panel = M.obj(d, { x: 4, y: 6, z: 8 });
       M.cuboid(d.panel, { w: 4, d: 34, h: 82, mat: "caramel" });
-      d.wedge = M.obj(d, { x: 14, y: 14, z: 0 });
-      M.barPlaco(d.wedge, { len: 26, d: 18, h: 8, seed: 100 + i, shadow: false });
+      // Cale = une barre grise entière, posée à plat devant la porte (côté caméra).
+      d.wedge = M.obj(d, { x: 14, y: 6, z: 0 });
+      M.barPlaco(d.wedge, { ...s6.BAR, seed: i === 3 ? 70 : 100 + i, shadow: false });
       gsap.set(d.wedge, { scale: 0 });
       s6.doors.push(d);
     }

@@ -40,13 +40,15 @@ status: built · src: compositions/s5-chocolat.html
 Rideau de chocolat, « MAT. PAS DE VERNIS. », panneau BRILLANT barré.
 Gag : la barre trop brillante est éjectée par un petit bras.
 
-## Frame 6 — 04 TEST DU CLOU (45–55 s)
+## Frame 6 — 04 TEST DU CLOU (45–57 s)
 status: built · src: compositions/s6-clou.html
-Clou, cale, compteur jusqu'à 13 / 14 ; le clou rebondit sur la MORDU.
-Gag : la dernière porte calée reste ouverte, panneau « COURANT D'AIR ».
+Clou tordu sur la barre grise : la barre est expédiée par-dessus les portes et devient la cale
+(même taille sur l'établi et au pied de la porte). Rafale, compteur 13 / 14. Sur la MORDU, le clou
+s'enfonce sans résistance.
+Gag : la dernière porte reste ouverte, panneau « COURANT D'AIR », plan serré tenu ~2,8 s, la porte bat.
 
-## Frame 7 — LA CHUTE (55–60 s)
+## Frame 7 — LA CHUTE (57–65 s)
 status: built · src: compositions/s7-chute.html
 Tout est balayé d'un revers, une barre MORDU reste au centre, plein cadre.
 « ENFIN UNE BARRE. PAS UNE BRIQUE. » · « 20 G DE PROTÉINES · CARAMEL CACAHUÈTE » · « Marque fictive. Projet personnel. »
-Un seul croc, sec.
+Un seul croc, sec, puis ~3 s de plan tenu sur le packshot.

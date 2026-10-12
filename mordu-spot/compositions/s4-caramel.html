@@ -51,7 +51,7 @@
           // Une nouvelle boule tombe entre les mâchoires.
           tl.set(s4.fil, { scaleX: 0.001, scaleY: 1, z: 74 }, B.refill);
           // immediateRender: false — sinon la boule de départ serait placée en l'air dès le chargement.
-          tl.fromTo(s4.blobL, { z: 700, scaleX: 1, scaleY: 1 }, { z: 70, duration: 0.3, ease: "power3.in", immediateRender: false }, B.refill);
+          tl.fromTo(s4.blobL, { z: 700, scaleX: 1, scaleY: 1 }, { z: 70, scaleX: 1, scaleY: 1, duration: 0.3, ease: "power3.in", immediateRender: false }, B.refill);
 
           // ---- essai 2 : le fil casse avant la marque → voyant bordeaux vif.
           const d2 = B.fail - B.pull2;

@@ -1,6 +1,6 @@
 {
   "fps": 30,
-  "duration": 60,
+  "duration": 65,
   "cues": [
     {
       "t": 0.55,
@@ -94,11 +94,11 @@
       "frame": 399
     },
     {
-      "t": 15.5,
+      "t": 14.55,
       "name": "montage mécanique des machines",
       "scene": "s2",
       "beat": "build",
-      "frame": 465
+      "frame": 437
     },
     {
       "t": 16.3,
@@ -255,25 +255,25 @@
       "frame": 1582
     },
     {
-      "t": 55.4,
+      "t": 57.4,
       "name": "balayage",
       "scene": "s7",
       "beat": "sweep",
-      "frame": 1662
+      "frame": 1722
     },
     {
-      "t": 56,
+      "t": 58,
       "name": "la barre MORDU se pose",
       "scene": "s7",
       "beat": "hero",
-      "frame": 1680
+      "frame": 1740
     },
     {
-      "t": 59.45,
+      "t": 61.9,
       "name": "croc sec (fin)",
       "scene": "s7",
       "beat": "bite",
-      "frame": 1784
+      "frame": 1857
     }
   ]
 }

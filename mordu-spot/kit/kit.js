@@ -303,8 +303,10 @@
       const pivot = obj(g, { x: side * 69, y: 0, z: 152 });
       cuboid(pivot, { x: -15, y: -17, z: -44, w: 30, d: 34, h: 44, mat: m("tshirt") });
       cuboid(pivot, { x: -12, y: -14, z: -104, w: 24, d: 28, h: 60, mat: m("peau") });
-      cuboid(pivot, { x: -13, y: -15, z: -92, w: 26, d: 30, h: 9, mat: m("bracelet") });
-      cuboid(pivot, { x: -13, y: -15, z: -79, w: 26, d: 30, h: 4, mat: m("bracelet") });
+      // Bracelets décollés de 3 px du bras : à 1 px, le tri de profondeur de Chrome
+      // pouvait les faire clignoter pendant les mouvements de caméra.
+      cuboid(pivot, { x: -15, y: -17, z: -92, w: 30, d: 34, h: 9, mat: m("bracelet") });
+      cuboid(pivot, { x: -15, y: -17, z: -79, w: 30, d: 34, h: 4, mat: m("bracelet") });
       return pivot;
     }
     parts.armL = arm(-1);
