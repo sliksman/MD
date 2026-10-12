@@ -75,12 +75,12 @@
             tl.to(p, { scale: 0, duration: 0.3, ease: "power2.in" }, B.dust + 1.1 + i * 0.03);
           });
           tl.set(W.witness, { visibility: "hidden" }, B.dust + 0.25);
-          tl.set(dusty, { visibility: "visible" }, B.dust + 0.25);
+          tl.set(dusty, { visibility: "inherit" }, B.dust + 0.25);
 
           // ---- sécher : les galettes glissent sur la claie.
           W.trays.forEach(function (t, i) {
-            tl.set(t, { visibility: "hidden" }, 0);
-            tl.set(t, { visibility: "visible" }, B.dry + 0.15 + i * 0.22);
+            gsap.set(t, { visibility: "hidden" });
+            tl.set(t, { visibility: "inherit" }, B.dry + 0.15 + i * 0.22);
             const z0 = [46, 126, 206][i];
             tl.fromTo(t, { z: z0 + 520 }, { z: z0, duration: 0.34, ease: "power3.in" }, B.dry + 0.15 + i * 0.22);
           });

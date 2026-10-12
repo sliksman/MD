@@ -16,7 +16,10 @@
           const M = window.MORDU;
           const B = M.T().scenes.s2.beats;
           const root = document.querySelector('[data-composition-id="s2"]');
-          const S = M.stage(root);
+          // Monde gris au départ (ombres grises du chantier) ; le fond, lui, est
+          // piloté par le voile gris qui s'efface sur le bordeaux.
+          const S = M.stage(root, { gris: true });
+          S.stage.style.background = "var(--fond)";
           const veil = document.createElement("div");
           veil.id = "s2-veil";
           S.stage.insertBefore(veil, S.cam);
@@ -38,6 +41,8 @@
 
           // ---- la dalle bordeaux se déroule d'ouest en est ; le fond vire.
           const D = 1.1;
+          gsap.set(F.slab, { visibility: "hidden", scaleX: 0.001 });
+          tl.set(F.slab, { visibility: "inherit" }, B.carpet);
           tl.fromTo(F.slab, { scaleX: 0.001 }, { scaleX: 1, duration: D, ease: "power2.inOut" }, B.carpet);
           tl.fromTo(veil, { opacity: 1 }, { opacity: 0, duration: D, ease: "power1.inOut" }, B.carpet);
           // Le chantier s'enfonce quand le front de la dalle passe.
@@ -61,16 +66,16 @@
           const drops = [F.s3, F.console, F.s4, F.s5, F.s6];
           drops.forEach(function (g, i) {
             const t = B.build + i * 0.11;
-            tl.set(g, { visibility: "hidden" }, 0);
-            tl.set(g, { visibility: "visible" }, t);
+            gsap.set(g, { visibility: "hidden" });
+            tl.set(g, { visibility: "inherit" }, t);
             tl.fromTo(g, { z: 760 }, { z: 0, duration: 0.34, ease: "power3.in" }, t);
           });
 
           // ---- wordmark : couché sur la dalle, puis les lettres se dressent.
           const L = F.wordmark.letters;
           L.forEach(function (h) { gsap.set(h, { rotationX: 90 }); });
-          tl.set(F.wordmark, { visibility: "hidden" }, 0);
-          tl.set(F.wordmark, { visibility: "visible" }, B.carpet + D * 0.45);
+          gsap.set(F.wordmark, { visibility: "hidden" });
+          tl.set(F.wordmark, { visibility: "inherit" }, B.carpet + D * 0.45);
           L.slice(0, 4).forEach(function (h, i) {
             tl.to(h, { rotationX: 0, duration: 0.3, ease: "power3.out" }, B.letters + i * 0.16);
           });
@@ -81,7 +86,7 @@
           gsap.set(F.screen.face, { backgroundColor: "transparent" });
           F.screen.face.style.background = "var(--bracelet)";
           tl.set(F.screen.face, { background: "var(--choco)" }, B.screen);
-          tl.set(F.screenText, { visibility: "visible" }, B.ready);
+          tl.set(F.screenText, { visibility: "inherit" }, B.ready);
 
           window.__timelines["s2"] = tl;
         })();

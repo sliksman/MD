@@ -167,6 +167,11 @@
     const R = {};
     R.slab = M.slab(iso, { size: 1704, thick: 62, mat: "rouge", id: P + "-slab" });
     gsap.set(R.slab, { z: -60 }); // dessus à +2 : enveloppe la dalle grise sans z-fighting
+    // Ombres de l'usine : toujours bordeaux, même dans une scène qui démarre en monde gris.
+    const factoryShadow = function (n) {
+      n.style.setProperty("--floor-shadow", "color-mix(in oklab, var(--rouge) 62%, var(--shade))");
+      return n;
+    };
 
     // ---- wordmark 3D + console à écran tactile.
     R.wordmark = M.wordmark(iso, { x: -430, y: -660, size: 200, id: P + "-wm" });
@@ -322,6 +327,7 @@
     s6.draftSign = draftSign;
     gsap.set(draftSign, { scale: 0 });
 
+    [R.slab, R.wordmark, R.console, R.s3, R.s4, R.s5, R.s6].forEach(factoryShadow);
     return R;
   }
   window.MORDU.factory = factory;

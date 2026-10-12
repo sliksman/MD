@@ -4,7 +4,7 @@
 //   - index.html       (hôtes des scènes : data-start / data-duration)
 //   - out/cues.json    (repères sonores pour le mix)
 // Usage : node scripts/sync.mjs   (ou npm run sync)
-import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
+import { readFileSync, writeFileSync, mkdirSync, readdirSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -169,8 +169,21 @@ const cues = (T.cues || [])
   .filter(Boolean)
   .sort((a, b) => a.t - b.t);
 
+// ---------- garde-fous de rendu ----------------------------------------------
+// 1. Un enfant en visibility "visible" s'affiche même quand sa scène est masquée
+//    (fantômes sur tout le film) → toujours "inherit".
+// 2. Un tl.set(..., 0) n'est pas appliqué sur la 1re image d'une scène (la tête
+//    de lecture est déjà à 0) → état initial avec gsap.set à la construction.
+for (const f of readdirSync(join(ROOT, "compositions")).filter((f) => f.endsWith(".html"))) {
+  const src = readFileSync(join(ROOT, "compositions", f), "utf8");
+  src.split("\n").forEach((line, i) => {
+    if (/visibility:\s*["']visible["']/.test(line)) errors.push(`compositions/${f}:${i + 1} : visibility "visible" interdit, utiliser "inherit"`);
+    if (/tl\.set\(.*,\s*0\s*\);/.test(line)) errors.push(`compositions/${f}:${i + 1} : tl.set(..., 0) interdit, utiliser gsap.set à la construction`);
+  });
+}
+
 if (errors.length) {
-  console.error("✗ timeline.json invalide :\n  - " + errors.join("\n  - "));
+  console.error("✗ projet invalide :\n  - " + errors.join("\n  - "));
   process.exit(1);
 }
 

@@ -21,7 +21,7 @@
           const tl = gsap.timeline({ paused: true });
 
           // ---- raccord : fin des scènes 3 à 5.
-          gsap.set(F.screenText, { visibility: "visible" });
+          gsap.set(F.screenText, { visibility: "inherit" });
           F.screen.face.style.background = "var(--choco)";
           F.s3.nuts.forEach(function (n) { gsap.set(n.mark, { scale: 1 }); });
           gsap.set(F.s3.items, { x: 304 });
@@ -33,7 +33,7 @@
           gsap.set(F.s5.items, { x: 40 * 6.4 });
           F.s5.bars.forEach(function (g) {
             gsap.set(g.bare, { visibility: "hidden" });
-            gsap.set(g.coated, { visibility: "visible" });
+            gsap.set(g.coated, { visibility: "inherit" });
           });
 
           // ---- caméra.
@@ -68,11 +68,11 @@
           counter.appendChild(cin);
           S.hud.appendChild(counter);
           gsap.set(cin, { yPercent: 110 });
-          gsap.set(nums[0], { visibility: "visible" });
+          gsap.set(nums[0], { visibility: "inherit" });
           tl.fromTo(cin, { yPercent: 110 }, { yPercent: 0, duration: 0.34, ease: "power3.out" }, B.badge + 0.15);
           function setCount(n, t) {
             tl.set(nums[n - 1], { visibility: "hidden" }, t);
-            tl.set(nums[n], { visibility: "visible" }, t);
+            tl.set(nums[n], { visibility: "inherit" }, t);
           }
 
           // ---- marteau : levé au départ.
@@ -99,8 +99,8 @@
 
           // ---- rafale : 12 barres, 12 clous, 12 portes.
           const CYC = 0.11;
-          tl.set(s6.testBar, { x: 162, visibility: "visible" }, B.rush - 0.2);
-          tl.set(s6.nail, { x: 208, z: 62, visibility: "visible" }, B.rush - 0.2);
+          tl.set(s6.testBar, { x: 162, visibility: "inherit" }, B.rush - 0.2);
+          tl.set(s6.nail, { x: 208, z: 62, visibility: "inherit" }, B.rush - 0.2);
           for (let k = 1; k <= 12; k++) {
             const t = B.rush + (k - 1) * CYC;
             tl.to(s6.hammer, { z: 118, duration: CYC * 0.45, ease: "power3.in" }, t);
@@ -115,7 +115,7 @@
 
           // ---- la MORDU : le clou rebondit.
           tl.set(s6.placo, { visibility: "hidden" }, B.mordu - 0.3);
-          tl.set(s6.mordu, { visibility: "visible" }, B.mordu - 0.3);
+          tl.set(s6.mordu, { visibility: "inherit" }, B.mordu - 0.3);
           tl.fromTo(s6.testBar, { x: -220 }, { x: 162, duration: 0.25, ease: "power3.out" }, B.mordu - 0.3);
           tl.fromTo(s6.nail, { x: 208, z: 420, rotationY: 0 }, { z: 96, duration: 0.18, ease: "power3.in" }, B.mordu - 0.3);
           strike(B.mordu, 0, 0.14);

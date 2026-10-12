@@ -19,7 +19,7 @@
           const tl = gsap.timeline({ paused: true });
 
           // ---- raccord : fin des scènes 3 à 6.
-          gsap.set(F.screenText, { visibility: "visible" });
+          gsap.set(F.screenText, { visibility: "inherit" });
           F.screen.face.style.background = "var(--choco)";
           F.s3.nuts.forEach(function (n) { gsap.set(n.mark, { scale: 1 }); });
           gsap.set(F.s3.items, { x: 304 });
@@ -31,13 +31,13 @@
           gsap.set(F.s5.items, { x: 40 * 6.4 });
           F.s5.bars.forEach(function (g) {
             gsap.set(g.bare, { visibility: "hidden" });
-            gsap.set(g.coated, { visibility: "visible" });
+            gsap.set(g.coated, { visibility: "inherit" });
           });
           F.s6.doors.forEach(function (d) { gsap.set(d.wedge, { scale: 1 }); });
           gsap.set(F.s6.doors[12].panel, { rotationZ: -75 });
           gsap.set(F.s6.draftSign, { scale: 1 });
           gsap.set(F.s6.placo, { visibility: "hidden" });
-          gsap.set(F.s6.mordu, { visibility: "visible" });
+          gsap.set(F.s6.mordu, { visibility: "inherit" });
           gsap.set(F.s6.hammer, { z: 230 });
           gsap.set(F.s6.nail, { x: 330, z: 62, rotationY: 450, rotationX: 90 });
 
@@ -59,7 +59,7 @@
           tl.to(S.cam, { ...hero1, duration: 0.7, ease: "power3.inOut" }, B.sweep + 0.55);
 
           // ---- la barre tombe au centre.
-          tl.set(hero, { visibility: "visible" }, 0.12);
+          tl.set(hero, { visibility: "inherit" }, 0.12);
           tl.fromTo(heroBody, { z: 700 }, { z: 0, duration: 0.28, ease: "power3.in" }, 0.12);
 
           // ---- le revers : tout part hors cadre, vers l'ouest, en cascade.
@@ -118,7 +118,7 @@
 
           // ---- un seul croc, sec.
           tl.set(chunk, { visibility: "hidden" }, B.bite);
-          tl.set(bite, { visibility: "visible" }, B.bite);
+          tl.set(bite, { visibility: "inherit" }, B.bite);
 
           window.__timelines["s7"] = tl;
         })();

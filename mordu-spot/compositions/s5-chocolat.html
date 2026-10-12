@@ -21,7 +21,7 @@
           const tl = gsap.timeline({ paused: true });
 
           // ---- raccord : fin des scènes 3 et 4.
-          gsap.set(F.screenText, { visibility: "visible" });
+          gsap.set(F.screenText, { visibility: "inherit" });
           F.screen.face.style.background = "var(--choco)";
           F.s3.nuts.forEach(function (n) { gsap.set(n.mark, { scale: 1 }); });
           gsap.set(F.s3.items, { x: 304 });
@@ -51,7 +51,7 @@
             const tc = B.pour + (315 - (g.x0 + 57)) / V;
             if (tc > B.pour && tc < DUR) {
               tl.set(g.bare, { visibility: "hidden" }, tc);
-              tl.set(g.coated, { visibility: "visible" }, tc);
+              tl.set(g.coated, { visibility: "inherit" }, tc);
             }
           });
 

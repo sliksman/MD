@@ -28,7 +28,7 @@
           tl.fromTo(p2, { z: 1000 }, { z: 0, duration: DROP, ease: "power3.in" }, B.plate2 - DROP);
           // Vis : invisibles jusqu'au vissage.
           [p2, p3].forEach(function (p) {
-            p.bar.screws.forEach(function (s) { tl.set(s, { opacity: 0 }, 0); });
+            p.bar.screws.forEach(function (s) { gsap.set(s, { opacity: 0 }); });
           });
 
           // Vissage : tremblement court de la visseuse, puis la vis apparaît.
