@@ -10,18 +10,22 @@
     "subtitles.enabled : false pour livrer sans sous-titres."
   ],
   "fps": 30,
-  "duration": 65,
+  "duration": 70,
   "width": 1920,
   "height": 1080,
   "subtitles": { "enabled": true, "maxWords": 6, "minHold": 1.2, "tail": 0.35 },
 
   "scenes": [
     {
-      "id": "s0", "title": "LE CRIME", "src": "compositions/s0-crime.html", "start": 0, "end": 5,
+      "id": "t", "title": "TITRE", "src": "compositions/t-titre.html", "start": 0, "end": 5,
+      "beats": { "mordu": 0.3, "tiles": 0.8, "wipe": 4.4 }
+    },
+    {
+      "id": "s0", "title": "LE CRIME", "src": "compositions/s0-crime.html", "start": 5, "end": 10,
       "beats": { "plateIn": 0.55, "screw1": 1.05, "screw2": 1.6, "plate2": 2.15, "screw3": 2.65, "screw4": 3.15, "level": 3.75 }
     },
     {
-      "id": "s1", "title": "LE PROCÉDÉ ORDINAIRE", "src": "compositions/s1-procede.html", "start": 5, "end": 13,
+      "id": "s1", "title": "LE PROCÉDÉ ORDINAIRE", "src": "compositions/s1-procede.html", "start": 10, "end": 18,
       "beats": {
         "glide": 0,
         "mix": { "vo": "vo1a" }, "powder": { "vo": "vo1a", "word": 3 },
@@ -32,7 +36,7 @@
       }
     },
     {
-      "id": "s2", "title": "LE BASCULEMENT", "src": "compositions/s2-bascule.html", "start": 13, "end": 20,
+      "id": "s2", "title": "LE BASCULEMENT", "src": "compositions/s2-bascule.html", "start": 18, "end": 25,
       "beats": {
         "carpet": { "vo": "vo2a", "word": 0 },
         "sink": { "vo": "vo2a", "word": 1 },
@@ -44,7 +48,7 @@
       }
     },
     {
-      "id": "s3", "title": "ÉTAPE 1 — CACAHUÈTES", "src": "compositions/s3-cacahuetes.html", "start": 20, "end": 29,
+      "id": "s3", "title": "ÉTAPE 1 — CACAHUÈTES", "src": "compositions/s3-cacahuetes.html", "start": 25, "end": 34,
       "beats": {
         "badge": { "vo": "vo3a" },
         "belt": 0.3,
@@ -56,7 +60,7 @@
       }
     },
     {
-      "id": "s4", "title": "ÉTAPE 2 — CARAMEL", "src": "compositions/s4-caramel.html", "start": 29, "end": 38,
+      "id": "s4", "title": "ÉTAPE 2 — CARAMEL", "src": "compositions/s4-caramel.html", "start": 34, "end": 43,
       "beats": {
         "badge": { "vo": "vo4a" },
         "pull1": { "vo": "vo4b" },
@@ -69,7 +73,7 @@
       }
     },
     {
-      "id": "s5", "title": "ÉTAPE 3 — CHOCOLAT", "src": "compositions/s5-chocolat.html", "start": 38, "end": 45,
+      "id": "s5", "title": "ÉTAPE 3 — CHOCOLAT", "src": "compositions/s5-chocolat.html", "start": 43, "end": 50,
       "beats": {
         "badge": { "vo": "vo5a" },
         "pour": 0.6,
@@ -80,7 +84,7 @@
       }
     },
     {
-      "id": "s6", "title": "ÉTAPE 4 — TEST DU CLOU", "src": "compositions/s6-clou.html", "start": 45, "end": 57,
+      "id": "s6", "title": "ÉTAPE 4 — TEST DU CLOU", "src": "compositions/s6-clou.html", "start": 50, "end": 62,
       "beats": {
         "badge": { "vo": "vo6a" },
         "nail1": { "vo": "vo6b", "word": 4 },
@@ -92,7 +96,7 @@
       }
     },
     {
-      "id": "s7", "title": "LA CHUTE", "src": "compositions/s7-chute.html", "start": 57, "end": 65,
+      "id": "s7", "title": "LA CHUTE", "src": "compositions/s7-chute.html", "start": 62, "end": 70,
       "beats": {
         "sweep": { "vo": "vo7a" },
         "hero": 1.0,
@@ -105,40 +109,43 @@
   ],
 
   "vo": [
-    { "id": "vo0", "scene": "s0", "start": 0.4, "end": 4.3, "text": "Une barre protéinée, en général, ça se fabrique comme une cloison." },
+    { "id": "vo0", "scene": "s0", "start": 5.4, "end": 9.3, "text": "Une barre protéinée, en général, ça se fabrique comme une cloison." },
 
-    { "id": "vo1a", "scene": "s1", "start": 5.4, "end": 6.8, "text": "On mélange de la poudre." },
-    { "id": "vo1b", "scene": "s1", "start": 7.3, "end": 8.1, "text": "On presse." },
-    { "id": "vo1c", "scene": "s1", "start": 8.7, "end": 9.9, "text": "On laisse sécher." },
-    { "id": "vo1d", "scene": "s1", "start": 10.6, "end": 12.3, "text": "Et toi, tu manges un mur." },
+    { "id": "vo1a", "scene": "s1", "start": 10.4, "end": 11.8, "text": "On mélange de la poudre." },
+    { "id": "vo1b", "scene": "s1", "start": 12.3, "end": 13.1, "text": "On presse." },
+    { "id": "vo1c", "scene": "s1", "start": 13.7, "end": 14.9, "text": "On laisse sécher." },
+    { "id": "vo1d", "scene": "s1", "start": 15.6, "end": 17.3, "text": "Et toi, tu manges un mur." },
 
-    { "id": "vo2a", "scene": "s2", "start": 13.3, "end": 15.1, "text": "Chez MORDU, on a repris à zéro." },
-    { "id": "vo2b", "scene": "s2", "start": 15.5, "end": 18.4, "text": "Une usine propre, lumineuse, avec des écrans tactiles." },
-    { "id": "vo2c", "scene": "s2", "start": 18.7, "end": 19.7, "text": "On est modernes." },
+    { "id": "vo2a", "scene": "s2", "start": 18.3, "end": 20.1, "text": "Chez MORDU, on a repris à zéro." },
+    { "id": "vo2b", "scene": "s2", "start": 20.5, "end": 23.4, "text": "Une usine propre, lumineuse, avec des écrans tactiles." },
+    { "id": "vo2c", "scene": "s2", "start": 23.7, "end": 24.7, "text": "On est modernes." },
 
-    { "id": "vo3a", "scene": "s3", "start": 20.4, "end": 22.0, "text": "Étape un : les cacahuètes." },
-    { "id": "vo3b", "scene": "s3", "start": 22.4, "end": 23.1, "text": "Entières." },
-    { "id": "vo3c", "scene": "s3", "start": 23.6, "end": 27.4, "text": "Triées une par une par quelqu'un qui n'a que ça à faire." },
+    { "id": "vo3a", "scene": "s3", "start": 25.4, "end": 27, "text": "Étape un : les cacahuètes." },
+    { "id": "vo3b", "scene": "s3", "start": 27.4, "end": 28.1, "text": "Entières." },
+    { "id": "vo3c", "scene": "s3", "start": 28.6, "end": 32.4, "text": "Triées une par une par quelqu'un qui n'a que ça à faire." },
 
-    { "id": "vo4a", "scene": "s4", "start": 29.4, "end": 30.9, "text": "Étape deux : le caramel." },
-    { "id": "vo4b", "scene": "s4", "start": 31.3, "end": 34.7, "text": "Quinze centimètres d'étirement minimum, sinon on recommence." },
-    { "id": "vo4c", "scene": "s4", "start": 35.2, "end": 37.4, "text": "Un caramel qui ne s'étire pas ment." },
+    { "id": "vo4a", "scene": "s4", "start": 34.4, "end": 35.9, "text": "Étape deux : le caramel." },
+    { "id": "vo4b", "scene": "s4", "start": 36.3, "end": 39.7, "text": "Quinze centimètres d'étirement minimum, sinon on recommence." },
+    { "id": "vo4c", "scene": "s4", "start": 40.2, "end": 42.4, "text": "Un caramel qui ne s'étire pas ment." },
 
-    { "id": "vo5a", "scene": "s5", "start": 38.4, "end": 39.9, "text": "Étape trois : le chocolat." },
-    { "id": "vo5b", "scene": "s5", "start": 40.3, "end": 41.8, "text": "Mat. Pas de vernis." },
-    { "id": "vo5c", "scene": "s5", "start": 42.3, "end": 44.3, "text": "Si ça brille, c'est du plastique." },
+    { "id": "vo5a", "scene": "s5", "start": 43.4, "end": 44.9, "text": "Étape trois : le chocolat." },
+    { "id": "vo5b", "scene": "s5", "start": 45.3, "end": 46.8, "text": "Mat. Pas de vernis." },
+    { "id": "vo5c", "scene": "s5", "start": 47.3, "end": 49.3, "text": "Si ça brille, c'est du plastique." },
 
-    { "id": "vo6a", "scene": "s6", "start": 45.4, "end": 47.2, "text": "Dernière étape : le test du clou." },
-    { "id": "vo6b", "scene": "s6", "start": 47.6, "end": 50.6, "text": "Si le clou ne rentre pas, la barre part caler une porte." },
-    { "id": "vo6c", "scene": "s6", "start": 51.0, "end": 52.1, "text": "Quatorze testées." },
-    { "id": "vo6d", "scene": "s6", "start": 52.5, "end": 53.9, "text": "Treize portes calées." },
+    { "id": "vo6a", "scene": "s6", "start": 50.4, "end": 52.2, "text": "Dernière étape : le test du clou." },
+    { "id": "vo6b", "scene": "s6", "start": 52.6, "end": 55.6, "text": "Si le clou ne rentre pas, la barre part caler une porte." },
+    { "id": "vo6c", "scene": "s6", "start": 56, "end": 57.1, "text": "Quatorze testées." },
+    { "id": "vo6d", "scene": "s6", "start": 57.5, "end": 58.9, "text": "Treize portes calées." },
 
-    { "id": "vo7a", "scene": "s7", "start": 57.4, "end": 58.0, "text": "MORDU." },
-    { "id": "vo7b", "scene": "s7", "start": 58.4, "end": 59.4, "text": "Enfin une barre." },
-    { "id": "vo7c", "scene": "s7", "start": 59.7, "end": 60.7, "text": "Pas une brique." }
+    { "id": "vo7a", "scene": "s7", "start": 62.4, "end": 63, "text": "MORDU." },
+    { "id": "vo7b", "scene": "s7", "start": 63.4, "end": 64.4, "text": "Enfin une barre." },
+    { "id": "vo7c", "scene": "s7", "start": 64.7, "end": 65.7, "text": "Pas une brique." }
   ],
 
   "cues": [
+    { "scene": "t", "beat": "mordu", "name": "gros blocs MORDU qui se posent (la base)" },
+    { "scene": "t", "beat": "tiles", "name": "petits blocs LA MÉTHODE en rafale, par-dessus" },
+    { "scene": "t", "beat": "wipe", "name": "volet (whoosh sec)" },
     { "scene": "s0", "beat": "plateIn", "name": "plaque posée" },
     { "scene": "s0", "beat": "screw1", "name": "visseuse" },
     { "scene": "s0", "beat": "screw2", "name": "visseuse" },

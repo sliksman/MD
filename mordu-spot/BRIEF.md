@@ -5,7 +5,7 @@ storyboard: no
 message: "Les barres MORDU sont faites avec de vrais ingrédients, selon une méthode moderne — pas comme des briques de placo."
 aspect: 1920x1080
 language: fr
-length: 65s (60 s au brief initial, +5 s validés en round 4)
+length: 70s (60 s au brief initial ; +5 s round 4 ; +5 s carton titre)
 ---
 
 ## Intent

@@ -25,7 +25,7 @@ Les beats numériques (`"belt": 0.3`) sont en secondes **relatives au début de 
 
 ## 3. Durée des scènes
 
-`scenes[].start` / `end` : les scènes doivent rester contiguës et couvrir 0 → `duration` (65 s)
+`scenes[].start` / `end` : les scènes doivent rester contiguës et couvrir 0 → `duration` (70 s)
 (le script refuse un trou ou un chevauchement).
 
 ## 4. Régénérer et rendre

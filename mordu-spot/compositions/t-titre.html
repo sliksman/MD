@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+        #root { position: absolute; inset: 0; }
+        .title-card {
+          position: absolute;
+          inset: 0;
+          background: var(--fond);
+          clip-path: inset(0% 0% 0% 0%);
+        }
+        .title-row {
+          position: absolute;
+          left: 0;
+          right: 0;
+          display: flex;
+          justify-content: center;
+        }
+        .tile {
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-right: var(--gap);
+          background: var(--base);
+          color: var(--ink);
+          /* Épaisseur plate : même logique que les cuboïdes (dessus clair, côté sombre). */
+          box-shadow: var(--extrude);
+        }
+        .tile:last-child { margin-right: 0; }
+        .tile.space { background: transparent; box-shadow: none; }
+        .tile > span { display: block; line-height: 1; padding-top: 0.06em; }
+        .row-la .tile {
+          --gap: 12px;
+          width: 104px;
+          height: 132px;
+          font-size: 108px;
+          --base: var(--caramel);
+          --ink: var(--choco);
+        }
+        .row-la .tile.space { width: 30px; }
+        .row-mordu .tile {
+          --gap: 16px;
+          width: 196px;
+          height: 236px;
+          font-size: 200px;
+          --base: var(--creme);
+          --ink: var(--rouge);
+        }
+        .wipe-edge {
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          width: 18px;
+          background: var(--caramel);
+        }
+      </style>
+      <div id="root" data-composition-id="t" data-width="1920" data-height="1080"></div>
+      <script>
+        (function () {
+          // TITRE — « LA MÉTHODE MORDU ». Le titre se construit en blocs-lettres posés
+          // en rafale, puis un volet découvre le chantier de la scène 0, image pour image.
+          const M = window.MORDU;
+          const B = M.T().scenes.t.beats;
+          const root = document.querySelector('[data-composition-id="t"]');
+          const tl = gsap.timeline({ paused: true });
+
+          // ---- dessous : le premier état exact de la scène 0 (raccord du volet).
+          const S = M.stage(root, { gris: true });
+          const W = M.chantier(S.iso, { id: "t" });
+          gsap.set(S.cam, M.focus({ x: -380, y: -400, z: 140 }, 1.45, 0, 10));
+          const p2 = W.plates[2], p3 = W.plates[3];
+          gsap.set([p2, p3], { z: 1000 });
+          [p2, p3].forEach(function (p) {
+            p.bar.screws.forEach(function (s) { gsap.set(s, { opacity: 0 }); });
+          });
+
+          // ---- carton titre.
+          const card = document.createElement("div");
+          card.className = "title-card";
+          root.appendChild(card);
+
+          function extrude(depth) {
+            const c = "color-mix(in oklab, var(--base) var(--k-right), var(--shade))";
+            const out = [];
+            for (let i = 1; i <= depth; i++) out.push(i + "px " + i + "px 0 " + c);
+            return out.join(",");
+          }
+          function row(text, cls, top, depth) {
+            const r = document.createElement("div");
+            r.className = "title-row " + cls;
+            r.style.top = top + "px";
+            const tiles = [];
+            for (const ch of text) {
+              const t = document.createElement("div");
+              if (ch === " ") {
+                t.className = "tile space";
+              } else {
+                t.className = "tile t-display";
+                t.style.setProperty("--extrude", extrude(depth));
+                const sp = document.createElement("span");
+                sp.textContent = ch;
+                sp.setAttribute("data-layout-allow-overlap", "");
+                t.appendChild(sp);
+                tiles.push(t);
+              }
+              r.appendChild(t);
+            }
+            card.appendChild(r);
+            return tiles;
+          }
+          // Bloc titre centré : 132 + 34 + 236 = 402 px de haut.
+          const rowLa = row("LA MÉTHODE", "row-la", 326, 10);
+          const rowMordu = row("MORDU", "row-mordu", 492, 16);
+
+          // ---- construction : on bâtit de bas en haut, comme un mur — la base MORDU
+          // d'abord, puis LA MÉTHODE par-dessus (aucun bloc ne traverse une ligne posée).
+          // Chaque bloc tombe d'au-dessus du cadre et se pose net, sans rebond.
+          const DROP = 0.2;
+          function drop(tiles, t0, step, from) {
+            tiles.forEach(function (el, i) {
+              gsap.set(el, { y: from });
+              tl.to(el, { y: 0, duration: DROP, ease: "power3.in" }, t0 + i * step - DROP);
+            });
+          }
+          drop(rowLa, B.tiles, 0.055, -760);
+          drop(rowMordu, B.mordu, 0.08, -1000);
+
+          // ---- volet : le carton est découpé de gauche à droite, liseré caramel en tête.
+          const edge = document.createElement("div");
+          edge.className = "wipe-edge";
+          root.appendChild(edge);
+          gsap.set(edge, { x: -18 });
+          const WD = 0.55;
+          tl.fromTo(card, { clipPath: "inset(0% 0% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 100%)", duration: WD, ease: "power3.inOut", immediateRender: false }, B.wipe);
+          tl.fromTo(edge, { x: -18 }, { x: 1920, duration: WD, ease: "power3.inOut", immediateRender: false }, B.wipe);
+
+          window.__timelines["t"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>
