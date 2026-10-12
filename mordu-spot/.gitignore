@@ -2,3 +2,5 @@ snapshots/
 node_modules/
 .hyperframes/
 out/*.mp4
+out/work-*/
+out/.*hf-transaction*/
