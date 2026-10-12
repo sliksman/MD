@@ -145,6 +145,182 @@
     return R;
   }
 
+
+  // ---------- USINE MORDU (scènes 2 à 7, monde bordeaux) ---------------------
+  // Plan de la dalle (repère monde) :
+  //   wordmark au nord, console « PRÊT » au nord-ouest, S3 cacahuètes à l'ouest,
+  //   S4 caramel à l'est, S5 chocolat au sud-ouest, S6 clou au sud-est,
+  //   centre libre pour la barre finale.
+  Object.assign(CAM, {
+    factory: M.focus({ x: 40, y: 40, z: 60 }, 0.56, 0, 20),
+    console: M.focus({ x: -300, y: -420, z: 130 }, 1.25, 0, 40),
+    s3: M.focus({ x: -330, y: 150, z: 110 }, 1.6, 40, -70),
+    s4: M.focus({ x: 380, y: -430, z: 110 }, 1.35, 0, 30),
+    s5: M.focus({ x: -230, y: 740, z: 100 }, 1.3, 0, 40),
+    s6: M.focus({ x: 520, y: 400, z: 90 }, 1.12, 0, 40),
+  });
+
+  function factory(iso, o) {
+    o = o || {};
+    const P = o.id || "f";
+    const R = {};
+    R.slab = M.slab(iso, { size: 1704, thick: 62, mat: "rouge", id: P + "-slab" });
+    gsap.set(R.slab, { z: -60 }); // dessus à +2 : enveloppe la dalle grise sans z-fighting
+
+    // ---- wordmark 3D + console à écran tactile.
+    R.wordmark = M.wordmark(iso, { x: -200, y: -660, size: 200, id: P + "-wm" });
+    const con = M.obj(iso, { x: -360, y: -430, id: P + "-console" });
+    R.console = con;
+    M.shadow(con, { w: 130, d: 90, ext: 30 });
+    M.cuboid(con, { w: 130, d: 90, h: 96, mat: "rouge" });
+    M.cuboid(con, { x: 10, y: 70, z: 70, w: 110, d: 24, h: 8, mat: "creme" });
+    const screen = M.standee(con, { x: 10, y: 40, z: 96, w: 110, h: 76, bg: "var(--choco)" });
+    const scrText = M.faceText(screen.face, "PRÊT", { size: 44, color: "var(--caramel-vif)" });
+    gsap.set(scrText, { visibility: "hidden" });
+    R.screen = screen;
+    R.screenText = scrText;
+
+    // ---- S3 cacahuètes : convoyeur devant l'opérateur, tri au tampon.
+    const s3 = M.obj(iso, { x: -660, y: 10, id: P + "-s3" });
+    R.s3 = s3;
+    s3.conveyor = M.conveyor(s3, { x: 0, y: 100, len: 580, w: 92, h: 70, mat: "rouge" });
+    s3.op = M.operator(s3, { x: 270, y: 46, id: P + "-op" });
+    // Tampon tenu bras tendu : le poignet (grip) compense la rotation du bras
+    // pour que le tampon reste vertical. Repos : bras 100°, frappe : 80°.
+    s3.arm = s3.op.parts.armR;
+    s3.grip = M.obj(s3.arm, { z: -104 });
+    s3.stamp = M.stamp(s3.grip, { x: 0, y: 0, z: -59, text: "OK", mat: "caramel" });
+    gsap.set(s3.arm, { rotationX: 100 });
+    gsap.set(s3.grip, { rotationX: -100 });
+    s3.items = M.obj(s3, { x: 0, y: 108, z: 75 });
+    // Cacahuètes : le tampon frappe en x = 316 (local s3). Le convoyeur avance
+    // par pas de 76 ; positions de départ = 316 − 76·k pour la k-ième frappe.
+    s3.nuts = [];
+    [240, 164, 88, 12].forEach(function (x, i) {
+      const broken = i === 2;
+      const n = M.flat(s3.items, { x: x - 7, y: 14, w: 62, d: 48, html: M.peanutSVG(broken) });
+      n.broken = broken;
+      n.mark = M.stampMark(n, { x: broken ? -24 : 3, y: 10, z: 1, ok: !broken, w: broken ? 110 : 56, d: 30 });
+      gsap.set(n.mark, { scale: 0 });
+      s3.nuts.push(n);
+    });
+
+    // ---- S4 caramel : table, pinces, filament, règle, voyant, poubelle.
+    const s4 = M.obj(iso, { x: 120, y: -570, id: P + "-s4" });
+    R.s4 = s4;
+    M.shadow(s4, { w: 560, d: 180, ext: 40 });
+    M.cuboid(s4, { w: 560, d: 180, h: 70, mat: "rouge" });
+    M.cuboid(s4, { x: 30, y: 56, z: 70, w: 50, d: 60, h: 44, mat: "creme" });
+    s4.pincer = M.obj(s4, { x: 80, y: 56, z: 70 });
+    M.cuboid(s4.pincer, { x: 0, y: 0, z: 0, w: 50, d: 60, h: 44, mat: "creme" });
+    M.cuboid(s4.pincer, { x: 16, y: 16, z: 44, w: 18, d: 28, h: 40, mat: "creme" });
+    s4.fil = M.obj(s4, { x: 80, y: 78, z: 82 });
+    M.cuboid(s4.fil, { w: 300, d: 16, h: 16, mat: "caramel" });
+    gsap.set(s4.fil, { scaleX: 0.001 });
+    M.cuboid(s4, { x: 60, y: 74, z: 114, w: 22, d: 24, h: 10, mat: "caramel" });
+    s4.ruler = M.ruler(s4, { x: 80, y: 140, z: 70, len: 330, step: 20 });
+    const mark = M.obj(s4, { x: 378, y: 136, z: 70 });
+    M.cuboid(mark, { w: 4, d: 36, h: 30, mat: "caramel-vif" });
+    const tag = M.standee(s4, { x: 312, y: 182, z: 0, w: 140, h: 34, bg: "var(--choco)" });
+    M.faceText(tag.face, "15 CM MIN.", { size: 22, color: "var(--creme)" });
+    s4.light = M.obj(s4, { x: 500, y: 30, z: 70 });
+    M.cuboid(s4.light, { x: 6, y: 6, z: 0, w: 14, d: 14, h: 50, mat: "choco" });
+    s4.bulb = M.cuboid(s4.light, { x: -4, y: -4, z: 50, w: 34, d: 34, h: 30, mat: "choco" });
+    s4.bin = M.obj(s4, { x: 430, y: 250 });
+    M.shadow(s4.bin, { w: 100, d: 90, ext: 30 });
+    const bin = M.cuboid(s4.bin, { w: 100, d: 90, h: 86, mat: "choco" });
+    M.decal(bin.faces.top, '<svg viewBox="0 0 100 90"><rect x="8" y="8" width="84" height="74" fill="var(--bracelet)"/></svg>');
+    M.faceText(bin.faces.s, "MENSONGES", { size: 19, color: "var(--creme)" });
+    s4.blob = M.obj(s4, { x: 380, y: 76, z: 82 });
+    M.cuboid(s4.blob, { w: 30, d: 22, h: 20, mat: "caramel" });
+    gsap.set(s4.blob, { scale: 0 });
+
+    // ---- S5 chocolat : convoyeur, rideau, panneau BRILLANT, éjecteur.
+    const s5 = M.obj(iso, { x: -560, y: 700, id: P + "-s5" });
+    R.s5 = s5;
+    s5.conveyor = M.conveyor(s5, { x: 0, y: 0, len: 660, w: 92, h: 70, mat: "rouge" });
+    M.cuboid(s5, { x: 300, y: -34, z: 0, w: 24, d: 24, h: 190, mat: "rouge" });
+    M.cuboid(s5, { x: 300, y: 102, z: 0, w: 24, d: 24, h: 190, mat: "rouge" });
+    M.cuboid(s5, { x: 270, y: -34, z: 190, w: 90, d: 160, h: 60, mat: "rouge" });
+    s5.curtain = M.obj(s5, { x: 310, y: 4, z: 190 });
+    M.cuboid(s5.curtain, { x: 0, y: 0, z: -115, w: 10, d: 84, h: 115, mat: "choco" });
+    gsap.set(s5.curtain, { scaleZ: 0.001 });
+    s5.items = M.obj(s5, { x: 0, y: 14, z: 75 });
+    s5.bars = [];
+    for (let i = 0; i < 5; i++) {
+      const g = M.obj(s5.items, { x: -40 + i * 150 });
+      const bare = M.cuboid(g, { w: 110, d: 60, h: 34, mat: "peau" });
+      M.decal(bare.faces.top, '<svg viewBox="0 0 110 60"><rect x="0" y="0" width="110" height="60" fill="var(--caramel)"/><ellipse cx="30" cy="22" rx="9" ry="6" fill="var(--creme)"/><ellipse cx="74" cy="38" rx="8" ry="5" fill="var(--creme)"/></svg>');
+      const coated = M.barMordu(g, { len: 114, d: 62, h: 36, x: -2, y: -1, shadow: false, seed: 30 + i });
+      gsap.set(coated, { visibility: "hidden" });
+      g.bare = bare;
+      g.coated = coated;
+      s5.bars.push(g);
+    }
+    // Barre trop brillante (gag) : reflets crème sur l'enrobage.
+    const shinyBar = s5.bars[2];
+    M.decal(shinyBar.coated.body.faces.top, '<svg viewBox="0 0 114 62"><path d="M10 52 L40 10 M30 56 L62 12 M70 54 L96 16" stroke="var(--creme)" stroke-width="6"/></svg>');
+    M.decal(shinyBar.coated.body.faces.s, '<svg viewBox="0 0 114 36"><path d="M14 30 L30 6 M44 30 L60 6" stroke="var(--creme)" stroke-width="5"/></svg>');
+    s5.shiny = shinyBar;
+    s5.pusher = M.obj(s5, { x: 520, y: -70, z: 75 });
+    M.cuboid(s5.pusher, { x: 0, y: -40, z: 0, w: 70, d: 40, h: 30, mat: "choco" });
+    M.cuboid(s5.pusher, { x: 10, y: 0, z: 6, w: 50, d: 30, h: 18, mat: "creme" });
+    const signPost = M.obj(s5, { x: -262, y: -40 });
+    M.cuboid(signPost, { x: 100, y: 10, z: 0, w: 14, d: 14, h: 90, mat: "choco" });
+    s5.sign = M.standee(signPost, { x: 0, y: 24, z: 90, w: 220, h: 70, bg: "var(--choco)" });
+    M.faceText(s5.sign.face, "BRILLANT", { size: 42, color: "var(--caramel-vif)" });
+    s5.cross = [];
+    for (const rot of [17, -17]) {
+      const bar = document.createElement("div");
+      bar.style.cssText = "position:absolute;left:-10px;top:30px;width:240px;height:10px;background:var(--rouge-vif);transform-origin:50% 50%";
+      bar.style.transform = "rotate(" + rot + "deg)";
+      s5.sign.face.appendChild(bar);
+      gsap.set(bar, { scaleX: 0 });
+      s5.cross.push(bar);
+    }
+
+    // ---- S6 test du clou : établi, portique + marteau, portes miniatures.
+    const s6 = M.obj(iso, { x: 160, y: 200, id: P + "-s6" });
+    R.s6 = s6;
+    M.shadow(s6, { w: 480, d: 120, ext: 40 });
+    M.cuboid(s6, { w: 480, d: 120, h: 60, mat: "rouge" });
+    M.cuboid(s6, { x: 200, y: -60, z: 0, w: 24, d: 24, h: 300, mat: "rouge" });
+    M.cuboid(s6, { x: 200, y: -60, z: 300, w: 24, d: 150, h: 24, mat: "rouge" });
+    s6.hammer = M.obj(s6, { x: 212, y: 60, z: 160 });
+    M.cuboid(s6.hammer, { x: -8, y: -8, z: 40, w: 16, d: 16, h: 100, mat: "creme" });
+    M.cuboid(s6.hammer, { x: -26, y: -20, z: 0, w: 52, d: 40, h: 40, mat: "choco" });
+    s6.nail = M.obj(s6, { x: 208, y: 56, z: 96 });
+    M.cuboid(s6.nail, { x: 0, y: 0, z: 0, w: 8, d: 8, h: 54, mat: "creme" });
+    M.cuboid(s6.nail, { x: -5, y: -5, z: 54, w: 18, d: 18, h: 4, mat: "creme" });
+    s6.testBar = M.obj(s6, { x: 162, y: 30, z: 60 });
+    s6.placo = M.barPlaco(s6.testBar, { len: 100, d: 60, h: 36, seed: 70, shadow: false });
+    s6.mordu = M.barMordu(s6.testBar, { len: 100, d: 60, h: 36, seed: 71, shadow: false });
+    gsap.set(s6.mordu, { visibility: "hidden" });
+    // 13 portes miniatures, le long de y, à l'est de l'établi.
+    s6.doors = [];
+    for (let i = 0; i < 13; i++) {
+      const d = M.obj(s6, { x: 560, y: -120 + i * 46 });
+      M.cuboid(d, { x: 0, y: 0, z: 0, w: 12, d: 6, h: 92, mat: "creme" });
+      M.cuboid(d, { x: 0, y: 40, z: 0, w: 12, d: 6, h: 92, mat: "creme" });
+      M.cuboid(d, { x: 0, y: 0, z: 92, w: 12, d: 46, h: 6, mat: "creme" });
+      d.panel = M.obj(d, { x: 4, y: 6, z: 8 });
+      M.cuboid(d.panel, { w: 4, d: 34, h: 82, mat: "fond" });
+      d.wedge = M.obj(d, { x: 14, y: 14, z: 0 });
+      M.barPlaco(d.wedge, { len: 26, d: 18, h: 8, seed: 100 + i, shadow: false });
+      gsap.set(d.wedge, { scale: 0 });
+      s6.doors.push(d);
+    }
+    const draftSign = M.obj(s6, { x: 640, y: 434 });
+    M.cuboid(draftSign, { x: 30, y: 4, z: 0, w: 8, d: 8, h: 60, mat: "choco" });
+    const ds = M.standee(draftSign, { x: 0, y: 12, z: 60, w: 112, h: 36, bg: "var(--creme)" });
+    M.faceText(ds.face, "COURANT D'AIR", { size: 16, color: "var(--choco)" });
+    s6.draftSign = draftSign;
+    gsap.set(draftSign, { scale: 0 });
+
+    return R;
+  }
+  window.MORDU.factory = factory;
+
   window.MORDU.CAM = CAM;
   window.MORDU.chantier = chantier;
 })();

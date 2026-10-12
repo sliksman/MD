@@ -191,18 +191,25 @@
   position: absolute;
   left: 192px; /* title-safe 10 % */
   top: 108px;
+  height: 172px;
+  overflow: hidden;
+}
+.badge-inner {
   display: flex;
   align-items: baseline;
-  gap: 28px;
+  gap: 26px;
+  line-height: 172px;
 }
 .badge .num {
   display: block;
   font-size: 150px;
+  line-height: 172px;
   color: var(--caramel);
 }
 .badge .lbl {
   display: block;
   font-size: 92px;
+  line-height: 172px;
   color: var(--creme);
 }
 .label-big {

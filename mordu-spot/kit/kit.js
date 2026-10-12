@@ -384,8 +384,8 @@
     return flat(parent, {
       x: o.x, y: o.y, z: o.z, w: w, d: d, id: o.id,
       html:
-        '<div class="t-display" style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;border:3px solid ' + color +
-        ";color:" + color + ";font-size:" + Math.round(d * 0.62) + 'px;box-sizing:border-box">' + (o.text || (ok ? "OK" : "REFUSÉE")) + "</div>",
+        '<div class="t-display" style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:var(--creme);border:3px solid ' + color +
+        ";color:" + color + ";font-size:" + Math.round(d * 0.66) + 'px;box-sizing:border-box">' + (o.text || (ok ? "OK" : "REFUSÉE")) + "</div>",
     });
   }
 
@@ -451,15 +451,17 @@
   }
 
   // ---------- HUD 2D --------------------------------------------------------
+  // Badge d'étape « 01 CACAHUÈTES » : entre par bloc (inner yPercent 110 → 0).
   function badge(hud, num, label, id) {
     const b = el("div", "badge", hud);
     if (id) b.id = id;
-    const n = el("span", "t-display num", b);
+    const inner = el("div", "badge-inner", b);
+    const n = el("span", "t-display num", inner);
     n.textContent = num;
-    const l = el("span", "t-display lbl", b);
+    const l = el("span", "t-display lbl", inner);
     l.textContent = label;
-    b.num = n;
-    b.lbl = l;
+    gsap.set(inner, { yPercent: 110 });
+    b.inner = inner;
     return b;
   }
 
