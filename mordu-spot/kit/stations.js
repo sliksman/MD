@@ -48,8 +48,8 @@
     const tag = M.decal(
       R.plates[1].bar.body.faces.s,
       '<div style="position:absolute;left:14px;top:110px;width:140px;padding:8px 0;background:var(--creme);text-align:center">' +
-        '<div class="t-display" style="display:block;font-size:19px;color:var(--choco)">BARRE PROTÉINÉE</div>' +
-        '<div class="t-display" style="display:block;font-size:15px;color:var(--choco);margin-top:4px">(STANDARD)</div></div>'
+        '<div class="t-display" data-layout-allow-overlap style="display:block;font-size:19px;color:var(--choco)">BARRE PROTÉINÉE</div>' +
+        '<div class="t-display" data-layout-allow-overlap style="display:block;font-size:15px;color:var(--choco);margin-top:4px">(STANDARD)</div></div>'
     );
     R.tag = tag;
 
@@ -125,7 +125,8 @@
     M.cuboid(ram, { x: 45, y: 30, z: 30, w: 20, d: 20, h: 70, mat: "fond-gris" });
     R.ram = ram;
     const cake = M.obj(press, { x: 35, y: 35, z: 40 });
-    M.barPlaco(cake, { len: 100, d: 70, h: 60, seed: 61, shadow: false });
+    R.cakeZ = M.zbox(cake, 1);
+    M.barPlaco(R.cakeZ, { len: 100, d: 70, h: 60, seed: 61, shadow: false });
     R.cake = cake;
 
     // Claie de séchage.
@@ -243,8 +244,8 @@
     M.cuboid(s5, { x: 300, y: 102, z: 0, w: 24, d: 24, h: 190, mat: "rouge" });
     M.cuboid(s5, { x: 270, y: -34, z: 190, w: 90, d: 160, h: 60, mat: "rouge" });
     s5.curtain = M.obj(s5, { x: 310, y: 4, z: 190 });
-    M.cuboid(s5.curtain, { x: 0, y: 0, z: -115, w: 10, d: 84, h: 115, mat: "choco" });
-    gsap.set(s5.curtain, { scaleZ: 0.001 });
+    s5.curtainZ = M.zbox(s5.curtain, 0.001);
+    M.cuboid(s5.curtainZ, { x: 0, y: 0, z: -115, w: 10, d: 84, h: 115, mat: "choco" });
     s5.items = M.obj(s5, { x: 0, y: 14, z: 75 });
     s5.bars = [];
     [20, 160, 330].forEach(function (x0, i) {

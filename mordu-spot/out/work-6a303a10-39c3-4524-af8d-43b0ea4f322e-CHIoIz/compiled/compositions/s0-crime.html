@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+        #root { position: absolute; inset: 0; }
+      </style>
+      <div id="root" data-composition-id="s0" data-width="1920" data-height="1080"></div>
+      <script>
+        (function () {
+          // SCÈNE 0 — LE CRIME. Chantier gris : on visse des « barres protéinées »
+          // sur une ossature de cloison. Gag : le niveau à bulle est parfait.
+          const M = window.MORDU;
+          const B = M.T().scenes.s0.beats;
+          const root = document.querySelector('[data-composition-id="s0"]');
+          const S = M.stage(root, { gris: true });
+          const W = M.chantier(S.iso, { id: "s0" });
+          const tl = gsap.timeline({ paused: true });
+          const DROP = 0.4;
+
+          // Caméra : léger recul sec à l'ouverture, puis plan fixe.
+          tl.fromTo(S.cam, M.focus({ x: -380, y: -400, z: 140 }, 1.45, 0, 10), { ...M.CAM.s0, duration: 0.7, ease: "power3.out" }, 0);
+
+          // Les deux plaques de droite arrivent par chute, au beat de pose.
+          const p2 = W.plates[2], p3 = W.plates[3];
+          tl.fromTo(p3, { z: 1000 }, { z: 0, duration: DROP, ease: "power3.in" }, B.plateIn - DROP);
+          tl.fromTo(p2, { z: 1000 }, { z: 0, duration: DROP, ease: "power3.in" }, B.plate2 - DROP);
+          // Vis : invisibles jusqu'au vissage.
+          [p2, p3].forEach(function (p) {
+            p.bar.screws.forEach(function (s) { tl.set(s, { opacity: 0 }, 0); });
+          });
+
+          // Vissage : tremblement court de la visseuse, puis la vis apparaît.
+          function screw(worker, plate, idx, t) {
+            tl.fromTo(worker.drill, { x: 0 }, { x: 3, duration: 0.035, ease: "none", yoyo: true, repeat: 7 }, t - 0.28);
+            tl.set(plate.bar.screws[idx], { opacity: 1 }, t);
+            tl.set(plate.bar.screws[idx + 1], { opacity: 1 }, t + 0.12);
+          }
+          screw(W.worker2, p3, 0, B.screw1);
+          screw(W.worker2, p3, 2, B.screw2);
+          screw(W.worker1, p2, 0, B.screw3);
+          screw(W.worker1, p2, 2, B.screw4);
+
+          // Gag : la chute de la plaque fait glisser la bulle… qui revient pile au centre.
+          tl.fromTo(W.bubble, { x: 0 }, { x: -16, duration: 0.12, ease: "power2.out" }, B.plate2);
+          tl.to(W.bubble, { x: 11, duration: 0.5, ease: "power2.inOut" }, B.plate2 + 0.3);
+          tl.to(W.bubble, { x: 0, duration: 0.45, ease: "power3.out" }, B.level - 0.45);
+
+          window.__timelines["s0"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

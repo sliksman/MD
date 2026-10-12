@@ -38,7 +38,7 @@
           // ---- étirement 1 : atteint la marque → voyant ambre.
           const d1 = B.valid - B.pull1;
           tl.fromTo(s4.pincer, { x: X0 }, { x: X0 + FULL, duration: d1, ease: "power2.inOut" }, B.pull1);
-          tl.fromTo(s4.fil, { scaleX: 0.001, scaleY: 1, scaleZ: 1 }, { scaleX: 1, scaleY: 0.55, scaleZ: 0.55, duration: d1, ease: "power2.inOut" }, B.pull1);
+          tl.fromTo(s4.fil, { scaleX: 0.001, scaleY: 1 }, { scaleX: 1, scaleY: 0.55, duration: d1, ease: "power2.inOut" }, B.pull1);
           tl.set(s4.bulb, { "--base": "var(--caramel-vif)" }, B.valid);
           // Coupe nette et retour au départ.
           tl.to(s4.fil, { scaleX: 0.001, duration: 0.14, ease: "power3.in" }, B.pull2 - 0.42);
@@ -49,7 +49,7 @@
           const SHORT = 170;
           const d2 = B.fail - B.pull2;
           tl.to(s4.pincer, { x: X0 + SHORT, duration: d2, ease: "power2.out" }, B.pull2);
-          tl.fromTo(s4.fil, { scaleX: 0.001, scaleY: 1, scaleZ: 1 }, { scaleX: SHORT / FULL, scaleY: 0.8, scaleZ: 0.8, duration: d2, ease: "power2.out" }, B.pull2);
+          tl.fromTo(s4.fil, { scaleX: 0.001, scaleY: 1 }, { scaleX: SHORT / FULL, scaleY: 0.8, duration: d2, ease: "power2.out" }, B.pull2);
           tl.to(s4.fil, { scaleX: 0.001, duration: 0.1, ease: "power2.in" }, B.fail);
           tl.set(s4.bulb, { "--base": "var(--rouge-vif)" }, B.fail);
           // Le caramel raté reste au bout de la pince : une boule.

@@ -37,7 +37,7 @@
           M.labelIn(tl, lbl, B.label);
 
           // ---- rideau de chocolat.
-          tl.fromTo(s5.curtain, { scaleZ: 0.001 }, { scaleZ: 1, duration: 0.3, ease: "power2.in" }, B.pour);
+          M.tweenZ(tl, s5.curtainZ, 0.001, 1, 0.3, "power2.in", B.pour);
 
           // ---- convoyeur continu ; chaque barre s'enrobe en passant sous le rideau.
           const V = 40;

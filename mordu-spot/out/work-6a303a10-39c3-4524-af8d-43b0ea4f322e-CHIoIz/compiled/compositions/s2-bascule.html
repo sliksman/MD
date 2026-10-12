@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+        #root { position: absolute; inset: 0; }
+        #s2-veil { position: absolute; inset: 0; background: var(--fond-gris); }
+      </style>
+      <div id="root" data-composition-id="s2" data-width="1920" data-height="1080"></div>
+      <script>
+        (function () {
+          // SCÈNE 2 — LE BASCULEMENT. La dalle bordeaux se déroule sur le chantier,
+          // le gris s'enfonce, l'usine MORDU tombe d'un coup, le wordmark se dresse.
+          // Gag : le « U » se lève avec un temps de retard.
+          const M = window.MORDU;
+          const B = M.T().scenes.s2.beats;
+          const root = document.querySelector('[data-composition-id="s2"]');
+          const S = M.stage(root);
+          const veil = document.createElement("div");
+          veil.id = "s2-veil";
+          S.stage.insertBefore(veil, S.cam);
+          const W = M.chantier(S.iso, { id: "s2" });
+          const F = M.factory(S.iso, { id: "s2" });
+          const tl = gsap.timeline({ paused: true });
+
+          // ---- état de fin de la scène 1 (raccord).
+          M.setZ(W.cakeZ, 0.45);
+          gsap.set(W.witness, { visibility: "hidden" });
+          const dusty = M.operator(S.iso, { x: 60, y: 540, variant: "worker", paint: "gris", id: "s2-dusty" });
+          const wall = M.hudLabel(S.hud, "= UN MUR.", { id: "s2-wall", size: 190, band: true });
+          gsap.set(wall.inner, { yPercent: 0 });
+          M.labelOut(tl, wall, 0.05, 0.22);
+
+          // ---- caméra.
+          tl.fromTo(S.cam, { ...M.CAM.s1end }, { ...M.CAM.factory, duration: 1.4, ease: "power2.inOut" }, B.carpet - 0.1);
+          tl.to(S.cam, { ...M.CAM.console, duration: 0.9, ease: "power3.inOut" }, B.screen - 0.75);
+
+          // ---- la dalle bordeaux se déroule d'ouest en est ; le fond vire.
+          const D = 1.1;
+          tl.fromTo(F.slab, { scaleX: 0.001 }, { scaleX: 1, duration: D, ease: "power2.inOut" }, B.carpet);
+          tl.fromTo(veil, { opacity: 1 }, { opacity: 0, duration: D, ease: "power1.inOut" }, B.carpet);
+          // Le chantier s'enfonce quand le front de la dalle passe.
+          const sinkers = [
+            [W.stack, -500], [W.wall, -350], [W.worker1, -270], [W.worker2, -98], [W.sack, -230], [W.mixer, -120],
+            [W.paddle, -40], [dusty, 60], [W.press, 200], [W.rack, 500],
+          ];
+          // Instant où le front (easing power2.inOut) atteint l'abscisse x.
+          function frontTime(x) {
+            const p = Math.min(1, Math.max(0, (x + 852) / 1704));
+            const u = p < 0.5 ? Math.sqrt(p / 2) : 1 - Math.sqrt((1 - p) / 2);
+            return B.carpet + D * u;
+          }
+          sinkers.forEach(function ([o, x]) {
+            const t = frontTime(x) - 0.05;
+            tl.to(o, { z: -300, duration: 0.22, ease: "power2.in" }, t);
+            tl.set(o, { visibility: "hidden" }, t + 0.22);
+          });
+
+          // ---- l'usine tombe d'un coup (chute sèche, échelonnée).
+          const drops = [F.s3, F.console, F.s4, F.s5, F.s6];
+          drops.forEach(function (g, i) {
+            const t = B.build + i * 0.11;
+            tl.set(g, { visibility: "hidden" }, 0);
+            tl.set(g, { visibility: "visible" }, t);
+            tl.fromTo(g, { z: 760 }, { z: 0, duration: 0.34, ease: "power3.in" }, t);
+          });
+
+          // ---- wordmark : couché sur la dalle, puis les lettres se dressent.
+          const L = F.wordmark.letters;
+          L.forEach(function (h) { gsap.set(h, { rotationX: 90 }); });
+          tl.set(F.wordmark, { visibility: "hidden" }, 0);
+          tl.set(F.wordmark, { visibility: "visible" }, B.carpet + D * 0.45);
+          L.slice(0, 4).forEach(function (h, i) {
+            tl.to(h, { rotationX: 0, duration: 0.3, ease: "power3.out" }, B.letters + i * 0.16);
+          });
+          // Gag : le U attend son tour… puis se lève, seul.
+          tl.to(L[4], { rotationX: 0, duration: 0.3, ease: "power3.out" }, B.sign);
+
+          // ---- écran tactile : s'allume, puis « PRÊT ».
+          gsap.set(F.screen.face, { backgroundColor: "transparent" });
+          F.screen.face.style.background = "var(--bracelet)";
+          tl.set(F.screen.face, { background: "var(--choco)" }, B.screen);
+          tl.set(F.screenText, { visibility: "visible" }, B.ready);
+
+          window.__timelines["s2"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

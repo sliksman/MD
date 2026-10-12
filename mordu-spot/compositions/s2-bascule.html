@@ -25,7 +25,7 @@
           const tl = gsap.timeline({ paused: true });
 
           // ---- état de fin de la scène 1 (raccord).
-          gsap.set(W.cake, { scaleZ: 0.45 });
+          M.setZ(W.cakeZ, 0.45);
           gsap.set(W.witness, { visibility: "hidden" });
           const dusty = M.operator(S.iso, { x: 60, y: 540, variant: "worker", paint: "gris", id: "s2-dusty" });
           const wall = M.hudLabel(S.hud, "= UN MUR.", { id: "s2-wall", size: 190, band: true });

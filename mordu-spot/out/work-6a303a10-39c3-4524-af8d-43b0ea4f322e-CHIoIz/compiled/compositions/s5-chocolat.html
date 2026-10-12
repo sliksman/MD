@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+        #root { position: absolute; inset: 0; }
+      </style>
+      <div id="root" data-composition-id="s5" data-width="1920" data-height="1080"></div>
+      <script>
+        (function () {
+          // SCÈNE 5 — ÉTAPE 3, LE CHOCOLAT. Rideau de chocolat mat, panneau BRILLANT barré.
+          // Gag : la barre trop brillante est éjectée du convoyeur par un petit bras.
+          const M = window.MORDU;
+          const B = M.T().scenes.s5.beats;
+          const DUR = M.T().scenes.s5.dur;
+          const root = document.querySelector('[data-composition-id="s5"]');
+          const S = M.stage(root);
+          const F = M.factory(S.iso, { id: "s5" });
+          const s5 = F.s5;
+          const tl = gsap.timeline({ paused: true });
+
+          // ---- raccord : fin des scènes 3 et 4.
+          gsap.set(F.screenText, { visibility: "visible" });
+          F.screen.face.style.background = "var(--choco)";
+          F.s3.nuts.forEach(function (n) { gsap.set(n.mark, { scale: 1 }); });
+          gsap.set(F.s3.items, { x: 304 });
+          gsap.set(F.s4.bulb, { "--base": "var(--rouge-vif)" });
+
+          // ---- caméra : longue glissade du caramel au chocolat.
+          tl.fromTo(S.cam, { ...M.CAM.s4 }, { ...M.CAM.s5, duration: 1.1, ease: "power3.inOut" }, 0);
+
+          // ---- badge + label.
+          const badge = M.badge(S.hud, "03", "CHOCOLAT", "s5-badge");
+          tl.fromTo(badge.inner, { yPercent: 110 }, { yPercent: 0, duration: 0.34, ease: "power3.out" }, B.badge);
+          const lbl = M.hudLabel(S.hud, "MAT. PAS DE VERNIS.", { id: "s5-label", size: 96, top: 300, align: "flex-start" });
+          M.labelIn(tl, lbl, B.label);
+
+          // ---- rideau de chocolat.
+          M.tweenZ(tl, s5.curtainZ, 0.001, 1, 0.3, "power2.in", B.pour);
+
+          // ---- convoyeur continu ; chaque barre s'enrobe en passant sous le rideau.
+          const V = 40;
+          const run = DUR - B.pour;
+          tl.fromTo(s5.items, { x: 0 }, { x: V * run, duration: run, ease: "none" }, B.pour);
+          tl.fromTo(s5.conveyor.stripes, { x: -30 }, {
+            x: -30 + V * run, duration: run, ease: "none",
+            modifiers: { x: (v) => ((parseFloat(v) % 30) - 30) + "px" },
+          }, B.pour);
+          s5.bars.forEach(function (g) {
+            const tc = B.pour + (315 - (g.x0 + 57)) / V;
+            if (tc > B.pour && tc < DUR) {
+              tl.set(g.bare, { visibility: "hidden" }, tc);
+              tl.set(g.coated, { visibility: "visible" }, tc);
+            }
+          });
+
+          // ---- BRILLANT : barré d'une croix sèche.
+          tl.to(s5.cross[0], { scaleX: 1, duration: 0.12, ease: "power3.out" }, B.cross);
+          tl.to(s5.cross[1], { scaleX: 1, duration: 0.12, ease: "power3.out" }, B.cross + 0.1);
+
+          // ---- gag : le petit bras pousse la barre brillante hors du convoyeur.
+          const shiny = s5.shiny;
+          tl.to(s5.pusher, { y: 40, duration: 0.14, ease: "power3.in" }, B.eject - 0.14);
+          tl.to(s5.pusher, { y: 92, duration: 0.3, ease: "power2.out" }, B.eject + 0.12);
+          // La barre ne suit plus le tapis : on compense l'avance du convoyeur.
+          tl.to(shiny, { x: shiny.x0 - V * (DUR - B.eject), duration: DUR - B.eject, ease: "none" }, B.eject);
+          tl.to(shiny, { y: -150, duration: 0.22, ease: "power2.out" }, B.eject);
+          tl.to(shiny, { z: -75, duration: 0.2, ease: "power2.in" }, B.eject + 0.18);
+          tl.to(shiny, { rotationX: -12, duration: 0.1, ease: "power1.out" }, B.eject + 0.2);
+          tl.to(shiny, { rotationX: 0, duration: 0.12, ease: "power2.out" }, B.eject + 0.38);
+
+          window.__timelines["s5"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

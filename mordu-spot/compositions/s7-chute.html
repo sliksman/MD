@@ -24,7 +24,7 @@
           F.s3.nuts.forEach(function (n) { gsap.set(n.mark, { scale: 1 }); });
           gsap.set(F.s3.items, { x: 304 });
           gsap.set(F.s4.bulb, { "--base": "var(--rouge-vif)" });
-          gsap.set(F.s5.curtain, { scaleZ: 1 });
+          M.setZ(F.s5.curtainZ, 1);
           F.s5.cross.forEach(function (c) { gsap.set(c, { scaleX: 1 }); });
           const sh = F.s5.shiny;
           gsap.set(sh, { y: -150, z: -75, x: sh.x0 - 40 * (7 - 5.3) });

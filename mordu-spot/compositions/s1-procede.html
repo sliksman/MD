@@ -55,7 +55,7 @@
           // ---- presser : coup sec, la galette s'écrase, la presse remonte.
           tl.fromTo(W.ram, { z: 200 }, { z: 100, duration: 0.2, ease: "power3.in" }, B.pressHit - 0.2);
           tl.to(W.ram, { z: 67, duration: 0.08, ease: "power2.out" }, B.pressHit);
-          tl.fromTo(W.cake, { scaleZ: 1 }, { scaleZ: 0.45, duration: 0.08, ease: "power2.out" }, B.pressHit);
+          M.tweenZ(tl, W.cakeZ, 1, 0.45, 0.08, "power2.out", B.pressHit);
           tl.to(W.ram, { z: 200, duration: 0.45, ease: "power2.inOut" }, B.pressHit + 0.6);
 
           // ---- gag : nuage de poussière cubique sur le témoin.

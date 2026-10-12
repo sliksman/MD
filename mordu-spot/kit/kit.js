@@ -111,15 +111,40 @@
     return { root: root, body: body, shadow: sh };
   }
 
+  // Échelle en Z : GSAP ne gère pas scaleZ. Conteneur 3D brut (non géré par
+  // GSAP) dont on pilote scale3d via un proxy — déterministe au seek.
+  function zbox(parent, v) {
+    const n = el("div", "obj", parent);
+    setZ(n, v == null ? 1 : v);
+    return n;
+  }
+  function setZ(n, v) {
+    n.style.transform = "scale3d(1,1," + v + ")";
+  }
+  function tweenZ(tl, n, from, to, dur, ease, at) {
+    const p = { v: from };
+    tl.fromTo(p, { v: from }, { v: to, duration: dur, ease: ease, onUpdate: function () { setZ(n, p.v); } }, at);
+  }
+
   // Décor : contenu HTML/SVG posé sur une face.
   function decal(face, html) {
     const d = el("div", "decal", face);
     d.innerHTML = html;
+    d.querySelectorAll(".t-display, .t-text").forEach(worldText);
     return d;
+  }
+  // Texte posé sur un volume 3D : se masque et se croise naturellement avec le
+  // décor en projection isométrique. On le déclare à l'audit de mise en page ;
+  // le texte d'interface (HUD, sous-titres) reste, lui, entièrement audité.
+  function worldText(n) {
+    n.setAttribute("data-layout-allow-overlap", "");
+    n.setAttribute("data-layout-allow-occlusion", "");
+    n.setAttribute("data-layout-allow-overflow", "");
+    return n;
   }
   function faceText(face, text, o) {
     o = o || {};
-    const t = el("div", "face-text " + (o.text ? "t-text" : "t-display"), face);
+    const t = worldText(el("div", "face-text " + (o.text ? "t-text" : "t-display"), face));
     t.textContent = text;
     t.style.fontSize = px(o.size || 20);
     if (o.color) t.style.color = o.color;
@@ -441,6 +466,10 @@
         layer.style.background = "transparent";
         layer.style.backfaceVisibility = "visible";
         layer.style.color = k === 0 ? "var(--creme)" : "var(--l)";
+        // Couches d'extrusion : décor, volontairement superposées.
+        // Logo 3D : toutes les couches sont du décor (le texte « MORDU » est lu
+        // comme un objet ; ses couches se recouvrent par construction).
+        layer.setAttribute("data-layout-ignore", "");
         layer.style.transform = "translate3d(0px," + px(-k * step) + "," + px(size) + ") rotateX(-90deg)";
       }
       g.letters.push(hinge);
@@ -521,10 +550,14 @@
     focus: focus,
     stage: stage,
     obj: obj,
+    zbox: zbox,
+    setZ: setZ,
+    tweenZ: tweenZ,
     cuboid: cuboid,
     shadow: shadow,
     prop: prop,
     decal: decal,
+    worldText: worldText,
     faceText: faceText,
     slab: slab,
     flat: flat,
