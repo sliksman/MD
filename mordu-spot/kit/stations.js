@@ -153,11 +153,11 @@
   //   centre libre pour la barre finale.
   Object.assign(CAM, {
     factory: M.focus({ x: 40, y: 40, z: 60 }, 0.56, 0, 20),
-    console: M.focus({ x: -300, y: -420, z: 130 }, 1.25, 0, 40),
+    console: M.focus({ x: -540, y: -430, z: 130 }, 1.25, 0, 40),
     s3: M.focus({ x: -330, y: 150, z: 110 }, 1.6, 40, -70),
-    s4: M.focus({ x: 380, y: -430, z: 110 }, 1.35, 0, 30),
-    s5: M.focus({ x: -230, y: 740, z: 100 }, 1.3, 0, 40),
-    s6: M.focus({ x: 520, y: 400, z: 90 }, 1.12, 0, 40),
+    s4: M.focus({ x: 540, y: -230, z: 90 }, 1.5, -40, -40),
+    s5: M.focus({ x: -60, y: 690, z: 110 }, 1.55, 0, 30),
+    s6: M.focus({ x: 470, y: 330, z: 80 }, 1.25, 0, 0),
   });
 
   function factory(iso, o) {
@@ -168,8 +168,8 @@
     gsap.set(R.slab, { z: -60 }); // dessus à +2 : enveloppe la dalle grise sans z-fighting
 
     // ---- wordmark 3D + console à écran tactile.
-    R.wordmark = M.wordmark(iso, { x: -200, y: -660, size: 200, id: P + "-wm" });
-    const con = M.obj(iso, { x: -360, y: -430, id: P + "-console" });
+    R.wordmark = M.wordmark(iso, { x: -430, y: -660, size: 200, id: P + "-wm" });
+    const con = M.obj(iso, { x: -600, y: -440, id: P + "-console" });
     R.console = con;
     M.shadow(con, { w: 130, d: 90, ext: 30 });
     M.cuboid(con, { w: 130, d: 90, h: 96, mat: "rouge" });
@@ -206,7 +206,7 @@
     });
 
     // ---- S4 caramel : table, pinces, filament, règle, voyant, poubelle.
-    const s4 = M.obj(iso, { x: 120, y: -570, id: P + "-s4" });
+    const s4 = M.obj(iso, { x: 250, y: -420, id: P + "-s4" });
     R.s4 = s4;
     M.shadow(s4, { w: 560, d: 180, ext: 40 });
     M.cuboid(s4, { w: 560, d: 180, h: 70, mat: "rouge" });
@@ -221,12 +221,12 @@
     s4.ruler = M.ruler(s4, { x: 80, y: 140, z: 70, len: 330, step: 20 });
     const mark = M.obj(s4, { x: 378, y: 136, z: 70 });
     M.cuboid(mark, { w: 4, d: 36, h: 30, mat: "caramel-vif" });
-    const tag = M.standee(s4, { x: 312, y: 182, z: 0, w: 140, h: 34, bg: "var(--choco)" });
-    M.faceText(tag.face, "15 CM MIN.", { size: 22, color: "var(--creme)" });
+    // Étiquette posée à plat sur la table, au niveau de la marque.
+    const tag = M.flat(s4, { x: 300, y: 100, z: 70.5, w: 150, d: 34, html: '<div class="t-display" style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:var(--choco);color:var(--creme);font-size:24px">15 CM MIN.</div>' });
     s4.light = M.obj(s4, { x: 500, y: 30, z: 70 });
     M.cuboid(s4.light, { x: 6, y: 6, z: 0, w: 14, d: 14, h: 50, mat: "choco" });
-    s4.bulb = M.cuboid(s4.light, { x: -4, y: -4, z: 50, w: 34, d: 34, h: 30, mat: "choco" });
-    s4.bin = M.obj(s4, { x: 430, y: 250 });
+    s4.bulb = M.cuboid(s4.light, { x: -9, y: -9, z: 50, w: 44, d: 44, h: 36, mat: "choco" });
+    s4.bin = M.obj(s4, { x: 440, y: 230 });
     M.shadow(s4.bin, { w: 100, d: 90, ext: 30 });
     const bin = M.cuboid(s4.bin, { w: 100, d: 90, h: 86, mat: "choco" });
     M.decal(bin.faces.top, '<svg viewBox="0 0 100 90"><rect x="8" y="8" width="84" height="74" fill="var(--bracelet)"/></svg>');
@@ -247,25 +247,29 @@
     gsap.set(s5.curtain, { scaleZ: 0.001 });
     s5.items = M.obj(s5, { x: 0, y: 14, z: 75 });
     s5.bars = [];
-    for (let i = 0; i < 5; i++) {
-      const g = M.obj(s5.items, { x: -40 + i * 150 });
+    [20, 160, 330].forEach(function (x0, i) {
+      const g = M.obj(s5.items, { x: x0 });
+      g.x0 = x0;
       const bare = M.cuboid(g, { w: 110, d: 60, h: 34, mat: "peau" });
       M.decal(bare.faces.top, '<svg viewBox="0 0 110 60"><rect x="0" y="0" width="110" height="60" fill="var(--caramel)"/><ellipse cx="30" cy="22" rx="9" ry="6" fill="var(--creme)"/><ellipse cx="74" cy="38" rx="8" ry="5" fill="var(--creme)"/></svg>');
       const coated = M.barMordu(g, { len: 114, d: 62, h: 36, x: -2, y: -1, shadow: false, seed: 30 + i });
-      gsap.set(coated, { visibility: "hidden" });
+      // Déjà passée sous le rideau au début de la scène ?
+      const done = x0 + 57 > 315;
+      gsap.set(done ? bare : coated, { visibility: "hidden" });
       g.bare = bare;
       g.coated = coated;
       s5.bars.push(g);
-    }
+    });
     // Barre trop brillante (gag) : reflets crème sur l'enrobage.
-    const shinyBar = s5.bars[2];
+    const shinyBar = s5.bars[2]; // déjà enrobée, et beaucoup trop brillante
     M.decal(shinyBar.coated.body.faces.top, '<svg viewBox="0 0 114 62"><path d="M10 52 L40 10 M30 56 L62 12 M70 54 L96 16" stroke="var(--creme)" stroke-width="6"/></svg>');
     M.decal(shinyBar.coated.body.faces.s, '<svg viewBox="0 0 114 36"><path d="M14 30 L30 6 M44 30 L60 6" stroke="var(--creme)" stroke-width="5"/></svg>');
     s5.shiny = shinyBar;
-    s5.pusher = M.obj(s5, { x: 520, y: -70, z: 75 });
-    M.cuboid(s5.pusher, { x: 0, y: -40, z: 0, w: 70, d: 40, h: 30, mat: "choco" });
+    // Éjecteur côté sud : pousse vers le nord (−y).
+    s5.pusher = M.obj(s5, { x: 520, y: 92, z: 75 });
+    M.cuboid(s5.pusher, { x: 0, y: 30, z: 0, w: 70, d: 40, h: 30, mat: "choco" });
     M.cuboid(s5.pusher, { x: 10, y: 0, z: 6, w: 50, d: 30, h: 18, mat: "creme" });
-    const signPost = M.obj(s5, { x: -262, y: -40 });
+    const signPost = M.obj(s5, { x: 720, y: -230 });
     M.cuboid(signPost, { x: 100, y: 10, z: 0, w: 14, d: 14, h: 90, mat: "choco" });
     s5.sign = M.standee(signPost, { x: 0, y: 24, z: 90, w: 220, h: 70, bg: "var(--choco)" });
     M.faceText(s5.sign.face, "BRILLANT", { size: 42, color: "var(--caramel-vif)" });
@@ -304,7 +308,7 @@
       M.cuboid(d, { x: 0, y: 40, z: 0, w: 12, d: 6, h: 92, mat: "creme" });
       M.cuboid(d, { x: 0, y: 0, z: 92, w: 12, d: 46, h: 6, mat: "creme" });
       d.panel = M.obj(d, { x: 4, y: 6, z: 8 });
-      M.cuboid(d.panel, { w: 4, d: 34, h: 82, mat: "fond" });
+      M.cuboid(d.panel, { w: 4, d: 34, h: 82, mat: "caramel" });
       d.wedge = M.obj(d, { x: 14, y: 14, z: 0 });
       M.barPlaco(d.wedge, { len: 26, d: 18, h: 8, seed: 100 + i, shadow: false });
       gsap.set(d.wedge, { scale: 0 });

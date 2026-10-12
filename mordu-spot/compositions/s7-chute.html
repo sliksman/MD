@@ -9,14 +9,118 @@
       <div id="root" data-composition-id="s7" data-width="1920" data-height="1080"></div>
       <script>
         (function () {
-          // STUB — scène pas encore construite.
+          // SCÈNE 7 — LA CHUTE. Tout est balayé d'un revers, sauf une barre MORDU
+          // au centre de la dalle, qui devient plein cadre. Un seul croc, sec.
+          const M = window.MORDU;
+          const B = M.T().scenes.s7.beats;
           const root = document.querySelector('[data-composition-id="s7"]');
-          const S = window.MORDU.stage(root);
-          const t = document.createElement("div");
-          t.className = "label-big";
-          t.innerHTML = '<span class="t-display">LA CHUTE</span>';
-          S.hud.appendChild(t);
-          window.__timelines["s7"] = gsap.timeline({ paused: true });
+          const S = M.stage(root);
+          const F = M.factory(S.iso, { id: "s7" });
+          const tl = gsap.timeline({ paused: true });
+
+          // ---- raccord : fin des scènes 3 à 6.
+          gsap.set(F.screenText, { visibility: "visible" });
+          F.screen.face.style.background = "var(--choco)";
+          F.s3.nuts.forEach(function (n) { gsap.set(n.mark, { scale: 1 }); });
+          gsap.set(F.s3.items, { x: 304 });
+          gsap.set(F.s4.bulb, { "--base": "var(--rouge-vif)" });
+          gsap.set(F.s5.curtain, { scaleZ: 1 });
+          F.s5.cross.forEach(function (c) { gsap.set(c, { scaleX: 1 }); });
+          const sh = F.s5.shiny;
+          gsap.set(sh, { y: -150, z: -75, x: sh.x0 - 40 * (7 - 5.3) });
+          gsap.set(F.s5.items, { x: 40 * 6.4 });
+          F.s5.bars.forEach(function (g) {
+            gsap.set(g.bare, { visibility: "hidden" });
+            gsap.set(g.coated, { visibility: "visible" });
+          });
+          F.s6.doors.forEach(function (d) { gsap.set(d.wedge, { scale: 1 }); });
+          gsap.set(F.s6.doors[12].panel, { rotationZ: -75 });
+          gsap.set(F.s6.draftSign, { scale: 1 });
+          gsap.set(F.s6.placo, { visibility: "hidden" });
+          gsap.set(F.s6.mordu, { visibility: "visible" });
+          gsap.set(F.s6.hammer, { z: 230 });
+          gsap.set(F.s6.nail, { x: 330, z: 62, rotationY: 450, rotationX: 90 });
+
+          // ---- la barre héroïne : coupe visible, en deux morceaux pour le croc.
+          const L = 300, D = 92, H = 66;
+          const hero = M.obj(S.iso, { x: -L / 2, y: -D / 2, id: "s7-hero" });
+          M.shadow(hero, { w: L, d: D, ext: 30 });
+          const heroBody = M.obj(hero, {});
+          const main = M.barMordu(heroBody, { len: L - 46, d: D, h: H, cut: true, shadow: false, seed: 5 });
+          // Bord dentelé du croc, dessiné sur la coupe (caché avant le croc).
+          const bite = M.decal(main.body.faces.e, '<svg viewBox="0 0 ' + D + " " + H + '" preserveAspectRatio="none"><path d="M0 0 H' + D + ' V10 Q' + D * 0.86 + ' 22 ' + D * 0.72 + ' 10 Q' + D * 0.58 + ' 24 ' + D * 0.44 + ' 10 Q' + D * 0.3 + ' 22 ' + D * 0.16 + ' 10 Q' + D * 0.08 + ' 18 0 12 Z" fill="var(--choco)"/></svg>');
+          gsap.set(bite, { visibility: "hidden" });
+          const chunk = M.barMordu(heroBody, { x: L - 46, len: 46, d: D, h: H, shadow: false, seed: 6 });
+          gsap.set(hero, { visibility: "hidden" });
+
+          // ---- caméra : recul plein décor, puis plein cadre sur la barre.
+          tl.fromTo(S.cam, { ...M.CAM.s6 }, { ...M.CAM.factory, duration: 0.4, ease: "power3.out" }, 0);
+          const hero1 = M.focus({ x: 0, y: 0, z: 30 }, 2.4, 0, 225);
+          tl.to(S.cam, { ...hero1, duration: 0.7, ease: "power3.inOut" }, B.sweep + 0.55);
+
+          // ---- la barre tombe au centre.
+          tl.set(hero, { visibility: "visible" }, 0.12);
+          tl.fromTo(heroBody, { z: 700 }, { z: 0, duration: 0.28, ease: "power3.in" }, 0.12);
+
+          // ---- le revers : tout part hors cadre, vers l'ouest, en cascade.
+          const swept = [F.s6, F.s4, F.s5, F.wordmark, F.console, F.s3];
+          swept.forEach(function (g, i) {
+            const x0 = gsap.getProperty(g, "x"), y0 = gsap.getProperty(g, "y");
+            tl.fromTo(g, { x: x0, y: y0 }, { x: x0 - 2600, y: y0 - 900, duration: 0.42, ease: "power3.in" }, B.sweep + i * 0.035);
+          });
+          swept.forEach(function (g) {
+            tl.set(g, { visibility: "hidden" }, B.sweep + 0.7);
+          });
+
+          // ---- titres (entrent par bloc, restent).
+          function endTitle(text, top, size, id) {
+            const w = document.createElement("div");
+            w.className = "end-title";
+            w.id = id;
+            w.style.top = top + "px";
+            w.style.height = Math.round(size * 1.28) + "px";
+            const sp = document.createElement("span");
+            sp.className = "t-display";
+            sp.textContent = text;
+            sp.style.fontSize = size + "px";
+            sp.style.lineHeight = Math.round(size * 1.28) + "px";
+            w.appendChild(sp);
+            S.hud.appendChild(w);
+            gsap.set(sp, { yPercent: 110 });
+            return sp;
+          }
+          const t1 = endTitle("ENFIN UNE BARRE.", 96, 130, "s7-t1");
+          const t2 = endTitle("PAS UNE BRIQUE.", 96 + 172, 130, "s7-t2");
+          tl.fromTo(t1, { yPercent: 110 }, { yPercent: 0, duration: 0.3, ease: "power3.out" }, B.title);
+          tl.fromTo(t2, { yPercent: 110 }, { yPercent: 0, duration: 0.3, ease: "power3.out" }, B.title2);
+
+          const small = document.createElement("div");
+          small.className = "end-small";
+          small.id = "s7-small";
+          small.style.top = "470px";
+          small.style.height = "62px";
+          const ssp = document.createElement("span");
+          ssp.className = "t-text";
+          ssp.textContent = "20 G DE PROTÉINES · CARAMEL CACAHUÈTE";
+          small.appendChild(ssp);
+          S.hud.appendChild(small);
+          tl.fromTo(ssp, { yPercent: 110 }, { yPercent: 0, duration: 0.3, ease: "power3.out" }, B.small - 0.6);
+
+          const legalWrap = document.createElement("div");
+          legalWrap.className = "end-legal";
+          legalWrap.id = "s7-legal";
+          const legal = document.createElement("span");
+          legal.textContent = "Marque fictive. Projet personnel.";
+          legalWrap.appendChild(legal);
+          S.hud.appendChild(legalWrap);
+          gsap.set(legal, { yPercent: 110 });
+          tl.fromTo(legal, { yPercent: 110 }, { yPercent: 0, duration: 0.3, ease: "power3.out" }, B.small - 0.6);
+
+          // ---- un seul croc, sec.
+          tl.set(chunk, { visibility: "hidden" }, B.bite);
+          tl.set(bite, { visibility: "visible" }, B.bite);
+
+          window.__timelines["s7"] = tl;
         })();
       </script>
     </template>

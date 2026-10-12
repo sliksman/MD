@@ -42,7 +42,7 @@
   /* --- Dérivées ---------------------------------------------------------- */
   --fond: color-mix(in oklab, var(--rouge) 46%, var(--shade)); /* vide, monde MORDU */
   --fond-gris: color-mix(in oklab, var(--gris) 34%, var(--shade)); /* vide, monde placo */
-  --rouge-vif: color-mix(in oklab, var(--rouge) 82%, var(--creme)); /* voyant refus */
+  --rouge-vif: color-mix(in oklab, var(--rouge) 78%, var(--caramel)); /* voyant refus : bordeaux vif */
   --caramel-vif: color-mix(in oklab, var(--caramel) 78%, var(--creme)); /* voyant OK */
   --peau: color-mix(in oklab, var(--creme) 80%, var(--caramel));
   --roux: color-mix(in oklab, var(--caramel) 82%, var(--rouge));
@@ -276,3 +276,82 @@
   padding: 0 34px;
   background: var(--fond-gris);
 }
+
+/* Compteur « N / 14 » (scène 6), coin haut droit, title-safe. */
+.counter {
+  position: absolute;
+  right: 192px;
+  top: 108px;
+  height: 172px;
+  overflow: hidden;
+  display: flex;
+  align-items: baseline;
+  gap: 18px;
+}
+.counter-inner { display: flex; align-items: baseline; gap: 18px; line-height: 172px; }
+.counter .digits { position: relative; display: block; width: 120px; height: 172px; }
+.counter .digits > span {
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 140px;
+  line-height: 172px;
+  color: var(--caramel);
+  visibility: hidden;
+}
+.counter .of { display: block; font-size: 110px; line-height: 172px; color: var(--creme); }
+
+/* Bandes opaques derrière badges, labels et compteur : aucun texte du décor
+   ne peut se retrouver sous un texte d'interface. */
+.badge-inner,
+.counter-inner,
+.hud-label-inner {
+  padding: 0 30px;
+  background: var(--fond);
+}
+.hud-label-inner.band { background: var(--fond-gris); }
+.badge { left: 162px; }
+.counter { right: 162px; }
+.hud-label { left: 162px; right: 162px; }
+
+/* Fin : titres, ligne produit, mention. */
+.end-title {
+  position: absolute;
+  left: 162px;
+  right: 162px;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+.end-title > span { display: block; padding: 0 30px; background: var(--fond); color: var(--creme); }
+.end-small {
+  position: absolute;
+  left: 192px;
+  right: 192px;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+.end-small > span {
+  display: block;
+  padding: 6px 24px;
+  background: var(--fond);
+  color: var(--caramel-vif);
+  font-size: 38px;
+  letter-spacing: 0.08em;
+}
+.end-legal {
+  position: absolute;
+  left: 192px;
+  right: 192px;
+  bottom: 56px;
+  text-align: center;
+  font-family: var(--font-text);
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 30px;
+  height: 30px;
+  overflow: hidden;
+  color: color-mix(in srgb, var(--creme) 70%, var(--fond));
+}
+.end-legal > span { display: inline-block; }

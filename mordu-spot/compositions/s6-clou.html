@@ -9,14 +9,124 @@
       <div id="root" data-composition-id="s6" data-width="1920" data-height="1080"></div>
       <script>
         (function () {
-          // STUB — scène pas encore construite.
+          // SCÈNE 6 — ÉTAPE 4, LE TEST DU CLOU. Les barres grises se font transpercer et
+          // partent caler des portes (compteur 13 / 14). La MORDU renvoie le clou.
+          // Gag : la dernière porte calée reste ouverte, panneau « COURANT D'AIR ».
+          const M = window.MORDU;
+          const B = M.T().scenes.s6.beats;
           const root = document.querySelector('[data-composition-id="s6"]');
-          const S = window.MORDU.stage(root);
-          const t = document.createElement("div");
-          t.className = "label-big";
-          t.innerHTML = '<span class="t-display">ÉTAPE 4 — TEST DU CLOU</span>';
-          S.hud.appendChild(t);
-          window.__timelines["s6"] = gsap.timeline({ paused: true });
+          const S = M.stage(root);
+          const F = M.factory(S.iso, { id: "s6" });
+          const s6 = F.s6;
+          const tl = gsap.timeline({ paused: true });
+
+          // ---- raccord : fin des scènes 3 à 5.
+          gsap.set(F.screenText, { visibility: "visible" });
+          F.screen.face.style.background = "var(--choco)";
+          F.s3.nuts.forEach(function (n) { gsap.set(n.mark, { scale: 1 }); });
+          gsap.set(F.s3.items, { x: 304 });
+          gsap.set(F.s4.bulb, { "--base": "var(--rouge-vif)" });
+          gsap.set(F.s5.curtain, { scaleZ: 1 });
+          F.s5.cross.forEach(function (c) { gsap.set(c, { scaleX: 1 }); });
+          const sh = F.s5.shiny;
+          gsap.set(sh, { y: -150, z: -75, x: sh.x0 - 40 * (7 - 5.3) });
+          gsap.set(F.s5.items, { x: 40 * 6.4 });
+          F.s5.bars.forEach(function (g) {
+            gsap.set(g.bare, { visibility: "hidden" });
+            gsap.set(g.coated, { visibility: "visible" });
+          });
+
+          // ---- caméra.
+          tl.fromTo(S.cam, { ...M.CAM.s5 }, { ...M.CAM.s6, duration: 1.0, ease: "power3.inOut" }, 0);
+          const bench = M.focus({ x: 380, y: 250, z: 110 }, 1.7, 0, 0);
+          tl.to(S.cam, { ...bench, duration: 0.35, ease: "power3.inOut" }, B.mordu - 0.5);
+          tl.to(S.cam, { ...M.CAM.s6, duration: 0.6, ease: "power3.inOut" }, B.draft - 0.9);
+
+          // ---- badge + compteur.
+          const badge = M.badge(S.hud, "04", "TEST DU CLOU", "s6-badge");
+          tl.fromTo(badge.inner, { yPercent: 110 }, { yPercent: 0, duration: 0.34, ease: "power3.out" }, B.badge);
+          const counter = document.createElement("div");
+          counter.className = "counter";
+          counter.id = "s6-counter";
+          const cin = document.createElement("div");
+          cin.className = "counter-inner";
+          const digits = document.createElement("div");
+          digits.className = "digits";
+          const nums = [];
+          for (let i = 0; i <= 13; i++) {
+            const sp = document.createElement("span");
+            sp.className = "t-display";
+            sp.textContent = String(i);
+            digits.appendChild(sp);
+            nums.push(sp);
+          }
+          const of = document.createElement("span");
+          of.className = "t-display of";
+          of.textContent = "/ 14";
+          cin.appendChild(digits);
+          cin.appendChild(of);
+          counter.appendChild(cin);
+          S.hud.appendChild(counter);
+          gsap.set(cin, { yPercent: 110 });
+          gsap.set(nums[0], { visibility: "visible" });
+          tl.fromTo(cin, { yPercent: 110 }, { yPercent: 0, duration: 0.34, ease: "power3.out" }, B.badge + 0.15);
+          function setCount(n, t) {
+            tl.set(nums[n - 1], { visibility: "hidden" }, t);
+            tl.set(nums[n], { visibility: "visible" }, t);
+          }
+
+          // ---- marteau : levé au départ.
+          gsap.set(s6.hammer, { z: 230 });
+          function strike(t, depth, d) {
+            d = d || 0.12;
+            tl.to(s6.hammer, { z: 150, duration: d, ease: "power3.in" }, t - d);
+            if (depth) {
+              tl.to(s6.hammer, { z: 150 - depth, duration: 0.05, ease: "power2.out" }, t);
+              tl.to(s6.nail, { z: 96 - depth, duration: 0.05, ease: "power2.out" }, t);
+            }
+            tl.to(s6.hammer, { z: 230, duration: Math.max(0.05, d * 1.6), ease: "power2.out" }, t + (depth ? 0.06 : 0.02));
+          }
+
+          // ---- barre 1 : arrive, clou traversant, part caler la porte 1.
+          tl.fromTo(s6.testBar, { x: -220 }, { x: 162, duration: 0.4, ease: "power3.out" }, B.nail1 - 1.4);
+          tl.fromTo(s6.nail, { z: 420 }, { z: 96, duration: 0.25, ease: "power3.in" }, B.nail1 - 0.75);
+          strike(B.nail1, 34);
+          tl.to(s6.testBar, { x: 462, duration: 0.45, ease: "power3.in" }, B.wedge1 - 0.5);
+          tl.to(s6.nail, { x: 508, duration: 0.45, ease: "power3.in" }, B.wedge1 - 0.5);
+          tl.set([s6.testBar, s6.nail], { visibility: "hidden" }, B.wedge1 - 0.05);
+          tl.fromTo(s6.doors[0].wedge, { scale: 0 }, { scale: 1, duration: 0.08, ease: "power2.out" }, B.wedge1);
+          setCount(1, B.wedge1);
+
+          // ---- rafale : 12 barres, 12 clous, 12 portes.
+          const CYC = 0.11;
+          tl.set(s6.testBar, { x: 162, visibility: "visible" }, B.rush - 0.2);
+          tl.set(s6.nail, { x: 208, z: 62, visibility: "visible" }, B.rush - 0.2);
+          for (let k = 1; k <= 12; k++) {
+            const t = B.rush + (k - 1) * CYC;
+            tl.to(s6.hammer, { z: 118, duration: CYC * 0.45, ease: "power3.in" }, t);
+            tl.to(s6.hammer, { z: 230, duration: CYC * 0.45, ease: "power2.out" }, t + CYC * 0.5);
+            tl.fromTo(s6.testBar, { x: 120 }, { x: 162, duration: CYC * 0.3, ease: "none" }, t);
+            tl.fromTo(s6.doors[k].wedge, { scale: 0 }, { scale: 1, duration: 0.06, ease: "power2.out" }, t + CYC * 0.5);
+            setCount(k + 1, t + CYC * 0.5);
+          }
+          // La 13e porte calée reste ouverte.
+          const lastDoor = s6.doors[12];
+          tl.to(lastDoor.panel, { rotationZ: -75, duration: 0.2, ease: "power3.out" }, B.rush + 11 * CYC + 0.08);
+
+          // ---- la MORDU : le clou rebondit.
+          tl.set(s6.placo, { visibility: "hidden" }, B.mordu - 0.3);
+          tl.set(s6.mordu, { visibility: "visible" }, B.mordu - 0.3);
+          tl.fromTo(s6.testBar, { x: -220 }, { x: 162, duration: 0.25, ease: "power3.out" }, B.mordu - 0.3);
+          tl.fromTo(s6.nail, { x: 208, z: 420, rotationY: 0 }, { z: 96, duration: 0.18, ease: "power3.in" }, B.mordu - 0.3);
+          strike(B.mordu, 0, 0.14);
+          tl.to(s6.nail, { z: 300, x: 290, rotationY: 300, duration: 0.3, ease: "power2.out" }, B.bounce);
+          tl.to(s6.nail, { z: 62, x: 330, rotationY: 450, duration: 0.3, ease: "power2.in" }, B.bounce + 0.3);
+          tl.to(s6.nail, { rotationY: 450, rotationX: 90, duration: 0.08, ease: "none" }, B.bounce + 0.6);
+
+          // ---- gag : panneau « COURANT D'AIR ».
+          tl.fromTo(s6.draftSign, { scale: 0 }, { scale: 1, duration: 0.18, ease: "power3.out" }, B.draft);
+
+          window.__timelines["s6"] = tl;
         })();
       </script>
     </template>
