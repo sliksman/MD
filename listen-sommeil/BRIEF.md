@@ -6,7 +6,7 @@ message: "Quand rien ne marche pour t'endormir, un fond sonore doux sur Listen p
 destination: tiktok
 aspect: 1080x1920
 language: fr
-voice: elevenlabs (à choisir parmi 2–3 voix FR)
+voice: "ElevenLabs Laura (MmafIMKg28Wr0yMh8CEB), Eleven v4 — MP3 fourni par l utilisateur"
 length: 75s
 angle: listicle
 ---
@@ -61,7 +61,7 @@ Et toi ? C'est quoi tes astuces pour t'endormir ?
 
 ## Customizations
 
-- Voix off IA ElevenLabs (FR), verbatim du script ci-dessus.
+- Voix off : MP3 généré par l utilisateur sur ElevenLabs (Laura, Eleven v4), à partir du script TTS ci-dessus ; pas de génération via le connecteur (trop coûteux).
 - Téléphone posé sur la table de nuit dès la scène 1 (écran éteint) ; payoff au point 3.
 - Sous-titres mot à mot, mots-clés en ambre (grammaire Catcharium).
 

@@ -35,7 +35,7 @@ version: v2
 ## Still open
 
 - Nom réel d'une piste de pluie dans Listen (sinon « Pluie régulière » reste marqué « à confirmer »).
-- Voix : génération ElevenLabs bloquée (« Free Tier access has been disabled ») — à régler avant l'audio.
+- Voix : en attente du MP3 de l utilisateur.
 
 ## Frame 1 — Réveil
 
