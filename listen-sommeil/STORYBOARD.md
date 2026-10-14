@@ -42,7 +42,7 @@ version: v2
 - scene: Vue du dessus du lit dans le noir ; réveil « 07:00 » en pastille ; titre de série
 - duration: 3s
 - transition_in: cut
-- status: built
+- status: animated
 - src: compositions/01-reveil.html
 - voiceover: "Demain, tu te lèves à sept heures."
 
@@ -53,7 +53,7 @@ Vue du dessus façon carte de l'étang : le lit (couette bleu nuit, oreiller), l
 - scene: Plongée sur le lit ; deux yeux grands ouverts dans le noir ; horloge qui avance d'1 h
 - duration: 5.7s
 - transition_in: camera-tilt
-- status: built
+- status: animated
 - src: compositions/02-insomnie.html
 - voiceover: "T'es fatigué, ça fait 1h que la lumière est éteinte, mais impossible de dormir !"
 
@@ -64,7 +64,7 @@ Le perso-mannequin (tête ronde, sans genre marqué) dans le lit, deux yeux blan
 - scene: L'oreiller se retourne, compteur « 6ᵉ fois » ; trois points ambre apparaissent
 - duration: 5s
 - transition_in: continuous
-- status: built
+- status: animated
 - src: compositions/03-oreiller.html
 - voiceover: "Alors avant de retourner ton oreiller une sixième fois, essaie ces trois choses."
 
@@ -75,7 +75,7 @@ L'oreiller fait 5 retournements rapides (compteur pastille 1…5), le 6ᵉ est b
 - scene: Numéro « 1 » serif ; les pieds sortent de la couette, des chaussettes s'enfilent
 - duration: 3.2s
 - transition_in: camera-pan
-- status: built
+- status: animated
 - src: compositions/04-chaussettes.html
 - voiceover: "Un. T'as chaud, alors mets des chaussettes."
 
@@ -86,7 +86,7 @@ Caméra au pied du lit. Le 1er point ambre devient « 1 » serif italique. Les d
 - scene: Vue en coupe de la jambe : chaleur ambre dans les pieds, flèche corps « refroidir »
 - duration: 5.7s
 - transition_in: cutaway
-- status: built
+- status: animated
 - src: compositions/05-paradoxe.html
 - voiceover: "Aussi bizarre que ça puisse paraître, réchauffer tes pieds peut aider ton corps à refroidir."
 
@@ -97,7 +97,7 @@ La couette « se coupe » comme le sol chez Catcharium : sous les strates, la ja
 - scene: Petits vaisseaux en points qui s'élargissent, la chaleur sort en chemins de points ; thermomètre interne qui baisse
 - duration: 9.1s
 - transition_in: continuous
-- status: built
+- status: animated
 - src: compositions/06-vaisseaux.html
 - voiceover: "La chaleur dilate les petits vaisseaux et facilite l'évacuation de la chaleur du corps. Cette baisse de température va aider ton corps à s'endormir."
 
@@ -108,7 +108,7 @@ Dans la coupe : trois lignes de points (vaisseaux) s'écartent (« dilate »), l
 - scene: Coupe de la tête : la semaine tourne en boucle sur un chemin de points (LUN, MAR, MER…)
 - duration: 8.6s
 - transition_in: camera-pan-up
-- status: built
+- status: animated
 - src: compositions/07-agenda.html
 - voiceover: "Voilà, maintenant t'es confortable. Mais ta tête elle, n'est pas prête à s'endormir ! Elle a décidé de préparer toute ta semaine."
 
@@ -119,7 +119,7 @@ Caméra remonte vers la tête. « confortable » : pastille ✓. Puis une orbite
 - scene: « 2 » serif ; l'orbite se vide ; une pomme, puis un parapluie, puis une chaise apparaissent un à un
 - duration: 7s
 - transition_in: continuous
-- status: built
+- status: animated
 - src: compositions/08-shuffle.html
 - voiceover: "Deux. Occupe ton esprit. Imagine une pomme. Quelques secondes. Puis un parapluie. Puis une chaise."
 
@@ -130,7 +130,7 @@ Le 2ᵉ point ambre devient « 2 ». Les pastilles de la semaine tombent hors ch
 - scene: Les trois objets côte à côte, aucun trait ne les relie ; pastilles barrées « histoire » / « liste »
 - duration: 6.3s
 - transition_in: continuous
-- status: built
+- status: animated
 - src: compositions/09-sans-lien.html
 - voiceover: "Des objets simples, sans lien entre eux. Pas d'histoire à construire, pas de liste à réussir."
 
@@ -141,7 +141,7 @@ Les trois objets reviennent ensemble ; un chemin de points tente de les relier p
 - scene: Titre serif « cognitive *shuffle* » ; l'orbite des pensées se casse et se disperse
 - duration: 7.7s
 - transition_in: continuous
-- status: built
+- status: animated
 - src: compositions/10-nom.html
 - voiceover: "Ça s'appelle le cognitive shuffle : une technique à tester pour détourner ton attention des pensées qui tournent en boucle."
 
@@ -152,7 +152,7 @@ Surtitre « ASTUCE 2 », titre « cognitive *shuffle* ». Pastille « à tester 
 - scene: Vue en coupe du mur : à droite le voisin à la perceuse ; arcs de points durs qui traversent la cloison ; les yeux se rouvrent
 - duration: 9.2s
 - transition_in: camera-pan-right
-- status: built
+- status: animated
 - src: compositions/11-voisin.html
 - voiceover: "Là normalement, tu es sur le point de t'endormir, mais au moment de fermer les yeux, ton voisin décide visiblement de refaire toute sa cuisine."
 
@@ -163,7 +163,7 @@ Les yeux presque fermés (pastille « presque… »). La caméra recule : le mur
 - scene: « 3 » ; le téléphone s'allume (première apparition du néon) ; zoom dans l'écran Listen, on tape une carte pluie
 - duration: 6.9s
 - transition_in: zoom-into-phone
-- status: built
+- status: animated
 - src: compositions/12-listen.html
 - voiceover: "Trois. Essaie un fond sonore doux. Rends-toi sur l'app Listen et lance une pluie régulière, par exemple."
 
@@ -174,7 +174,7 @@ Le 3ᵉ point ambre devient « 3 ». Le téléphone s'allume : l'anneau néon (i
 - scene: Retour à la coupe du mur : la pluie, en points bleus doux, recouvre les arcs de la perceuse ; les yeux se ferment
 - duration: 3.3s
 - transition_in: zoom-out-of-phone
-- status: built
+- status: animated
 - src: compositions/13-pluie.html
 - voiceover: "Si cette ambiance t'apaise, laisse-la accompagner le moment."
 
@@ -185,7 +185,7 @@ Le 3ᵉ point ambre devient « 3 ». Le téléphone s'allume : l'anneau néon (i
 - scene: Retour vue du dessus (rappel de 01), perso endormi ; titre « Et *toi* ? » ; icône Listen
 - duration: 4.2s
 - transition_in: camera-tilt-up
-- status: built
+- status: animated
 - src: compositions/14-et-toi.html
 - voiceover: "Et toi ? C'est quoi tes astuces pour t'endormir ?"
 

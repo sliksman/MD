@@ -1,0 +1,74 @@
+<!doctype html>
+<!-- GÉNÉRÉ par scripts/sync.mjs depuis src/scenes/08-shuffle.js — éditer la source, pas ce fichier. -->
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+        #root { position: absolute; inset: 0; }
+      </style>
+      <div id="root" data-composition-id="s08" data-width="1080" data-height="1920"></div>
+      <script>
+        (function () {
+          const ID = "s08";
+          const L = window.LS;
+          const sc = L.scene(ID);
+          const A = L.art(ID + "-");
+          const root = document.querySelector('[data-composition-id="s08"]');
+          const tl = gsap.timeline({ paused: true });
+          const w = sc.w;
+          // 08 — ASTUCE 2 : COGNITIVE SHUFFLE. Bulle de pensée (vue du dessus, comme l'étang) : pomme, parapluie, chaise.
+          const chrono = `<g transform="translate(400 1110)"><circle r="20" fill="none" stroke="#fff" stroke-opacity=".3" stroke-width="5"/>
+            <circle id="${A.id("pie")}" r="20" fill="none" stroke="${L.C.amber}" stroke-width="5" stroke-dasharray="126" stroke-dashoffset="126" transform="rotate(-90)"/></g>`;
+          const world = A.bg() + A.headBottom() + A.bubble(500, 840, 380, 330) +
+            A.apple("apple", 505, 840) + A.umbrella("umb", 500, 830) + A.chair("chair", 500, 820) +
+            A.pill("pApple", 790, 640, "pomme", 600, 800, { dot: L.C.amber }) +
+            A.pill("pUmb", 790, 600, "parapluie", 610, 700, { dot: L.C.amber }) +
+            A.pill("pChair", 790, 620, "chaise", 560, 780, { dot: L.C.amber }) +
+            A.pill("pSec", 250, 1110, "quelques secondes", undefined, undefined, { size: 36, w: 420, extra: chrono.replace("translate(400 1110)", "translate(410 1110)") });
+          const hud = A.bigNum("n2", "2", "Occupe ton esprit.");
+          const S = L.stage(root, ID, world, hud);
+          L.fadeIn(tl, S, sc);
+          // la bulle sort de la tête
+          tl.fromTo(S.$("bubble"), { scale: 0, svgOrigin: "560 1400" }, { scale: 1, duration: 0.6, ease: "back.out(1.6)" }, 0.15);
+          tl.fromTo(S.$("trail"), { opacity: 0 }, { opacity: 0.55, duration: 0.3 }, 0.05);
+          gsap.set(S.$("eyes-pup"), { y: -5 });
+          // « Deux. » / « Occupe ton esprit. »
+          const dx = w("L17", 0);
+          tl.fromTo(S.$("n2-seed"), { scale: 1, opacity: 1, transformOrigin: "50% 50%" }, { scale: 4, opacity: 0, duration: 0.3 }, dx);
+          L.pop(tl, S.$("n2-n"), dx + 0.05, { from: 0.3, ease: "back.out(2.6)" });
+          tl.fromTo(S.$("n2-over"), { opacity: 0, x: -20 }, { opacity: 0.85, x: 0, duration: 0.35 }, dx + 0.2);
+          tl.fromTo(S.$("n2-lab"), { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.35 }, w("L18", 0));
+          // un objet à la fois
+          const objIn = (id, t) => tl.fromTo(S.$(id), { y: -260, opacity: 0 }, { y: 0, opacity: 1, duration: 0.45, ease: "back.out(1.8)" }, t);
+          const objOut = (id, t) => tl.to(S.$(id), { scale: 0, opacity: 0, transformOrigin: "50% 60%", duration: 0.22, ease: "power2.in" }, t);
+          gsap.set([S.$("apple"), S.$("umb"), S.$("chair")], { opacity: 0 });
+          const pomme = w("L19", 2);
+          objIn("apple", pomme - 0.2);
+          L.pill(tl, S, "pApple", pomme);
+          // « quelques secondes » : petit chrono
+          const qs = w("L20", 0);
+          L.pop(tl, S.$("pSec"), qs, { from: 0.6 });
+          tl.fromTo(S.$("pie"), { attr: { "stroke-dashoffset": 126 } }, { attr: { "stroke-dashoffset": 0 }, duration: 0.9, ease: "none" }, qs + 0.1);
+          // parapluie
+          objOut("apple", w("L21", 0));
+          L.pillOut(tl, S, "pApple", w("L21", 0));
+          tl.to(S.$("pSec"), { opacity: 0, duration: 0.25 }, w("L21", 0));
+          const para = w("L21", 2);
+          tl.fromTo(S.$("umb"), { scaleX: 0.15, opacity: 0, svgOrigin: "500 830" }, { scaleX: 1, opacity: 1, duration: 0.4, ease: "back.out(2)" }, para - 0.1);
+          L.pill(tl, S, "pUmb", para);
+          // chaise
+          objOut("umb", w("L22", 0));
+          L.pillOut(tl, S, "pUmb", w("L22", 0));
+          const ch = w("L22", 2);
+          objIn("chair", ch - 0.2);
+          L.pill(tl, S, "pChair", ch);
+          // les pupilles suivent
+          tl.to(S.$("eyes-pup"), { x: 4, duration: 0.3, yoyo: true, repeat: 3, ease: "sine.inOut" }, pomme);
+
+          window.__timelines[ID] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>
