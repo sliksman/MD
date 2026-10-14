@@ -96,7 +96,10 @@ const capGroups = groups.map((g, i) => {
   let end = next ? Math.min(next.words[0].t, Math.max(lineEnd, start + 0.4)) : lineEnd;
   if (next && next.words[0].t - lineEnd < 0.25) end = next.words[0].t; // pas de trou de scintillement
   const sc = sceneAt(start);
-  return { start: r3(start), end: r3(end), y: (T.captionY || {})[sc.id] ?? CP.y ?? 1330, words: g.words.map((x) => ({ w: x.w, t: x.t, hl: x.hl })) };
+  const cy = T.captionY || {};
+  const rng = Array.isArray(cy) ? cy.find(([a, b]) => start >= a && start < b) : null;
+  const y = rng ? rng[2] : (!Array.isArray(cy) && cy[sc.id]) || CP.y || 1330;
+  return { start: r3(Math.max(0, start - (CP.lead || 0))), end: r3(end), y, words: g.words.map((x) => ({ w: x.w, t: x.t, hl: x.hl })) };
 });
 
 // ---------- scènes : src/scenes/<file>.js → compositions/<file>.html (enveloppe <template>)
@@ -176,7 +179,7 @@ if (errors.length) {
   process.exit(1);
 }
 
-const out = { duration: T.duration, scenes, vo, captions: { enabled: CP.enabled !== false, groups: capGroups } };
+const out = { duration: T.duration, scenes, vo, wipes: T.wipes || [], captions: { enabled: CP.enabled !== false, groups: capGroups } };
 writeFileSync(join(ROOT, "timeline.js"), "// GÉNÉRÉ par scripts/sync.mjs depuis timeline.json — ne pas éditer.\nwindow.LS_TIMELINE = " + JSON.stringify(out) + ";\n");
 
 // ---------- attributs audio posés par d'autres outils (carve, chaîne d'effets, automation) : conservés d'une sync à l'autre
@@ -196,7 +199,7 @@ const host = (s) => `      <div
         data-composition-src="compositions/${s.file}.html"
         data-start="${s.hostStart}"
         data-duration="${s.hostDur}"
-        data-track-index="${s.z % 2 ? 1 : 2}"
+        data-track-index="1"
         data-width="1080"
         data-height="1920"
         style="z-index: ${s.z}"
@@ -238,11 +241,22 @@ ${Object.values(scenes).map(host).join("\n")}
         data-composition-id="intro-title"
         data-composition-src="compositions/intro-title.html"
         data-start="0"
-        data-duration="3.4"
+        data-duration="4.4"
         data-track-index="3"
         data-width="1080"
         data-height="1920"
-        style="z-index: 50"
+        style="z-index: 95"
+      ></div>
+      <div
+        id="wipes"
+        data-composition-id="wipes"
+        data-composition-src="compositions/wipes.html"
+        data-start="0"
+        data-duration="${T.duration}"
+        data-track-index="2"
+        data-width="1080"
+        data-height="1920"
+        style="z-index: 90"
       ></div>
       <div
         id="captions"
@@ -256,7 +270,7 @@ ${Object.values(scenes).map(host).join("\n")}
         data-height="1920"
         style="z-index: 100"
       ></div>
-      <audio id="vo" src="${T.voFile || "assets/audio/vo.mp3"}" data-start="0" data-duration="74.83" data-track-index="5" data-volume="1"></audio>
+      <audio id="vo" src="${T.voFile || "assets/audio/vo.mp3"}" data-start="0" data-duration="${T.voDuration || T.duration}" data-track-index="5" data-volume="1"></audio>
 ${sfx.map((x) => `      <audio id="sfx-${x.id}" src="assets/sfx/${x.file}" data-start="${x.at}" data-duration="${x.dur}" data-track-index="${x.track}" data-volume="${x.vol}"${keepAttrs["sfx-" + x.id] || ""}></audio>`).join("\n")}
     </div>
     <script>

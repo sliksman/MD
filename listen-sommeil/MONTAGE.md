@@ -5,8 +5,12 @@ sont **générés** : on édite `timeline.json` et `src/scenes/*.js`, puis `npm 
 
 ## 1. La voix
 
-`voFile` pointe vers `assets/audio/vo_norm.mp3` (ta prise ElevenLabs, normalisée à −16 LUFS ;
-l'original est `assets/audio/vo.mp3`). Si tu remplaces la voix, recale les répliques.
+`voFile` pointe vers `assets/audio/vo_v2.mp3` : ta prise ElevenLabs normalisée à −16 LUFS (`vo_norm.mp3`)
++ 5 respirations insérées par `python3 scripts/breathe.py` (liste `GAPS` dans le script) — 74,9 s → 80,3 s.
+L'original est `assets/audio/vo.mp3`.
+
+Calage mot à mot : `python3 scripts/align.py` (souffles détectés dans la voix, sans ASR). Une réplique
+`"lock": true` n'est pas recalée (L15, calée à la main).
 
 ## 2. Les répliques (`vo`)
 
@@ -23,12 +27,12 @@ aux mots : ils suivent tout seuls.
 
 ## 3. Les scènes (`scenes`)
 
-Contiguës, de 0 à `duration`. Chaque scène (sauf la 1re) démarre `fade` s plus tôt en fondu
-par-dessus la précédente.
+6 plans continus, contigus de 0 à `duration`. Entre deux plans : le volet de points
+(`compositions/wipes.html`), aux instants listés dans `wipes` (toujours dans une respiration de la voix).
 
 ## 4. Sous-titres
 
-`captions.enabled`, `captions.maxWords` (2–3 mots, façon Catcharium), `captionY` par scène.
+`captions.enabled`, `captions.maxWords` (2–3 mots, façon Catcharium), `captionY` = plages `[début, fin, y]`.
 
 ## 5. Bruitages (`sfx`)
 
@@ -44,4 +48,8 @@ npm run sync
 npx hyperframes lint
 npx hyperframes check --range 0,25 --timeout 60000   # par tranches : la vérif complète est lente sans GPU
 npx hyperframes render --quality delivery --fps 30 -o out/listen-nuits-blanches-ep3.mp4
+```
+
+Sources des plans : `src/scenes/p1…p6-*.js` (enveloppées en `compositions/*.html` par la sync).
+```
 ```

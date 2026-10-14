@@ -1,0 +1,89 @@
+// PLAN 5 — LE VOISIN, PUIS LISTEN (un seul plan).
+// Gros plan sur les paupières → recul : le mur coupé, la perceuse → le téléphone de la table de nuit
+// s'allume, la caméra plonge dedans (interface Listen), on lance la pluie → on ressort : la pluie
+// recouvre la perceuse, les yeux se ferment.
+const drillArcs = [120, 220, 330].map((r, i) => A.dots("d" + i, A.arc(700, 800, r, 140 + i * 5, 220 - i * 5), { step: 24, r: 7 })).join("");
+const rainArcs = [140, 250, 370].map((r, i) => A.dots("r" + i, A.arc(572, 912, r, 190 + i * 5, 330 - i * 5), { step: 22, r: 7, color: L.C.rain })).join("");
+const world = A.bg() + A.wallCut() + drillArcs + rainArcs + A.rain("rainA", 60, 0, 1080, 100, 1500) +
+  A.pill("pBrr", 800, 340, "BRRRRR", 700, 798) +
+  A.pill("pRain", 330, 360, "pluie régulière", 572, 905, { dot: L.C.rain });
+const phoneB = `<g id="${A.id("B")}" opacity="0"><rect x="-200" y="-200" width="1480" height="2320" fill="${A.u("gNight")}"/>
+  <ellipse id="${A.id("halo")}" cx="500" cy="820" rx="460" ry="620" fill="${L.C.violet}" opacity="0.15" filter="${A.u("fBlurL")}"/>
+  ${A.rain("rainB", 70, 0, 1080, -400, 1920)}${A.phoneUI(250, 300, 500)}</g>`;
+const hud = phoneB + A.pill("pListen", 500, 1415, "Listen", 500, 1345, { dot: L.C.cyan }) +
+  A.bigNum("n3", "3", "Un fond sonore doux.") +
+  A.pill("pAlmost", 540, 560, "presque…", 540, 700);
+const S = L.stage(root, ID, world, hud);
+["rainA", "rainB", "n3"].forEach((n) => gsap.set(S.$(n), { opacity: 0 }));
+const at = (abs) => abs - sc.hostStart;
+
+// ---- gros plan sur la tête, les paupières tombent
+const Z = 2.2, zx = (540 - 160) * Z, zy = (960 - 845) * Z;
+gsap.set(S.cam, { scale: Z, x: zx, y: zy, svgOrigin: "540 960" });
+tl.to(S.cam, { scale: Z * 1.05, x: zx * 1.05, y: zy * 1.05, duration: w("L30", 6), ease: "none" }, 0);
+L.initLids(S, 0.3);
+L.lids(tl, S, 0.4, 0.75, w("L29", -1) - 0.4);
+L.pill(tl, S, "pAlmost", w("L29", -1) - 0.3);
+L.shut(tl, S, w("L30", 4), true);
+tl.to(S.$("pAlmost"), { opacity: 0, duration: 0.4 }, w("L30", 6));
+// ---- recul : le mur, le voisin
+tl.to(S.cam, { scale: 1, x: 0, y: 0, duration: 1.5, ease: "power2.inOut" }, w("L30", 7) - 0.3);
+// « refaire toute sa cuisine »
+const re = w("L30", 12);
+const endDrill = sc.hostDur;
+tl.fromTo(S.$("drill"), { x: 0 }, { x: 4, duration: 0.04, yoyo: true, repeat: Math.max(0, Math.floor((endDrill - re) / 0.04) - 1), ease: "none" }, re);
+["d0", "d1", "d2"].forEach((d, i) => {
+  L.drawDots(tl, S.$(d), re + i * 0.1, 0.25, { from: "center" });
+  const per = 0.6, reps = Math.max(0, Math.floor((at(72.3) - re - 0.4) / per) - 1);
+  tl.fromTo(S.$(d), { scale: 0.92, svgOrigin: "700 800" }, { scale: 1.12, duration: per, ease: "power1.out", repeat: reps }, re + 0.3 + i * 0.15);
+});
+L.pill(tl, S, "pBrr", re);
+tl.fromTo(S.$("pBrr-b"), { rotation: -3, transformOrigin: "50% 50%" }, { rotation: 3, duration: 0.06, yoyo: true, repeat: 15 }, re + 0.6);
+const op = w("L30", 13);
+L.shut(tl, S, op, false);
+L.lids(tl, S, op, 0, 0.1);
+tl.fromTo(S.$("eyes-open"), { scale: 1, transformOrigin: "50% 50%" }, { scale: 1.45, duration: 0.25, ease: "back.out(2)" }, op);
+tl.fromTo(S.cam, { x: 0 }, { x: 6, duration: 0.06, yoyo: true, repeat: 7, ease: "none", immediateRender: false }, op);
+
+// ---- « Trois. » : le téléphone s'allume, on plonge dedans
+const tr = w("L31", 0);
+tl.fromTo(S.$("phone-on"), { opacity: 0 }, { opacity: 1, duration: 0.4 }, tr - 0.3);
+tl.to(S.$("pBrr"), { opacity: 0, duration: 0.3 }, tr - 0.3);
+["d0", "d1", "d2"].forEach((d) => tl.to(S.$(d), { opacity: 0, duration: 0.3 }, tr - 0.2));
+tl.to(S.cam, { scale: 6, x: (540 - 572) * 6, y: (960 - 920) * 6, duration: 1.0, ease: "power2.in", immediateRender: false }, tr);
+tl.fromTo(S.$("B"), { opacity: 0 }, { opacity: 1, duration: 0.3 }, tr + 0.7);
+tl.fromTo(S.$("B"), { scale: 0.58, x: 40, y: 148, svgOrigin: "500 812" }, { scale: 1, x: 0, y: 0, duration: 1.0, ease: "power3.out" }, tr + 0.7);
+tl.fromTo(S.$("n3"), { opacity: 0 }, { opacity: 1, duration: 0.01 }, tr - 0.02);
+tl.fromTo(S.$("n3-seed"), { scale: 1, opacity: 1, transformOrigin: "50% 50%" }, { scale: 4, opacity: 0, duration: 0.5 }, tr);
+L.pop(tl, S.$("n3-n"), tr, { from: 0.4 });
+tl.fromTo(S.$("n3-over"), { opacity: 0, x: -20 }, { opacity: 0.85, x: 0, duration: 0.5 }, tr + 0.25);
+// « fond sonore doux » : l'écran s'allume
+const on = w("L32", 2);
+tl.fromTo(S.$("n3-lab"), { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.5 }, on - 0.2);
+tl.to(S.$("screenOff"), { opacity: 0, duration: 0.6, ease: "power1.out" }, on - 0.2);
+tl.fromTo(S.$("ui").querySelectorAll(":scope > *"), { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.45, stagger: 0.02, ease: "power2.out" }, on);
+L.pill(tl, S, "pListen", w("L33", 3) - 0.2);
+// « lance » : on tape la piste pluie
+const la = w("L33", 5);
+tl.fromTo(S.$("trackHi"), { opacity: 0 }, { opacity: 1, duration: 0.3 }, la);
+tl.fromTo(S.$("tap"), { opacity: 0.9, scale: 0.5, transformOrigin: "50% 50%" }, { opacity: 0, scale: 1.4, duration: 0.7, ease: "power2.out" }, la);
+tl.set(S.$("play"), { opacity: 0 }, la + 0.15).set(S.$("pause"), { opacity: 1 }, la + 0.15);
+const pl = w("L33", 7);
+tl.fromTo(S.$("rainB"), { opacity: 0 }, { opacity: 1, duration: 0.8 }, pl - 0.3);
+tl.fromTo(S.$("rainB"), { y: -300 }, { y: 300, duration: 1.4, ease: "none", repeat: Math.max(0, Math.floor((at(72.6) - pl) / 1.4)) }, pl - 0.3);
+
+// ---- on ressort du téléphone : la pluie recouvre la perceuse
+const outT = w("L33", -1) + 0.45;
+tl.to([S.$("n3"), S.$("pListen")], { opacity: 0, duration: 0.4 }, outT - 0.1);
+tl.to(S.$("B"), { scale: 0.58, x: 40, y: 148, svgOrigin: "500 812", duration: 0.8, ease: "power2.in" }, outT);
+tl.to(S.$("B"), { opacity: 0, duration: 0.3 }, outT + 0.55);
+tl.to(S.cam, { scale: 1, x: 0, y: 0, duration: 1.1, ease: "power3.out", immediateRender: false }, outT + 0.55);
+["d0", "d1", "d2"].forEach((d) => tl.fromTo(S.$(d), { opacity: 0.6 }, { opacity: 0.1, duration: 1.5, immediateRender: false }, outT + 1.5));
+["r0", "r1", "r2"].forEach((r, i) => {
+  L.drawDots(tl, S.$(r), outT + 1.5 + i * 0.25, 0.6, { from: "center" });
+  tl.fromTo(S.$(r), { scale: 0.95, svgOrigin: "572 912" }, { scale: 1.06, duration: 1.4, yoyo: true, repeat: 1, ease: "sine.inOut" }, outT + 2.1 + i * 0.25);
+});
+tl.fromTo(S.$("rainA"), { opacity: 0, y: -200 }, { opacity: 0.9, y: 200, duration: 1.6, ease: "none", repeat: Math.max(0, Math.floor((sc.hostDur - outT - 0.8) / 1.6) - 1) }, outT + 0.8);
+L.pill(tl, S, "pRain", w("L34", 0) + 0.3);
+L.lids(tl, S, w("L34", 2), 1, 0.6);
+L.shut(tl, S, w("L34", 3), true);

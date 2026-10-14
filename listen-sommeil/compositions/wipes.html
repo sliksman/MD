@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+        #root { position: absolute; inset: 0; pointer-events: none; }
+        #wipes-svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+      </style>
+      <div id="root" data-composition-id="wipes" data-width="1080" data-height="1920"></div>
+      <script>
+        (function () {
+          // Volet de points (motif Catcharium) : une trame de points grossit en diagonale pour couvrir
+          // l'écran, le décor change dessous, puis la trame se résorbe dans le même sens.
+          // Lisière ambre en tête de vague. Instants lus dans timeline.js (timeline.json → "wipes").
+          const root = document.querySelector('[data-composition-id="wipes"]');
+          const COLS = 11, ROWS = 19, SP = 108, R = 84;
+          let dark = "", amber = "";
+          for (let r = 0; r < ROWS; r++) for (let c = 0; c < COLS; c++) {
+            const x = c * SP - 20 + (r % 2 ? SP / 2 : 0), y = r * SP - 20;
+            dark += '<circle class="wd" cx="' + x + '" cy="' + y + '" r="' + R + '" fill="#0e1130"/>';
+            amber += '<circle class="wa" cx="' + x + '" cy="' + y + '" r="' + (R * 0.28) + '" fill="#F5B85A"/>';
+          }
+          root.innerHTML = '<svg id="wipes-svg" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg" data-layout-allow-overflow>' +
+            '<g id="wipes-a">' + amber + "</g><g id=\"wipes-d\">" + dark + "</g></svg>";
+          const A = root.querySelectorAll(".wa"), D = root.querySelectorAll(".wd");
+          gsap.set([A, D], { scale: 0, transformOrigin: "50% 50%" });
+          const tl = gsap.timeline({ paused: true });
+          const grid = [ROWS, COLS], AMT = 0.34, IN = 0.26;
+          (window.LS_TIMELINE.wipes || []).forEach(function (t) {
+            const t0 = t - AMT - IN + 0.02; // couverture complète juste avant la coupe
+            tl.fromTo(A, { scale: 0 }, { scale: 1, immediateRender: false, duration: 0.12, ease: "power2.out", yoyo: true, repeat: 1, stagger: { grid: grid, from: "start", amount: AMT } }, t0 - 0.1);
+            tl.fromTo(D, { scale: 0 }, { scale: 1, immediateRender: false, duration: IN, ease: "power2.in", stagger: { grid: grid, from: "start", amount: AMT } }, t0);
+            tl.to(D, { scale: 0, duration: IN, ease: "power2.out", stagger: { grid: grid, from: "start", amount: AMT } }, t + 0.04);
+          });
+          window.__timelines["wipes"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

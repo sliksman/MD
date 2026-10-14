@@ -362,22 +362,22 @@
   const pop = (tl, el, t, o = {}) => {
     if (!el) return;
     tl.fromTo(el, { scale: o.from ?? 0.4, opacity: 0, transformOrigin: o.origin || "50% 50%" },
-      { scale: 1, opacity: 1, duration: o.d || 0.38, ease: o.ease || "back.out(2.2)" }, t);
+      { scale: 1, opacity: 1, duration: o.d || 0.6, ease: o.ease || "back.out(1.4)" }, t);
   };
   const hide = (tl, el, t, d = 0.25) => el && tl.to(el, { opacity: 0, scale: 0.85, duration: d, ease: "power2.in", transformOrigin: "50% 50%" }, t);
   // pastille : point d'ancrage → trait → bulle
   function pill(tl, S, name, t) {
     const dot = S.$(name + "-dot"), ln = S.$(name + "-ln"), b = S.$(name + "-b");
-    if (dot) tl.fromTo(dot, { scale: 0, transformOrigin: "50% 50%" }, { scale: 1, duration: 0.25, ease: "back.out(3)" }, t);
-    if (ln) tl.fromTo(ln, { opacity: 0 }, { opacity: 1, duration: 0.15 }, t + 0.08);
-    pop(tl, b, t + 0.12, { from: 0.6 });
+    if (dot) tl.fromTo(dot, { scale: 0, transformOrigin: "50% 50%" }, { scale: 1, duration: 0.35, ease: "back.out(2)" }, t);
+    if (ln) tl.fromTo(ln, { opacity: 0 }, { opacity: 1, duration: 0.3 }, t + 0.1);
+    pop(tl, b, t + 0.18, { from: 0.75, d: 0.55, ease: "power3.out" });
   }
-  function pillOut(tl, S, name, t) { const g = S.$(name); if (g) tl.to(g, { opacity: 0, duration: 0.25 }, t); }
+  function pillOut(tl, S, name, t) { const g = S.$(name); if (g) tl.to(g, { opacity: 0, duration: 0.45 }, t); }
   // apparition point par point d'un groupe de .dot
   function drawDots(tl, g, t, d = 0.6, o = {}) {
     if (!g) return;
     const ds = g.querySelectorAll(".dot");
-    tl.fromTo(ds, { opacity: 0, scale: 0, transformOrigin: "50% 50%" }, { opacity: 1, scale: 1, duration: 0.18, ease: "back.out(3)", stagger: { each: d / Math.max(1, ds.length), from: o.from || "start" } }, t);
+    tl.fromTo(ds, { opacity: 0, scale: 0, transformOrigin: "50% 50%" }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2)", immediateRender: o.ir ?? true, stagger: { each: d / Math.max(1, ds.length), from: o.from || "start" } }, t);
   }
   // pulsation (scintillement) finie d'un groupe de .dot
   function shimmer(tl, g, t, until, o = {}) {

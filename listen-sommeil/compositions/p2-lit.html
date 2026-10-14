@@ -1,0 +1,78 @@
+<!doctype html>
+<!-- GÉNÉRÉ par scripts/sync.mjs depuis src/scenes/p2-lit.js — éditer la source, pas ce fichier. -->
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+        #root { position: absolute; inset: 0; }
+      </style>
+      <div id="root" data-composition-id="p2" data-width="1080" data-height="1920"></div>
+      <script>
+        (function () {
+          const ID = "p2";
+          const L = window.LS;
+          const sc = L.scene(ID);
+          const A = L.art(ID + "-");
+          const root = document.querySelector('[data-composition-id="p2"]');
+          const tl = gsap.timeline({ paused: true });
+          const w = sc.w;
+          // PLAN 2 — LE LIT, en plongée. La lampe s'éteint, 23:04 → 00:04, les yeux s'ouvrent,
+          // l'oreiller se retourne cinq fois, puis les trois points ambre (le sommaire).
+          const X = (x) => x * 1.3 - 130, Y = (y) => y * 1.3 - 60;
+          const counts = [1, 2, 3, 4, 5].map((n) => A.pill("pc" + n, 760, 470, "× " + n, X(470), Y(640), { w: 150 })).join("");
+          const world = A.bg() + A.floorIso(1150) +
+            `<g transform="translate(-130 -60) scale(1.3)">${A.bedIso({ clock: ["23:04", "23:34", "00:04"] })}</g>` +
+            `<rect id="${A.id("dark")}" width="1080" height="1920" fill="#05061a" opacity="0"/>` +
+            `<path id="${A.id("whoosh")}" d="M330 690 q-40 -60 10 -120" stroke="#fff" stroke-opacity=".55" stroke-width="5" fill="none" stroke-dasharray="4 14" stroke-linecap="round" opacity="0"/>` +
+            A.pill("p1h", 220, 560, "+1 h", X(238), Y(697), { dot: L.C.amber }) +
+            A.pill("pEyes", 740, 560, "yeux : grands ouverts", X(526), Y(690)) +
+            counts + A.pill("pc6", 760, 470, "6ᵉ fois ?", X(470), Y(640));
+          const hud = `<g id="${A.id("toc")}"><text id="${A.id("tocLab")}" x="500" y="250" text-anchor="middle" font-family="Fraunces" font-style="italic" font-weight="500" font-size="58" fill="${L.C.cream}">trois astuces</text>
+            <g filter="${A.u("fGlowS")}">${[330, 500, 670].map((x, i) => `<circle id="${A.id("td" + i)}" cx="${x}" cy="330" r="24" fill="${L.C.amber}"/>`).join("")}</g></g>`;
+          const S = L.stage(root, ID, world, hud);
+          L.cam(tl, S, { scale: 1 }, { scale: 1.06 }, 0, sc.hostDur, "none");
+          // la lampe s'éteint
+          tl.fromTo(S.$("lamp"), { opacity: 1 }, { opacity: 0, duration: 0.15 }, 0.5);
+          tl.fromTo(S.$("dark"), { opacity: 0 }, { opacity: 0.22, duration: 0.6 }, 0.5);
+          // « fatigué » : yeux mi-clos, un clignement lent
+          L.initLids(S, 0.45);
+          L.blink(tl, S, w("L02", 1));
+          // « une heure » : le réveil défile, + 1 h
+          const heure = w("L03", 3);
+          tl.set(S.$("clk-0"), { opacity: 0 }, heure - 0.4).set(S.$("clk-1"), { opacity: 1 }, heure - 0.4);
+          tl.set(S.$("clk-1"), { opacity: 0 }, heure).set(S.$("clk-2"), { opacity: 1 }, heure);
+          L.pill(tl, S, "p1h", heure - 0.1);
+          // « impossible » : les yeux s'ouvrent grand
+          const imp = w("L04", 1);
+          L.lids(tl, S, imp - 0.1, 0, 0.3);
+          tl.fromTo(S.$("eyes-open"), { scale: 1, transformOrigin: "50% 50%" }, { scale: 1.3, duration: 0.4, ease: "power2.out" }, imp);
+          L.pill(tl, S, "pEyes", imp);
+          L.pillOut(tl, S, "p1h", w("L05", 0));
+          L.pillOut(tl, S, "pEyes", w("L05", 0));
+          // cinq retournements entre « retourner » et « sixième »
+          const t0 = w("L05", 3), t6 = w("L05", 7), per = (t6 - t0) / 5;
+          const pillow = S.$("pillow");
+          gsap.set(pillow, { transformOrigin: "50% 50%" });
+          [1, 2, 3, 4, 5].forEach((n) => gsap.set(S.$("pc" + n), { opacity: 0 }));
+          for (let i = 0; i < 5; i++) {
+            const t = t0 + i * per;
+            tl.to(pillow, { y: -110, rotation: (i + 1) * 180 - 90, duration: per / 2, ease: "power2.out" }, t);
+            tl.to(pillow, { y: 0, rotation: (i + 1) * 180, duration: per / 2, ease: "power2.in" }, t + per / 2);
+            tl.set(S.$("pc" + (i + 1)), { opacity: 1 }, t).set(S.$("pc" + (i + 1)), { opacity: 0 }, t + per - 0.01);
+          }
+          // la 6e fois : l'oreiller reste en l'air
+          tl.to(pillow, { y: -150, rotation: 900 - 18, duration: 0.4, ease: "power3.out" }, t6);
+          tl.fromTo(S.$("whoosh"), { opacity: 0 }, { opacity: 1, duration: 0.3 }, t6 + 0.1);
+          L.pill(tl, S, "pc6", t6);
+          // « trois choses » : le sommaire
+          const tr = w("L06", 2);
+          tl.fromTo(S.$("tocLab"), { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, w("L06", 0));
+          [0, 1, 2].forEach((i) => L.pop(tl, S.$("td" + i), tr + i * 0.2, { from: 0 }));
+
+          window.__timelines[ID] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>
