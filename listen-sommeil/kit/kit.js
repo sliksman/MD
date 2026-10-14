@@ -292,10 +292,10 @@
     // téléphone en gros plan : interface Listen reconstruite d'après les captures App Store
     A.phoneUI = (x, y, wdt = 560) => {
       const s = wdt / 560, Q = (v) => v * s, hgt = wdt * 2.05;
-      const chips = ["Bali", "Indonésie", "tropical", "vent"];
+      const chips = ["Bali", "Indonésie", "tropical", "vent", "Thaïlande"];
       let cx = x + Q(40), chipSvg = "";
       for (const c of chips) {
-        const cw = Q(c.length * 15 + 44);
+        const cw = Q(c.length * 11 + 40);
         chipSvg += `<rect x="${cx}" y="${y + Q(400)}" width="${cw}" height="${Q(52)}" rx="${Q(26)}" fill="#1b1f3a" stroke="#fff" stroke-opacity=".18" stroke-width="2"/>
         <text x="${cx + cw / 2}" y="${y + Q(434)}" text-anchor="middle" font-family="Poppins" font-weight="400" font-size="${Q(20)}" fill="#e6e8f2">${c}</text>`;
         cx += cw + Q(12);
@@ -303,7 +303,8 @@
       return `<g id="${P}phoneBig">
       <rect id="${P}bezelGlow" x="${x - Q(18)}" y="${y - Q(18)}" width="${wdt + Q(36)}" height="${hgt + Q(36)}" rx="${Q(90)}" fill="#05060c" stroke="${u("gNeon")}" stroke-width="${Q(6)}" filter="${u("fGlowN")}"/>
       <rect x="${x}" y="${y}" width="${wdt}" height="${hgt}" rx="${Q(72)}" fill="#0d1020"/>
-      <g id="${P}ui">
+      <clipPath id="${P}screenClip"><rect x="${x}" y="${y}" width="${wdt}" height="${hgt}" rx="${Q(72)}"/></clipPath>
+      <g id="${P}ui" clip-path="url(#${P}screenClip)">
       <text x="${x + Q(60)}" y="${y + Q(56)}" font-family="Poppins" font-weight="600" font-size="${Q(24)}" fill="#fff">00:11</text>
       <rect x="${x + Q(40)}" y="${y + Q(120)}" width="${Q(70)}" height="${Q(6)}" rx="${Q(3)}" fill="${C.violet}"/>
       <text x="${x + Q(40)}" y="${y + Q(180)}" font-family="Poppins" font-weight="600" font-size="${Q(17)}" letter-spacing="${Q(4)}" fill="#b8bdd6">AMBIANCES CALMES</text>
@@ -316,8 +317,9 @@
       <rect x="${x + Q(40)}" y="${y + Q(590)}" width="${Q(300)}" height="${Q(300)}" rx="${Q(34)}" fill="${u("gCard")}"/>
       <text x="${x + Q(66)}" y="${y + Q(642)}" font-family="Poppins" font-weight="700" font-size="${Q(28)}" fill="#fff">Sons de l'eau</text>
       <text x="${x + Q(66)}" y="${y + Q(674)}" font-family="Poppins" font-weight="400" font-size="${Q(18)}" fill="#dbe6ff">32 sons</text>
-      <rect x="${x + Q(360)}" y="${y + Q(590)}" width="${Q(160)}" height="${Q(300)}" rx="${Q(34)}" fill="${u("gCard")}" opacity=".8"/>
-      <text x="${x + Q(384)}" y="${y + Q(642)}" font-family="Poppins" font-weight="700" font-size="${Q(28)}" fill="#fff">À la plage</text>
+      <rect x="${x + Q(360)}" y="${y + Q(590)}" width="${Q(300)}" height="${Q(300)}" rx="${Q(34)}" fill="${u("gCard")}" opacity=".8"/>
+      <text x="${x + Q(386)}" y="${y + Q(642)}" font-family="Poppins" font-weight="700" font-size="${Q(28)}" fill="#fff">À la plage</text>
+      <text x="${x + Q(386)}" y="${y + Q(674)}" font-family="Poppins" font-weight="400" font-size="${Q(18)}" fill="#dbe6ff">37 sons</text>
       <text x="${x + Q(40)}" y="${y + Q(950)}" font-family="Poppins" font-weight="600" font-size="${Q(17)}" letter-spacing="${Q(4)}" fill="#b8bdd6">SONS DE L'EAU</text>
       <g id="${P}track"><rect id="${P}trackBg" x="${x + Q(40)}" y="${y + Q(975)}" width="${wdt - Q(80)}" height="${Q(110)}" rx="${Q(26)}" fill="#161a33" stroke="#fff" stroke-opacity=".15" stroke-width="${Q(3)}"/>
       <rect id="${P}trackHi" x="${x + Q(40)}" y="${y + Q(975)}" width="${wdt - Q(80)}" height="${Q(110)}" rx="${Q(26)}" fill="#1a2350" stroke="${C.rain}" stroke-width="${Q(4)}" opacity="0"/>
