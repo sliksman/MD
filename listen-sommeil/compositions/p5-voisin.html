@@ -28,8 +28,8 @@
             A.pill("pRain", 330, 360, "pluie régulière", 572, 905, { dot: L.C.rain });
           const phoneB = `<g id="${A.id("B")}" opacity="0"><rect x="-200" y="-200" width="1480" height="2320" fill="${A.u("gNight")}"/>
             <ellipse id="${A.id("halo")}" cx="500" cy="820" rx="460" ry="620" fill="${L.C.violet}" opacity="0.15" filter="${A.u("fBlurL")}"/>
-            ${A.rain("rainB", 70, 0, 1080, -400, 1920)}${A.phoneUI(250, 300, 500)}</g>`;
-          const hud = phoneB + A.pill("pListen", 500, 1415, "Listen", 500, 1345, { dot: L.C.cyan }) +
+            ${A.rain("rainB", 70, 0, 1080, -400, 1920)}${A.phoneUI(270, 410, 460)}</g>`;
+          const hud = phoneB + A.pill("pListen", 500, 1445, "Listen", 500, 1372, { dot: L.C.cyan }) +
             A.bigNum("n3", "3", "Un fond sonore doux.") +
             A.pill("pAlmost", 540, 560, "presque…", 540, 700);
           const S = L.stage(root, ID, world, hud);
@@ -71,7 +71,7 @@
           ["d0", "d1", "d2"].forEach((d) => tl.to(S.$(d), { opacity: 0, duration: 0.3 }, tr - 0.2));
           tl.to(S.cam, { scale: 6, x: (540 - 572) * 6, y: (960 - 920) * 6, duration: 1.0, ease: "power2.in", immediateRender: false }, tr);
           tl.fromTo(S.$("B"), { opacity: 0 }, { opacity: 1, duration: 0.3 }, tr + 0.7);
-          tl.fromTo(S.$("B"), { scale: 0.58, x: 40, y: 148, svgOrigin: "500 812" }, { scale: 1, x: 0, y: 0, duration: 1.0, ease: "power3.out" }, tr + 0.7);
+          tl.fromTo(S.$("B"), { scale: 0.62, x: 40, y: 78.5, svgOrigin: "500 881.5" }, { scale: 1, x: 0, y: 0, duration: 1.0, ease: "power3.out" }, tr + 0.7);
           tl.fromTo(S.$("n3"), { opacity: 0 }, { opacity: 1, duration: 0.01 }, tr - 0.02);
           tl.fromTo(S.$("n3-seed"), { scale: 1, opacity: 1, transformOrigin: "50% 50%" }, { scale: 4, opacity: 0, duration: 0.5 }, tr);
           L.pop(tl, S.$("n3-n"), tr, { from: 0.4 });
@@ -94,7 +94,7 @@
           // ---- on ressort du téléphone : la pluie recouvre la perceuse
           const outT = w("L33", -1) + 0.45;
           tl.to([S.$("n3"), S.$("pListen")], { opacity: 0, duration: 0.4 }, outT - 0.1);
-          tl.to(S.$("B"), { scale: 0.58, x: 40, y: 148, svgOrigin: "500 812", duration: 0.8, ease: "power2.in" }, outT);
+          tl.to(S.$("B"), { scale: 0.62, x: 40, y: 78.5, svgOrigin: "500 881.5", duration: 0.8, ease: "power2.in" }, outT);
           tl.to(S.$("B"), { opacity: 0, duration: 0.3 }, outT + 0.55);
           tl.to(S.cam, { scale: 1, x: 0, y: 0, duration: 1.1, ease: "power3.out", immediateRender: false }, outT + 0.55);
           ["d0", "d1", "d2"].forEach((d) => tl.fromTo(S.$(d), { opacity: 0.6 }, { opacity: 0.1, duration: 1.5, immediateRender: false }, outT + 1.5));
