@@ -38,7 +38,7 @@
             A.pill("pConf", 800, 520, "confortable ✓", 640, 640, { dot: L.C.amber }) +
             `<g id="${A.id("trail")}" fill="#fff" opacity="0"><circle cx="560" cy="1440" r="14"/><circle cx="580" cy="1380" r="20"/></g>` +
             A.bubble(500, 820, 400, 340) +
-            A.apple("apple", 505, 840) + A.umbrella("umb", 500, 830) + A.chair("chair", 500, 820) +
+            `<g id="${A.id("slotApple")}">${A.apple("apple", 505, 840)}</g><g id="${A.id("slotUmb")}">${A.umbrella("umb", 500, 830)}</g><g id="${A.id("slotChair")}">${A.chair("chair", 500, 820)}</g>` +
             A.dots("link", [[360, 700], [470, 760], [560, 770], [660, 700]], { step: 28, r: 7 }) +
             A.dots("link2", [[700, 760], [560, 880]], { step: 28, r: 7 }) +
             A.pill("pApple", 800, 600, "pomme", 600, 800, { dot: L.C.amber }) +
@@ -92,7 +92,9 @@
           tl.fromTo(S.$("n2-lab"), { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.5 }, w("L18", 0));
           // un objet à la fois
           const objIn = (id, t) => tl.fromTo(S.$(id), { y: -220, opacity: 0, scale: 1 }, { y: 0, opacity: 1, duration: 0.6, ease: "power3.out" }, t);
-          const objOut = (id, t) => tl.to(S.$(id), { scale: 0, opacity: 0, svgOrigin: "500 840", duration: 0.35, ease: "power2.in" }, t);
+          const ORI = { apple: "505 840", umb: "500 830", chair: "500 820" };
+          Object.keys(ORI).forEach((k) => gsap.set(S.$(k), { svgOrigin: ORI[k] }));
+          const objOut = (id, t) => tl.to(S.$(id), { scale: 0, opacity: 0, svgOrigin: ORI[id], duration: 0.35, ease: "power2.in" }, t);
           objIn("apple", w("L19", 2) - 0.35);
           L.pill(tl, S, "pApple", w("L19", 2) - 0.1);
           const qs = w("L20", 0);
@@ -101,7 +103,7 @@
           objOut("apple", w("L21", 0) - 0.15);
           L.pillOut(tl, S, "pApple", w("L21", 0) - 0.15);
           tl.to(S.$("pSec"), { opacity: 0, duration: 0.4 }, w("L21", 0));
-          tl.fromTo(S.$("umb"), { scaleX: 0.15, opacity: 0, svgOrigin: "500 830" }, { scaleX: 1, opacity: 1, duration: 0.6, ease: "power3.out" }, w("L21", 2) - 0.3);
+          tl.fromTo(S.$("umb"), { scaleX: 0.15, scaleY: 1, opacity: 0, svgOrigin: ORI.umb }, { scaleX: 1, opacity: 1, duration: 0.6, ease: "power3.out" }, w("L21", 2) - 0.3);
           L.pill(tl, S, "pUmb", w("L21", 2) - 0.1);
           objOut("umb", w("L22", 0) - 0.15);
           L.pillOut(tl, S, "pUmb", w("L22", 0) - 0.15);
@@ -111,10 +113,12 @@
           const tog = w("L23", 0) - 0.2;
           L.pillOut(tl, S, "pChair", tog);
           tl.to(S.$("n2"), { opacity: 0, duration: 0.5 }, tog);
-          tl.to(S.$("bubble"), { scale: 1.06, svgOrigin: "500 820", duration: 0.8, ease: "power2.inOut" }, tog);
-          tl.to(S.$("chair"), { x: 0, y: 110, scale: 0.6, svgOrigin: "500 820", duration: 0.8, ease: "power2.inOut" }, tog);
-          tl.fromTo(S.$("apple"), { x: -205, y: -160, scale: 0, opacity: 0, svgOrigin: "505 840" }, { scale: 0.66, opacity: 1, duration: 0.6, ease: "back.out(1.4)", immediateRender: false }, tog + 0.3);
-          tl.fromTo(S.$("umb"), { x: 230, y: -180, scale: 0, opacity: 0, svgOrigin: "500 830" }, { scale: 0.6, scaleX: 0.6, opacity: 1, duration: 0.6, ease: "back.out(1.4)", immediateRender: false }, tog + 0.5);
+          tl.to(S.$("bubble"), { scale: 1.06, svgOrigin: "560 1400", duration: 0.8, ease: "power2.inOut" }, tog);
+          tl.to(S.$("slotChair"), { x: 0, y: 110, scale: 0.6, svgOrigin: ORI.chair, duration: 0.8, ease: "power2.inOut" }, tog);
+          tl.fromTo(S.$("slotApple"), { x: 0, y: 0, scale: 1, svgOrigin: ORI.apple }, { x: -205, y: -160, scale: 0.66, duration: 0.01, immediateRender: true }, tog + 0.2);
+          tl.fromTo(S.$("slotUmb"), { x: 0, y: 0, scale: 1, svgOrigin: ORI.umb }, { x: 230, y: -180, scale: 0.6, duration: 0.01, immediateRender: true }, tog + 0.2);
+          tl.fromTo(S.$("apple"), { scale: 0, opacity: 0, y: 0, svgOrigin: ORI.apple }, { scale: 1, opacity: 1, duration: 0.6, ease: "back.out(1.4)", immediateRender: false }, tog + 0.3);
+          tl.fromTo(S.$("umb"), { scale: 0, opacity: 0, svgOrigin: ORI.umb }, { scale: 1, opacity: 1, duration: 0.6, ease: "back.out(1.4)", immediateRender: false }, tog + 0.5);
           const sl = w("L24", 0);
           L.drawDots(tl, S.$("link"), sl - 0.2, 0.6);
           L.drawDots(tl, S.$("link2"), sl, 0.4);
