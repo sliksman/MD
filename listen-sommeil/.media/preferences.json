@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "preferences": {
+    "destination": {
+      "value": "tiktok",
+      "confirmed_in": [
+        "listen-sommeil"
+      ],
+      "updated_at": "2026-10-14T14:47:53.849Z"
+    },
+    "aspect": {
+      "value": "1080x1920",
+      "confirmed_in": [
+        "listen-sommeil"
+      ],
+      "updated_at": "2026-10-14T14:47:53.933Z"
+    },
+    "language": {
+      "value": "fr",
+      "confirmed_in": [
+        "listen-sommeil"
+      ],
+      "updated_at": "2026-10-14T14:47:54.008Z"
+    },
+    "flow": {
+      "value": "companion",
+      "confirmed_in": [
+        "listen-sommeil"
+      ],
+      "updated_at": "2026-10-14T14:47:54.105Z"
+    },
+    "storyboard": {
+      "value": "yes",
+      "confirmed_in": [
+        "listen-sommeil"
+      ],
+      "updated_at": "2026-10-14T14:47:54.197Z"
+    }
+  },
+  "sightings": {}
+}
