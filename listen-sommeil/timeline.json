@@ -1,0 +1,953 @@
+{
+ "_doc": "Source unique de la chronologie. Temps en secondes absolues (voix assets/audio/vo.mp3). Après modification : npm run sync. Voir MONTAGE.md.",
+ "duration": 75,
+ "fade": 0.3,
+ "scenes": [
+  {
+   "id": "s01",
+   "file": "01-reveil",
+   "start": 0,
+   "end": 2.18
+  },
+  {
+   "id": "s02",
+   "file": "02-insomnie",
+   "start": 2.18,
+   "end": 8.07
+  },
+  {
+   "id": "s03",
+   "file": "03-oreiller",
+   "start": 8.07,
+   "end": 12.4
+  },
+  {
+   "id": "s04",
+   "file": "04-chaussettes",
+   "start": 12.4,
+   "end": 15.44
+  },
+  {
+   "id": "s05",
+   "file": "05-paradoxe",
+   "start": 15.44,
+   "end": 20.12
+  },
+  {
+   "id": "s06",
+   "file": "06-vaisseaux",
+   "start": 20.12,
+   "end": 27.84
+  },
+  {
+   "id": "s07",
+   "file": "07-agenda",
+   "start": 27.84,
+   "end": 34.75
+  },
+  {
+   "id": "s08",
+   "file": "08-shuffle",
+   "start": 34.75,
+   "end": 42.93
+  },
+  {
+   "id": "s09",
+   "file": "09-sans-lien",
+   "start": 42.93,
+   "end": 47.93
+  },
+  {
+   "id": "s10",
+   "file": "10-nom",
+   "start": 47.93,
+   "end": 54.12
+  },
+  {
+   "id": "s11",
+   "file": "11-voisin",
+   "start": 54.12,
+   "end": 61.44
+  },
+  {
+   "id": "s12",
+   "file": "12-listen",
+   "start": 61.44,
+   "end": 68.56
+  },
+  {
+   "id": "s13",
+   "file": "13-pluie",
+   "start": 68.56,
+   "end": 71.6
+  },
+  {
+   "id": "s14",
+   "file": "14-et-toi",
+   "start": 71.6,
+   "end": 75
+  }
+ ],
+ "vo": [
+  {
+   "id": "L01",
+   "start": 0.1,
+   "end": 2.0,
+   "text": "Demain, tu te lèves à sept heures.",
+   "hl": [
+    "sept",
+    "heures."
+   ]
+  },
+  {
+   "id": "L02",
+   "start": 2.36,
+   "end": 4.36,
+   "text": "T'es fatigué,",
+   "words": [
+    [
+     "T'es",
+     2.36
+    ],
+    [
+     "fatigué,",
+     2.98
+    ]
+   ],
+   "hl": [
+    "fatigué,"
+   ]
+  },
+  {
+   "id": "L03",
+   "start": 4.53,
+   "end": 6.44,
+   "text": "ça fait une heure que la lumière est éteinte,",
+   "hl": [
+    "une",
+    "heure"
+   ]
+  },
+  {
+   "id": "L04",
+   "start": 6.64,
+   "end": 7.84,
+   "text": "mais impossible de dormir !",
+   "hl": [
+    "impossible"
+   ]
+  },
+  {
+   "id": "L05",
+   "start": 8.3,
+   "end": 10.85,
+   "text": "Alors avant de retourner ton oreiller une sixième fois,",
+   "hl": [
+    "sixième",
+    "fois,"
+   ]
+  },
+  {
+   "id": "L06",
+   "start": 11.1,
+   "end": 12.08,
+   "text": "essaie ces trois choses.",
+   "hl": [
+    "trois",
+    "choses."
+   ]
+  },
+  {
+   "id": "L07",
+   "start": 12.55,
+   "end": 12.75,
+   "text": "Un.",
+   "hl": [
+    "Un."
+   ]
+  },
+  {
+   "id": "L08",
+   "start": 13.16,
+   "end": 13.58,
+   "text": "T'as chaud,",
+   "hl": [
+    "chaud,"
+   ]
+  },
+  {
+   "id": "L09",
+   "start": 13.86,
+   "end": 15.23,
+   "text": "alors mets des chaussettes.",
+   "hl": [
+    "chaussettes."
+   ]
+  },
+  {
+   "id": "L10",
+   "start": 15.65,
+   "end": 19.87,
+   "text": "Aussi bizarre que ça puisse paraître, réchauffer tes pieds peut aider ton corps à refroidir.",
+   "hl": [
+    "bizarre",
+    "réchauffer",
+    "refroidir."
+   ]
+  },
+  {
+   "id": "L11",
+   "start": 20.36,
+   "end": 24.34,
+   "text": "La chaleur dilate les petits vaisseaux et facilite l'évacuation de la chaleur du corps.",
+   "hl": [
+    "dilate",
+    "l'évacuation"
+   ]
+  },
+  {
+   "id": "L12",
+   "start": 24.84,
+   "end": 27.57,
+   "text": "Cette baisse de température va aider ton corps à s'endormir.",
+   "hl": [
+    "baisse",
+    "s'endormir."
+   ]
+  },
+  {
+   "id": "L13",
+   "start": 28.11,
+   "end": 28.59,
+   "text": "Voilà,",
+   "hl": []
+  },
+  {
+   "id": "L14",
+   "start": 28.73,
+   "end": 29.85,
+   "text": "maintenant t'es confortable.",
+   "hl": [
+    "confortable."
+   ]
+  },
+  {
+   "id": "L15",
+   "start": 30.17,
+   "end": 31.82,
+   "text": "Mais ta tête, elle, n'est pas prête à s'endormir !",
+   "hl": [
+    "tête,",
+    "pas",
+    "prête"
+   ]
+  },
+  {
+   "id": "L16",
+   "start": 31.96,
+   "end": 34.54,
+   "text": "Elle a décidé de préparer toute ta semaine.",
+   "hl": [
+    "toute",
+    "ta",
+    "semaine."
+   ]
+  },
+  {
+   "id": "L17",
+   "start": 34.93,
+   "end": 35.42,
+   "text": "Deux.",
+   "hl": [
+    "Deux."
+   ]
+  },
+  {
+   "id": "L18",
+   "start": 35.79,
+   "end": 37.35,
+   "text": "Occupe ton esprit.",
+   "words": [
+    [
+     "Occupe",
+     35.79
+    ],
+    [
+     "ton",
+     36.52
+    ],
+    [
+     "esprit.",
+     36.78
+    ]
+   ],
+   "hl": [
+    "esprit."
+   ]
+  },
+  {
+   "id": "L19",
+   "start": 37.78,
+   "end": 38.8,
+   "text": "Imagine une pomme.",
+   "hl": [
+    "pomme."
+   ]
+  },
+  {
+   "id": "L20",
+   "start": 39.28,
+   "end": 39.83,
+   "text": "Quelques secondes.",
+   "hl": [
+    "secondes."
+   ]
+  },
+  {
+   "id": "L21",
+   "start": 40.36,
+   "end": 41.39,
+   "text": "Puis un parapluie.",
+   "hl": [
+    "parapluie."
+   ]
+  },
+  {
+   "id": "L22",
+   "start": 41.78,
+   "end": 42.72,
+   "text": "Puis une chaise.",
+   "hl": [
+    "chaise."
+   ]
+  },
+  {
+   "id": "L23",
+   "start": 43.13,
+   "end": 43.97,
+   "text": "Des objets simples,",
+   "hl": [
+    "simples,"
+   ]
+  },
+  {
+   "id": "L24",
+   "start": 44.09,
+   "end": 44.88,
+   "text": "sans lien entre eux.",
+   "hl": [
+    "sans",
+    "lien"
+   ]
+  },
+  {
+   "id": "L25",
+   "start": 45.32,
+   "end": 46.55,
+   "text": "Pas d'histoire à construire,",
+   "hl": [
+    "d'histoire"
+   ]
+  },
+  {
+   "id": "L26",
+   "start": 46.68,
+   "end": 47.69,
+   "text": "pas de liste à réussir.",
+   "hl": [
+    "liste"
+   ]
+  },
+  {
+   "id": "L27",
+   "start": 48.16,
+   "end": 49.9,
+   "text": "Ça s'appelle le cognitive shuffle :",
+   "hl": [
+    "cognitive",
+    "shuffle"
+   ]
+  },
+  {
+   "id": "L28",
+   "start": 50.27,
+   "end": 53.93,
+   "text": "une technique à tester pour détourner ton attention des pensées qui tournent en boucle.",
+   "hl": [
+    "tester",
+    "tournent",
+    "en",
+    "boucle."
+   ]
+  },
+  {
+   "id": "L29",
+   "start": 54.3,
+   "end": 56.79,
+   "text": "Là, normalement, tu es sur le point de t'endormir,",
+   "hl": [
+    "t'endormir,"
+   ]
+  },
+  {
+   "id": "L30",
+   "start": 57.09,
+   "end": 61.22,
+   "text": "mais au moment de fermer les yeux, ton voisin décide visiblement de refaire toute sa cuisine.",
+   "hl": [
+    "voisin",
+    "toute",
+    "sa",
+    "cuisine."
+   ]
+  },
+  {
+   "id": "L31",
+   "start": 61.65,
+   "end": 61.99,
+   "text": "Trois.",
+   "hl": [
+    "Trois."
+   ]
+  },
+  {
+   "id": "L32",
+   "start": 62.49,
+   "end": 64.6,
+   "text": "Essaie un fond sonore doux.",
+   "words": [
+    [
+     "Essaie",
+     62.49
+    ],
+    [
+     "un",
+     63.26
+    ],
+    [
+     "fond",
+     63.45
+    ],
+    [
+     "sonore",
+     63.7
+    ],
+    [
+     "doux.",
+     64.15
+    ]
+   ],
+   "hl": [
+    "sonore",
+    "doux."
+   ]
+  },
+  {
+   "id": "L33",
+   "start": 65.06,
+   "end": 68.4,
+   "text": "Rends-toi sur l'app Listen et lance une pluie régulière, par exemple.",
+   "hl": [
+    "Listen",
+    "pluie",
+    "régulière,"
+   ]
+  },
+  {
+   "id": "L34",
+   "start": 68.72,
+   "end": 69.97,
+   "text": "Si cette ambiance t'apaise,",
+   "hl": [
+    "t'apaise,"
+   ]
+  },
+  {
+   "id": "L35",
+   "start": 70.13,
+   "end": 71.4,
+   "text": "laisse-la accompagner le moment.",
+   "hl": [
+    "accompagner"
+   ]
+  },
+  {
+   "id": "L36",
+   "start": 71.81,
+   "end": 72.15,
+   "text": "Et toi ?",
+   "hl": [
+    "toi"
+   ]
+  },
+  {
+   "id": "L37",
+   "start": 72.45,
+   "end": 73.92,
+   "text": "C'est quoi tes astuces pour t'endormir ?",
+   "hl": [
+    "tes",
+    "astuces"
+   ]
+  }
+ ],
+ "captions": {
+  "enabled": true,
+  "maxWords": 3,
+  "y": 1330,
+  "tail": 0.3
+ },
+ "captionY": {
+  "s05": 1330,
+  "s06": 1330,
+  "s12": 1500,
+  "s13": 1400,
+  "s11": 1400,
+  "s14": 1240
+ },
+ "voFile": "assets/audio/vo_norm.mp3",
+ "sfx": [
+  {
+   "id": "pad",
+   "file": "pad.mp3",
+   "at": 0,
+   "dur": 74.9,
+   "vol": 0.3,
+   "note": "tapis musical"
+  },
+  {
+   "id": "wh0",
+   "file": "whoosh.wav",
+   "at": 1.65,
+   "vol": 0.8,
+   "note": "mouvement de caméra"
+  },
+  {
+   "id": "wh1",
+   "file": "whoosh.wav",
+   "at": 11.85,
+   "vol": 0.8,
+   "note": "mouvement de caméra"
+  },
+  {
+   "id": "wh2",
+   "file": "whoosh.wav",
+   "at": 27.3,
+   "vol": 0.8,
+   "note": "mouvement de caméra"
+  },
+  {
+   "id": "wh3",
+   "file": "whoosh.wav",
+   "at": 34.4,
+   "vol": 0.8,
+   "note": "mouvement de caméra"
+  },
+  {
+   "id": "wh4",
+   "file": "whoosh.wav",
+   "at": 53.6,
+   "vol": 0.8,
+   "note": "mouvement de caméra"
+  },
+  {
+   "id": "wh5",
+   "file": "whoosh.wav",
+   "at": {
+    "vo": "L30",
+    "word": 7,
+    "+": -0.2
+   },
+   "vol": 0.8,
+   "note": "mouvement de caméra"
+  },
+  {
+   "id": "wh6",
+   "file": "whoosh.wav",
+   "at": 61.4,
+   "vol": 0.8,
+   "note": "mouvement de caméra"
+  },
+  {
+   "id": "pop0",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L01",
+    "word": 5,
+    "+": -0.1
+   },
+   "vol": 0.35,
+   "note": "pastille / apparition"
+  },
+  {
+   "id": "pop1",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L03",
+    "word": 3
+   },
+   "vol": 0.35,
+   "note": "pastille / apparition"
+  },
+  {
+   "id": "pop2",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L04",
+    "word": 1,
+    "+": 0.1
+   },
+   "vol": 0.35,
+   "note": "pastille / apparition"
+  },
+  {
+   "id": "pop3",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L06",
+    "word": 2
+   },
+   "vol": 0.35,
+   "note": "pastille / apparition"
+  },
+  {
+   "id": "pop4",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L07",
+    "word": 0
+   },
+   "vol": 0.35,
+   "note": "pastille / apparition"
+  },
+  {
+   "id": "pop5",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L08",
+    "word": 1,
+    "+": -0.15
+   },
+   "vol": 0.35,
+   "note": "pastille / apparition"
+  },
+  {
+   "id": "pop6",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L09",
+    "word": 3,
+    "+": 0.15
+   },
+   "vol": 0.35,
+   "note": "pastille / apparition"
+  },
+  {
+   "id": "pop7",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L10",
+    "word": 8
+   },
+   "vol": 0.35,
+   "note": "pastille / apparition"
+  },
+  {
+   "id": "pop8",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L10",
+    "word": 12
+   },
+   "vol": 0.35,
+   "note": "pastille / apparition"
+  },
+  {
+   "id": "pop9",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L11",
+    "word": 4
+   },
+   "vol": 0.35,
+   "note": "pastille / apparition"
+  },
+  {
+   "id": "pop10",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L14",
+    "word": 2
+   },
+   "vol": 0.35,
+   "note": "pastille / apparition"
+  },
+  {
+   "id": "pop11",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L16",
+    "word": 2
+   },
+   "vol": 0.35,
+   "note": "pastille / apparition"
+  },
+  {
+   "id": "pop12",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L16",
+    "word": 3
+   },
+   "vol": 0.35,
+   "note": "pastille / apparition"
+  },
+  {
+   "id": "pop13",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L16",
+    "word": 4
+   },
+   "vol": 0.35,
+   "note": "pastille / apparition"
+  },
+  {
+   "id": "pop14",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L16",
+    "word": 5
+   },
+   "vol": 0.35,
+   "note": "pastille / apparition"
+  },
+  {
+   "id": "pop15",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L16",
+    "word": 7
+   },
+   "vol": 0.35,
+   "note": "pastille / apparition"
+  },
+  {
+   "id": "pop16",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L17",
+    "word": 0
+   },
+   "vol": 0.35,
+   "note": "pastille / apparition"
+  },
+  {
+   "id": "pop17",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L19",
+    "word": 2
+   },
+   "vol": 0.35,
+   "note": "pastille / apparition"
+  },
+  {
+   "id": "pop18",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L21",
+    "word": 2
+   },
+   "vol": 0.35,
+   "note": "pastille / apparition"
+  },
+  {
+   "id": "pop19",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L22",
+    "word": 2
+   },
+   "vol": 0.35,
+   "note": "pastille / apparition"
+  },
+  {
+   "id": "pop20",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L25",
+    "word": 1
+   },
+   "vol": 0.35,
+   "note": "pastille / apparition"
+  },
+  {
+   "id": "pop21",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L26",
+    "word": 2
+   },
+   "vol": 0.35,
+   "note": "pastille / apparition"
+  },
+  {
+   "id": "pop22",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L28",
+    "word": 3
+   },
+   "vol": 0.35,
+   "note": "pastille / apparition"
+  },
+  {
+   "id": "pop23",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L31",
+    "word": 0
+   },
+   "vol": 0.35,
+   "note": "pastille / apparition"
+  },
+  {
+   "id": "pop24",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L33",
+    "word": 3
+   },
+   "vol": 0.35,
+   "note": "pastille / apparition"
+  },
+  {
+   "id": "pop25",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L33",
+    "word": 5
+   },
+   "vol": 0.35,
+   "note": "pastille / apparition"
+  },
+  {
+   "id": "pop26",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L34",
+    "word": 0
+   },
+   "vol": 0.35,
+   "note": "pastille / apparition"
+  },
+  {
+   "id": "pop27",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L37",
+    "word": 0
+   },
+   "vol": 0.35,
+   "note": "pastille / apparition"
+  },
+  {
+   "id": "flop0",
+   "file": "flop.wav",
+   "at": {
+    "vo": "L05",
+    "word": 3,
+    "toWord": 7,
+    "frac": 0.2
+   },
+   "vol": 0.5,
+   "note": "oreiller retourné"
+  },
+  {
+   "id": "flop1",
+   "file": "flop.wav",
+   "at": {
+    "vo": "L05",
+    "word": 3,
+    "toWord": 7,
+    "frac": 0.4
+   },
+   "vol": 0.5,
+   "note": "oreiller retourné"
+  },
+  {
+   "id": "flop2",
+   "file": "flop.wav",
+   "at": {
+    "vo": "L05",
+    "word": 3,
+    "toWord": 7,
+    "frac": 0.6
+   },
+   "vol": 0.5,
+   "note": "oreiller retourné"
+  },
+  {
+   "id": "flop3",
+   "file": "flop.wav",
+   "at": {
+    "vo": "L05",
+    "word": 3,
+    "toWord": 7,
+    "frac": 0.8
+   },
+   "vol": 0.5,
+   "note": "oreiller retourné"
+  },
+  {
+   "id": "flop4",
+   "file": "flop.wav",
+   "at": {
+    "vo": "L05",
+    "word": 3,
+    "toWord": 7,
+    "frac": 1.0
+   },
+   "vol": 0.5,
+   "note": "oreiller retourné"
+  },
+  {
+   "id": "drill",
+   "file": "drill.wav",
+   "at": {
+    "vo": "L30",
+    "word": 12
+   },
+   "until": 61.44,
+   "vol": 0.3,
+   "note": "perceuse du voisin"
+  },
+  {
+   "id": "drillB",
+   "file": "drill_muffled.wav",
+   "at": 61.44,
+   "vol": 0.22,
+   "note": "perceuse qui continue (étouffée)"
+  },
+  {
+   "id": "drillC",
+   "file": "drill_muffled.wav",
+   "at": 68.56,
+   "vol": 0.3,
+   "note": "perceuse sous la pluie"
+  },
+  {
+   "id": "rain",
+   "file": "rain.wav",
+   "at": {
+    "vo": "L33",
+    "word": 7,
+    "+": -0.2
+   },
+   "until": 74.9,
+   "vol": 0.8,
+   "note": "pluie (Listen)"
+  }
+ ]
+}
