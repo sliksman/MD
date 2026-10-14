@@ -47,10 +47,10 @@ const so = w("L09", 3) - 0.3;
 gsap.set([S.$("sockL"), S.$("sockR")], { opacity: 0 });
 tl.fromTo(S.$("sockL"), { opacity: 0, y: -240 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, so);
 tl.fromTo(S.$("sockR"), { opacity: 0, y: -240 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, so + 0.15);
-tl.set(S.$("feet"), { opacity: 0 }, so + 0.7);
+tl.to(S.$("feet"), { opacity: 0, duration: 0.35, ease: "power1.inOut" }, so + 0.3); // les pieds nus s'effacent sous les chaussettes
 L.pill(tl, S, "pSocks", so + 0.4);
 // ---- plongée dans la chaussette droite → vue en coupe
-const dive = 16.2 - sc.hostStart;
+const dive = w("L09", "end") + 0.15; // juste après « chaussettes »
 tl.to([S.$("n1"), S.$("pSocks"), S.$("pHot")], { opacity: 0, duration: 0.35 }, dive - 0.1);
 tl.to(camA, { scale: 5, x: (540 - 660) * 5, y: (960 - 930) * 5, svgOrigin: "540 960", duration: 0.75, ease: "power2.in" }, dive);
 tl.to(S.$("A"), { opacity: 0, duration: 0.3 }, dive + 0.5);

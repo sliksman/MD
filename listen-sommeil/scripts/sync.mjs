@@ -151,6 +151,7 @@ const probe = {};
 const fileDur = (f) => (probe[f] ??= parseFloat(execSync(`ffprobe -v error -show_entries format=duration -of csv=p=0 "${join(ROOT, "assets/sfx", f)}"`).toString()));
 function resolveAt(a, id) {
   if (typeof a === "number") return a;
+  if (a.wipe != null) return (T.wipes || [])[a.wipe] + (a["+"] || 0);
   const l = vo[a.vo];
   if (!l || !l.timed[a.word]) { errors.push(`sfx ${id} : mot introuvable ${a.vo}[${a.word}]`); return 0; }
   let t = l.timed[a.word].t;
@@ -241,7 +242,7 @@ ${Object.values(scenes).map(host).join("\n")}
         data-composition-id="intro-title"
         data-composition-src="compositions/intro-title.html"
         data-start="0"
-        data-duration="4.4"
+        data-duration="5.0"
         data-track-index="3"
         data-width="1080"
         data-height="1920"
