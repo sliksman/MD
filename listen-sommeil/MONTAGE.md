@@ -3,14 +3,24 @@
 Tout le minutage vit dans **`timeline.json`**. Les fichiers `compositions/*.html` et `index.html`
 sont **générés** : on édite `timeline.json` et `src/scenes/*.js`, puis `npm run sync`.
 
+## 0. Ordre des opérations
+
+```bash
+python3 scripts/srt_align.py   # cale les mots sur assets/transcript/vo.srt (SRT de la voix d'origine)
+python3 scripts/breathe.py     # insère les respirations (liste GAPS) → vo_v2.mp3 + timeline.json
+npm run sync                   # génère timeline.js, index.html, compositions/*.html, out/cues.json
+```
+
+**On édite `timeline.base.json`** (temps de la voix d'origine) — `timeline.json` est généré.
+
 ## 1. La voix
 
-`voFile` pointe vers `assets/audio/vo_v2.mp3` : ta prise ElevenLabs normalisée à −16 LUFS (`vo_norm.mp3`)
+`voFile` (dans le timeline.json généré) pointe vers `assets/audio/vo_v2.mp3` : ta prise ElevenLabs normalisée à −16 LUFS (`vo_norm.mp3`)
 + 5 respirations insérées par `python3 scripts/breathe.py` (liste `GAPS` dans le script) — 74,9 s → 80,3 s.
 L'original est `assets/audio/vo.mp3`.
 
-Calage mot à mot : `python3 scripts/align.py` (souffles détectés dans la voix, sans ASR). Une réplique
-`"lock": true` n'est pas recalée (L15, calée à la main).
+Calage mot à mot : `python3 scripts/srt_align.py`, à partir du SRT de la voix (transcription Premiere).
+Le texte affiché reste celui du script ; le SRT ne fournit que les temps.
 
 ## 2. Les répliques (`vo`)
 

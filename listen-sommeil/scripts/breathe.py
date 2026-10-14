@@ -12,8 +12,9 @@ SRC, DST = ROOT / "assets/audio/vo_norm.mp3", ROOT / "assets/audio/vo_v2.mp3"
 GAPS = [(2.18, 1.6),    # après « Demain, tu te lèves à sept heures. »
         (12.30, 0.9),   # après « trois choses », avant « Un. »
         (27.84, 0.9),   # fin de l'astuce 1, avant « Voilà »
+        (35.60, 0.8),   # après « toute ta semaine. », avant « Deux. »
         (54.12, 0.9),   # fin de l'astuce 2, avant « Là, normalement »
-        (61.44, 0.7),   # après la perceuse, avant « Trois. »
+        (62.24, 0.7),   # après « toute sa… cuisine », avant « Trois. »
         (71.60, 0.8)]   # avant « Et toi ? »
 TAIL = 1.2
 

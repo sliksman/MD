@@ -2,7 +2,7 @@
  {
   "t": 0,
   "frame": 0,
-  "dur": 81.87,
+  "dur": 82.68,
   "file": "pad.mp3",
   "name": "tapis musical"
  },
@@ -28,57 +28,57 @@
   "name": "volet de points"
  },
  {
-  "t": 57.62,
-  "frame": 1729,
+  "t": 58.42,
+  "frame": 1753,
   "dur": 0.7,
   "file": "whoosh.wav",
   "name": "volet de points"
  },
  {
-  "t": 76.65,
-  "frame": 2300,
+  "t": 77.45,
+  "frame": 2324,
   "dur": 0.7,
   "file": "whoosh.wav",
   "name": "volet de points"
  },
  {
-  "t": 17.8,
-  "frame": 534,
+  "t": 18.25,
+  "frame": 548,
   "dur": 0.7,
   "file": "whoosh.wav",
   "name": "mouvement de caméra"
  },
  {
-  "t": 38.05,
-  "frame": 1142,
+  "t": 39.04,
+  "frame": 1171,
   "dur": 0.7,
   "file": "whoosh.wav",
   "name": "mouvement de caméra"
  },
  {
-  "t": 51.15,
-  "frame": 1535,
+  "t": 52.17,
+  "frame": 1565,
   "dur": 0.7,
   "file": "whoosh.wav",
   "name": "mouvement de caméra"
  },
  {
-  "t": 62.62,
-  "frame": 1879,
+  "t": 63.42,
+  "frame": 1903,
   "dur": 0.7,
   "file": "whoosh.wav",
   "name": "mouvement de caméra"
  },
  {
-  "t": 66.6,
-  "frame": 1998,
+  "t": 68.25,
+  "frame": 2048,
   "dur": 0.7,
   "file": "whoosh.wav",
   "name": "mouvement de caméra"
  },
  {
-  "t": 73.6,
-  "frame": 2208,
+  "t": 74.233,
+  "frame": 2227,
   "dur": 0.7,
   "file": "whoosh.wav",
   "name": "mouvement de caméra"
@@ -91,8 +91,8 @@
   "name": "apparition"
  },
  {
-  "t": 6.531,
-  "frame": 196,
+  "t": 6.395,
+  "frame": 192,
   "dur": 0.18,
   "file": "pop.wav",
   "name": "apparition"
@@ -105,8 +105,8 @@
   "name": "apparition"
  },
  {
-  "t": 15.05,
-  "frame": 452,
+  "t": 15.04,
+  "frame": 451,
   "dur": 0.18,
   "file": "pop.wav",
   "name": "apparition"
@@ -119,155 +119,155 @@
   "name": "apparition"
  },
  {
-  "t": 20.513,
-  "frame": 615,
+  "t": 20.752,
+  "frame": 623,
   "dur": 0.18,
   "file": "pop.wav",
   "name": "apparition"
  },
  {
-  "t": 23.691,
-  "frame": 711,
+  "t": 24.01,
+  "frame": 720,
   "dur": 0.18,
   "file": "pop.wav",
   "name": "apparition"
  },
  {
-  "t": 35.757,
-  "frame": 1073,
+  "t": 37.068,
+  "frame": 1112,
   "dur": 0.18,
   "file": "pop.wav",
   "name": "apparition"
  },
  {
-  "t": 36.551,
-  "frame": 1097,
+  "t": 37.583,
+  "frame": 1127,
   "dur": 0.18,
   "file": "pop.wav",
   "name": "apparition"
  },
  {
-  "t": 37.543,
-  "frame": 1126,
+  "t": 38.585,
+  "frame": 1158,
   "dur": 0.18,
   "file": "pop.wav",
   "name": "apparition"
  },
  {
-  "t": 38.57,
-  "frame": 1157,
+  "t": 39.99,
+  "frame": 1200,
   "dur": 0.18,
   "file": "pop.wav",
   "name": "apparition"
  },
  {
-  "t": 41.92,
-  "frame": 1258,
+  "t": 42.86,
+  "frame": 1286,
   "dur": 0.18,
   "file": "pop.wav",
   "name": "apparition"
  },
  {
-  "t": 44.162,
-  "frame": 1325,
+  "t": 44.966,
+  "frame": 1349,
   "dur": 0.18,
   "file": "pop.wav",
   "name": "apparition"
  },
  {
-  "t": 45.767,
-  "frame": 1373,
+  "t": 46.57,
+  "frame": 1397,
   "dur": 0.18,
   "file": "pop.wav",
   "name": "apparition"
  },
  {
-  "t": 54.54,
-  "frame": 1636,
+  "t": 55.34,
+  "frame": 1660,
   "dur": 0.18,
   "file": "pop.wav",
   "name": "apparition"
  },
  {
-  "t": 66.65,
-  "frame": 2000,
+  "t": 68.3,
+  "frame": 2049,
   "dur": 0.18,
   "file": "pop.wav",
   "name": "apparition"
  },
  {
-  "t": 71.16,
-  "frame": 2135,
+  "t": 71.95,
+  "frame": 2159,
   "dur": 0.18,
   "file": "pop.wav",
   "name": "apparition"
  },
  {
-  "t": 71.689,
-  "frame": 2151,
+  "t": 72.49,
+  "frame": 2175,
   "dur": 0.18,
   "file": "pop.wav",
   "name": "apparition"
  },
  {
-  "t": 77.61,
-  "frame": 2328,
+  "t": 78.41,
+  "frame": 2352,
   "dur": 0.18,
   "file": "pop.wav",
   "name": "apparition"
  },
  {
-  "t": 10.884,
-  "frame": 327,
+  "t": 10.876,
+  "frame": 326,
   "dur": 0.22,
   "file": "flop.wav",
   "name": "oreiller retourné"
  },
  {
-  "t": 11.142,
-  "frame": 334,
+  "t": 11.096,
+  "frame": 333,
   "dur": 0.22,
   "file": "flop.wav",
   "name": "oreiller retourné"
  },
  {
-  "t": 11.401,
-  "frame": 342,
+  "t": 11.315,
+  "frame": 339,
   "dur": 0.22,
   "file": "flop.wav",
   "name": "oreiller retourné"
  },
  {
-  "t": 11.659,
-  "frame": 350,
+  "t": 11.535,
+  "frame": 346,
   "dur": 0.22,
   "file": "flop.wav",
   "name": "oreiller retourné"
  },
  {
-  "t": 11.918,
-  "frame": 358,
+  "t": 11.755,
+  "frame": 353,
   "dur": 0.22,
   "file": "flop.wav",
   "name": "oreiller retourné"
  },
  {
-  "t": 64.345,
-  "frame": 1930,
-  "dur": 2.255,
+  "t": 65.174,
+  "frame": 1955,
+  "dur": 3,
   "file": "drill.wav",
   "name": "perceuse du voisin"
  },
  {
-  "t": 66.6,
-  "frame": 1998,
+  "t": 68.25,
+  "frame": 2048,
   "dur": 3,
   "file": "drill_muffled.wav",
   "name": "perceuse étouffée (téléphone)"
  },
  {
-  "t": 73.8,
-  "frame": 2214,
+  "t": 74.683,
+  "frame": 2240,
   "dur": 3,
   "file": "drill_muffled.wav",
   "name": "perceuse sous la pluie"

@@ -57,7 +57,7 @@ L.pill(tl, S, "pSam", w("L16", 7) - 0.1);
 tl.fromTo(S.$("tWeek"), { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, w("L16", 5));
 
 // ---- b) « Deux. » : la semaine tombe, la tête descend, la bulle sort
-const down = w("L16", 7) + 0.75;
+const down = w("L17", 0) - 0.95; // la semaine tombe et la tête descend juste avant « Deux. »
 week.forEach(([n], i) => tl.to(S.$(n), { y: 900, rotation: i % 2 ? 20 : -20, opacity: 0, duration: 0.6, ease: "power2.in" }, down - 0.3 + i * 0.05));
 tl.to(S.$("orbit"), { opacity: 0, duration: 0.5 }, down - 0.3);
 tl.to(S.$("tWeek"), { opacity: 0, duration: 0.4 }, down - 0.3);
