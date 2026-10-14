@@ -2,7 +2,7 @@
 import { writeFileSync, readFileSync } from "node:fs";
 const font = (f) => `url(data:font/woff2;base64,${readFileSync(new URL(`../assets/fonts/${f}`, import.meta.url)).toString("base64")})`;
 
-const VERSION = "v1";
+const VERSION = "v2";
 const C = {
   night0: "#121633", night1: "#1d2350", night2: "#2a3170", fog: "#8fa3d9",
   amber: "#F5B85A", cream: "#F1EDE4", skin: "#d9b08c", skinDark: "#b48a68",
@@ -251,6 +251,43 @@ function wallCut({ rain = false, eyes = "open" } = {}) {
   return s;
 }
 
+
+// plante de pied en chaussette, vue de face (talon en bas, orteils en haut) ; dir=-1 miroir
+function sole(cx, cy, dir = 1, k = 1.7) {
+  const P = "M-34 92 Q-52 30 -56 -30 Q-62 -98 -10 -110 Q52 -120 58 -58 Q60 -20 34 8 Q20 30 34 62 Q38 112 -2 114 Q-30 114 -34 92 Z";
+  return `<g transform="translate(${cx} ${cy}) scale(${k * dir} ${k})">
+    <ellipse cx="0" cy="125" rx="60" ry="14" fill="#000" opacity=".25"/>
+    <clipPath id="cs${cx}"><path d="${P}"/></clipPath>
+    <path d="${P}" fill="${C.amber}"/>
+    <g clip-path="url(#cs${cx})"><ellipse cx="0" cy="-92" rx="70" ry="40" fill="#d9963c"/><ellipse cx="-4" cy="100" rx="46" ry="30" fill="#d9963c"/>
+    <path d="M-48 -20 Q0 -8 50 -24" stroke="#e3a447" stroke-width="5" fill="none"/></g>
+    <path d="M-30 -104 q8 -8 16 0 M-8 -110 q9 -9 18 0 M14 -108 q8 -8 16 0 M34 -96 q7 -7 14 2" stroke="#c9862f" stroke-width="3" fill="none"/>
+    <path d="${P}" fill="none" stroke="#fff" stroke-opacity=".25" stroke-width="2"/>
+  </g>`;
+}
+// coupe du lit : couette en strates, poche d'air, drap, matelas, cadre
+function cutStrata() {
+  return `<rect x="0" y="420" width="1080" height="600" fill="#2c3878"/>
+  <rect x="0" y="420" width="1080" height="70" fill="#3d4c96"/><rect x="0" y="560" width="1080" height="110" fill="#33418a" opacity=".75"/><rect x="0" y="720" width="1080" height="90" fill="#25306a" opacity=".8"/>
+  <path d="M-20 820 Q300 790 560 800 Q620 600 700 610 Q800 620 790 820 Q790 1010 700 1012 H-20 Z" fill="#151a45"/>
+  <rect x="0" y="1010" width="1080" height="150" fill="#d9d2c4"/><rect x="0" y="1050" width="1080" height="8" fill="#c3baa9"/><rect x="0" y="1110" width="1080" height="8" fill="#c3baa9"/>
+  <rect x="0" y="1160" width="1080" height="760" fill="url(#gWood)"/><rect x="0" y="1160" width="1080" height="16" fill="#6a5a80"/>`;
+}
+const LEG = "M-20 860 L560 868 C600 860 615 800 625 740 Q635 670 680 655 Q730 645 735 700 L738 900 Q740 1008 670 1008 Q620 1008 585 990 C500 1008 380 1012 260 1000 L-20 1004 Z";
+function legSide() {
+  return `<path d="${LEG}" fill="url(#gSkin)"/>
+  <path d="M-20 860 L560 868" stroke="#f0d2b4" stroke-width="6" opacity=".6"/>
+  <path d="M120 1002 Q 300 1020 520 996" stroke="#000" stroke-opacity=".12" stroke-width="10" fill="none"/>`;
+}
+function sockSide() {
+  const SOCK = "M500 864 L560 868 C600 860 615 800 625 740 Q635 670 680 655 Q730 645 735 700 L738 900 Q740 1008 670 1008 Q620 1008 585 990 C560 998 530 1002 500 1004 Z";
+  return `<clipPath id="cSock"><path d="${SOCK}"/></clipPath>
+  <path d="${SOCK}" fill="${C.amber}"/>
+  <g clip-path="url(#cSock)"><ellipse cx="700" cy="660" rx="60" ry="50" fill="#d9963c"/><ellipse cx="700" cy="990" rx="70" ry="48" fill="#d9963c"/>
+  <rect x="500" y="850" width="14" height="170" fill="#d9963c"/><rect x="526" y="850" width="14" height="170" fill="#d9963c"/></g>
+  <path d="${SOCK}" fill="none" stroke="#fff" stroke-opacity=".25" stroke-width="2"/>`;
+}
+
 // ---------- scènes ----------
 const scenes = [
   { id: "01", name: "RÉVEIL", t: "0–3 s", seam: "bascule en plongée",
@@ -273,41 +310,38 @@ const scenes = [
       <text x="500" y="250" text-anchor="middle" font-family="Fraunces" font-style="italic" font-weight="500" font-size="54" fill="${C.cream}">trois choses</text>` +
       caption("ces *trois choses.*") },
   { id: "04", name: "CHAUSSETTES", t: "13,7–16,9 s", seam: "la couette se coupe (vue en coupe)",
-    note: "<b>Le 1er point ambre devient « 1 »</b>. Les pieds sortent de la couette, les chaussettes glissent dessus. Pastille « t'as chaud » avec thermomètre.",
-    svg: () => floorTop() + bigNum("1", "Mets des chaussettes.") +
-      `<rect x="160" y="560" width="680" height="560" rx="40" fill="url(#gDuvet)"/>
-       <rect x="160" y="560" width="680" height="40" rx="20" fill="#5868b0"/>
-       <ellipse cx="500" cy="1150" rx="320" ry="40" fill="#000" opacity=".3" filter="url(#fBlurL)"/>
-       <g><rect x="330" y="980" width="120" height="190" rx="56" fill="${C.amber}"/><rect x="330" y="1010" width="120" height="22" fill="#d9963c"/><rect x="330" y="1050" width="120" height="22" fill="#d9963c"/>
-       <rect x="550" y="980" width="120" height="190" rx="56" fill="${C.amber}"/><rect x="550" y="1010" width="120" height="22" fill="#d9963c"/><rect x="550" y="1050" width="120" height="22" fill="#d9963c"/></g>` +
-      pill(300, 800, "chaussettes", 390, 990, { dot: C.amber }) +
-      pill(700, 680, "t'as chaud", 760, 760) +
-      caption("mets des *chaussettes.*") },
+    note: "<b>Caméra au pied du lit.</b> Le 1er point ambre devient « 1 ». Les deux plantes de pied dépassent de la couette ; les chaussettes glissent dessus (talon et pointe contrastés). Au fond, la tête dépasse.",
+    svg: () => bg() + floorIso(1250) + bigNum("1", "Mets des chaussettes.") +
+      `<circle cx="520" cy="640" r="70" fill="url(#gSkin)"/>
+       <circle cx="497" cy="632" r="10" fill="#fff"/><circle cx="543" cy="632" r="10" fill="#fff"/><circle cx="498" cy="634" r="4.5" fill="#1a1a2a"/><circle cx="544" cy="634" r="4.5" fill="#1a1a2a"/>
+       <path d="M120 1100 Q160 700 520 690 Q880 700 920 1100 Z" fill="url(#gDuvet)"/>
+       <path d="M150 960 Q520 860 890 960" stroke="#5868b0" stroke-width="6" fill="none" opacity=".6"/>
+       ${sole(380, 930, 1, 1.35)}${sole(660, 930, -1, 1.35)}
+       <path d="M80 1080 h880 v40 h-880z" fill="#cfc8bb"/>
+       <rect x="60" y="1110" width="920" height="170" rx="18" fill="url(#gWood)"/><rect x="60" y="1110" width="920" height="16" fill="#6a5a80"/>` +
+      pill(220, 560, "chaussettes", 340, 820, { dot: C.amber }) +
+      pill(800, 520, "t'as chaud", 585, 600) +
+      caption("mets des *chaussettes.*", 1400) },
   { id: "05", name: "PARADOXE", t: "16,9–22,6 s", seam: "continu",
-    note: "<b>La couette se coupe comme le sol chez Catcharium</b> : couches de tissu en strates, jambe en coupe. Les chaussettes se mettent à luire ambre.",
-    svg: () => bg() +
-      `<rect x="0" y="560" width="1080" height="700" fill="#2c3878"/>
-       <rect x="0" y="560" width="1080" height="80" fill="#3d4c96"/><rect x="0" y="700" width="1080" height="120" fill="#33418a" opacity=".7"/><rect x="0" y="900" width="1080" height="140" fill="#25306a" opacity=".8"/>
-       <rect x="0" y="1260" width="1080" height="200" fill="#d9d2c4"/><rect x="0" y="1300" width="1080" height="10" fill="#c3baa9"/><rect x="0" y="1380" width="1080" height="10" fill="#c3baa9"/><rect x="0" y="1460" width="1080" height="460" fill="url(#gWood)"/><rect x="0" y="1460" width="1080" height="16" fill="#6a5a80"/>
-       <path d="M-20 820 h640 q50 0 50 50 v60 q0 50 -50 50 h-640 z" fill="url(#gSkin)" opacity=".95"/>
-       <rect x="620" y="790" width="190" height="230" rx="60" fill="${C.amber}" filter="url(#fGlowA)"/>` +
-      pill(330, 470, "corps : à refroidir", 300, 880) +
-      pill(860, 1100, "pieds : chauds", 760, 1010, { dot: C.amber }) +
-      caption("à *refroidir.*", 1215) },
+    note: "<b>La couette se coupe comme le sol chez Catcharium</b> : strates de tissu, et dessous la jambe de profil, pied orteils en l'air. La chaussette se met à luire ambre.",
+    svg: () => bg() + cutStrata() +
+      `${legSide()}<g filter="url(#fGlowA)">${sockSide()}</g>` +
+      pill(260, 560, "corps : à refroidir", 220, 925) +
+      pill(840, 520, "pieds : chauds", 690, 720, { dot: C.amber }) +
+      caption("à *refroidir.*", 1330) },
   { id: "06", name: "VAISSEAUX", t: "22,6–31,7 s", seam: "la coupe se referme, caméra monte vers la tête",
-    note: "<b>Trois lignes de points (vaisseaux) s'écartent</b> sur « dilate », puis les points ambre s'échappent des pieds en arcs, comme le « thud ». La jauge descend 37,2 → 36,8.",
-    svg: () => bg() +
-      `<rect x="0" y="560" width="1080" height="700" fill="#2c3878"/><rect x="0" y="560" width="1080" height="80" fill="#3d4c96"/>${'<rect x="0" y="1260" width="1080" height="200" fill="#d9d2c4"/><rect x="0" y="1300" width="1080" height="10" fill="#c3baa9"/><rect x="0" y="1380" width="1080" height="10" fill="#c3baa9"/><rect x="0" y="1460" width="1080" height="460" fill="url(#gWood)"/><rect x="0" y="1460" width="1080" height="16" fill="#6a5a80"/>'}
-       <path d="M-20 800 h640 q50 0 50 50 v100 q0 50 -50 50 h-640 z" fill="url(#gSkin)" opacity=".95"/>
-       <rect x="620" y="790" width="190" height="230" rx="60" fill="${C.amber}" opacity=".85"/>` +
-      dots([[0, 840], [700, 840]], { color: C.amber, r: 7 }) + dots([[0, 900], [700, 900]], { color: C.amber, r: 7 }) + dots([[0, 960], [700, 960]], { color: C.amber, r: 7 }) +
-      dots(arc(715, 790, 110, 180, 360), { color: C.amber, r: 7, opacity: .9 }) + dots(arc(715, 790, 200, 190, 350), { color: C.amber, r: 7, opacity: .7 }) + dots(arc(715, 790, 290, 200, 340), { color: C.amber, r: 7, opacity: .5 }) +
-      pill(250, 1090, "petits vaisseaux", 250, 960, { dot: C.amber }) +
+    note: "<b>Trois lignes de points (vaisseaux) suivent la jambe jusqu'au pied</b> et s'écartent sur « dilate » ; puis les points ambre s'échappent du pied en arcs, comme le « thud ». La jauge descend 37,2 → 36,8.",
+    svg: () => bg() + cutStrata() + legSide() + `<g opacity=".9">${sockSide()}</g>` +
+      dots([[0, 895], [540, 900], [610, 830], [650, 720]], { color: C.amber, r: 7 }) +
+      dots([[0, 930], [560, 935], [650, 860], [690, 730]], { color: C.amber, r: 7 }) +
+      dots([[0, 965], [580, 968], [690, 930], [715, 780]], { color: C.amber, r: 7 }) +
+      dots(arc(700, 800, 130, -80, 60), { color: C.amber, r: 7, opacity: .9 }) + dots(arc(700, 800, 220, -70, 50), { color: C.amber, r: 7, opacity: .7 }) + dots(arc(700, 800, 310, -60, 40), { color: C.amber, r: 7, opacity: .5 }) +
+      pill(250, 1100, "petits vaisseaux", 250, 965, { dot: C.amber }) +
       `<g><rect x="80" y="160" width="300" height="200" rx="30" fill="#14162a" fill-opacity=".82" stroke="#fff" stroke-opacity=".14" stroke-width="2"/>
        <text x="110" y="215" font-family="Nunito" font-weight="800" font-size="28" fill="${C.cream}" fill-opacity=".8">temp. interne</text>
        <text x="110" y="300" font-family="Fraunces" font-style="italic" font-weight="700" font-size="76" fill="${C.cream}">36,8°</text>
        <text x="320" y="300" font-family="Nunito" font-weight="900" font-size="56" fill="${C.amber}">↓</text></g>` +
-      caption("La chaleur *dilate*", 1215) },
+      caption("La chaleur *dilate*", 1330) },
   { id: "07", name: "AGENDA", t: "31,7–40,3 s", seam: "continu (l'orbite se vide)",
     note: "<b>Une orbite de points blancs tourne autour de la tête</b> et accélère ; les pastilles de la semaine défilent dessus. Gag méta : « SAM · planifier dimanche ».",
     svg: () => bg() +

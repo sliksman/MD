@@ -5,7 +5,7 @@ message: "Quand rien ne marche pour t'endormir, un fond sonore doux sur Listen p
 arc: Galère → astuce 1 (corps) → astuce 2 (tête) → rechute (voisin) → astuce 3 (Listen) → question
 audience: TikTokeurs FR qui scrollent au lit, fatigués, 18–35
 mode: collaborative
-version: v1
+version: v2
 ---
 
 # Listen — « Les nuits blanches, épisode 3 »
@@ -25,6 +25,12 @@ version: v1
 - **Frame tenu** : 13 — la pluie tombe, rien d'autre ne bouge, la phrase se pose.
 - **Vérité** : interface Listen reconstruite d'après les captures App Store (écran « Concentration et sommeil »). Le titre de piste « Pluie régulière » est une hypothèse à confirmer dans l'app.
 - **Durée** : à débit naturel le script fait ~80–85 s. Pour tenir 75 s : voix à vitesse ~1.08–1.1 et silences serrés. La vraie durée de la voix fait foi.
+
+## Changes from v1
+
+- Retour : « J'aime beaucoup la DA visuelle. C'est frais. Effectivement, les jambes sont pas visibles. Peut-être donner plus de forme aux pieds pour qu'on comprenne. »
+- 04 : caméra au pied du lit, deux plantes de pied en chaussettes (talon / voûte / orteils, talon et pointe contrastés), tête au fond.
+- 05–06 : jambe de profil dans une poche d'air sous la couette coupée, pied orteils en l'air, chaussette avec revers ; vaisseaux qui suivent la jambe jusqu'au pied, arcs de chaleur qui partent du pied.
 
 ## Still open
 
@@ -73,7 +79,7 @@ L'oreiller fait 5 retournements rapides (compteur pastille 1…5), le 6ᵉ est b
 - src: compositions/04-chaussettes.html
 - voiceover: "Un. T'as chaud, alors mets des chaussettes."
 
-Le 1er point ambre devient « 1 » serif italique. Pieds nus qui dépassent ; une paire de chaussettes (laine, motif simple) se pose dessus. Pastille « chaussettes ». Humour : pastille « t'as chaud » sur le perso avec un petit thermomètre rouge.
+Caméra au pied du lit. Le 1er point ambre devient « 1 » serif italique. Les deux plantes de pied dépassent de la couette (talon, voûte, orteils lisibles) ; les chaussettes glissent dessus, talon et pointe contrastés. Au fond, la tête dépasse. Pastille « chaussettes ». Humour : pastille « t'as chaud » sur le perso avec un petit thermomètre rouge.
 
 ## Frame 5 — Le paradoxe
 
@@ -84,7 +90,7 @@ Le 1er point ambre devient « 1 » serif italique. Pieds nus qui dépassent ; un
 - src: compositions/05-paradoxe.html
 - voiceover: "Aussi bizarre que ça puisse paraître, réchauffer tes pieds peut aider ton corps à refroidir."
 
-La couette « se coupe » comme le sol chez Catcharium : on voit la jambe en coupe. Les chaussettes émettent une lueur ambre. Pastille « pieds : chauds » en bas, pastille « corps : à refroidir » en haut. Mots ambre « réchauffer » / « refroidir ».
+La couette « se coupe » comme le sol chez Catcharium : sous les strates, la jambe de profil, pied orteils en l'air. Les chaussettes émettent une lueur ambre. Pastille « pieds : chauds » en bas, pastille « corps : à refroidir » en haut. Mots ambre « réchauffer » / « refroidir ».
 
 ## Frame 6 — Vaisseaux
 
