@@ -7,36 +7,36 @@
    "id": "p1",
    "file": "p1-reveil",
    "start": 0,
-   "end": 3.042
+   "end": 2.98
   },
   {
    "id": "p2",
    "file": "p2-lit",
-   "start": 3.042,
-   "end": 14.187
+   "start": 2.98,
+   "end": 14.35
   },
   {
    "id": "p3",
    "file": "p3-pieds",
-   "start": 14.187,
-   "end": 30.906
+   "start": 14.35,
+   "end": 30.79
   },
   {
    "id": "p4",
    "file": "p4-tete",
-   "start": 30.906,
+   "start": 30.79,
    "end": 58.77
   },
   {
    "id": "p5",
    "file": "p5-voisin",
    "start": 58.77,
-   "end": 77.717
+   "end": 77.8
   },
   {
    "id": "p6",
    "file": "p6-et-toi",
-   "start": 77.717,
+   "start": 77.8,
    "end": 82.68
   }
  ],
@@ -1342,14 +1342,6 @@
  ],
  "sfx": [
   {
-   "id": "music",
-   "file": "music_bed.mp3",
-   "at": 0,
-   "dur": 82.68,
-   "vol": 0.4,
-   "note": "musique : Mindscape (Lennon Hutton, Epidemic Sound), montage 0–60,4 s + outro"
-  },
-  {
    "id": "wipe0",
    "file": "whoosh.wav",
    "at": {
@@ -1784,16 +1776,12 @@
   }
  ],
  "wipes": [
-  3.042,
-  14.187,
-  30.906,
+  2.98,
+  14.35,
+  30.79,
   58.77,
-  77.717
+  77.8
  ],
- "beat": {
-  "period": 0.5572789115646258,
-  "phase": 0.25541950113378686
- },
  "voFile": "assets/audio/vo_v2.mp3",
  "voDuration": 82.678
 }

@@ -1342,14 +1342,6 @@
  ],
  "sfx": [
   {
-   "id": "music",
-   "file": "music_bed.mp3",
-   "at": 0,
-   "dur": 80,
-   "vol": 0.4,
-   "note": "musique : Mindscape (Lennon Hutton, Epidemic Sound), montage 0–60,4 s + outro"
-  },
-  {
    "id": "wipe0",
    "file": "whoosh.wav",
    "at": {

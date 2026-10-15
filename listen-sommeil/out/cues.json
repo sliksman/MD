@@ -1,28 +1,21 @@
 [
  {
-  "t": 0,
-  "frame": 0,
-  "dur": 82.68,
-  "file": "music_bed.mp3",
-  "name": "musique : Mindscape (Lennon Hutton, Epidemic Sound), montage 0–60,4 s + outro"
- },
- {
-  "t": 2.692,
-  "frame": 81,
+  "t": 2.63,
+  "frame": 79,
   "dur": 0.7,
   "file": "whoosh.wav",
   "name": "volet de points"
  },
  {
-  "t": 13.837,
-  "frame": 415,
+  "t": 14,
+  "frame": 420,
   "dur": 0.7,
   "file": "whoosh.wav",
   "name": "volet de points"
  },
  {
-  "t": 30.556,
-  "frame": 917,
+  "t": 30.44,
+  "frame": 913,
   "dur": 0.7,
   "file": "whoosh.wav",
   "name": "volet de points"
@@ -35,8 +28,8 @@
   "name": "volet de points"
  },
  {
-  "t": 77.367,
-  "frame": 2321,
+  "t": 77.45,
+  "frame": 2324,
   "dur": 0.7,
   "file": "whoosh.wav",
   "name": "volet de points"
