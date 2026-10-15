@@ -1,289 +1,371 @@
 [
  {
+  "id": "wipe0",
   "t": 2.63,
   "frame": 79,
   "dur": 0.7,
   "file": "whoosh.wav",
-  "name": "volet de points"
+  "vol": 0.7,
+  "name": "volet jaune"
  },
  {
+  "id": "wipe1",
   "t": 14,
   "frame": 420,
   "dur": 0.7,
   "file": "whoosh.wav",
-  "name": "volet de points"
+  "vol": 0.7,
+  "name": "volet jaune"
  },
  {
+  "id": "wipe2",
   "t": 30.44,
   "frame": 913,
   "dur": 0.7,
   "file": "whoosh.wav",
-  "name": "volet de points"
+  "vol": 0.7,
+  "name": "volet jaune"
  },
  {
+  "id": "wipe3",
   "t": 58.42,
   "frame": 1753,
   "dur": 0.7,
   "file": "whoosh.wav",
-  "name": "volet de points"
+  "vol": 0.7,
+  "name": "volet jaune"
  },
  {
+  "id": "wipe4",
   "t": 77.45,
   "frame": 2324,
   "dur": 0.7,
   "file": "whoosh.wav",
-  "name": "volet de points"
+  "vol": 0.7,
+  "name": "volet jaune"
  },
  {
+  "id": "cam0",
   "t": 18.25,
   "frame": 548,
   "dur": 0.7,
   "file": "whoosh.wav",
+  "vol": 0.45,
   "name": "mouvement de caméra"
  },
  {
+  "id": "cam1",
   "t": 39.04,
   "frame": 1171,
   "dur": 0.7,
   "file": "whoosh.wav",
+  "vol": 0.45,
   "name": "mouvement de caméra"
  },
  {
+  "id": "cam2",
   "t": 52.17,
   "frame": 1565,
   "dur": 0.7,
   "file": "whoosh.wav",
+  "vol": 0.45,
   "name": "mouvement de caméra"
  },
  {
+  "id": "cam3",
   "t": 63.42,
   "frame": 1903,
   "dur": 0.7,
   "file": "whoosh.wav",
+  "vol": 0.45,
   "name": "mouvement de caméra"
  },
  {
+  "id": "cam4",
   "t": 68.25,
   "frame": 2048,
   "dur": 0.7,
   "file": "whoosh.wav",
+  "vol": 0.45,
   "name": "mouvement de caméra"
  },
  {
+  "id": "cam5",
   "t": 74.233,
   "frame": 2227,
   "dur": 0.7,
   "file": "whoosh.wav",
+  "vol": 0.45,
   "name": "mouvement de caméra"
  },
  {
+  "id": "pop0",
   "t": 1.35,
   "frame": 41,
   "dur": 0.18,
   "file": "pop.wav",
+  "vol": 0.4,
   "name": "apparition"
  },
  {
+  "id": "pop1",
   "t": 6.395,
   "frame": 192,
   "dur": 0.18,
   "file": "pop.wav",
+  "vol": 0.4,
   "name": "apparition"
  },
  {
+  "id": "pop2",
   "t": 13.222,
   "frame": 397,
   "dur": 0.18,
   "file": "pop.wav",
+  "vol": 0.4,
   "name": "apparition"
  },
  {
+  "id": "pop3",
   "t": 15.04,
   "frame": 451,
   "dur": 0.18,
   "file": "pop.wav",
+  "vol": 0.4,
   "name": "apparition"
  },
  {
+  "id": "pop4",
   "t": 17.167,
   "frame": 515,
   "dur": 0.18,
   "file": "pop.wav",
+  "vol": 0.4,
   "name": "apparition"
  },
  {
+  "id": "pop5",
   "t": 20.752,
   "frame": 623,
   "dur": 0.18,
   "file": "pop.wav",
+  "vol": 0.4,
   "name": "apparition"
  },
  {
+  "id": "pop6",
   "t": 24.01,
   "frame": 720,
   "dur": 0.18,
   "file": "pop.wav",
+  "vol": 0.4,
   "name": "apparition"
  },
  {
+  "id": "pop7",
   "t": 37.068,
   "frame": 1112,
   "dur": 0.18,
   "file": "pop.wav",
+  "vol": 0.4,
   "name": "apparition"
  },
  {
+  "id": "pop8",
   "t": 37.583,
   "frame": 1127,
   "dur": 0.18,
   "file": "pop.wav",
+  "vol": 0.4,
   "name": "apparition"
  },
  {
+  "id": "pop9",
   "t": 38.585,
   "frame": 1158,
   "dur": 0.18,
   "file": "pop.wav",
+  "vol": 0.4,
   "name": "apparition"
  },
  {
+  "id": "pop10",
   "t": 39.99,
   "frame": 1200,
   "dur": 0.18,
   "file": "pop.wav",
+  "vol": 0.4,
   "name": "apparition"
  },
  {
+  "id": "pop11",
   "t": 42.86,
   "frame": 1286,
   "dur": 0.18,
   "file": "pop.wav",
+  "vol": 0.4,
   "name": "apparition"
  },
  {
+  "id": "pop12",
   "t": 44.966,
   "frame": 1349,
   "dur": 0.18,
   "file": "pop.wav",
+  "vol": 0.4,
   "name": "apparition"
  },
  {
+  "id": "pop13",
   "t": 46.57,
   "frame": 1397,
   "dur": 0.18,
   "file": "pop.wav",
+  "vol": 0.4,
   "name": "apparition"
  },
  {
+  "id": "pop14",
   "t": 55.34,
   "frame": 1660,
   "dur": 0.18,
   "file": "pop.wav",
+  "vol": 0.4,
   "name": "apparition"
  },
  {
+  "id": "pop15",
   "t": 68.3,
   "frame": 2049,
   "dur": 0.18,
   "file": "pop.wav",
+  "vol": 0.4,
   "name": "apparition"
  },
  {
+  "id": "pop16",
   "t": 71.95,
   "frame": 2159,
   "dur": 0.18,
   "file": "pop.wav",
+  "vol": 0.4,
   "name": "apparition"
  },
  {
+  "id": "pop17",
   "t": 72.49,
   "frame": 2175,
   "dur": 0.18,
   "file": "pop.wav",
+  "vol": 0.4,
   "name": "apparition"
  },
  {
+  "id": "pop18",
   "t": 78.41,
   "frame": 2352,
   "dur": 0.18,
   "file": "pop.wav",
+  "vol": 0.4,
   "name": "apparition"
  },
  {
+  "id": "flop0",
   "t": 10.876,
   "frame": 326,
   "dur": 0.22,
   "file": "flop.wav",
+  "vol": 0.45,
   "name": "oreiller retourné"
  },
  {
+  "id": "flop1",
   "t": 11.096,
   "frame": 333,
   "dur": 0.22,
   "file": "flop.wav",
+  "vol": 0.45,
   "name": "oreiller retourné"
  },
  {
+  "id": "flop2",
   "t": 11.315,
   "frame": 339,
   "dur": 0.22,
   "file": "flop.wav",
+  "vol": 0.45,
   "name": "oreiller retourné"
  },
  {
+  "id": "flop3",
   "t": 11.535,
   "frame": 346,
   "dur": 0.22,
   "file": "flop.wav",
+  "vol": 0.45,
   "name": "oreiller retourné"
  },
  {
+  "id": "flop4",
   "t": 11.755,
   "frame": 353,
   "dur": 0.22,
   "file": "flop.wav",
+  "vol": 0.45,
   "name": "oreiller retourné"
  },
  {
+  "id": "drill",
   "t": 65.174,
   "frame": 1955,
   "dur": 3,
   "file": "drill.wav",
+  "vol": 0.3,
   "name": "perceuse du voisin"
  },
  {
+  "id": "drillB",
   "t": 68.25,
   "frame": 2048,
   "dur": 3,
   "file": "drill_muffled.wav",
+  "vol": 0.18,
   "name": "perceuse étouffée (téléphone)"
  },
  {
+  "id": "drillC",
   "t": 74.683,
   "frame": 2240,
   "dur": 3,
   "file": "drill_muffled.wav",
+  "vol": 0.25,
   "name": "perceuse sous la pluie"
  },
  {
+  "id": "hit0",
   "t": 15.06,
   "frame": 452,
   "dur": 0.22,
   "file": "flop.wav",
+  "vol": 0.9,
   "name": "impact du chiffre d'astuce"
  },
  {
+  "id": "hit1",
   "t": 40.01,
   "frame": 1200,
   "dur": 0.22,
   "file": "flop.wav",
+  "vol": 0.9,
   "name": "impact du chiffre d'astuce"
  },
  {
+  "id": "hit2",
   "t": 68.32,
   "frame": 2050,
   "dur": 0.22,
   "file": "flop.wav",
+  "vol": 0.9,
   "name": "impact du chiffre d'astuce"
  }
 ]

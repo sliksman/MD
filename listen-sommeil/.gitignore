@@ -3,3 +3,4 @@ out/*.mp4
 node_modules/
 out/work-*/
 out/.*hf-transaction*/
+out/stems/

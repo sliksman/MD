@@ -283,5 +283,5 @@ ${sfx.map((x) => `      <audio id="sfx-${x.id}" src="assets/sfx/${x.file}" data-
 `;
 writeFileSync(join(ROOT, "index.html"), index);
 mkdirSync(join(ROOT, "out"), { recursive: true });
-writeFileSync(join(ROOT, "out", "cues.json"), JSON.stringify(sfx.map((x) => ({ t: x.at, frame: Math.round(x.at * 30), dur: x.dur, file: x.file, name: x.note })), null, 1) + "\n");
+writeFileSync(join(ROOT, "out", "cues.json"), JSON.stringify(sfx.map((x) => ({ id: x.id, t: x.at, frame: Math.round(x.at * 30), dur: x.dur, file: x.file, vol: x.vol, name: x.note })), null, 1) + "\n");
 console.log(`✓ sync : ${T.scenes.length} scènes, ${T.vo.length} répliques, ${capGroups.length} sous-titres, ${T.duration}s`);
