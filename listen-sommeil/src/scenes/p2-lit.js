@@ -50,9 +50,3 @@ L.pill(tl, S, "pc6", t6);
 const tr = w("L06", 2);
 tl.fromTo(S.$("tocLab"), { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 0.3, ease: "back.out(2)" }, w("L06", 0));
 [0, 1, 2].forEach((i) => L.pop(tl, S.$("td" + i), tr + i * 0.2, { from: 0 }));
-// punch
-L.punch(tl, S, 0.5, 0.03);
-L.punch(tl, S, heure, 0.035);
-L.punch(tl, S, imp, 0.06);
-L.punch(tl, S, t6, 0.04);
-L.punch(tl, S, tr, 0.04);

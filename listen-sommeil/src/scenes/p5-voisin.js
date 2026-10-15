@@ -84,9 +84,3 @@ tl.fromTo(S.$("rainA"), { opacity: 0, y: -200 }, { opacity: 0.9, y: 200, duratio
 L.pill(tl, S, "pRain", w("L34", 0) + 0.3);
 L.lids(tl, S, w("L34", 2), 1, 0.6);
 L.shut(tl, S, w("L34", 3), true);
-// punch
-L.punch(tl, S, w("L30", 4), 0.03);
-L.punch(tl, S, re, 0.06);
-L.punch(tl, S, la, 0.045);
-L.punch(tl, S, pl, 0.03);
-L.punch(tl, S, outT + 1.1, 0.03);

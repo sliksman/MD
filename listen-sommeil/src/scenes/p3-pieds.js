@@ -86,10 +86,3 @@ L.pillOut(tl, S, "pVes", ba - 0.3);
 L.pop(tl, S.$("gauge"), ba - 0.2, { from: 0.8 });
 L.setText(tl, S.$("temp"), w("L12", 1), ["37,2°", "37,1°", "37,0°", "36,9°", "36,8°"], 2.0);
 tl.fromTo(S.$("arrow"), { y: -8 }, { y: 8, duration: 0.5, yoyo: true, repeat: 5, ease: "sine.inOut" }, w("L12", 1));
-// punch
-L.punch(tl, S, so + 0.32, 0.04);
-L.punch(tl, S, dive + 0.45, 0.05);
-L.punch(tl, S, re, 0.035);
-L.punch(tl, S, w("L10", 14), 0.035);
-L.punch(tl, S, dil, 0.04);
-L.punch(tl, S, ba, 0.035);
