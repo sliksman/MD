@@ -73,7 +73,10 @@
           L.shimmer(tl, S.$("orbit"), w("L15", 4) + 1.0, w("L16", 7) + 0.6, { per: 0.9, low: 0.3 });
           [["pLun", 2], ["pMar", 4], ["pJeu", 5]].forEach(([n, k]) => L.pill(tl, S, n, w("L16", k) - 0.15));
           L.pill(tl, S, "pSam", w("L16", 7) - 0.1);
-          tl.fromTo(S.$("tWeek"), { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.3, ease: "back.out(2)" }, w("L16", 5));
+          // titre affiché ~3 s : surtitre sur « Mais ta tête », titre sur « s'endormir »
+          tl.fromTo(S.$("tWeek"), { opacity: 0 }, { opacity: 1, duration: 0.01 }, w("L15", 2) - 0.02);
+          tl.fromTo(S.$("tWeek-over"), { opacity: 0, y: -10 }, { opacity: 0.85, y: 0, duration: 0.3, ease: "power3.out" }, w("L15", 2));
+          tl.fromTo(S.$("tWeek-l0"), { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.3, ease: "back.out(2)" }, w("L15", -1));
 
           // ---- b) « Deux. » : la semaine tombe, la tête descend, la bulle sort
           const down = w("L17", 0) - 0.95; // la semaine tombe et la tête descend juste avant « Deux. »
