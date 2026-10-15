@@ -45,8 +45,8 @@
           L.pill(tl, S, "p1h", heure - 0.1);
           // « impossible » : les yeux s'ouvrent grand
           const imp = w("L04", 1);
-          L.lids(tl, S, imp - 0.1, 0, 0.3);
-          tl.fromTo(S.$("eyes-open"), { scale: 1, transformOrigin: "50% 50%" }, { scale: 1.3, duration: 0.4, ease: "power2.out" }, imp);
+          L.lids(tl, S, imp - 0.05, 0, 0.1);
+          tl.fromTo(S.$("eyes-open"), { scale: 1, transformOrigin: "50% 50%" }, { scale: 1.35, duration: 0.18, ease: "back.out(3)" }, imp);
           L.pill(tl, S, "pEyes", imp);
           L.pillOut(tl, S, "p1h", w("L05", 0));
           L.pillOut(tl, S, "pEyes", w("L05", 0));
@@ -67,8 +67,14 @@
           L.pill(tl, S, "pc6", t6);
           // « trois choses » : le sommaire
           const tr = w("L06", 2);
-          tl.fromTo(S.$("tocLab"), { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, w("L06", 0));
+          tl.fromTo(S.$("tocLab"), { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 0.3, ease: "back.out(2)" }, w("L06", 0));
           [0, 1, 2].forEach((i) => L.pop(tl, S.$("td" + i), tr + i * 0.2, { from: 0 }));
+          // punch
+          L.punch(tl, S, 0.5, 0.03);
+          L.punch(tl, S, heure, 0.035);
+          L.punch(tl, S, imp, 0.06);
+          L.punch(tl, S, t6, 0.04);
+          L.punch(tl, S, tr, 0.04);
 
           window.__timelines[ID] = tl;
         })();

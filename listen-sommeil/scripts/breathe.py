@@ -53,11 +53,23 @@ for x in T.get("sfx", []):
     if "until" in x: x["until"] = sh(x["until"])
 newdur = float(subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", str(DST)],
                               capture_output=True, text=True).stdout)
+# coupes de plan et volets calés sur le temps musical le plus proche (≤ 0,3 s, reste dans la respiration)
+music = ROOT / "assets/music/edit.json"
+if music.exists():
+    M = json.loads(music.read_text()); per, ph = M["period"], M["phase"]
+    snap = lambda t: round(ph + round((t - ph) / per) * per, 3)
+    moved = {}
+    for i, t in enumerate(T["wipes"]):
+        s2 = snap(t)
+        if abs(s2 - t) <= 0.3: moved[t] = s2; T["wipes"][i] = s2
+    for sc in T["scenes"]:
+        sc["start"] = moved.get(sc["start"], sc["start"]); sc["end"] = moved.get(sc["end"], sc["end"])
+    T["beat"] = {"period": per, "phase": ph}
 T["voFile"] = "assets/audio/vo_v2.mp3"
 T["voDuration"] = round(newdur, 3)
 T["duration"] = round(newdur, 2)
 T["scenes"][-1]["end"] = T["duration"]
 for x in T.get("sfx", []):
-    if x["id"] == "pad": x["dur"] = T["duration"]
+    if x["id"] in ("pad", "music"): x["dur"] = T["duration"]
 (ROOT / "timeline.json").write_text(json.dumps(T, ensure_ascii=False, indent=1) + "\n")
 print(f"voix → {newdur:.2f}s ; volets {T['wipes']}")

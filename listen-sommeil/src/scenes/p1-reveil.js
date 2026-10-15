@@ -8,3 +8,5 @@ L.cam(tl, S, { scale: 1 }, { scale: 1.05 }, 0, sc.hostDur, "none");
 L.pill(tl, S, "p0700", w("L01", 5) - 0.2);
 tl.fromTo(S.$("clk"), { scale: 1, transformOrigin: "50% 50%" }, { scale: 1.2, duration: 0.3, yoyo: true, repeat: 1, ease: "sine.inOut" }, w("L01", 5));
 L.blink(tl, S, 0.7);
+// punch
+L.punch(tl, S, w("L01", 5), 0.04);

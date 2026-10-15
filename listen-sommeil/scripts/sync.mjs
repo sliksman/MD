@@ -181,7 +181,7 @@ if (errors.length) {
   process.exit(1);
 }
 
-const out = { duration: T.duration, scenes, vo, wipes: T.wipes || [], captions: { enabled: CP.enabled !== false, groups: capGroups } };
+const out = { duration: T.duration, scenes, vo, wipes: T.wipes || [], beat: T.beat || null, captions: { enabled: CP.enabled !== false, groups: capGroups } };
 writeFileSync(join(ROOT, "timeline.js"), "// GÉNÉRÉ par scripts/sync.mjs depuis timeline.json — ne pas éditer.\nwindow.LS_TIMELINE = " + JSON.stringify(out) + ";\n");
 
 // ---------- attributs audio posés par d'autres outils (carve, chaîne d'effets, automation) : conservés d'une sync à l'autre

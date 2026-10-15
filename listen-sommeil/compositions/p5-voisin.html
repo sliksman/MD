@@ -46,7 +46,7 @@
           L.shut(tl, S, w("L30", 4), true);
           tl.to(S.$("pAlmost"), { opacity: 0, duration: 0.4 }, w("L30", 6));
           // ---- recul : le mur, le voisin
-          tl.to(S.cam, { scale: 1, x: 0, y: 0, duration: 1.5, ease: "power2.inOut" }, w("L30", 7) - 0.3);
+          tl.to(S.cam, { scale: 1, x: 0, y: 0, duration: 0.9, ease: "power3.inOut" }, w("L30", 7) - 0.2);
           // « refaire toute sa cuisine »
           const re = w("L30", 12);
           const endDrill = sc.hostDur;
@@ -69,18 +69,15 @@
           tl.fromTo(S.$("phone-on"), { opacity: 0 }, { opacity: 1, duration: 0.4 }, tr - 0.3);
           tl.to(S.$("pBrr"), { opacity: 0, duration: 0.3 }, tr - 0.3);
           ["d0", "d1", "d2"].forEach((d) => tl.to(S.$(d), { opacity: 0, duration: 0.3 }, tr - 0.2));
-          tl.to(S.cam, { scale: 6, x: (540 - 572) * 6, y: (960 - 920) * 6, duration: 1.0, ease: "power2.in", immediateRender: false }, tr);
-          tl.fromTo(S.$("B"), { opacity: 0 }, { opacity: 1, duration: 0.3 }, tr + 0.7);
-          tl.fromTo(S.$("B"), { scale: 0.62, x: 40, y: 78.5, svgOrigin: "500 881.5" }, { scale: 1, x: 0, y: 0, duration: 1.0, ease: "power3.out" }, tr + 0.7);
-          tl.fromTo(S.$("n3"), { opacity: 0 }, { opacity: 1, duration: 0.01 }, tr - 0.02);
-          tl.fromTo(S.$("n3-seed"), { scale: 1, opacity: 1, transformOrigin: "50% 50%" }, { scale: 4, opacity: 0, duration: 0.5 }, tr);
-          L.pop(tl, S.$("n3-n"), tr, { from: 0.4 });
-          tl.fromTo(S.$("n3-over"), { opacity: 0, x: -20 }, { opacity: 0.85, x: 0, duration: 0.5 }, tr + 0.25);
+          tl.to(S.cam, { scale: 6, x: (540 - 572) * 6, y: (960 - 920) * 6, duration: 0.7, ease: "power3.in", immediateRender: false }, tr);
+          tl.fromTo(S.$("B"), { opacity: 0 }, { opacity: 1, duration: 0.15 }, tr + 0.55);
+          tl.fromTo(S.$("B"), { scale: 0.62, x: 40, y: 78.5, svgOrigin: "500 881.5" }, { scale: 1, x: 0, y: 0, duration: 0.6, ease: "expo.out" }, tr + 0.55);
+          L.slam(tl, S, "n3", tr);
           // « fond sonore doux » : l'écran s'allume
           const on = w("L32", 2);
-          tl.fromTo(S.$("n3-lab"), { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.5 }, on - 0.2);
+          tl.fromTo(S.$("n3-lab"), { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.3, ease: "back.out(2)" }, on - 0.2);
           tl.to(S.$("screenOff"), { opacity: 0, duration: 0.6, ease: "power1.out" }, on - 0.2);
-          tl.fromTo(S.$("ui").querySelectorAll(":scope > *"), { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.45, stagger: 0.02, ease: "power2.out" }, on);
+          tl.fromTo(S.$("ui").querySelectorAll(":scope > *"), { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.25, stagger: 0.012, ease: "back.out(2)" }, on);
           L.pill(tl, S, "pListen", w("L33", 3) - 0.2);
           // « lance » : on tape la piste pluie
           const la = w("L33", 5);
@@ -94,9 +91,9 @@
           // ---- on ressort du téléphone : la pluie recouvre la perceuse
           const outT = w("L33", -1) + 0.45;
           tl.to([S.$("n3"), S.$("pListen")], { opacity: 0, duration: 0.4 }, outT - 0.1);
-          tl.to(S.$("B"), { scale: 0.62, x: 40, y: 78.5, svgOrigin: "500 881.5", duration: 0.8, ease: "power2.in" }, outT);
-          tl.to(S.$("B"), { opacity: 0, duration: 0.3 }, outT + 0.55);
-          tl.to(S.cam, { scale: 1, x: 0, y: 0, duration: 1.1, ease: "power3.out", immediateRender: false }, outT + 0.55);
+          tl.to(S.$("B"), { scale: 0.62, x: 40, y: 78.5, svgOrigin: "500 881.5", duration: 0.5, ease: "power3.in" }, outT);
+          tl.to(S.$("B"), { opacity: 0, duration: 0.15 }, outT + 0.45);
+          tl.to(S.cam, { scale: 1, x: 0, y: 0, duration: 0.7, ease: "expo.out", immediateRender: false }, outT + 0.45);
           ["d0", "d1", "d2"].forEach((d) => tl.fromTo(S.$(d), { opacity: 0.6 }, { opacity: 0.1, duration: 1.5, immediateRender: false }, outT + 1.5));
           ["r0", "r1", "r2"].forEach((r, i) => {
             L.drawDots(tl, S.$(r), outT + 1.5 + i * 0.25, 0.6, { from: "center" });
@@ -106,6 +103,12 @@
           L.pill(tl, S, "pRain", w("L34", 0) + 0.3);
           L.lids(tl, S, w("L34", 2), 1, 0.6);
           L.shut(tl, S, w("L34", 3), true);
+          // punch
+          L.punch(tl, S, w("L30", 4), 0.03);
+          L.punch(tl, S, re, 0.06);
+          L.punch(tl, S, la, 0.045);
+          L.punch(tl, S, pl, 0.03);
+          L.punch(tl, S, outT + 1.1, 0.03);
 
           window.__timelines[ID] = tl;
         })();

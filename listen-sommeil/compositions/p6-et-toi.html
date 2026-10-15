@@ -38,9 +38,12 @@
           tl.to(S.$("pZz-b"), { y: -10, duration: 0.8, yoyo: true, repeat: 3, ease: "sine.inOut" }, 1.0);
           const et = w("L36", 0);
           tl.fromTo(S.$("title-over"), { opacity: 0 }, { opacity: 0.85, duration: 0.5 }, et - 0.3);
-          tl.fromTo(S.$("title-l0"), { opacity: 0, y: 30, scale: 0.92, transformOrigin: "50% 50%" }, { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: "power3.out" }, et - 0.1);
+          tl.fromTo(S.$("title-l0"), { opacity: 0, y: 30, scale: 0.92, transformOrigin: "50% 50%" }, { opacity: 1, y: 0, scale: 1, duration: 0.35, ease: "back.out(2.6)" }, et - 0.05);
           L.pop(tl, S.$("pComment"), w("L37", 0), { from: 0.8, ease: "power3.out" });
-          tl.fromTo(S.$("lockup"), { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, w("L37", 3) - 0.2);
+          tl.fromTo(S.$("lockup"), { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: 0.4, ease: "back.out(2)" }, w("L37", 3) - 0.15);
+          // punch
+          L.punch(tl, S, et, 0.05);
+          L.punch(tl, S, w("L37", 3), 0.035);
 
           window.__timelines[ID] = tl;
         })();

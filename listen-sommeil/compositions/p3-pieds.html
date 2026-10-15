@@ -52,10 +52,8 @@
           // ---- A : au pied du lit
           tl.fromTo(camA, { scale: 1.08, svgOrigin: "540 960" }, { scale: 1, duration: 1.4, ease: "power2.out" }, 0);
           const un = w("L07", 0);
-          tl.fromTo(S.$("n1-seed"), { scale: 1, opacity: 1, transformOrigin: "50% 50%" }, { scale: 4, opacity: 0, duration: 0.5, ease: "power2.out" }, un);
-          L.pop(tl, S.$("n1-n"), un, { from: 0.4 });
-          tl.fromTo(S.$("n1-over"), { opacity: 0, x: -20 }, { opacity: 0.85, x: 0, duration: 0.5 }, un + 0.25);
-          tl.fromTo(S.$("n1-lab"), { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.5 }, w("L09", 0));
+          L.slam(tl, S, "n1", un);
+          tl.fromTo(S.$("n1-lab"), { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.3, ease: "back.out(2)" }, w("L09", 0));
           // « T'as chaud » : goutte de sueur
           L.pill(tl, S, "pHot", w("L08", 0));
           tl.fromTo(S.$("sweat"), { opacity: 0, y: -6 }, { opacity: 1, y: 10, duration: 0.8, ease: "power1.in" }, w("L08", 1));
@@ -64,17 +62,17 @@
           // « chaussettes » : elles glissent sur les pieds
           const so = w("L09", 3) - 0.3;
           gsap.set([S.$("sockL"), S.$("sockR")], { opacity: 0 });
-          tl.fromTo(S.$("sockL"), { opacity: 0, y: -240 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, so);
-          tl.fromTo(S.$("sockR"), { opacity: 0, y: -240 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, so + 0.15);
+          tl.fromTo(S.$("sockL"), { opacity: 0, y: -240 }, { opacity: 1, y: 0, duration: 0.32, ease: "back.out(1.8)" }, so);
+          tl.fromTo(S.$("sockR"), { opacity: 0, y: -240 }, { opacity: 1, y: 0, duration: 0.32, ease: "back.out(1.8)" }, so + 0.12);
           tl.to(S.$("feet"), { opacity: 0, duration: 0.35, ease: "power1.inOut" }, so + 0.3); // les pieds nus s'effacent sous les chaussettes
           L.pill(tl, S, "pSocks", so + 0.4);
           // ---- plongée dans la chaussette droite → vue en coupe
           const dive = w("L09", "end") + 0.15; // juste après « chaussettes »
           tl.to([S.$("n1"), S.$("pSocks"), S.$("pHot")], { opacity: 0, duration: 0.35 }, dive - 0.1);
-          tl.to(camA, { scale: 5, x: (540 - 660) * 5, y: (960 - 930) * 5, svgOrigin: "540 960", duration: 0.75, ease: "power2.in" }, dive);
-          tl.to(S.$("A"), { opacity: 0, duration: 0.3 }, dive + 0.5);
-          tl.fromTo(S.$("B"), { opacity: 0 }, { opacity: 1, duration: 0.3 }, dive + 0.45);
-          tl.fromTo(camB, { scale: 3.2, x: (540 - 690) * 3.2, y: (960 - 830) * 3.2, svgOrigin: "540 960" }, { scale: 1, x: 0, y: 0, duration: 1.0, ease: "power3.out" }, dive + 0.45);
+          tl.to(camA, { scale: 5, x: (540 - 660) * 5, y: (960 - 930) * 5, svgOrigin: "540 960", duration: 0.55, ease: "power3.in" }, dive);
+          tl.to(S.$("A"), { opacity: 0, duration: 0.15 }, dive + 0.45);
+          tl.fromTo(S.$("B"), { opacity: 0 }, { opacity: 1, duration: 0.15 }, dive + 0.42);
+          tl.fromTo(camB, { scale: 3.2, x: (540 - 690) * 3.2, y: (960 - 830) * 3.2, svgOrigin: "540 960" }, { scale: 1, x: 0, y: 0, duration: 0.7, ease: "expo.out" }, dive + 0.42);
 
           // ---- B : la coupe
           const re = w("L10", 6);
@@ -82,21 +80,21 @@
           tl.to(S.$("sock-glow"), { opacity: 0.6, duration: 0.9, yoyo: true, repeat: 5, ease: "sine.inOut" }, re + 0.8);
           L.pill(tl, S, "pFeet", w("L10", 8) - 0.1);
           L.pill(tl, S, "pBody", w("L10", 12) - 0.1);
-          tl.fromTo(S.$("leg-cool"), { opacity: 0 }, { opacity: 1, duration: 1.0 }, w("L10", 14) - 0.1);
+          tl.fromTo(S.$("leg-cool"), { opacity: 0 }, { opacity: 1, duration: 0.4 }, w("L10", 14) - 0.1);
           // les vaisseaux
           const v0 = w("L11", 0);
           L.pillOut(tl, S, "pBody", v0 - 0.2);
           L.pillOut(tl, S, "pFeet", v0 - 0.2);
           tl.to(S.$("leg-cool"), { opacity: 0.3, duration: 1.0 }, v0);
-          ["v0", "v1", "v2"].forEach((v, i) => L.drawDots(tl, S.$(v), v0 - 0.1 + i * 0.15, 1.0));
+          ["v0", "v1", "v2"].forEach((v, i) => L.drawDots(tl, S.$(v), v0 - 0.1 + i * 0.08, 0.45));
           const dil = w("L11", 2);
-          tl.to(S.$("v0"), { y: -16, duration: 0.8, ease: "power2.out" }, dil);
-          tl.to(S.$("v2"), { y: 16, duration: 0.8, ease: "power2.out" }, dil);
-          tl.to([S.$("v0"), S.$("v1"), S.$("v2")].flatMap((g) => Array.from(g.querySelectorAll(".dot"))), { attr: { r: 10 }, duration: 0.8, ease: "power2.out" }, dil);
+          tl.to(S.$("v0"), { y: -16, duration: 0.35, ease: "back.out(2.5)" }, dil);
+          tl.to(S.$("v2"), { y: 16, duration: 0.35, ease: "back.out(2.5)" }, dil);
+          tl.to([S.$("v0"), S.$("v1"), S.$("v2")].flatMap((g) => Array.from(g.querySelectorAll(".dot"))), { attr: { r: 10 }, duration: 0.35, ease: "back.out(2.5)" }, dil);
           L.pill(tl, S, "pVes", w("L11", 4) - 0.1);
           // l'évacuation : arcs de chaleur, en vagues lentes
           const ev = w("L11", 8);
-          ["a0", "a1", "a2"].forEach((a, i) => L.drawDots(tl, S.$(a), ev - 0.1 + i * 0.25, 0.6, { from: "center" }));
+          ["a0", "a1", "a2"].forEach((a, i) => L.drawDots(tl, S.$(a), ev - 0.1 + i * 0.12, 0.3, { from: "center" }));
           ["a0", "a1", "a2"].forEach((a, i) => {
             const per = 1.8, reps = Math.max(0, Math.floor((sc.hostDur - ev - 1.6) / per) - 1);
             tl.fromTo(S.$(a), { scale: 0.94, opacity: 1, svgOrigin: "700 800" }, { scale: 1.1, opacity: 0.35, duration: per, ease: "sine.inOut", yoyo: true, repeat: reps }, ev + 1.0 + i * 0.3);
@@ -107,6 +105,13 @@
           L.pop(tl, S.$("gauge"), ba - 0.2, { from: 0.8 });
           L.setText(tl, S.$("temp"), w("L12", 1), ["37,2°", "37,1°", "37,0°", "36,9°", "36,8°"], 2.0);
           tl.fromTo(S.$("arrow"), { y: -8 }, { y: 8, duration: 0.5, yoyo: true, repeat: 5, ease: "sine.inOut" }, w("L12", 1));
+          // punch
+          L.punch(tl, S, so + 0.32, 0.04);
+          L.punch(tl, S, dive + 0.45, 0.05);
+          L.punch(tl, S, re, 0.035);
+          L.punch(tl, S, w("L10", 14), 0.035);
+          L.punch(tl, S, dil, 0.04);
+          L.punch(tl, S, ba, 0.035);
 
           window.__timelines[ID] = tl;
         })();

@@ -3,26 +3,26 @@
   "t": 0,
   "frame": 0,
   "dur": 82.68,
-  "file": "pad.mp3",
-  "name": "tapis musical"
+  "file": "music_bed.mp3",
+  "name": "musique : Mindscape (Lennon Hutton, Epidemic Sound), montage 0–60,4 s + outro"
  },
  {
-  "t": 2.63,
-  "frame": 79,
+  "t": 2.692,
+  "frame": 81,
   "dur": 0.7,
   "file": "whoosh.wav",
   "name": "volet de points"
  },
  {
-  "t": 14,
-  "frame": 420,
+  "t": 13.837,
+  "frame": 415,
   "dur": 0.7,
   "file": "whoosh.wav",
   "name": "volet de points"
  },
  {
-  "t": 30.44,
-  "frame": 913,
+  "t": 30.556,
+  "frame": 917,
   "dur": 0.7,
   "file": "whoosh.wav",
   "name": "volet de points"
@@ -35,8 +35,8 @@
   "name": "volet de points"
  },
  {
-  "t": 77.45,
-  "frame": 2324,
+  "t": 77.367,
+  "frame": 2321,
   "dur": 0.7,
   "file": "whoosh.wav",
   "name": "volet de points"
@@ -271,5 +271,26 @@
   "dur": 3,
   "file": "drill_muffled.wav",
   "name": "perceuse sous la pluie"
+ },
+ {
+  "t": 15.06,
+  "frame": 452,
+  "dur": 0.22,
+  "file": "flop.wav",
+  "name": "impact du chiffre d'astuce"
+ },
+ {
+  "t": 40.01,
+  "frame": 1200,
+  "dur": 0.22,
+  "file": "flop.wav",
+  "name": "impact du chiffre d'astuce"
+ },
+ {
+  "t": 68.32,
+  "frame": 2050,
+  "dur": 0.22,
+  "file": "flop.wav",
+  "name": "impact du chiffre d'astuce"
  }
 ]

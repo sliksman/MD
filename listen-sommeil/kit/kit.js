@@ -106,6 +106,7 @@
     };
     A.bigNum = (name, n, label, x = 150, y = 330) => `<g id="${P}${name}">
       <circle id="${P}${name}-seed" cx="${x + 65}" cy="${y - 90}" r="22" fill="${C.amber}" filter="${u("fGlowS")}"/>
+      <circle id="${P}${name}-ring" cx="${x + 65}" cy="${y - 90}" r="60" fill="none" stroke="${C.amber}" stroke-width="10" opacity="0"/>
       <text id="${P}${name}-n" x="${x}" y="${y}" font-family="Fraunces" font-style="italic" font-weight="700" font-size="230" fill="${C.amber}" filter="${u("fShadow")}">${n}</text>
       <text id="${P}${name}-over" x="${x + 150}" y="${y - 120}" font-family="Nunito" font-weight="800" font-size="27" letter-spacing="8" fill="${C.cream}" fill-opacity=".85">ASTUCE ${n}</text>
       <text id="${P}${name}-lab" x="${x + 150}" y="${y - 50}" font-family="Fraunces" font-style="italic" font-weight="500" font-size="62" fill="${C.cream}">${esc(label)}</text></g>`;
@@ -362,17 +363,17 @@
   const pop = (tl, el, t, o = {}) => {
     if (!el) return;
     tl.fromTo(el, { scale: o.from ?? 0.4, opacity: 0, transformOrigin: o.origin || "50% 50%" },
-      { scale: 1, opacity: 1, duration: o.d || 0.6, ease: o.ease || "back.out(1.4)" }, t);
+      { scale: 1, opacity: 1, duration: o.d || 0.32, ease: o.ease || "back.out(2.4)" }, t);
   };
   const hide = (tl, el, t, d = 0.25) => el && tl.to(el, { opacity: 0, scale: 0.85, duration: d, ease: "power2.in", transformOrigin: "50% 50%" }, t);
   // pastille : point d'ancrage → trait → bulle
   function pill(tl, S, name, t) {
     const dot = S.$(name + "-dot"), ln = S.$(name + "-ln"), b = S.$(name + "-b");
-    if (dot) tl.fromTo(dot, { scale: 0, transformOrigin: "50% 50%" }, { scale: 1, duration: 0.35, ease: "back.out(2)" }, t);
-    if (ln) tl.fromTo(ln, { opacity: 0 }, { opacity: 1, duration: 0.3 }, t + 0.1);
-    pop(tl, b, t + 0.18, { from: 0.75, d: 0.55, ease: "power3.out" });
+    if (dot) tl.fromTo(dot, { scale: 0, transformOrigin: "50% 50%" }, { scale: 1, duration: 0.22, ease: "back.out(3.5)" }, t);
+    if (ln) tl.fromTo(ln, { opacity: 0 }, { opacity: 1, duration: 0.1 }, t + 0.06);
+    pop(tl, b, t + 0.1, { from: 0.45, d: 0.3, ease: "back.out(2.6)" });
   }
-  function pillOut(tl, S, name, t) { const g = S.$(name); if (g) tl.to(g, { opacity: 0, duration: 0.45 }, t); }
+  function pillOut(tl, S, name, t) { const g = S.$(name); if (g) tl.to(g, { opacity: 0, scale: 0.9, transformOrigin: "50% 50%", duration: 0.2, ease: "power2.in" }, t); }
   // apparition point par point d'un groupe de .dot
   function drawDots(tl, g, t, d = 0.6, o = {}) {
     if (!g) return;
@@ -405,10 +406,24 @@
   function cam(tl, S, from, to, t, d, ease = "power2.inOut") {
     tl.fromTo(S.cam, Object.assign({ svgOrigin: "540 960" }, from), Object.assign({ svgOrigin: "540 960", duration: d, ease }, to), t);
   }
+  // chiffre d'astuce qui claque : graine → chiffre surdimensionné qui retombe + onde de choc + secousse
+  function slam(tl, S, name, t) {
+    const g = S.$(name);
+    if (g) tl.fromTo(g, { opacity: 0 }, { opacity: 1, duration: 0.01 }, t - 0.02);
+    tl.fromTo(S.$(name + "-seed"), { scale: 1, opacity: 1, transformOrigin: "50% 50%" }, { scale: 0, opacity: 0, duration: 0.12, ease: "power2.in" }, t - 0.12);
+    tl.fromTo(S.$(name + "-n"), { scale: 2.4, opacity: 0, rotation: -14, transformOrigin: "40% 60%" }, { scale: 1, opacity: 1, rotation: 0, duration: 0.3, ease: "back.out(2.2)" }, t);
+    tl.fromTo(S.$(name + "-ring"), { scale: 0.3, opacity: 1, transformOrigin: "50% 50%" }, { scale: 3.2, opacity: 0, duration: 0.5, ease: "power2.out" }, t + 0.12);
+    tl.fromTo(S.$(name + "-over"), { opacity: 0, x: -30 }, { opacity: 0.85, x: 0, duration: 0.25, ease: "power3.out" }, t + 0.15);
+    punch(tl, S, t + 0.1, 0.05);
+  }
+  // petit coup de caméra (sur le calque d'inclinaison, indépendant des mouvements de caméra)
+  function punch(tl, S, t, amt = 0.035) {
+    tl.fromTo(S.tilt, { scale: 1 }, { scale: 1 + amt, duration: 0.08, ease: "power2.out", yoyo: true, repeat: 1, immediateRender: false }, t);
+  }
   function setText(tl, el, t, values, d) {
     const o = { v: 0 };
     tl.fromTo(o, { v: 0 }, { v: values.length - 1, duration: d, ease: "power1.inOut", onUpdate: () => { el.textContent = values[Math.round(o.v)]; } }, t);
   }
 
-  window.LS = { C, w, scene, art, stage, pop, hide, pill, pillOut, drawDots, shimmer, blink, lids, initLids, shut, fadeIn, cam, setText, esc };
+  window.LS = { C, w, scene, art, stage, pop, slam, punch, hide, pill, pillOut, drawDots, shimmer, blink, lids, initLids, shut, fadeIn, cam, setText, esc };
 })();

@@ -7,36 +7,36 @@
    "id": "p1",
    "file": "p1-reveil",
    "start": 0,
-   "end": 2.98
+   "end": 3.042
   },
   {
    "id": "p2",
    "file": "p2-lit",
-   "start": 2.98,
-   "end": 14.35
+   "start": 3.042,
+   "end": 14.187
   },
   {
    "id": "p3",
    "file": "p3-pieds",
-   "start": 14.35,
-   "end": 30.79
+   "start": 14.187,
+   "end": 30.906
   },
   {
    "id": "p4",
    "file": "p4-tete",
-   "start": 30.79,
+   "start": 30.906,
    "end": 58.77
   },
   {
    "id": "p5",
    "file": "p5-voisin",
    "start": 58.77,
-   "end": 77.8
+   "end": 77.717
   },
   {
    "id": "p6",
    "file": "p6-et-toi",
-   "start": 77.8,
+   "start": 77.717,
    "end": 82.68
   }
  ],
@@ -1342,12 +1342,12 @@
  ],
  "sfx": [
   {
-   "id": "pad",
-   "file": "pad.mp3",
+   "id": "music",
+   "file": "music_bed.mp3",
    "at": 0,
    "dur": 82.68,
-   "vol": 0.3,
-   "note": "tapis musical"
+   "vol": 0.4,
+   "note": "musique : Mindscape (Lennon Hutton, Epidemic Sound), montage 0–60,4 s + outro"
   },
   {
    "id": "wipe0",
@@ -1473,7 +1473,7 @@
     "word": 5,
     "+": -0.1
    },
-   "vol": 0.3,
+   "vol": 0.4,
    "note": "apparition"
   },
   {
@@ -1483,7 +1483,7 @@
     "vo": "L03",
     "word": 3
    },
-   "vol": 0.3,
+   "vol": 0.4,
    "note": "apparition"
   },
   {
@@ -1493,7 +1493,7 @@
     "vo": "L06",
     "word": 2
    },
-   "vol": 0.3,
+   "vol": 0.4,
    "note": "apparition"
   },
   {
@@ -1503,7 +1503,7 @@
     "vo": "L07",
     "word": 0
    },
-   "vol": 0.3,
+   "vol": 0.4,
    "note": "apparition"
   },
   {
@@ -1513,7 +1513,7 @@
     "vo": "L09",
     "word": 3
    },
-   "vol": 0.3,
+   "vol": 0.4,
    "note": "apparition"
   },
   {
@@ -1523,7 +1523,7 @@
     "vo": "L10",
     "word": 8
    },
-   "vol": 0.3,
+   "vol": 0.4,
    "note": "apparition"
   },
   {
@@ -1533,7 +1533,7 @@
     "vo": "L11",
     "word": 4
    },
-   "vol": 0.3,
+   "vol": 0.4,
    "note": "apparition"
   },
   {
@@ -1543,7 +1543,7 @@
     "vo": "L16",
     "word": 2
    },
-   "vol": 0.3,
+   "vol": 0.4,
    "note": "apparition"
   },
   {
@@ -1553,7 +1553,7 @@
     "vo": "L16",
     "word": 4
    },
-   "vol": 0.3,
+   "vol": 0.4,
    "note": "apparition"
   },
   {
@@ -1563,7 +1563,7 @@
     "vo": "L16",
     "word": 7
    },
-   "vol": 0.3,
+   "vol": 0.4,
    "note": "apparition"
   },
   {
@@ -1573,7 +1573,7 @@
     "vo": "L17",
     "word": 0
    },
-   "vol": 0.3,
+   "vol": 0.4,
    "note": "apparition"
   },
   {
@@ -1583,7 +1583,7 @@
     "vo": "L19",
     "word": 2
    },
-   "vol": 0.3,
+   "vol": 0.4,
    "note": "apparition"
   },
   {
@@ -1593,7 +1593,7 @@
     "vo": "L21",
     "word": 2
    },
-   "vol": 0.3,
+   "vol": 0.4,
    "note": "apparition"
   },
   {
@@ -1603,7 +1603,7 @@
     "vo": "L22",
     "word": 2
    },
-   "vol": 0.3,
+   "vol": 0.4,
    "note": "apparition"
   },
   {
@@ -1613,7 +1613,7 @@
     "vo": "L28",
     "word": 3
    },
-   "vol": 0.3,
+   "vol": 0.4,
    "note": "apparition"
   },
   {
@@ -1623,7 +1623,7 @@
     "vo": "L31",
     "word": 0
    },
-   "vol": 0.3,
+   "vol": 0.4,
    "note": "apparition"
   },
   {
@@ -1633,7 +1633,7 @@
     "vo": "L33",
     "word": 3
    },
-   "vol": 0.3,
+   "vol": 0.4,
    "note": "apparition"
   },
   {
@@ -1643,7 +1643,7 @@
     "vo": "L33",
     "word": 5
    },
-   "vol": 0.3,
+   "vol": 0.4,
    "note": "apparition"
   },
   {
@@ -1653,7 +1653,7 @@
     "vo": "L36",
     "word": 0
    },
-   "vol": 0.3,
+   "vol": 0.4,
    "note": "apparition"
   },
   {
@@ -1748,15 +1748,52 @@
    },
    "vol": 0.25,
    "note": "perceuse sous la pluie"
+  },
+  {
+   "id": "hit0",
+   "file": "flop.wav",
+   "at": {
+    "vo": "L07",
+    "word": 0,
+    "+": 0.02
+   },
+   "vol": 0.9,
+   "note": "impact du chiffre d'astuce"
+  },
+  {
+   "id": "hit1",
+   "file": "flop.wav",
+   "at": {
+    "vo": "L17",
+    "word": 0,
+    "+": 0.02
+   },
+   "vol": 0.9,
+   "note": "impact du chiffre d'astuce"
+  },
+  {
+   "id": "hit2",
+   "file": "flop.wav",
+   "at": {
+    "vo": "L31",
+    "word": 0,
+    "+": 0.02
+   },
+   "vol": 0.9,
+   "note": "impact du chiffre d'astuce"
   }
  ],
  "wipes": [
-  2.98,
-  14.35,
-  30.79,
+  3.042,
+  14.187,
+  30.906,
   58.77,
-  77.8
+  77.717
  ],
+ "beat": {
+  "period": 0.5572789115646258,
+  "phase": 0.25541950113378686
+ },
  "voFile": "assets/audio/vo_v2.mp3",
  "voDuration": 82.678
 }
