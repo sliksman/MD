@@ -60,32 +60,33 @@ tl.fromTo(S.$("sIns"), { opacity: 1, scaleX: 0, svgOrigin: "175 470" }, { scaleX
 L.pill(tl, S, "pEnv", w("L03", 7));
 ["pIns", "sIns", "pEnv"].forEach((n) => tl.to(S.$(n), { opacity: 0, duration: 0.25 }, w("L04", 0) - 0.15));
 
-// trois allers-retours du téléphone : il glisse de la main au sol, patiente, puis revient (fondus enchaînés, pas de coupe sèche)
+// trois allers-retours du téléphone : il glisse de la main au sol, patiente, puis revient.
+// Un seul téléphone est visible à la fois : celui de la main s'efface à l'instant où celui qui voyage prend sa place
+// (même position, même taille), et inversement à l'arrivée. Les bras restent en place.
 const t0 = w("L04", 1), P = 1.12;
-const hold = [S.$("phoneHeld"), S.$("feedWrap")];
+const hold = [S.$("phoneBody"), S.$("feedWrap")];
 const DX = -340, DY = -212; // de la main (540,878) vers le sol (880,1090)
 for (let k = 0; k < 3; k++) {
   const td = t0 + k * P, ir = k === 0;
-  // départ : la main lâche, le téléphone glisse vers le sol (trajet courbe : x freine, y accélère)
-  tl.to(hold, { opacity: 0, duration: 0.22, ease: "power1.inOut", immediateRender: false }, td);
+  tl.set(hold, { opacity: 0 }, td);
+  tl.set(S.$("pf"), { opacity: 1 }, td);
   tl.to(S.$("halo"), { opacity: 0.12, duration: 0.35, ease: "sine.inOut", immediateRender: false }, td);
-  tl.fromTo(S.$("pf"), { opacity: 0 }, { opacity: 1, duration: 0.12, immediateRender: ir }, td);
-  tl.fromTo(S.$("pf"), { x: DX, rotation: -14, transformOrigin: "50% 50%" }, { x: 0, rotation: 0, duration: 0.46, ease: "sine.out", immediateRender: ir }, td);
+  tl.fromTo(S.$("pf"), { x: DX, rotation: -17, scale: 1.1, transformOrigin: "50% 50%" }, { x: 0, rotation: 0, scale: 1, duration: 0.46, ease: "sine.out", immediateRender: ir }, td);
   tl.fromTo(S.$("pf"), { y: DY }, { y: 0, duration: 0.46, ease: "sine.in", immediateRender: ir }, td);
   tl.fromTo(S.$("pfh"), { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "sine.inOut", immediateRender: ir }, td + 0.25);
   L.pill(tl, S, "pc" + (k + 1), td + 0.42);
   // retour : même trajet à l'envers, la traînée de points suit
-  const tr = td + 0.62;
+  const tr = td + 0.62, ta = tr + 0.46;
   tl.to(S.$("pfh"), { opacity: 0, duration: 0.3, ease: "sine.inOut" }, tr);
   tl.to(S.$("pc" + (k + 1)), { opacity: 0, duration: 0.18 }, tr);
   tl.fromTo(S.$("ret" + k), { opacity: 0 }, { opacity: 1, duration: 0.05 }, tr + 0.05);
   L.drawDots(tl, S.$("ret" + k), tr + 0.05, 0.4, { ir: false });
-  tl.to(S.$("pf"), { x: DX, rotation: -14, duration: 0.46, ease: "sine.in", immediateRender: false }, tr);
+  tl.to(S.$("pf"), { x: DX, rotation: -17, scale: 1.1, duration: 0.46, ease: "sine.in", immediateRender: false }, tr);
   tl.to(S.$("pf"), { y: DY, duration: 0.46, ease: "sine.out", immediateRender: false }, tr);
-  tl.to(hold, { opacity: 1, duration: 0.2, ease: "power1.inOut", immediateRender: false }, tr + 0.3);
-  tl.to(S.$("halo"), { opacity: 1, duration: 0.3, ease: "sine.inOut", immediateRender: false }, tr + 0.3);
-  tl.to(S.$("pf"), { opacity: 0, duration: 0.14 }, tr + 0.4);
-  tl.to(S.$("ret" + k), { opacity: 0, duration: 0.25 }, tr + 0.5);
+  tl.to(S.$("halo"), { opacity: 1, duration: 0.3, ease: "sine.inOut", immediateRender: false }, tr + 0.2);
+  tl.set(hold, { opacity: 1 }, ta);
+  tl.set(S.$("pf"), { opacity: 0 }, ta);
+  tl.to(S.$("ret" + k), { opacity: 0, duration: 0.25 }, ta);
 }
 
 // « C'est pas de la fatigue, ça. » : « fatigue » apparaît puis est barré

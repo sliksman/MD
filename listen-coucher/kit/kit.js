@@ -369,10 +369,10 @@
       <!-- tête -->
       <g id="${P}head"><circle cx="${x}" cy="${y - 250}" r="78" fill="${u("gSkin")}"/>${A.eyes("eyes", x - 28, x + 28, y - 232, 13)}</g>
       ${o.held === false ? "" : `<!-- bras + téléphone -->
-      <g id="${P}phoneHeld"><rect x="${x - 112}" y="${y - 190}" width="46" height="150" rx="23" fill="#3a49a0" transform="rotate(-22 ${x - 89} ${y - 115})"/>
-      <rect x="${x + 66}" y="${y - 190}" width="46" height="150" rx="23" fill="#3a49a0" transform="rotate(22 ${x + 89} ${y - 115})"/>
+      <g id="${P}phoneHeld"><g id="${P}arms"><rect x="${x - 112}" y="${y - 190}" width="46" height="150" rx="23" fill="#3a49a0" transform="rotate(-22 ${x - 89} ${y - 115})"/>
+      <rect x="${x + 66}" y="${y - 190}" width="46" height="150" rx="23" fill="#3a49a0" transform="rotate(22 ${x + 89} ${y - 115})"/></g><g id="${P}phoneBody">
       <rect x="${x - 55}" y="${y - 175}" width="110" height="170" rx="18" fill="#0b0d1a" transform="rotate(-3 ${x} ${y - 90})"/>
-      <rect id="${P}screen" x="${x - 47}" y="${y - 167}" width="94" height="154" rx="13" fill="#dcebff" transform="rotate(-3 ${x} ${y - 90})"/></g>
+      <rect id="${P}screen" x="${x - 47}" y="${y - 167}" width="94" height="154" rx="13" fill="#dcebff" transform="rotate(-3 ${x} ${y - 90})"/></g></g>
       <ellipse id="${P}halo" cx="${x}" cy="${y - 150}" rx="${o.halo || 430}" ry="${(o.halo || 430) * 0.95}" fill="${u("gHalo")}" opacity="${pw}"/>`}
       </g>`;
     };
