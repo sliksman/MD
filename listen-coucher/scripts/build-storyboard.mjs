@@ -28,7 +28,7 @@ const BED = (A, o = {}) => `<g transform="translate(-170 -170) scale(1.32)">${A.
 function render(id, world, hud, fx = {}) {
   const root = { innerHTML: "", querySelector: () => null, querySelectorAll: () => [] };
   L.stage(root, id, world, hud);
-  let svg = root.innerHTML.replace(/<rect id="[^"]*-lid[LR]"[^>]*\/>/g, "").replace(/<rect id="[^"]*-screenOff"[^>]*\/>/g, "");
+  let svg = root.innerHTML.replace(/<rect id="[^"]*-lid[LR]"[^>]*\/>/g, "").replace(/<rect id="[^"]*-screenOff"[^>]*\/>/g, "").replace(/<circle id="[^"]*-(seed|ring)"[^>]*\/>/g, "");
   if (fx.closed) svg = svg.replace(new RegExp(`<g id="${id}-eyes-open"`, "g"), `<g id="${id}-eyes-open" opacity="0"`).replace(new RegExp(`<g id="${id}-eyes-shut" opacity="0"`, "g"), `<g id="${id}-eyes-shut" opacity="1"`);
   return svg;
 }
