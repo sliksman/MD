@@ -60,9 +60,9 @@ const F = [
     seam: "volet jaune (couché → alarme)",
     build: (A, id) => ({ world: A.floorTop() + `<g opacity=".5">${COUCH(A, { halo: 420 })}</g>` +
       `<rect x="150" y="560" width="780" height="270" rx="48" fill="#0c0f2a" stroke="#fff" stroke-opacity=".14" stroke-width="3"/>` +
-      `<text x="270" y="740" text-anchor="middle" font-family="Nunito" font-weight="900" font-size="170" fill="${C.amber}">0</text><text x="270" y="618" text-anchor="middle" font-family="Nunito" font-weight="800" font-size="30" letter-spacing="7" fill="${C.cream}" fill-opacity=".8">TOI</text>` +
-      `<text x="540" y="725" text-anchor="middle" font-family="Fraunces" font-style="italic" font-weight="700" font-size="100" fill="${C.cream}" fill-opacity=".6">–</text>` +
-      `<text x="810" y="740" text-anchor="middle" font-family="Nunito" font-weight="900" font-size="170" fill="${COLD}">7</text><text x="810" y="618" text-anchor="middle" font-family="Nunito" font-weight="800" font-size="30" letter-spacing="7" fill="${C.cream}" fill-opacity=".8">ÉCRAN</text>`,
+      `<text x="270" y="598" text-anchor="middle" font-family="Nunito" font-weight="800" font-size="30" letter-spacing="7" fill="${C.cream}" fill-opacity=".8">TOI</text><text x="270" y="790" text-anchor="middle" font-family="Nunito" font-weight="900" font-size="170" fill="${C.amber}">0</text>` +
+      `<text x="540" y="745" text-anchor="middle" font-family="Fraunces" font-style="italic" font-weight="700" font-size="100" fill="${C.cream}" fill-opacity=".6">–</text>` +
+      `<text x="810" y="598" text-anchor="middle" font-family="Nunito" font-weight="800" font-size="30" letter-spacing="7" fill="${C.cream}" fill-opacity=".8">ÉCRAN</text><text x="810" y="790" text-anchor="middle" font-family="Nunito" font-weight="900" font-size="170" fill="${COLD}">7</text>`,
       hud: A.title("title", "TOUS LES SOIRS", ["Une *négociation*."], 330, { size: 96 }) + dots3(0, true) + cap(id, "tu la *perds* tous les soirs.") }) },
   { id: "f05", name: "UN · PAS D'HEURE DE COUCHER", plan: 2, words: 15, tag: "Astuce 1 · le contre-pied", voice: "Un. Arrête de décider de ton heure de coucher. Personne tient une heure de coucher.",
     note: "<b>Le « 1 » claque</b> (impact + onde de choc). Le canapé reste dans le cadre, <b>réduit à gauche</b> : à droite, une table de chevet vue de dessus avec un vrai réveil. Son affichage défile 22:30 → 23:00 → 23:30 ; chaque heure de coucher est barrée d'un trait ambre. Un point ambre s'allume en haut à droite.",
@@ -89,7 +89,7 @@ const F = [
     build: (A, id) => { const [kx, ky] = A.hourPt(540, 950, 270, 0.57), [sx, sy] = A.hourPt(540, 950, 270, 7);
       return { world: A.bg() + A.dayMap("dm", 540, 950, 270) + A.personTop("pp", 540, 950, 0.92) +
         `<circle cx="${kx}" cy="${ky}" r="24" fill="${C.amber}" filter="url(#${id}-fGlowS)"/>` + A.pill("pZero", 240, 640, "00:34 · à toi : 0 min", kx, ky, { dot: C.amber, size: 36 }) + A.pill("p7h", 790, 1185, "07:00", sx, sy, { size: 36 }) + A.pill("pSomm", 880, 700, "sommeil", ...A.hourPt(540, 950, 270, 3.8), { size: 34 }),
-        hud: A.title("title", "DEPUIS 7 H CE MATIN", ["Pas *dix minutes*", "à toi."], 270, { size: 86 }) + dots3(1) + cap(id, "dix *minutes* à toi.") }; } },
+        hud: A.title("title", "DEPUIS 7 H CE MATIN", ["Pas *dix minutes*", "à toi."], 270, { size: 76 }) + dots3(1) + cap(id, "dix *minutes* à toi.") }; } },
   { id: "f09", name: "DEUX · VINGT MINUTES, AVANT", plan: 3, words: 27, tag: "Astuce 2 · quelques pages, un carnet, un disque", voice: "Deux. Alors prends-les avant. Vingt minutes, sans écran, décidées. Quelques pages, un carnet, un disque en entier. Ce que tu veux, du moment que ça se termine.",
     note: "<b>Vingt minutes sont découpées dans la soirée, en ambre</b> (à 22:10, bien avant l'heure de fin). Le téléphone est face contre table, au bord de la carte. Le mannequin est toujours au centre. <b>Livre, carnet, disque</b> arrivent un par un sous la carte, au moment où ta voix les dit (« quelques pages… un carnet… un disque en entier »).",
     seam: "continu",
@@ -123,13 +123,13 @@ const F = [
   { id: "f14", name: "ET LAISSE TOURNER", plan: 5, words: 8, breath: 0.9, tag: "Résolution · la chambre se remplit", voice: "Prends une terrasse de café, et laisse tourner.",
     note: "<b>Le téléphone est face contre table, écran éteint</b> (cohérent avec « sans écran », et avec le mode « Fermez les yeux » de l'app). Des arcs de points chauds, ambre doux, remplissent la chambre à la place de la ligne plate.",
     seam: "volet jaune (silence comblé → question)",
-    build: (A, id) => ({ world: A.floorTop() + `<ellipse cx="300" cy="900" rx="700" ry="520" fill="url(#${id}-gWarm)" opacity=".7"/>` + BED(A, { clock: ["23:49"] }) + A.warmDots("w", 140, 815, 4) + A.pill("pCafe", 810, 560, "terrasse de café", 560, 760, { dot: "#ffd28a", size: 36 }),
+    build: (A, id) => ({ world: A.floorTop() + `<ellipse cx="300" cy="900" rx="700" ry="520" fill="url(#${id}-gWarm)" opacity=".7"/>` + BED(A, { clock: ["23:49"] }) + A.warmDots("w", 540, 815, 3, 235, 80) + A.pill("pCafe", 800, 400, "terrasse de café", 570, 770, { dot: "#ffd28a", size: 36 }),
       hud: dots3(3) + cap(id, "et laisse *tourner.*"), closed: true }) },
   { id: "f15", name: "ET TOI ?", plan: 6, words: 10, tag: "Question = commentaire", voice: "Et toi ? C'est quoi ton heure de fin ?",
     note: "<b>Retour au cadre d'ouverture, dans l'autre sens</b> : le canapé du début devient le lit occupé. La question porte sur « l'heure de fin », notion propre à cet épisode, donc plus facile à commenter que « tes astuces ». Signature Listen en bas.",
     seam: "fin (cadre qui boucle vers le début)",
     build: (A, id) => ({ world: A.floorTop() + BED(A, { clock: ["23:50"] }) + A.pill("pCom", 540, 410, "dis-le en commentaire ↓", undefined, undefined, { size: 34 }),
-      hud: A.title("title", "LES NUITS BLANCHES · ÉPISODE 1", ["Et *toi* ?"], 300) + dots3(3) + cap(id, "C'est quoi ton *heure de fin* ?", 1240) +
+      hud: A.title("title", "ÉPISODE 1", ["Et *toi* ?"], 350) + dots3(3) + cap(id, "C'est quoi ton *heure de fin* ?", 1240) +
         `<g><rect x="140" y="1330" width="720" height="150" rx="40" fill="#0b0d1a" fill-opacity=".88" stroke="#fff" stroke-opacity=".12" stroke-width="2"/>${A.listenIcon(170, 1350, 110)}<text x="310" y="1405" font-family="Poppins" font-weight="700" font-size="44" fill="#fff">Listen</text><text x="310" y="1450" font-family="Poppins" font-weight="400" font-size="27" fill="#b8bdd6">Sounds of the World · App Store</text></g>`, closed: true }) },
 ];
 

@@ -430,7 +430,7 @@
       <circle cx="0" cy="0" r="108" fill="#15122a"/>${[30, 50, 70, 90].map((r) => `<circle r="${r}" fill="none" stroke="#fff" stroke-opacity=".12" stroke-width="3"/>`).join("")}
       <circle r="34" fill="${C.amber}"/><circle r="6" fill="#15122a"/><path d="M-70 -70 q70 -50 140 0" stroke="#fff" stroke-opacity=".18" stroke-width="8" fill="none" stroke-linecap="round"/></g></g>`;
     // téléphone posé face contre table (écran éteint) avec petit rayonnement chaud (son de café)
-    A.warmDots = (name, cx, cy, n = 3) => { let s = ""; for (let i = 0; i < n; i++) s += A.dots(`${name}${i}`, A.arc(cx, cy, 150 + i * 120, -52 + i * 3, 52 - i * 3), { step: 26, r: 8, color: "#ffd28a", glow: "fGlowA" }); return s; };
+    A.warmDots = (name, cx, cy, n = 3, r0 = 150, dr = 120) => { let s = ""; for (let i = 0; i < n; i++) s += A.dots(`${name}${i}`, A.arc(cx, cy, r0 + i * dr, -52 + i * 3, 52 - i * 3), { step: 26, r: 8, color: "#ffd28a", glow: "fGlowA" }); return s; };
 
     // table de chevet vue de dessus
     A.sideTable = (name, cx, cy, w = 380, h = 520) => `<g id="${P}${name}">
