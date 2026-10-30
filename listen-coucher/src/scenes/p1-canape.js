@@ -8,9 +8,8 @@ const dots3 = (n) => `<g id="${A.id("pdots")}" opacity="0">${[0, 1, 2].map((i) =
 const world = A.floorTop() + A.rug(540, 975, 780, 980) +
   `<g transform="translate(54 150) scale(0.9)">${A.couchTop({ halo: 480 })}</g>` +
   A.bigClock("clk", 400, 500, ["00:34", "00:35", "00:41"], { size: 92, w: 280, h: 118 }) +
-  A.dots("path", [[470, 1190], [330, 1260], [190, 1300], [60, 1330]], { opacity: 0.55, gapEvery: 4 }) +
   A.pill("pIns", 250, 470, "insomnie", 470, 760) + strikeEl("sIns", 175, 325, 470) +
-  A.pill("pEnv", 760, 560, "pas envie d'y aller", 610, 830, { dot: AM }) + A.pill("pLit", 170, 1215, "le lit", 60, 1330, { size: 34 }) +
+  A.pill("pEnv", 760, 560, "pas envie d'y aller", 610, 830, { dot: AM }) +
   `<g id="${A.id("pf")}" opacity="0"><ellipse cx="880" cy="1090" rx="300" ry="300" fill="url(#${A.id("gHalo")})" opacity=".8"/><g transform="rotate(14 880 1090)"><rect x="835" y="1015" width="90" height="150" rx="16" fill="#0b0d1a"/><rect x="843" y="1023" width="74" height="134" rx="11" fill="#dcebff"/></g></g>` +
   [60, 130, 200].map((b, i) => A.dots("ret" + i, curve([850, 1050], [650, 880], b + 20), { step: 28, r: 7, color: COLD, opacity: 0.9 - i * 0.22 })).join("") +
   A.pill("pX3", 800, 840, "× 3", 880, 1040, { size: 44, w: 150 }) +
@@ -20,7 +19,7 @@ const world = A.floorTop() + A.rug(540, 975, 780, 980) +
   <text x="810" y="598" text-anchor="middle" font-family="Nunito" font-weight="800" font-size="30" letter-spacing="7" fill="${L.C.cream}" fill-opacity=".8">ÉCRAN</text><text id="${A.id("scoreR")}" x="810" y="790" text-anchor="middle" font-family="Nunito" font-weight="900" font-size="170" fill="${COLD}">0</text></g>`;
 const hud = A.title("title", "TOUS LES SOIRS", ["Une *négociation*."], 330, { size: 96 }) + dots3(0);
 const S = L.stage(root, ID, world, hud);
-["path", "ret0", "ret1", "ret2"].forEach((n) => gsap.set(S.$(n), { opacity: 0 }));
+["ret0", "ret1", "ret2"].forEach((n) => gsap.set(S.$(n), { opacity: 0 }));
 gsap.set([S.$("title-over"), S.$("title-l0")], { opacity: 0 });
 L.cam(tl, S, { scale: 1.07 }, { scale: 1 }, 0, 4, "power2.out");
 L.blink(tl, S, 3.4); L.blink(tl, S, 9.8);
@@ -36,10 +35,7 @@ tl.to(S.$("clk"), { opacity: 0, y: -40, duration: 0.3, ease: "power2.in" }, w("L
 L.pill(tl, S, "pIns", w("L02", 5) + 0.1);
 tl.fromTo(S.$("sIns"), { opacity: 1, scaleX: 0, svgOrigin: "175 470" }, { scaleX: 1, duration: 0.18, ease: "power3.out" }, w("L03", 0));
 L.pill(tl, S, "pEnv", w("L03", 7));
-L.drawDots(tl, S.$("path"), w("L03", 8), 0.7);
-tl.fromTo(S.$("path"), { opacity: 0 }, { opacity: 0.55, duration: 0.1 }, w("L03", 8));
-L.pill(tl, S, "pLit", w("L03", 9) + 0.1);
-["pIns", "sIns", "pEnv", "pLit", "path"].forEach((n) => tl.to(S.$(n), { opacity: 0, duration: 0.25 }, w("L04", 0) - 0.15));
+["pIns", "sIns", "pEnv"].forEach((n) => tl.to(S.$(n), { opacity: 0, duration: 0.25 }, w("L04", 0) - 0.15));
 
 // le téléphone posé revient trois fois
 const down = w("L04", 1) + 0.05;

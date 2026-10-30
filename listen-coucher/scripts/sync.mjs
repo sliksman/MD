@@ -100,6 +100,7 @@ const capGroups = groups.map((g, i) => {
   const rng = Array.isArray(cy) ? cy.find(([a, b]) => start >= a && start < b) : null;
   const y = rng ? rng[2] : (!Array.isArray(cy) && cy[sc.id]) || CP.y || 1330;
   if (next) end = Math.min(end, next.words[0].t - (CP.lead || 0)); // jamais deux sous-titres à la fois
+  end = Math.min(end, sc.end); // un sous-titre ne déborde jamais sur le plan suivant (volet compris)
   return { start: r3(Math.max(0, start - (CP.lead || 0))), end: r3(end), y, words: g.words.map((x) => ({ w: x.w, t: x.t, hl: x.hl })) };
 });
 

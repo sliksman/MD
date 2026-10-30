@@ -426,7 +426,6 @@
       ${[-80, -48, -16, 16, 48, 80].map((y) => `<circle cx="-80" cy="${y}" r="9" fill="#3a3560"/>`).join("")}
       <rect x="40" y="-96" width="22" height="86" fill="${C.amber}"/></g></g>`;
     A.record = (name, cx, cy, k = 1) => `<g id="${P}${name}"><g transform="translate(${cx} ${cy}) scale(${k})">
-      <ellipse cx="0" cy="112" rx="108" ry="18" fill="#000" opacity=".3"/>
       <circle cx="0" cy="0" r="108" fill="#15122a"/>${[30, 50, 70, 90].map((r) => `<circle r="${r}" fill="none" stroke="#fff" stroke-opacity=".12" stroke-width="3"/>`).join("")}
       <circle r="34" fill="${C.amber}"/><circle r="6" fill="#15122a"/><path d="M-70 -70 q70 -50 140 0" stroke="#fff" stroke-opacity=".18" stroke-width="8" fill="none" stroke-linecap="round"/></g></g>`;
     // téléphone posé face contre table (écran éteint) avec petit rayonnement chaud (son de café)
@@ -473,7 +472,7 @@
       <rect x="14" y="-48" width="52" height="108" rx="26" fill="#6a5aa6"/><rect x="18" y="-44" width="44" height="40" rx="20" fill="#8a7bc4"/></g>`;
     // lumière de lune par la fenêtre : deux carreaux en biais, très discrets
     A.moonBeam = () => `<g id="${P}moon" opacity=".085" style="mix-blend-mode:screen"><polygon points="560,-80 760,-80 1180,980 980,980" fill="#cfe2ff"/><polygon points="800,-80 1000,-80 1420,980 1220,980" fill="#cfe2ff"/></g>`;
-    A.roomUnder = () => A.rug(560, 1120, 800, 1180) + A.plant(940, 700, 76) + A.slippers(125, 1090, 0.85);
+    A.roomUnder = () => A.rug(560, 1120, 800, 1180) + A.plant(940, 700, 76) + A.slippers(100, 1040, 0.8);
     return A;
   }
 
