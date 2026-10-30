@@ -20,9 +20,9 @@
           // PLAN 4 — LE LIT. Le miroir du canapé : enfin couché, à l'heure. Puis la chambre fait un silence : les yeux s'ouvrent, ligne de points plate.
           const AM = L.C.amber;
           const dots3 = (n) => `<g id="${A.id("pdots")}">${[0, 1, 2].map((i) => `<circle cx="${820 + i * 56}" cy="212" r="14" fill="${i < n ? AM : "#fff"}" opacity="${i < n ? 1 : 0.22}"/>`).join("")}</g>`;
-          const world = A.floorTop() + `<g transform="translate(-170 -170) scale(1.32)">${A.bedTop({ clock: ["23:32", "23:48"] })}</g>` +
+          const world = A.floorTop() + A.roomUnder() + `<g transform="translate(-170 -170) scale(1.32)">${A.bedTop({ clock: ["23:32", "23:48"] })}</g>` + A.moonBeam() +
             A.dots("flat", [[40, 1130], [1040, 1130]], { step: 30, r: 5, opacity: 0.5 }) +
-            A.pill("pOk", 830, 600, "à l'heure", 700, 790, { dot: AM }) + A.pill("p1", 800, 470, "1ʳᵉ fois depuis des mois", 700, 640, { size: 32 }) +
+            A.pill("pOk", 230, 540, "à l'heure", 231, 686, { dot: AM }) + A.pill("p1", 800, 470, "1ʳᵉ fois depuis des mois", 700, 640, { size: 32 }) +
             A.pill("pSil", 840, 1010, "silence", 760, 1130, { size: 40 });
           const S = L.stage(root, ID, world, dots3(2));
           gsap.set(S.$("flat"), { opacity: 0 });

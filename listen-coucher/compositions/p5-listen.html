@@ -21,8 +21,8 @@
           // téléphone face contre table, arcs de points chauds dans la chambre. Premier néon du film.
           const AM = L.C.amber;
           const dots3 = (n) => `<g id="${A.id("pdots")}">${[0, 1, 2].map((i) => `<circle id="${A.id("pd" + i)}" cx="${820 + i * 56}" cy="212" r="14" fill="${i < n ? AM : "#fff"}" opacity="${i < n ? 1 : 0.22}"/>`).join("")}</g>`;
-          const bedWorld = `<g id="${A.id("bw")}" opacity="0">${A.floorTop()}<ellipse cx="300" cy="900" rx="700" ry="520" fill="url(#${A.id("gWarm")})" opacity=".7"/>` +
-            `<g transform="translate(-170 -170) scale(1.32)">${A.bedTop({ clock: ["23:49"] })}</g>` + A.warmDots("w", 540, 815, 3, 235, 80) + A.pill("pCafe", 800, 400, "terrasse de café", 570, 770, { dot: "#ffd28a", size: 36 }) + `</g>`;
+          const bedWorld = `<g id="${A.id("bw")}" opacity="0">${A.floorTop()}${A.roomUnder()}<ellipse cx="300" cy="900" rx="700" ry="520" fill="url(#${A.id("gWarm")})" opacity=".7"/>` +
+            `<g transform="translate(-170 -170) scale(1.32)">${A.bedTop({ clock: ["23:49"] })}</g>` + A.moonBeam() + A.warmDots("w", 540, 815, 3, 235, 80) + A.pill("pCafe", 800, 400, "terrasse de café", 570, 770, { dot: "#ffd28a", size: 36 }) + `</g>`;
           const phoneSide = `<g id="${A.id("B")}">${A.bg()}<ellipse cx="540" cy="890" rx="460" ry="620" fill="${L.C.violet}" opacity=".2" filter="${A.u("fBlurL")}"/>${A.phoneUI(270, 410, 460, { track: "Terrasse de café", sub: "Enregistré sur place", section: "URBAIN" })}` +
             A.pill("pRec", 540, 1417, "endroit réel", 540, 1304, { size: 34, dot: L.C.cyan }) + `</g>`;
           const hud = A.bigNum("n3", "3", "Un fond sonore.") + dots3(2);

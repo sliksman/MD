@@ -16,7 +16,10 @@
           const root = document.querySelector('[data-composition-id="intro-title"]');
           root.innerHTML = '<svg id="intro-svg" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg">' +
             '<defs><filter id="it-fShadow" x="-20%" y="-50%" width="140%" height="200%"><feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000" flood-opacity=".55"/></filter></defs>' +
-            A.title("title", "LES NUITS BLANCHES · ÉPISODE 1", ["Pourquoi tu te couches", "toujours *trop tard* ?"], 300, { size: 78 }) + "</svg>";
+            A.title("title", "LES NUITS BLANCHES · ÉPISODE 1", ["Pourquoi tu te couches", "toujours *trop tard* ?"], 300, { size: 78, x: 540 }) + "</svg>";
+          // bloc justifié : le surtitre prend la largeur de la 1re ligne, la 2e ligne est agrandie pour l'égaler
+          (function () { const o = root.querySelector("#it-title-over"), l1 = root.querySelector("#it-title-l1");
+            o.setAttribute("textLength", "744"); o.setAttribute("lengthAdjust", "spacing"); l1.setAttribute("font-size", "92"); l1.setAttribute("y", "392"); })();
           const $ = (n) => root.querySelector("#it-" + n);
           const tl = gsap.timeline({ paused: true });
           // lisible dès la première image (crochet) : pas d'entrée en fondu, juste un petit coup d'échelle

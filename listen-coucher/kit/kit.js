@@ -458,6 +458,22 @@
       <ellipse cx="0" cy="66" rx="82" ry="60" fill="${u("gDuvet")}"/>
       <circle cx="0" cy="-12" r="62" fill="${u("gSkin")}"/>
       ${A.eyes(name + "Eyes", -22, 22, 0, 10)}</g></g>`;
+
+    // tapis vu de dessus (donne de la matière au sol)
+    A.rug = (cx, cy, w, h, o = {}) => `<g id="${P}${o.id || "rug"}"><rect x="${cx - w / 2 + 6}" y="${cy - h / 2 + 14}" width="${w}" height="${h}" rx="44" fill="#000" opacity=".3" filter="${u("fBlurL")}"/>
+      <rect x="${cx - w / 2}" y="${cy - h / 2}" width="${w}" height="${h}" rx="44" fill="${o.fill || "#262c66"}"/>
+      <rect x="${cx - w / 2 + 26}" y="${cy - h / 2 + 26}" width="${w - 52}" height="${h - 52}" rx="30" fill="none" stroke="#fff" stroke-opacity=".10" stroke-width="5"/>
+      <rect x="${cx - w / 2 + 52}" y="${cy - h / 2 + 52}" width="${w - 104}" height="${h - 104}" rx="20" fill="none" stroke="${C.amber}" stroke-opacity=".16" stroke-width="3" stroke-dasharray="3 16" stroke-linecap="round"/>
+      ${Array.from({ length: Math.floor(w / 26) }, (_, i) => `<line x1="${cx - w / 2 + 18 + i * 26}" y1="${cy - h / 2 - 12}" x2="${cx - w / 2 + 18 + i * 26}" y2="${cy - h / 2}" stroke="#fff" stroke-opacity=".12" stroke-width="4" stroke-linecap="round"/><line x1="${cx - w / 2 + 18 + i * 26}" y1="${cy + h / 2}" x2="${cx - w / 2 + 18 + i * 26}" y2="${cy + h / 2 + 12}" stroke="#fff" stroke-opacity=".12" stroke-width="4" stroke-linecap="round"/>`).join("")}</g>`;
+    A.plant = (cx, cy, r = 70) => `<g id="${P}plant"><ellipse cx="${cx + 8}" cy="${cy + 14}" rx="${r * 1.2}" ry="${r * 1.2}" fill="#000" opacity=".3" filter="${u("fBlurL")}"/>
+      ${[0, 50, 100, 150, 200, 250, 300].map((a) => `<ellipse cx="${cx}" cy="${cy - r * 0.55}" rx="${r * 0.3}" ry="${r * 0.72}" fill="${a % 100 ? "#3c7d78" : "#4a9189"}" transform="rotate(${a} ${cx} ${cy})"/>`).join("")}
+      <circle cx="${cx}" cy="${cy}" r="${r * 0.3}" fill="#2f6561"/></g>`;
+    A.slippers = (cx, cy, k = 1) => `<g id="${P}slippers" transform="translate(${cx} ${cy}) rotate(-8) scale(${k})"><ellipse cx="6" cy="14" rx="86" ry="52" fill="#000" opacity=".3" filter="${u("fBlurL")}"/>
+      <rect x="-70" y="-48" width="52" height="108" rx="26" fill="#6a5aa6"/><rect x="-66" y="-44" width="44" height="40" rx="20" fill="#8a7bc4"/>
+      <rect x="14" y="-48" width="52" height="108" rx="26" fill="#6a5aa6"/><rect x="18" y="-44" width="44" height="40" rx="20" fill="#8a7bc4"/></g>`;
+    // lumière de lune par la fenêtre : deux carreaux en biais, très discrets
+    A.moonBeam = () => `<g id="${P}moon" opacity=".085" style="mix-blend-mode:screen"><polygon points="560,-80 760,-80 1180,980 980,980" fill="#cfe2ff"/><polygon points="800,-80 1000,-80 1420,980 1220,980" fill="#cfe2ff"/></g>`;
+    A.roomUnder = () => A.rug(560, 1120, 800, 1180) + A.plant(940, 700, 76) + A.slippers(125, 1090, 0.85);
     return A;
   }
 

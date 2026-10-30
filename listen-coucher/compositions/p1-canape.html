@@ -24,9 +24,9 @@
             return Array.from({ length: n + 1 }, (_, i) => { const t = i / n; return [(1 - t) ** 2 * p0[0] + 2 * (1 - t) * t * mx + t * t * p1[0], (1 - t) ** 2 * p0[1] + 2 * (1 - t) * t * my + t * t * p1[1]]; }); };
           const strikeEl = (name, x1, x2, y, wd = 9) => `<line id="${A.id(name)}" x1="${x1}" y1="${y}" x2="${x2}" y2="${y}" stroke="${AM}" stroke-width="${wd}" stroke-linecap="round" opacity="0"/>`;
           const dots3 = (n) => `<g id="${A.id("pdots")}" opacity="0">${[0, 1, 2].map((i) => `<circle id="${A.id("pd" + i)}" cx="${820 + i * 56}" cy="212" r="14" fill="${i < n ? AM : "#fff"}" opacity="${i < n ? 1 : 0.22}"/>`).join("")}</g>`;
-          const world = A.floorTop() +
+          const world = A.floorTop() + A.rug(540, 975, 780, 980) +
             `<g transform="translate(54 150) scale(0.9)">${A.couchTop({ halo: 480 })}</g>` +
-            A.bigClock("clk", 330, 450, ["00:34", "00:35", "00:41"]) +
+            A.bigClock("clk", 400, 500, ["00:34", "00:35", "00:41"], { size: 92, w: 280, h: 118 }) +
             A.dots("path", [[470, 1190], [330, 1260], [190, 1300], [60, 1330]], { opacity: 0.55, gapEvery: 4 }) +
             A.pill("pIns", 250, 470, "insomnie", 470, 760) + strikeEl("sIns", 175, 325, 470) +
             A.pill("pEnv", 760, 560, "pas envie d'y aller", 610, 830, { dot: AM }) + A.pill("pLit", 170, 1215, "le lit", 60, 1330, { size: 34 }) +
@@ -46,7 +46,7 @@
 
           // horloge : 00:34 → 00:35 (dans la respiration après le titre) → 00:41
           const jolt = (t, a, b) => { tl.set(S.$("clk-" + a), { opacity: 0 }, t).set(S.$("clk-" + b), { opacity: 1 }, t);
-            tl.fromTo(S.$("clk"), { scale: 1 }, { scale: 1.1, duration: 0.07, yoyo: true, repeat: 1, svgOrigin: "540 545", ease: "power2.out", immediateRender: false }, t); };
+            tl.fromTo(S.$("clk"), { scale: 1 }, { scale: 1.1, duration: 0.07, yoyo: true, repeat: 1, svgOrigin: "540 559", ease: "power2.out", immediateRender: false }, t); };
           jolt(w("L01", 2) + 0.6, 0, 1);
           jolt(w("L02", 5), 1, 2);
           tl.to(S.$("clk"), { opacity: 0, y: -40, duration: 0.3, ease: "power2.in" }, w("L03", 0) - 0.05);

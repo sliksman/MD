@@ -1,13 +1,13 @@
 // PLAN 6 — ET TOI ? Retour au cadre du lit, endormi. La question porte sur « l'heure de fin ».
 const AM = L.C.amber;
-const world = A.floorTop() + `<g transform="translate(-170 -170) scale(1.32)">${A.bedTop({ clock: ["23:50"] })}</g>`;
+const world = A.floorTop() + A.roomUnder() + `<g transform="translate(-170 -170) scale(1.32)">${A.bedTop({ clock: ["23:50"] })}</g>` + A.moonBeam();
 const hud = A.title("title", "ÉPISODE 1", ["Et *toi* ?"], 350) +
   `<g>${[0, 1, 2].map((i) => `<circle cx="${820 + i * 56}" cy="212" r="14" fill="${AM}"/>`).join("")}</g>` +
   A.pill("pComment", 540, 410, "dis-le en commentaire ↓", undefined, undefined, { size: 34 }) +
   `<g id="${A.id("lockup")}"><rect x="140" y="1330" width="720" height="150" rx="40" fill="#0b0d1a" fill-opacity=".88" stroke="#fff" stroke-opacity=".12" stroke-width="2"/>
   ${A.listenIcon(170, 1350, 110)}
   <text x="310" y="1405" font-family="Poppins" font-weight="700" font-size="44" fill="#fff">Listen</text>
-  <text x="310" y="1450" font-family="Poppins" font-weight="400" font-size="27" fill="#b8bdd6">Sounds of the World · App Store</text></g>`;
+  <text x="310" y="1450" font-family="Poppins" font-weight="400" font-size="27" fill="#b8bdd6">Sounds of the World · lien en bio</text></g>`;
 const S = L.stage(root, ID, world, hud);
 gsap.set(S.$("eyes-open"), { opacity: 0 }); gsap.set(S.$("eyes-shut"), { opacity: 1 }); gsap.set([S.$("eyes-lidL"), S.$("eyes-lidR")], { opacity: 0 });
 gsap.set([S.$("title-over"), S.$("title-l0")], { opacity: 0 });
