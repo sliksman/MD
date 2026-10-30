@@ -7,7 +7,7 @@ destination: tiktok
 aspect: 1080x1920
 language: fr
 voice: "ElevenLabs Laura, Eleven v4 — MP3 + SRT fournis par l'utilisateur (comme l'épisode 3)"
-length: "≈ 72 s (version B du script, 185 mots)"
+length: "≈ 73 s (script complet enregistré par l'auteur, 203 mots, 65 s de voix brute)"
 angle: listicle
 series: "Les nuits blanches, épisode 1 (suite de l'épisode 3, déjà produit : projet listen-sommeil)"
 ---
@@ -26,7 +26,7 @@ Vue de dessus du canapé, halo bleu du téléphone sur le visage ; l'horloge qui
 
 ## Décisions et hypothèses
 
-- **Longueur** : à trancher. Complète 203 mots ≈ 78 s ; version B (sans la liste de l'astuce 2) 185 mots ≈ 72 s ; coupe de l'auteur 156 mots ≈ 62 s, qui supprime les deux phrases portant le fait et laisse « prends-les » sans référent. Le storyboard est fait sur B.
+- **Longueur** : tranché. L'auteur a enregistré le script complet (203 mots, 65,1 s brutes d'après son SRT, soit ≈ 73 s avec respirations). La coupe à 60 s et la version B sont abandonnées.
 - **Couleurs** : bleu froid = l'écran ; ambre = la décision (alarme, heure de fin, volets) ; néon = Listen, uniquement à partir du croquis 13.
 - **Sans écran** : le téléphone est face contre table pendant le fond sonore (cohérent avec la fiche de l'app : mode « Fermez les yeux », lecture écran verrouillé).
 - **Minuteur de sommeil** : non mentionné (refusé sur l'épisode 3).

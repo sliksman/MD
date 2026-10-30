@@ -1,4 +1,4 @@
-# Épisode 1 — script prêt pour la voix (version B, 185 mots)
+# Épisode 1 — script prêt pour la voix (version B, 185 mots) — OBSOLÈTE : la voix enregistrée est le script complet, 203 mots
 
 À coller dans ElevenLabs, voix Laura, modèle Eleven v4, **vitesse normale** (1.0). Une seule prise d'un bloc.
 Pas besoin de rallonger les silences : j'ajoute les respirations au montage (comme sur l'épisode 3).

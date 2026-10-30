@@ -403,9 +403,11 @@
       const seg = [[7, 8.5, "#5b6ec0"], [8.5, 12.5, "#4a5aa8"], [12.5, 13.5, "#6b7ccc"], [13.5, 18.5, "#4a5aa8"], [18.5, 20, "#5b6ec0"], [20, 22, "#6b7ccc"], [22, 24.57, COLD]];
       const w = o.w || 96;
       let s = `<g id="${P}${name}">`;
+      if (o.plate !== false) s += `<ellipse cx="${cx}" cy="${cy + 46}" rx="${R * 1.46}" ry="${R * 1.46}" fill="#000" opacity=".42" filter="${u("fBlurL")}"/><circle cx="${cx}" cy="${cy}" r="${R * 1.46}" fill="#1b2050"/><circle cx="${cx}" cy="${cy}" r="${R * 1.46}" fill="none" stroke="#fff" stroke-opacity=".1" stroke-width="3"/><circle cx="${cx}" cy="${cy}" r="${R * 1.2 + w * 0.5}" fill="none" stroke="#0e1130" stroke-opacity=".55" stroke-width="4"/>`;
       [0.5, 0.74, 1.2, 1.42].forEach((k) => (s += `<circle cx="${cx}" cy="${cy}" r="${R * k}" fill="none" stroke="#fff" stroke-opacity=".1" stroke-width="2"/>`));
       s += `<circle cx="${cx}" cy="${cy}" r="${R}" fill="none" stroke="#fff" stroke-opacity=".06" stroke-width="${w + 26}"/>`;
       seg.forEach(([a, b, c], i) => (s += `<path id="${P}${name}-s${i}" d="${arcPath(cx, cy, R, a, b)}" fill="none" stroke="${c}" stroke-width="${w}" stroke-linecap="butt"/>`));
+      seg.forEach(([a, b]) => { s += `<path d="${arcPath(cx, cy, R + w / 2 - 3, a, b)}" fill="none" stroke="#fff" stroke-opacity=".28" stroke-width="5"/><path d="${arcPath(cx, cy, R - w / 2 + 3, a, b)}" fill="none" stroke="#000" stroke-opacity=".28" stroke-width="6"/>`; });
       s += `<path id="${P}${name}-sleep" d="${arcPath(cx, cy, R, 0.57, 7)}" fill="none" stroke="#fff" stroke-opacity=".16" stroke-width="${w}" stroke-dasharray="4 16" stroke-linecap="round"/>`;
       s += `<path id="${P}${name}-carve" d="${arcPath(cx, cy, R, o.carve ? o.carve[0] : 22.1, o.carve ? o.carve[1] : 22.43)}" fill="none" stroke="${C.amber}" stroke-width="${w + 14}" opacity="${o.carve ? 1 : 0}" filter="${u("fGlowS")}"/>`;
       [0, 6, 12, 18].forEach((h) => { const [x, y] = polar(cx, cy, R * 1.0 + w * 0.5 + 34, h / 24 * 360); s += `<text x="${x.toFixed(1)}" y="${(y + 12).toFixed(1)}" text-anchor="middle" font-family="Nunito" font-weight="800" font-size="30" fill="${C.cream}" fill-opacity=".7">${String(h).padStart(2, "0")}h</text>`; });
@@ -429,6 +431,33 @@
       <circle r="34" fill="${C.amber}"/><circle r="6" fill="#15122a"/><path d="M-70 -70 q70 -50 140 0" stroke="#fff" stroke-opacity=".18" stroke-width="8" fill="none" stroke-linecap="round"/></g></g>`;
     // téléphone posé face contre table (écran éteint) avec petit rayonnement chaud (son de café)
     A.warmDots = (name, cx, cy, n = 3) => { let s = ""; for (let i = 0; i < n; i++) s += A.dots(`${name}${i}`, A.arc(cx, cy, 150 + i * 120, -52 + i * 3, 52 - i * 3), { step: 26, r: 8, color: "#ffd28a", glow: "fGlowA" }); return s; };
+
+    // table de chevet vue de dessus
+    A.sideTable = (name, cx, cy, w = 380, h = 520) => `<g id="${P}${name}">
+      <ellipse cx="${cx}" cy="${cy + 40}" rx="${w * 0.62}" ry="${h * 0.6}" fill="#000" opacity=".4" filter="${u("fBlurL")}"/>
+      <rect x="${cx - w / 2}" y="${cy - h / 2}" width="${w}" height="${h}" rx="36" fill="${u("gWood")}"/>
+      <rect x="${cx - w / 2 + 14}" y="${cy - h / 2 + 14}" width="${w - 28}" height="${h - 28}" rx="26" fill="none" stroke="#fff" stroke-opacity=".12" stroke-width="3"/>
+      ${[0.2, 0.4, 0.6, 0.8].map((k) => `<line x1="${cx - w / 2 + 30}" y1="${cy - h / 2 + h * k}" x2="${cx + w / 2 - 30}" y2="${cy - h / 2 + h * k}" stroke="#000" stroke-opacity=".12" stroke-width="3"/>`).join("")}</g>`;
+    // réveil physique vu de dessus : deux cloches, face sombre, heure en numérique
+    A.alarmClock = (name, cx, cy, k = 1, o = {}) => {
+      const body = o.color || "#d9d4e8", face = "#0c0f2a", tcol = o.tcolor || C.amber;
+      return `<g id="${P}${name}"><g transform="translate(${cx} ${cy}) rotate(${o.rot || 0}) scale(${k})" opacity="${o.opacity ?? 1}">
+      <ellipse cx="6" cy="22" rx="112" ry="112" fill="#000" opacity=".4" filter="${u("fBlurL")}"/>
+      <g transform="rotate(-32)"><ellipse cx="0" cy="-104" rx="44" ry="30" fill="${C.amber}"/><ellipse cx="0" cy="-110" rx="30" ry="16" fill="#fff" opacity=".28"/></g>
+      <g transform="rotate(32)"><ellipse cx="0" cy="-104" rx="44" ry="30" fill="${C.amber}"/><ellipse cx="0" cy="-110" rx="30" ry="16" fill="#fff" opacity=".28"/></g>
+      <rect x="-9" y="-124" width="18" height="30" rx="6" fill="#b88a3a"/>
+      <circle r="92" fill="${body}"/><circle r="92" fill="none" stroke="#fff" stroke-opacity=".5" stroke-width="4"/>
+      <circle r="70" fill="${face}"/>
+      <text id="${P}${name}-t" x="0" y="16" text-anchor="middle" font-family="Nunito" font-weight="900" font-size="${o.size || 46}" fill="${tcol}">${o.time || "23:30"}</text>
+      <path d="M-48 -34 q48 -28 96 0" stroke="#fff" stroke-opacity=".16" stroke-width="6" fill="none" stroke-linecap="round"/>
+      <rect x="-34" y="92" width="26" height="18" rx="6" fill="#8d88a6"/><rect x="8" y="92" width="26" height="18" rx="6" fill="#8d88a6"/></g></g>`;
+    };
+    // personnage vu de dessus, dormeur/éveillé au centre d'une carte (tête + épaules)
+    A.personTop = (name, cx, cy, k = 1, o = {}) => `<g id="${P}${name}"><g transform="translate(${cx} ${cy}) scale(${k})">
+      <ellipse cx="0" cy="14" rx="124" ry="96" fill="#000" opacity=".35" filter="${u("fBlurL")}"/>
+      <ellipse cx="0" cy="62" rx="108" ry="74" fill="${u("gDuvet")}"/>
+      <circle cx="0" cy="-12" r="62" fill="${u("gSkin")}"/>
+      ${A.eyes(name + "Eyes", -22, 22, 0, 10)}</g></g>`;
     return A;
   }
 

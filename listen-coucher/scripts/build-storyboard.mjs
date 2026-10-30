@@ -23,6 +23,8 @@ function curve(p0, p1, bend = 80, n = 14) {
   return Array.from({ length: n + 1 }, (_, i) => { const t = i / n; return [(1 - t) ** 2 * p0[0] + 2 * (1 - t) * t * mx + t * t * p1[0], (1 - t) ** 2 * p0[1] + 2 * (1 - t) * t * my + t * t * p1[1]]; });
 }
 const COUCH = (A, o = {}) => `<g transform="translate(54 150) scale(0.9)">${A.couchTop(o)}</g>`;
+const CH = (A, o = {}) => `<g transform="translate(-177 260) scale(0.8)">${A.couchTop(o)}</g>`;
+const TBL = (A) => A.sideTable("tbl", 740, 860, 420, 600);
 const BED = (A, o = {}) => `<g transform="translate(-170 -170) scale(1.32)">${A.bedTop(o)}</g>`;
 
 function render(id, world, hud, fx = {}) {
@@ -34,7 +36,7 @@ function render(id, world, hud, fx = {}) {
 }
 
 // ---------- les 15 croquis ----------
-// words = mots de la voix (version B, 185 mots) ; breath = respiration (s) ajoutée APRÈS le croquis
+// words = mots de la voix (script complet) ; breath = respiration (s) ajoutée APRÈS le croquis
 const F = [
   { id: "f01", name: "MINUIT TRENTE-QUATRE", plan: 1, words: 2, breath: 0.9, tag: "Crochet · heure précise + titre-question", voice: "Minuit trente-quatre.",
     note: "<b>Le titre et l'horloge sont lisibles dès la 1re image</b>, avant même la voix. Vue de dessus du canapé, le halo bleu froid du téléphone sur le visage (pas le néon de Listen). L'horloge avance par à-coups : 00:34 → 00:35 → 00:41.",
@@ -63,41 +65,44 @@ const F = [
       `<text x="810" y="740" text-anchor="middle" font-family="Nunito" font-weight="900" font-size="170" fill="${COLD}">7</text><text x="810" y="618" text-anchor="middle" font-family="Nunito" font-weight="800" font-size="30" letter-spacing="7" fill="${C.cream}" fill-opacity=".8">ÉCRAN</text>`,
       hud: A.title("title", "TOUS LES SOIRS", ["Une *négociation*."], 330, { size: 96 }) + dots3(0, true) + cap(id, "tu la *perds* tous les soirs.") }) },
   { id: "f05", name: "UN · PAS D'HEURE DE COUCHER", plan: 2, words: 15, tag: "Astuce 1 · le contre-pied", voice: "Un. Arrête de décider de ton heure de coucher. Personne tient une heure de coucher.",
-    note: "<b>Le « 1 » claque</b> (impact + onde de choc). Trois heures de coucher possibles défilent, barrées l'une après l'autre : 22:30, 23:00, 23:30. Un point ambre s'allume en haut à droite.",
+    note: "<b>Le « 1 » claque</b> (impact + onde de choc). Le canapé reste dans le cadre, <b>réduit à gauche</b> : à droite, une table de chevet vue de dessus avec un vrai réveil. Son affichage défile 22:30 → 23:00 → 23:30 ; chaque heure de coucher est barrée d'un trait ambre. Un point ambre s'allume en haut à droite.",
     seam: "continu",
-    build: (A, id) => ({ world: A.floorTop() + [["22:30", 640, 0.8], ["23:00", 830, 0.62], ["23:30", 1020, 0.46]].map(([t, y, o]) => `<g opacity="${o}">${A.bigClock("c" + t.slice(0, 2) + t.slice(3), 390, y, [t], { size: 100, w: 300, h: 140 })}${strike(370, 710, y + 70, 10)}</g>`).join("") + A.pill("pCou", 540, 570, "heure de coucher", 540, 640, { size: 38 }),
+    build: (A, id) => ({ world: A.floorTop() + CH(A, { halo: 420 }) + TBL(A) + A.alarmClock("ac", 740, 860, 2, { time: "23:30", size: 44 }) +
+      A.pill("p2230", 600, 480, "22:30", 680, 640, { size: 40 }) + strike(530, 670, 480, 8) + A.pill("p2300", 880, 560, "23:00", 800, 660, { size: 40 }) + strike(810, 950, 560, 8) +
+      A.pill("pCou", 740, 1195, "heure de coucher", 740, 1050, { size: 38 }),
       hud: A.bigNum("n1", "1", "Pas d'heure de coucher.") + dots3(1) + cap(id, "heure de *coucher.*") }) },
   { id: "f06", name: "L'ALARME DE FIN", plan: 2, words: 23, tag: "Image-signature · l'alarme ambre", voice: "Décide de ton heure de fin. Celle où t'éteins, tu ranges, tu poses tout. Mets une alarme. Pas pour te lever. Pour t'arrêter.",
-    note: "<b>L'alarme traverse l'écran en bande ambre</b> (cloche, « ALARME · 23:30 », « pour t'arrêter »). L'ambre = la décision : c'est la seule couleur chaude du film avant Listen, et aucun autre élément ambre ne ressemble à cette bande.",
+    note: "<b>Le réveil devient ambre et sonne</b> : des anneaux de points ambre l'entourent, il vibre sur la table. Le mannequin le regarde, téléphone baissé. L'ambre = la décision : c'est la seule couleur chaude du film avant Listen, et ce réveil est l'objet-signature de l'épisode.",
     seam: "continu",
-    build: (A, id) => ({ world: A.floorTop() + A.bigClock("clk", 310, 450, ["23:30"], { color: C.amber, size: 130, w: 460 }) + A.pill("pFin", 540, 745, "heure de fin", 540, 640, { dot: C.amber }) + A.alarmBand("al", { cy: 1010, rot: -7 }),
+    build: (A, id) => ({ world: A.floorTop() + CH(A, { held: false }) + TBL(A) + A.dots("ring1", A.arc(740, 860, 245, 0, 360, 72), { step: 24, r: 7, color: C.amber, opacity: 0.85, glow: "fGlowA" }) + A.dots("ring2", A.arc(740, 860, 315, 0, 360, 90), { step: 26, r: 6, color: C.amber, opacity: 0.45 }) +
+      A.alarmClock("ac", 740, 860, 2, { time: "23:30", color: C.amber, rot: -6, size: 44 }) + A.pill("pFin", 740, 470, "alarme · heure de fin", 740, 640, { dot: C.amber, size: 38 }) + A.pill("pArr", 740, 1195, "pour t'arrêter", 740, 1050, { size: 38 }),
       hud: A.bigNum("n1", "1", "") + dots3(1) + cap(id, "Pour *t'arrêter.*") }) },
   { id: "f07", name: "ELLE SONNE. TU CONTINUES.", plan: 2, words: 7, breath: 0.9, tag: "Échec de l'astuce · boucle rouverte", voice: "Elle sonne. Tu l'éteins. Tu continues. Évidemment.",
-    note: "<b>L'alarme est balayée hors cadre</b> d'un geste. L'horloge repasse en bleu froid : 23:52. Le halo du téléphone revient en bas. C'est ici que chaque astuce « rate », ce qui relance l'attention.",
-    seam: "volet jaune (alarme → carte de la journée)",
-    build: (A, id) => ({ world: A.floorTop() + `<ellipse cx="300" cy="1250" rx="420" ry="360" fill="url(#${id}-gHalo)" opacity=".8"/>` + A.bigClock("clk", 310, 450, ["23:52"], { size: 130, w: 460 }) + A.pill("pCont", 540, 745, "tu continues", 540, 640, { size: 38 }) +
-      `<g opacity=".55">${A.alarmBand("al", { cx: 900, cy: 1010, rot: -24, sub: "éteinte" })}</g>`,
+    note: "<b>Le réveil est balayé d'un geste</b> : il bascule au bord de la table, éteint, gris. Le mannequin a repris le téléphone et le halo bleu froid revient sur lui. C'est ici que chaque astuce « rate », ce qui relance l'attention.",
+    seam: "volet jaune (réveil → carte de la journée)",
+    build: (A, id) => ({ world: A.floorTop() + CH(A, { halo: 520 }) + TBL(A) + A.alarmClock("ac", 800, 1110, 1.7, { time: "23:30", color: "#8d88a6", tcolor: "#6b7099", rot: 38, opacity: 0.7 }) +
+      A.dots("swipe", curve([740, 860], [800, 1040], 40, 8), { step: 24, r: 6, color: C.amber, opacity: 0.6 }) + A.pill("pOff", 820, 600, "éteinte", 800, 1040, { size: 38 }) + A.pill("pCont", 255, 560, "tu continues", 255, 790, { size: 38, dot: COLD }),
       hud: A.bigNum("n1", "1", "") + dots3(1) + cap(id, "Tu *continues.*") }) },
   { id: "f08", name: "PAS DIX MINUTES À TOI", plan: 3, words: 12, tag: "★ Le fait · la journée est pleine", voice: "Depuis sept heures ce matin, t'as pas eu dix minutes à toi.",
-    note: "<b>La carte de la journée</b> : cadran 24 h en anneau, courbes de niveau comme l'étang de Catcharium. De 07:00 à 00:34, aucun trou. Le seul espace libre est la nuit, en pointillés : c'est ton sommeil que tu grignotes.",
+    note: "<b>La carte de la journée</b> : un cadran 24 h posé comme un objet (plaque, ombre, relief), <b>avec le mannequin au centre</b> : la journée tourne autour de lui. De 07:00 à 00:34, aucun trou. Le seul espace libre est la nuit, en pointillés : c'est ton sommeil que tu grignotes.",
     seam: "continu",
     build: (A, id) => { const [kx, ky] = A.hourPt(540, 950, 270, 0.57), [sx, sy] = A.hourPt(540, 950, 270, 7);
-      return { world: A.bg() + A.dayMap("dm", 540, 950, 270) + `<text x="540" y="985" text-anchor="middle" font-family="Nunito" font-weight="900" font-size="110" fill="${COLD}">00:34</text>` +
-        `<circle cx="${kx}" cy="${ky}" r="24" fill="${C.amber}" filter="url(#${id}-fGlowS)"/>` + A.pill("pZero", 240, 640, "à toi : 0 min", kx, ky, { dot: C.amber, size: 38 }) + A.pill("p7h", 790, 1185, "07:00", sx, sy, { size: 36 }) + A.pill("pSomm", 880, 700, "sommeil", ...A.hourPt(540, 950, 270, 3.8), { size: 34 }),
+      return { world: A.bg() + A.dayMap("dm", 540, 950, 270) + A.personTop("pp", 540, 950, 0.92) +
+        `<circle cx="${kx}" cy="${ky}" r="24" fill="${C.amber}" filter="url(#${id}-fGlowS)"/>` + A.pill("pZero", 240, 640, "00:34 · à toi : 0 min", kx, ky, { dot: C.amber, size: 36 }) + A.pill("p7h", 790, 1185, "07:00", sx, sy, { size: 36 }) + A.pill("pSomm", 880, 700, "sommeil", ...A.hourPt(540, 950, 270, 3.8), { size: 34 }),
         hud: A.title("title", "DEPUIS 7 H CE MATIN", ["Pas *dix minutes*", "à toi."], 270, { size: 86 }) + dots3(1) + cap(id, "dix *minutes* à toi.") }; } },
-  { id: "f09", name: "DEUX · VINGT MINUTES, AVANT", plan: 3, words: 9, tag: "Astuce 2 · l'objet montré, pas dit", voice: "Deux. Alors prends-les avant. Vingt minutes, sans écran, décidées.",
-    note: "<b>Vingt minutes sont découpées dans la soirée, en ambre</b> (à 22:10, bien avant l'heure de fin). Le téléphone est face contre table au centre. Les exemples (livre, carnet, disque) sont <b>à l'image seulement</b> : la liste parlée est coupée.",
+  { id: "f09", name: "DEUX · VINGT MINUTES, AVANT", plan: 3, words: 27, tag: "Astuce 2 · quelques pages, un carnet, un disque", voice: "Deux. Alors prends-les avant. Vingt minutes, sans écran, décidées. Quelques pages, un carnet, un disque en entier. Ce que tu veux, du moment que ça se termine.",
+    note: "<b>Vingt minutes sont découpées dans la soirée, en ambre</b> (à 22:10, bien avant l'heure de fin). Le téléphone est face contre table, au bord de la carte. Le mannequin est toujours au centre. <b>Livre, carnet, disque</b> arrivent un par un sous la carte, au moment où ta voix les dit (« quelques pages… un carnet… un disque en entier »).",
     seam: "continu",
-    build: (A, id) => { const [cx, cy] = A.hourPt(540, 750, 230, 22.27);
-      return { world: A.bg() + A.dayMap("dm", 540, 750, 230, { carve: [22.1, 22.43] }) + `<g transform="rotate(8 540 750)"><rect x="505" y="695" width="70" height="116" rx="14" fill="#0b0d1a" stroke="#fff" stroke-opacity=".25" stroke-width="3"/></g>` +
-        A.pill("pEcr", 160, 760, "sans écran", 505, 760, { size: 36 }) + A.pill("p20", 850, 520, "20 min", cx, cy, { dot: C.amber, size: 40 }) +
-        A.book("bk", 260, 1175, 0.6) + A.notebook("nb", 540, 1175, 0.6) + A.record("rc", 820, 1175, 0.6),
+    build: (A, id) => { const [cx, cy] = A.hourPt(540, 700, 230, 22.27);
+      return { world: A.bg() + A.dayMap("dm", 540, 700, 230, { carve: [22.1, 22.43] }) + A.personTop("pp", 540, 705, 0.82) + `<g transform="rotate(12 790 930)"><rect x="755" y="872" width="70" height="116" rx="14" fill="#0b0d1a" stroke="#fff" stroke-opacity=".25" stroke-width="3"/></g>` +
+        A.pill("pEcr", 190, 930, "sans écran", 755, 930, { size: 36 }) + A.pill("p20", 850, 480, "20 min", cx, cy, { dot: C.amber, size: 40 }) +
+        A.book("bk", 260, 1215, 0.6) + A.notebook("nb", 540, 1215, 0.6) + A.record("rc", 820, 1215, 0.6),
         hud: A.bigNum("n2", "2", "Prends-les avant.") + dots3(2) + cap(id, "Vingt *minutes,* sans écran.", 1345) }; } },
   { id: "f10", name: "L'HEURE À LAQUELLE TU LE PRENDS", plan: 3, words: 18, breath: 0.9, tag: "★ Le fait, formulé", voice: "Le problème c'est pas que tu veuilles du temps pour toi. C'est l'heure à laquelle tu le prends.",
     note: "<b>Le fait contre-intuitif, en une image</b> : le même besoin de temps, mais à 00:34 (barré, bleu froid) ou à 22:10 (ambre). Un arc de points ambre fait « glisser » le temps à toi vers l'avant. Titre en serif, mot-clé ambre.",
     seam: "volet jaune (carte → lit)",
     build: (A, id) => { const pts = []; for (let h = 24.57; h >= 22.1; h -= 0.1) pts.push(A.hourPt(540, 1040, 360, h)); const [kx, ky] = A.hourPt(540, 1040, 250, 0.57), [ax, ay] = A.hourPt(540, 1040, 250, 22.27);
-      return { world: A.bg() + A.dayMap("dm", 540, 1040, 250, { carve: [22.1, 22.43] }) + A.dots("slide", pts, { step: 26, r: 7, color: C.amber }) +
+      return { world: A.bg() + A.dayMap("dm", 540, 1040, 250, { carve: [22.1, 22.43] }) + A.personTop("pp", 540, 1045, 0.9) + A.dots("slide", pts, { step: 26, r: 7, color: C.amber }) +
         `<circle cx="${kx}" cy="${ky}" r="22" fill="#9cc8ff" opacity=".9"/>` + A.pill("pNuit", 880, 1000, "00:34", kx, ky, { size: 36 }) + strike(805, 955, 1000, 7) + A.pill("pSoir", 190, 760, "22:10", ax, ay, { dot: C.amber, size: 40 }),
         hud: A.title("title", "LE PROBLÈME, CE N'EST PAS ÇA", ["C'est *l'heure*", "à laquelle tu le prends."], 270, { size: 72 }) + dots3(2) + cap(id, "l'heure à laquelle *tu le prends.*", 1470) }; } },
   { id: "f11", name: "COUCHÉ. À L'HEURE.", plan: 4, words: 12, tag: "Récompense · enfin à l'heure", voice: "Là t'es couché. À l'heure. Pour la première fois depuis des mois.",
@@ -128,9 +133,9 @@ const F = [
         `<g><rect x="140" y="1330" width="720" height="150" rx="40" fill="#0b0d1a" fill-opacity=".88" stroke="#fff" stroke-opacity=".12" stroke-width="2"/>${A.listenIcon(170, 1350, 110)}<text x="310" y="1405" font-family="Poppins" font-weight="700" font-size="44" fill="#fff">Listen</text><text x="310" y="1450" font-family="Poppins" font-weight="400" font-size="27" fill="#b8bdd6">Sounds of the World · App Store</text></g>`, closed: true }) },
 ];
 
-// ---------- minutage estimé (cadence de la voix de l'épisode 3 : 0,348 s par mot) ----------
+// ---------- minutage estimé (cadence de la voix de l'épisode 3 : 0,32 s par mot) ----------
 let t = 0.1;
-for (const f of F) { f.t0 = t; t += f.words * 0.348; f.t1 = t; t += (f.breath || 0.15); }
+for (const f of F) { f.t0 = t; t += f.words * 0.32; f.t1 = t; t += (f.breath || 0.15); }
 const total = t + 1.2;
 const fmt = (x) => x.toFixed(1).replace(".", ",");
 const totalWords = F.reduce((a, f) => a + f.words, 0);
@@ -206,7 +211,7 @@ main{max-width:1500px;margin:0 auto;display:grid;grid-template-columns:repeat(au
 </style></head><body>
 <input type="checkbox" id="hide" hidden>
 <header><h1>Listen — <em>Nuits blanches</em>, ép. 1 · ${VERSION}</h1>
-<p>« Pourquoi tu te couches toujours trop tard ». Croquis statiques (aucune animation) : cadrage, hiérarchie et textes à valider. Version du script <b>B</b> : ${totalWords} mots, sans la liste de l'astuce 2 (les objets sont montrés, pas dits). Durées estimées à la cadence de la voix de l'épisode 3 ; ta voix fera foi.</p>
+<p>« Pourquoi tu te couches toujours trop tard ». Croquis statiques (aucune animation) : cadrage, hiérarchie et textes à valider. Script <b>complet</b> : ${totalWords} mots, tel que tu l'as enregistré. Durées estimées avec la cadence mesurée sur ton SRT (0,32 s par mot) plus les respirations ; ta voix fera foi.</p>
 <span class="tag">1080×1920 · ≈ ${Math.round(total)} s · ${F.length} croquis · 6 plans</span>
 <label class="toggle" for="hide">☐ masquer les zones TikTok</label></header>
 <main>${F.map(cell).join("\n")}${seamMap}${retention}${tokens}</main>
