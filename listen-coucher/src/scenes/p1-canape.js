@@ -19,7 +19,8 @@ const world = A.floorTop() + A.rug(540, 975, 780, 980) +
   A.pill("pIns", 250, 470, "insomnie", 470, 760) + strikeEl("sIns", 175, 325, 470) +
   A.pill("pEnv", 760, 560, "pas envie d'y aller", 610, 830, { dot: AM }) +
   A.pill("pFat", 240, 600, "fatigue", 480, 740, { size: 40 }) + strikeEl("sFat", 175, 305, 600) +
-  `<g id="${A.id("pf")}" opacity="0"><ellipse cx="880" cy="1090" rx="300" ry="300" fill="url(#${A.id("gHalo")})" opacity=".8"/><g transform="rotate(14 880 1090)"><rect x="835" y="1015" width="90" height="150" rx="16" fill="#0b0d1a"/><rect x="843" y="1023" width="74" height="134" rx="11" fill="#dcebff"/></g></g>` +
+  `<g id="${A.id("pfh")}" opacity="0"><ellipse cx="880" cy="1090" rx="300" ry="300" fill="url(#${A.id("gHalo")})" opacity=".8"/></g>` +
+  `<g id="${A.id("pf")}" opacity="0"><g transform="rotate(14 880 1090)"><rect x="835" y="1015" width="90" height="150" rx="16" fill="#0b0d1a"/><rect x="843" y="1023" width="74" height="134" rx="11" fill="#dcebff"/></g></g>` +
   [60, 130, 200].map((b, i) => A.dots("ret" + i, curve([850, 1050], [650, 880], b + 20), { step: 28, r: 7, color: COLD, opacity: 0.9 - i * 0.12 })).join("") +
   [1, 2, 3].map((n) => A.pill("pc" + n, 800, 840, "× " + n, 880, 1040, { size: 44, w: 150 })).join("") +
   `<g id="${A.id("score")}" opacity="0"><rect x="150" y="560" width="780" height="270" rx="48" fill="#0c0f2a" stroke="#fff" stroke-opacity=".14" stroke-width="3"/>
@@ -59,21 +60,32 @@ tl.fromTo(S.$("sIns"), { opacity: 1, scaleX: 0, svgOrigin: "175 470" }, { scaleX
 L.pill(tl, S, "pEnv", w("L03", 7));
 ["pIns", "sIns", "pEnv"].forEach((n) => tl.to(S.$(n), { opacity: 0, duration: 0.25 }, w("L04", 0) - 0.15));
 
-// trois allers-retours du téléphone : posé au sol, il revient dans la main
-const t0 = w("L04", 1), P = 1.05;
+// trois allers-retours du téléphone : il glisse de la main au sol, patiente, puis revient (fondus enchaînés, pas de coupe sèche)
+const t0 = w("L04", 1), P = 1.12;
 const hold = [S.$("phoneHeld"), S.$("feedWrap")];
+const DX = -340, DY = -212; // de la main (540,878) vers le sol (880,1090)
 for (let k = 0; k < 3; k++) {
-  const td = t0 + k * P;
-  tl.to(hold, { opacity: 0, duration: 0.1, immediateRender: false }, td);
-  tl.to(S.$("halo"), { opacity: 0.12, duration: 0.2, immediateRender: false }, td);
-  tl.fromTo(S.$("pf"), { opacity: 0, scale: 0.6, svgOrigin: "880 1090" }, { opacity: 1, scale: 1, duration: 0.25, ease: "back.out(2.4)", immediateRender: k === 0 }, td + 0.05);
-  L.pill(tl, S, "pc" + (k + 1), td + 0.12);
-  tl.fromTo(S.$("ret" + k), { opacity: 0 }, { opacity: 1, duration: 0.05 }, td + 0.4);
-  L.drawDots(tl, S.$("ret" + k), td + 0.4, 0.35, { ir: false });
-  tl.to([S.$("pf"), S.$("ret" + k), S.$("pc" + (k + 1))], { opacity: 0, duration: 0.15 }, td + 0.82);
-  tl.to(hold, { opacity: 1, duration: 0.12, immediateRender: false }, td + 0.82);
-  tl.fromTo(S.$("phoneHeld"), { scale: 0.9, svgOrigin: "540 860" }, { scale: 1, duration: 0.3, ease: "back.out(2.4)", immediateRender: false }, td + 0.82);
-  tl.to(S.$("halo"), { opacity: 1, duration: 0.25, immediateRender: false }, td + 0.82);
+  const td = t0 + k * P, ir = k === 0;
+  // départ : la main lâche, le téléphone glisse vers le sol (trajet courbe : x freine, y accélère)
+  tl.to(hold, { opacity: 0, duration: 0.22, ease: "power1.inOut", immediateRender: false }, td);
+  tl.to(S.$("halo"), { opacity: 0.12, duration: 0.35, ease: "sine.inOut", immediateRender: false }, td);
+  tl.fromTo(S.$("pf"), { opacity: 0 }, { opacity: 1, duration: 0.12, immediateRender: ir }, td);
+  tl.fromTo(S.$("pf"), { x: DX, rotation: -14, transformOrigin: "50% 50%" }, { x: 0, rotation: 0, duration: 0.46, ease: "sine.out", immediateRender: ir }, td);
+  tl.fromTo(S.$("pf"), { y: DY }, { y: 0, duration: 0.46, ease: "sine.in", immediateRender: ir }, td);
+  tl.fromTo(S.$("pfh"), { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "sine.inOut", immediateRender: ir }, td + 0.25);
+  L.pill(tl, S, "pc" + (k + 1), td + 0.42);
+  // retour : même trajet à l'envers, la traînée de points suit
+  const tr = td + 0.62;
+  tl.to(S.$("pfh"), { opacity: 0, duration: 0.3, ease: "sine.inOut" }, tr);
+  tl.to(S.$("pc" + (k + 1)), { opacity: 0, duration: 0.18 }, tr);
+  tl.fromTo(S.$("ret" + k), { opacity: 0 }, { opacity: 1, duration: 0.05 }, tr + 0.05);
+  L.drawDots(tl, S.$("ret" + k), tr + 0.05, 0.4, { ir: false });
+  tl.to(S.$("pf"), { x: DX, rotation: -14, duration: 0.46, ease: "sine.in", immediateRender: false }, tr);
+  tl.to(S.$("pf"), { y: DY, duration: 0.46, ease: "sine.out", immediateRender: false }, tr);
+  tl.to(hold, { opacity: 1, duration: 0.2, ease: "power1.inOut", immediateRender: false }, tr + 0.3);
+  tl.to(S.$("halo"), { opacity: 1, duration: 0.3, ease: "sine.inOut", immediateRender: false }, tr + 0.3);
+  tl.to(S.$("pf"), { opacity: 0, duration: 0.14 }, tr + 0.4);
+  tl.to(S.$("ret" + k), { opacity: 0, duration: 0.25 }, tr + 0.5);
 }
 
 // « C'est pas de la fatigue, ça. » : « fatigue » apparaît puis est barré
