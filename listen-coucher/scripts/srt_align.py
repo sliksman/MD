@@ -151,6 +151,68 @@ for c, i0, i1 in groups:
         times[k] = round(t, 3)
 ends = {}
 for c, i0, i1 in groups: ends[i1] = round(offset(cues[c][1]), 3)
+# --- corrections manuelles (le DP place mal quelques mots collés dans un même sous-titre du SRT)
+OVERRIDES = {("L16", 10): 33.0, ("L16", 11): 33.22, ("L17", 0): 34.09}   # « à toi. » / « Deux. » : silence 33.56–34.09 entre les deux
+END_OVERRIDES = {"L16": 33.45}
+gidx = [(l["id"], i) for l in T["vo"] for i in range(len(words_of(l["text"])))]
+for k, (lid, i) in enumerate(gidx):
+    if (lid, i) in OVERRIDES: times[k] = OVERRIDES[(lid, i)]
+# --- groupes de sous-titres : découpés selon la PONCTUATION DU SCRIPT (fin de phrase, virgule), pas selon les cues du SRT ;
+# un mot seul ne reste seul que s'il termine une phrase (« Un. », « Deux. », « Évidemment. ») ; trop long (> 6 mots ou > 32 signes) → coupé
+WEAK = {"de", "du", "des", "la", "le", "les", "un", "une", "ton", "ta", "tes", "à", "au", "aux", "que", "qui", "pour", "sur", "ce", "c'est", "et", "tu", "te",
+        "il", "est", "n'as", "d'y", "n'est", "se", "sa", "son", "mon", "ma", "mes", "t'as", "t'es", "pas", "ne", "t'arrives", "en", "ça", "l'app"}
+def split_len(ids):
+    ws = [SW[k][1] for k in ids]
+    if len(ids) <= 6 and len(" ".join(ws)) <= 32: return [ids]
+    best, bp = 1e9, None
+    for p in range(2, len(ids) - 1):
+        L, R = len(" ".join(ws[:p])), len(" ".join(ws[p:]))
+        last = re.sub(r"[^\wàâäéèêëîïôöùûüçœ']", "", ws[p - 1].lower())
+        cost = abs(L - R) - (8 if re.search(r"[,;:]$", ws[p - 1]) else 0) + (25 if last in WEAK else 0)
+        if cost < best: best, bp = cost, p
+    if bp is None: return [ids]
+    return split_len(ids[:bp]) + split_len(ids[bp:])
+segs = []
+k0 = 0
+for l in T["vo"]:
+    n = len(words_of(l["text"])); cur = []
+    for i in range(n):
+        cur.append(k0 + i)
+        if re.search(r"[.?!,;:]$", SW[k0 + i][1]) or re.search(r" [?!]$", SW[k0 + i][1]) or i == n - 1:
+            segs.append(cur); cur = []
+    k0 += n
+# fusion des mots seuls (sauf fin de phrase) avec le segment suivant de la même réplique
+merged = []
+for sg in segs:
+    if merged and len(sg) == 1 and re.search(r"[.?!]$", SW[sg[0]][1]) and SW[merged[-1][-1]][1].endswith(",") and len(merged[-1]) <= 4 and SW[merged[-1][0]][0] == SW[sg[0]][0]:
+        merged[-1] = merged[-1] + sg   # « …la fatigue, ça. » reste ensemble
+    elif merged and len(merged[-1]) == 1 and not re.search(r"[.?!]$", SW[merged[-1][0]][1]) and SW[merged[-1][0]][0] == SW[sg[0]][0]:
+        merged[-1] = merged[-1] + sg
+    else: merged.append(sg)
+cap_groups = []
+for sg in merged: cap_groups += split_len(sg)
+cue_first = {i0 for c, i0, i1 in groups}
+# les départs de sous-titres qui ne sont pas des débuts de cue se calent sur le début de parole le plus proche (± 0,3 s)
+ons = [i / 100 for i in range(6, len(speech) - 1) if speech[i] and not speech[i - 6:i].any()]
+for g in cap_groups:
+    k = g[0]
+    if k in cue_first or k == 0: continue
+    cand = [o for o in ons if abs(o - times[k]) <= 0.3 and o > times[k - 1] + 0.04]
+    if cand: times[k] = round(min(cand, key=lambda o: abs(o - times[k])), 3)
+# un sous-titre affiché moins de 0,45 s est illisible : on le fusionne avec le suivant (≤ 7 mots, ≤ 36 signes) ;
+# si la fusion est trop longue, il emprunte les premiers mots du suivant jusqu'à durer 0,45 s
+changed = True
+while changed:
+    changed = False
+    for gi in range(len(cap_groups) - 1):
+        g, n = cap_groups[gi], cap_groups[gi + 1]
+        if times[n[0]] - times[g[0]] >= 0.45 or (len(g) == 1 and re.search(r"[.?!]$", SW[g[0]][1])): continue
+        if len(g) + len(n) <= 7 and len(" ".join(SW[k][1] for k in g + n)) <= 36:
+            cap_groups[gi:gi + 2] = [g + n]; changed = True; break
+        g, n = list(g), list(n)
+        while len(n) > 2 and times[n[0]] - times[g[0]] < 0.45: g.append(n.pop(0))
+        cap_groups[gi], cap_groups[gi + 1] = g, n
+T["capGroups"] = [[list(gidx[k]) for k in g] for g in cap_groups]
 # --- écriture
 j = 0
 for l in T["vo"]:
@@ -158,7 +220,7 @@ for l in T["vo"]:
     l["words"] = [[SW[k][1], times[k]] for k in range(j, j + n)]
     l["start"] = times[j]
     nxt = times[j + n] if j + n < len(SW) else 999
-    l["end"] = round(min(ends.get(j + n - 1, times[j + n - 1] + 0.5), nxt - 0.02), 3)
+    l["end"] = END_OVERRIDES.get(l["id"], round(min(ends.get(j + n - 1, times[j + n - 1] + 0.5), nxt - 0.02), 3))
     l.pop("lock", None)
     j += n
 BASE.write_text(json.dumps(T, ensure_ascii=False, indent=1) + "\n")

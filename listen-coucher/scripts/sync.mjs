@@ -61,10 +61,17 @@ for (const line of T.vo) {
   vo[line.id] = { id: line.id, start: line.start, end: line.end, text: line.text, timed };
 }
 
-// ---------- groupes de sous-titres (≤ maxWords, coupés de préférence après une ponctuation)
+// ---------- groupes de sous-titres : ceux du SRT (T.capGroups, écrits par srt_align.py) ; sinon découpe automatique
 const CP = T.captions || {};
 const maxW = CP.maxWords || 3;
-const groups = [];
+let groups = [];
+if (Array.isArray(T.capGroups)) {
+  for (const g of T.capGroups) {
+    const words = g.map(([lid, i]) => vo[lid].timed[i]);
+    if (words.some((x) => !x)) { errors.push(`capGroups : mot introuvable ${JSON.stringify(g)}`); continue; }
+    groups.push({ line: g[g.length - 1][0], words });
+  }
+} else {
 for (const line of T.vo) {
   const ws = vo[line.id].timed;
   let cur = [];
@@ -72,14 +79,12 @@ for (const line of T.vo) {
     cur.push(x);
     const punct = /[,.:;!?]$/.test(x.w);
     const last = i === ws.length - 1;
-    // coupe si : ponctuation, plein, ou on laisserait un mot orphelin
-    if (last || punct || cur.length >= maxW || (cur.length === maxW - 1 && ws.length - i - 1 === 1 && false)) {
+    if (last || punct || cur.length >= maxW) {
       groups.push({ line: line.id, words: cur });
       cur = [];
     }
   });
 }
-// recoller les groupes d'un seul mot court au groupe suivant de la même réplique quand ça tient
 for (let i = 0; i < groups.length - 1; i++) {
   const g = groups[i], n = groups[i + 1];
   if (g.words.length === 1 && n.line === g.line && n.words.length < maxW && !/[,.:;!?]$/.test(g.words[0].w)) {
@@ -87,6 +92,7 @@ for (let i = 0; i < groups.length - 1; i++) {
     groups.splice(i, 1);
     i--;
   }
+}
 }
 const sceneAt = (t) => T.scenes.find((s) => t >= s.start - 1e-6 && t < s.end) || T.scenes[T.scenes.length - 1];
 const capGroups = groups.map((g, i) => {

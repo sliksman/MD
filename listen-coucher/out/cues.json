@@ -91,8 +91,8 @@
  },
  {
   "id": "pop0",
-  "t": 3.18,
-  "frame": 95,
+  "t": 2.815,
+  "frame": 84,
   "dur": 0.18,
   "file": "pop.wav",
   "vol": 0.4,
@@ -102,15 +102,6 @@
   "id": "pop1",
   "t": 5.368,
   "frame": 161,
-  "dur": 0.18,
-  "file": "pop.wav",
-  "vol": 0.4,
-  "name": "apparition"
- },
- {
-  "id": "pop2",
-  "t": 5.793,
-  "frame": 174,
   "dur": 0.18,
   "file": "pop.wav",
   "vol": 0.4,

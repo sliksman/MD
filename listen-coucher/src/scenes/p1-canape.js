@@ -38,15 +38,15 @@ L.blink(tl, S, 3.4); L.blink(tl, S, 11.9);
 tl.fromTo(S.$("feed"), { y: 0 }, { y: -160, duration: 0.7, ease: "none", repeat: Math.ceil(sc.hostDur / 0.7) }, 0);
 
 // caméra : on se rapproche du visage (« pas envie »), on recule quand le téléphone est posé
-tl.fromTo(S.cam, { scale: 1, svgOrigin: "540 960" }, { scale: 1.16, svgOrigin: "540 960", duration: w("L03", 9) - w("L02", 0) + 0.2, ease: "power1.inOut" }, w("L02", 0));
+tl.fromTo(S.cam, { scale: 1, svgOrigin: "540 960" }, { scale: 1.16, svgOrigin: "540 960", duration: w("L03", 6) - w("L02", 0) + 0.2, ease: "power1.inOut" }, w("L02", 0));
 tl.to(S.cam, { scale: 1, svgOrigin: "540 960", duration: 0.55, ease: "power3.inOut", immediateRender: false }, w("L04", 1) - 0.4);
 
 // le temps file : une heure de plus à chaque idée
 const tick = (t, a, b) => { tl.set(S.$("clk-" + a), { opacity: 0 }, t).set(S.$("clk-" + b), { opacity: 1 }, t);
   tl.fromTo(S.$("clk"), { scale: 1, transformOrigin: "50% 50%" }, { scale: 1.1, duration: 0.07, yoyo: true, repeat: 1, transformOrigin: "50% 50%", ease: "power2.out", immediateRender: false }, t); };
-tick(w("L01", 2) + 0.6, 0, 1);
-tick(w("L02", 5), 1, 2);
-tick(w("L03", 7), 2, 3);
+tick(w("L01", 1) + 0.6, 0, 1);
+tick(w("L02", 3), 1, 2);
+tick(w("L03", 4), 2, 3);
 tick(w("L04", 3), 3, 4);
 tick(w("L04", 8), 4, 5);
 tick(w("L05", 4), 5, 6);
@@ -55,9 +55,9 @@ tl.to(S.$("clk"), { y: -175, duration: 0.45, ease: "power3.inOut", immediateRend
 tl.to(S.$("clk"), { opacity: 0, duration: 0.25, ease: "power2.in" }, w("L06", 0) - 0.15);
 
 // « insomnie » → « pas envie d'y aller »
-L.pill(tl, S, "pIns", w("L02", 5) + 0.1);
-tl.fromTo(S.$("sIns"), { opacity: 1, scaleX: 0, svgOrigin: "175 470" }, { scaleX: 1, duration: 0.18, ease: "power3.out" }, w("L03", 0));
-L.pill(tl, S, "pEnv", w("L03", 7));
+L.pill(tl, S, "pIns", w("L02", 3) + 0.1);
+tl.fromTo(S.$("sIns"), { opacity: 1, scaleX: 0, svgOrigin: "175 470" }, { scaleX: 1, duration: 0.18, ease: "power3.out" }, w("L02", 7));
+L.pill(tl, S, "pEnv", w("L03", 4));
 ["pIns", "sIns", "pEnv"].forEach((n) => tl.to(S.$(n), { opacity: 0, duration: 0.25 }, w("L04", 0) - 0.15));
 
 // trois allers-retours du téléphone : il glisse de la main au sol, patiente, puis revient.
