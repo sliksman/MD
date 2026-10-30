@@ -7,7 +7,7 @@ ROOT = Path(__file__).resolve().parent.parent
 T = json.loads((ROOT / "timeline.json").read_text()); D = T["duration"]
 cues = json.loads((ROOT / "out/cues.json").read_text())
 OUT = ROOT / "out/stems"; OUT.mkdir(parents=True, exist_ok=True)
-GROUPS = [("02_volets", "wipe"), ("03_mouvements-camera", "cam"), ("04_apparitions-pastilles", "pop"),
+GROUPS = [("02_volets", "wipe"), ("03_mouvements-camera", "cam"), ("03b_reveil", "alarm"), ("04_apparitions-pastilles", "pop"),
           ("05_impacts-chiffres", "hit"), ("06_oreiller", "flop"), ("07_perceuse", "drill")]
 def run(args): subprocess.run(["ffmpeg", "-v", "error", "-y"] + args, check=True)
 run(["-i", str(ROOT / T["voFile"]), "-af", f"apad,atrim=0:{D}", "-ar", "48000", "-ac", "2", "-c:a", "pcm_s16le", str(OUT / "01_voix.wav")])

@@ -1304,6 +1304,303 @@
    },
    "vol": 0.4,
    "note": "réveil armé"
+  },
+  {
+   "id": "pop0",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L02",
+    "word": 5,
+    "+": 0.1
+   },
+   "vol": 0.4,
+   "note": "apparition"
+  },
+  {
+   "id": "pop1",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L03",
+    "word": 7,
+    "+": 0
+   },
+   "vol": 0.4,
+   "note": "apparition"
+  },
+  {
+   "id": "pop2",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L03",
+    "word": 9,
+    "+": 0.1
+   },
+   "vol": 0.4,
+   "note": "apparition"
+  },
+  {
+   "id": "pop3",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L04",
+    "word": 4,
+    "+": 0
+   },
+   "vol": 0.4,
+   "note": "apparition"
+  },
+  {
+   "id": "pop4",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L08",
+    "word": 5,
+    "+": 0
+   },
+   "vol": 0.4,
+   "note": "apparition"
+  },
+  {
+   "id": "pop5",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L08",
+    "word": 8,
+    "+": 0
+   },
+   "vol": 0.4,
+   "note": "apparition"
+  },
+  {
+   "id": "pop6",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L09",
+    "word": 0,
+    "+": 0
+   },
+   "vol": 0.4,
+   "note": "apparition"
+  },
+  {
+   "id": "pop7",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L12",
+    "word": 2,
+    "+": 0
+   },
+   "vol": 0.4,
+   "note": "apparition"
+  },
+  {
+   "id": "pop8",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L13",
+    "word": 4,
+    "+": -0.1
+   },
+   "vol": 0.4,
+   "note": "apparition"
+  },
+  {
+   "id": "pop9",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L14",
+    "word": 3,
+    "+": 0.25
+   },
+   "vol": 0.4,
+   "note": "apparition"
+  },
+  {
+   "id": "pop10",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L15",
+    "word": 0,
+    "+": 0.1
+   },
+   "vol": 0.4,
+   "note": "apparition"
+  },
+  {
+   "id": "pop11",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L16",
+    "word": 1,
+    "+": 0
+   },
+   "vol": 0.4,
+   "note": "apparition"
+  },
+  {
+   "id": "pop12",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L16",
+    "word": 10,
+    "+": 0
+   },
+   "vol": 0.4,
+   "note": "apparition"
+  },
+  {
+   "id": "pop13",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L16",
+    "word": 11,
+    "+": 0
+   },
+   "vol": 0.4,
+   "note": "apparition"
+  },
+  {
+   "id": "pop14",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L18",
+    "word": 0,
+    "+": 0.1
+   },
+   "vol": 0.4,
+   "note": "apparition"
+  },
+  {
+   "id": "pop15",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L18",
+    "word": 2,
+    "+": 0.1
+   },
+   "vol": 0.4,
+   "note": "apparition"
+  },
+  {
+   "id": "pop16",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L19",
+    "word": 0,
+    "+": 0
+   },
+   "vol": 0.4,
+   "note": "apparition"
+  },
+  {
+   "id": "pop17",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L19",
+    "word": 3,
+    "+": 0
+   },
+   "vol": 0.4,
+   "note": "apparition"
+  },
+  {
+   "id": "pop18",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L19",
+    "word": 5,
+    "+": 0
+   },
+   "vol": 0.4,
+   "note": "apparition"
+  },
+  {
+   "id": "pop19",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L20",
+    "word": 5,
+    "+": 0
+   },
+   "vol": 0.4,
+   "note": "apparition"
+  },
+  {
+   "id": "pop20",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L20",
+    "word": 17,
+    "+": 0
+   },
+   "vol": 0.4,
+   "note": "apparition"
+  },
+  {
+   "id": "pop21",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L21",
+    "word": 4,
+    "+": 0
+   },
+   "vol": 0.4,
+   "note": "apparition"
+  },
+  {
+   "id": "pop22",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L21",
+    "word": 6,
+    "+": 0
+   },
+   "vol": 0.4,
+   "note": "apparition"
+  },
+  {
+   "id": "pop23",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L22",
+    "word": 10,
+    "+": 0.1
+   },
+   "vol": 0.4,
+   "note": "apparition"
+  },
+  {
+   "id": "pop24",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L24",
+    "word": 2,
+    "+": 0
+   },
+   "vol": 0.4,
+   "note": "apparition"
+  },
+  {
+   "id": "pop25",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L25",
+    "word": 4,
+    "+": 0
+   },
+   "vol": 0.4,
+   "note": "apparition"
+  },
+  {
+   "id": "pop26",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L26",
+    "word": 2,
+    "+": 0
+   },
+   "vol": 0.4,
+   "note": "apparition"
   }
  ],
  "wipes": [
