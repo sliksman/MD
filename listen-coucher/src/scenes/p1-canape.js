@@ -1,18 +1,27 @@
-// PLAN 1 — LE CANAPÉ. Vue de dessus, halo bleu froid du téléphone sur le visage. L'horloge avance par à-coups,
-// « insomnie » est barré → « pas envie d'y aller », le téléphone posé revient trois fois, puis le score TOI 0 – ÉCRAN 7.
+// PLAN 1 — LE CANAPÉ. Vue de dessus, halo bleu froid du téléphone sur le visage, l'écran défile (doomscroll).
+// Le temps file : l'horloge avance à chaque idée (00:34 → 01:03). « insomnie » est barré → « pas envie d'y aller »,
+// le téléphone est posé puis revient trois fois (trois allers-retours), « fatigue » est barré, puis le score TOI 0 – ÉCRAN 7.
+// Caméra : on se rapproche du visage pendant « pas envie », on recule d'un cran quand le téléphone quitte la main.
 const AM = L.C.amber, COLD = "#9cc8ff";
 const curve = (p0, p1, bend = 80, n = 14) => { const mx = (p0[0] + p1[0]) / 2 + bend, my = (p0[1] + p1[1]) / 2 - bend;
   return Array.from({ length: n + 1 }, (_, i) => { const t = i / n; return [(1 - t) ** 2 * p0[0] + 2 * (1 - t) * t * mx + t * t * p1[0], (1 - t) ** 2 * p0[1] + 2 * (1 - t) * t * my + t * t * p1[1]]; }); };
 const strikeEl = (name, x1, x2, y, wd = 9) => `<line id="${A.id(name)}" x1="${x1}" y1="${y}" x2="${x2}" y2="${y}" stroke="${AM}" stroke-width="${wd}" stroke-linecap="round" opacity="0"/>`;
 const dots3 = (n) => `<g id="${A.id("pdots")}" opacity="0">${[0, 1, 2].map((i) => `<circle id="${A.id("pd" + i)}" cx="${820 + i * 56}" cy="212" r="14" fill="${i < n ? AM : "#fff"}" opacity="${i < n ? 1 : 0.22}"/>`).join("")}</g>`;
+const TIMES = ["00:34", "00:35", "00:41", "00:47", "00:52", "00:58", "01:03"];
+// fil d'actualité qui défile sur l'écran du téléphone tenu (coordonnées du canapé : écran 493,733 · 94×154)
+const FEEDCOL = ["#9cc8ff", "#6f9be0"];
+const feed = Array.from({ length: 8 }, (_, i) => { const y = 733 + (i - 2) * 80;
+  return `<rect x="500" y="${y}" width="80" height="66" rx="10" fill="${FEEDCOL[i % 2]}"/><circle cx="518" cy="${y + 17}" r="8" fill="#fff" opacity=".85"/><rect x="532" y="${y + 12}" width="40" height="7" rx="3" fill="#fff" opacity=".7"/><rect x="508" y="${y + 36}" width="64" height="8" rx="4" fill="#fff" opacity=".45"/>`; }).join("");
 const world = A.floorTop() + A.rug(540, 975, 780, 980) +
-  `<g transform="translate(54 150) scale(0.9)">${A.couchTop({ halo: 480 })}</g>` +
-  A.bigClock("clk", 400, 500, ["00:34", "00:35", "00:41"], { size: 92, w: 280, h: 118 }) +
+  `<g transform="translate(54 150) scale(0.9)">${A.couchTop({ halo: 480 })}
+    <g id="${A.id("feedWrap")}" transform="rotate(-3 540 810)"><clipPath id="${A.id("feedClip")}"><rect x="493" y="733" width="94" height="154" rx="13"/></clipPath><g clip-path="url(#${A.id("feedClip")})"><g id="${A.id("feed")}">${feed}</g></g></g></g>` +
+  A.bigClock("clk", 400, 500, TIMES, { size: 92, w: 280, h: 118 }) +
   A.pill("pIns", 250, 470, "insomnie", 470, 760) + strikeEl("sIns", 175, 325, 470) +
   A.pill("pEnv", 760, 560, "pas envie d'y aller", 610, 830, { dot: AM }) +
+  A.pill("pFat", 240, 600, "fatigue", 480, 740, { size: 40 }) + strikeEl("sFat", 175, 305, 600) +
   `<g id="${A.id("pf")}" opacity="0"><ellipse cx="880" cy="1090" rx="300" ry="300" fill="url(#${A.id("gHalo")})" opacity=".8"/><g transform="rotate(14 880 1090)"><rect x="835" y="1015" width="90" height="150" rx="16" fill="#0b0d1a"/><rect x="843" y="1023" width="74" height="134" rx="11" fill="#dcebff"/></g></g>` +
-  [60, 130, 200].map((b, i) => A.dots("ret" + i, curve([850, 1050], [650, 880], b + 20), { step: 28, r: 7, color: COLD, opacity: 0.9 - i * 0.22 })).join("") +
-  A.pill("pX3", 800, 840, "× 3", 880, 1040, { size: 44, w: 150 }) +
+  [60, 130, 200].map((b, i) => A.dots("ret" + i, curve([850, 1050], [650, 880], b + 20), { step: 28, r: 7, color: COLD, opacity: 0.9 - i * 0.12 })).join("") +
+  [1, 2, 3].map((n) => A.pill("pc" + n, 800, 840, "× " + n, 880, 1040, { size: 44, w: 150 })).join("") +
   `<g id="${A.id("score")}" opacity="0"><rect x="150" y="560" width="780" height="270" rx="48" fill="#0c0f2a" stroke="#fff" stroke-opacity=".14" stroke-width="3"/>
   <text x="270" y="598" text-anchor="middle" font-family="Nunito" font-weight="800" font-size="30" letter-spacing="7" fill="${L.C.cream}" fill-opacity=".8">TOI</text><text x="270" y="790" text-anchor="middle" font-family="Nunito" font-weight="900" font-size="170" fill="${AM}">0</text>
   <text x="540" y="745" text-anchor="middle" font-family="Fraunces" font-style="italic" font-weight="700" font-size="100" fill="${L.C.cream}" fill-opacity=".6">–</text>
@@ -20,16 +29,29 @@ const world = A.floorTop() + A.rug(540, 975, 780, 980) +
 const hud = A.title("title", "TOUS LES SOIRS", ["Une *négociation*."], 330, { size: 96 }) + dots3(0);
 const S = L.stage(root, ID, world, hud);
 ["ret0", "ret1", "ret2"].forEach((n) => gsap.set(S.$(n), { opacity: 0 }));
+gsap.set(S.$("sFat"), { opacity: 0 });
 gsap.set([S.$("title-over"), S.$("title-l0")], { opacity: 0 });
-L.cam(tl, S, { scale: 1.07 }, { scale: 1 }, 0, 4, "power2.out");
-L.blink(tl, S, 3.4); L.blink(tl, S, 9.8);
+L.blink(tl, S, 3.4); L.blink(tl, S, 11.9);
 
-// horloge : 00:34 → 00:35 (dans la respiration après le titre) → 00:41
-const jolt = (t, a, b) => { tl.set(S.$("clk-" + a), { opacity: 0 }, t).set(S.$("clk-" + b), { opacity: 1 }, t);
-  tl.fromTo(S.$("clk"), { scale: 1 }, { scale: 1.1, duration: 0.07, yoyo: true, repeat: 1, svgOrigin: "540 559", ease: "power2.out", immediateRender: false }, t); };
-jolt(w("L01", 2) + 0.6, 0, 1);
-jolt(w("L02", 5), 1, 2);
-tl.to(S.$("clk"), { opacity: 0, y: -40, duration: 0.3, ease: "power2.in" }, w("L03", 0) - 0.05);
+// l'écran défile du début jusqu'à ce que le téléphone soit posé (boucle sans couture : période 160 px)
+tl.fromTo(S.$("feed"), { y: 0 }, { y: -160, duration: 0.7, ease: "none", repeat: Math.ceil(sc.hostDur / 0.7) }, 0);
+
+// caméra : on se rapproche du visage (« pas envie »), on recule quand le téléphone est posé
+tl.fromTo(S.cam, { scale: 1, svgOrigin: "540 960" }, { scale: 1.16, svgOrigin: "540 960", duration: w("L03", 9) - w("L02", 0) + 0.2, ease: "power1.inOut" }, w("L02", 0));
+tl.to(S.cam, { scale: 1, svgOrigin: "540 960", duration: 0.55, ease: "power3.inOut", immediateRender: false }, w("L04", 1) - 0.4);
+
+// le temps file : une heure de plus à chaque idée
+const tick = (t, a, b) => { tl.set(S.$("clk-" + a), { opacity: 0 }, t).set(S.$("clk-" + b), { opacity: 1 }, t);
+  tl.fromTo(S.$("clk"), { scale: 1, transformOrigin: "50% 50%" }, { scale: 1.1, duration: 0.07, yoyo: true, repeat: 1, transformOrigin: "50% 50%", ease: "power2.out", immediateRender: false }, t); };
+tick(w("L01", 2) + 0.6, 0, 1);
+tick(w("L02", 5), 1, 2);
+tick(w("L03", 7), 2, 3);
+tick(w("L04", 3), 3, 4);
+tick(w("L04", 8), 4, 5);
+tick(w("L05", 4), 5, 6);
+// après le titre, l'horloge monte pour laisser la place aux pastilles
+tl.to(S.$("clk"), { y: -175, duration: 0.45, ease: "power3.inOut", immediateRender: false }, w("L02", 0) - 0.1);
+tl.to(S.$("clk"), { opacity: 0, duration: 0.25, ease: "power2.in" }, w("L06", 0) - 0.15);
 
 // « insomnie » → « pas envie d'y aller »
 L.pill(tl, S, "pIns", w("L02", 5) + 0.1);
@@ -37,24 +59,32 @@ tl.fromTo(S.$("sIns"), { opacity: 1, scaleX: 0, svgOrigin: "175 470" }, { scaleX
 L.pill(tl, S, "pEnv", w("L03", 7));
 ["pIns", "sIns", "pEnv"].forEach((n) => tl.to(S.$(n), { opacity: 0, duration: 0.25 }, w("L04", 0) - 0.15));
 
-// le téléphone posé revient trois fois
-const down = w("L04", 1) + 0.05;
-tl.to(S.$("phoneHeld"), { opacity: 0, duration: 0.12 }, down);
-tl.to(S.$("halo"), { opacity: 0.12, duration: 0.3 }, down);
-tl.fromTo(S.$("pf"), { opacity: 0, scale: 0.6, svgOrigin: "880 1090" }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2.4)" }, down + 0.08);
-L.pill(tl, S, "pX3", w("L04", 4));
-[8, 9, 10].forEach((k, i) => { const t = w("L04", k);
-  tl.fromTo(S.$("ret" + i), { opacity: 0 }, { opacity: 1, duration: 0.05 }, t);
-  L.drawDots(tl, S.$("ret" + i), t, 0.35); });
-const back = w("L04", 10) + 0.4;
-tl.to([S.$("pf"), S.$("ret0"), S.$("ret1"), S.$("ret2"), S.$("pX3")], { opacity: 0, duration: 0.25 }, back);
-tl.set(S.$("phoneHeld"), { opacity: 1 }, back);
-tl.fromTo(S.$("phoneHeld"), { scale: 0.92, svgOrigin: "540 860" }, { scale: 1, duration: 0.3, ease: "back.out(2.4)", immediateRender: false }, back);
-tl.to(S.$("halo"), { opacity: 1, duration: 0.3 }, back);
+// trois allers-retours du téléphone : posé au sol, il revient dans la main
+const t0 = w("L04", 1), P = 1.05;
+const hold = [S.$("phoneHeld"), S.$("feedWrap")];
+for (let k = 0; k < 3; k++) {
+  const td = t0 + k * P;
+  tl.to(hold, { opacity: 0, duration: 0.1, immediateRender: false }, td);
+  tl.to(S.$("halo"), { opacity: 0.12, duration: 0.2, immediateRender: false }, td);
+  tl.fromTo(S.$("pf"), { opacity: 0, scale: 0.6, svgOrigin: "880 1090" }, { opacity: 1, scale: 1, duration: 0.25, ease: "back.out(2.4)", immediateRender: k === 0 }, td + 0.05);
+  L.pill(tl, S, "pc" + (k + 1), td + 0.12);
+  tl.fromTo(S.$("ret" + k), { opacity: 0 }, { opacity: 1, duration: 0.05 }, td + 0.4);
+  L.drawDots(tl, S.$("ret" + k), td + 0.4, 0.35, { ir: false });
+  tl.to([S.$("pf"), S.$("ret" + k), S.$("pc" + (k + 1))], { opacity: 0, duration: 0.15 }, td + 0.82);
+  tl.to(hold, { opacity: 1, duration: 0.12, immediateRender: false }, td + 0.82);
+  tl.fromTo(S.$("phoneHeld"), { scale: 0.9, svgOrigin: "540 860" }, { scale: 1, duration: 0.3, ease: "back.out(2.4)", immediateRender: false }, td + 0.82);
+  tl.to(S.$("halo"), { opacity: 1, duration: 0.25, immediateRender: false }, td + 0.82);
+}
+
+// « C'est pas de la fatigue, ça. » : « fatigue » apparaît puis est barré
+L.pill(tl, S, "pFat", w("L05", 4));
+tl.fromTo(S.$("sFat"), { opacity: 1, scaleX: 0, svgOrigin: "175 600" }, { scaleX: 1, duration: 0.18, ease: "power3.out", immediateRender: false }, w("L05", 5) - 0.02);
+tl.to([S.$("pFat"), S.$("sFat")], { opacity: 0, duration: 0.25 }, w("L06", 0) - 0.1);
 
 // « C'est une négociation. » → le score
 const neg = w("L06", 2);
 tl.to(S.$("couch"), { opacity: 0.5, duration: 0.4 }, neg - 0.2);
+tl.to(S.$("feedWrap"), { opacity: 0.5, duration: 0.4 }, neg - 0.2);
 tl.fromTo(S.$("title-over"), { opacity: 0, y: -10 }, { opacity: 0.85, y: 0, duration: 0.3 }, neg - 0.1);
 tl.fromTo(S.$("title-l0"), { opacity: 0, y: 40, scale: 0.9, transformOrigin: "50% 50%" }, { opacity: 1, y: 0, scale: 1, duration: 0.32, ease: "back.out(2.6)" }, neg);
 tl.fromTo(S.$("score"), { opacity: 0, scale: 0.8, svgOrigin: "540 695" }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(2.2)" }, neg + 0.25);
