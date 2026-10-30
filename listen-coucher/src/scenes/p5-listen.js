@@ -1,0 +1,37 @@
+// PLAN 5 — LISTEN. L'interface (reconstruite d'après les captures) : on lance une terrasse de café, puis on ressort :
+// téléphone face contre table, arcs de points chauds dans la chambre. Premier néon du film.
+const AM = L.C.amber;
+const dots3 = (n) => `<g id="${A.id("pdots")}">${[0, 1, 2].map((i) => `<circle id="${A.id("pd" + i)}" cx="${820 + i * 56}" cy="212" r="14" fill="${i < n ? AM : "#fff"}" opacity="${i < n ? 1 : 0.22}"/>`).join("")}</g>`;
+const bedWorld = `<g id="${A.id("bw")}" opacity="0">${A.floorTop()}<ellipse cx="300" cy="900" rx="700" ry="520" fill="url(#${A.id("gWarm")})" opacity=".7"/>` +
+  `<g transform="translate(-170 -170) scale(1.32)">${A.bedTop({ clock: ["23:49"] })}</g>` + A.warmDots("w", 540, 815, 3, 235, 80) + A.pill("pCafe", 800, 400, "terrasse de café", 570, 770, { dot: "#ffd28a", size: 36 }) + `</g>`;
+const phoneSide = `<g id="${A.id("B")}">${A.bg()}<ellipse cx="540" cy="890" rx="460" ry="620" fill="${L.C.violet}" opacity=".2" filter="${A.u("fBlurL")}"/>${A.phoneUI(270, 410, 460, { track: "Terrasse de café", sub: "Enregistré sur place", section: "URBAIN" })}` +
+  A.pill("pRec", 540, 1417, "endroit réel", 540, 1304, { size: 34, dot: L.C.cyan }) + `</g>`;
+const hud = A.bigNum("n3", "3", "Un fond sonore.") + dots3(2);
+const S = L.stage(root, ID, bedWorld + phoneSide, hud);
+gsap.set(S.$("screenOff"), { opacity: 0 });
+["w0", "w1", "w2"].forEach((n) => gsap.set(S.$(n), { opacity: 0 }));
+// l'interface arrive (le volet la découvre)
+tl.fromTo(S.$("B"), { scale: 0.93, svgOrigin: "540 960" }, { scale: 1, duration: 0.7, ease: "expo.out" }, 0);
+// « Trois. » : le chiffre claque, le troisième point s'allume
+const tr = w("L23", 0);
+L.slam(tl, S, "n3", tr);
+tl.to(S.$("pd2"), { fill: AM, opacity: 1, duration: 0.12 }, tr + 0.4);
+tl.fromTo(S.$("pd2"), { scale: 1.9, transformOrigin: "50% 50%" }, { scale: 1, duration: 0.3, ease: "back.out(3)", immediateRender: false }, tr + 0.4);
+tl.fromTo(S.$("n3-lab"), { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.3, ease: "back.out(2)" }, w("L23", 2));
+// « endroits réels, enregistrés sur place »
+L.pill(tl, S, "pRec", w("L24", 2));
+// « Prends une terrasse de café » : on tape la piste, lecture
+const tap = w("L25", 1);
+tl.fromTo(S.$("trackHi"), { opacity: 0 }, { opacity: 1, duration: 0.3 }, tap);
+tl.fromTo(S.$("tap"), { opacity: 0.9, scale: 0.5, transformOrigin: "50% 50%" }, { opacity: 0, scale: 1.4, duration: 0.7, ease: "power2.out" }, tap);
+tl.set(S.$("play"), { opacity: 0 }, tap + 0.15).set(S.$("pause"), { opacity: 1 }, tap + 0.15);
+// « et laisse tourner » : on ressort du téléphone, la chambre se remplit
+const out = w("L25", 2) + 0.05;
+tl.to([S.$("n3"), S.$("pRec")], { opacity: 0, duration: 0.3 }, out - 0.1);
+tl.to(S.$("B"), { scale: 0.16, x: -364, y: -111, svgOrigin: "500 881.5", duration: 0.55, ease: "power3.in", immediateRender: false }, out);
+tl.to(S.$("B"), { opacity: 0, duration: 0.15 }, out + 0.45);
+tl.fromTo(S.$("bw"), { opacity: 0 }, { opacity: 1, duration: 0.3 }, out + 0.3);
+["w0", "w1", "w2"].forEach((r, i) => { tl.fromTo(S.$(r), { opacity: 0 }, { opacity: 1, duration: 0.05 }, w("L25", 6) + i * 0.2); L.drawDots(tl, S.$(r), w("L25", 6) + i * 0.2, 0.6, { from: "center" }); });
+L.pill(tl, S, "pCafe", w("L25", 4));
+
+L.shut(tl, S, w("L25", 6), true);

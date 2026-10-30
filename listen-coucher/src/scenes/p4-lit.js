@@ -1,0 +1,24 @@
+// PLAN 4 — LE LIT. Le miroir du canapé : enfin couché, à l'heure. Puis la chambre fait un silence : les yeux s'ouvrent, ligne de points plate.
+const AM = L.C.amber;
+const dots3 = (n) => `<g id="${A.id("pdots")}">${[0, 1, 2].map((i) => `<circle cx="${820 + i * 56}" cy="212" r="14" fill="${i < n ? AM : "#fff"}" opacity="${i < n ? 1 : 0.22}"/>`).join("")}</g>`;
+const world = A.floorTop() + `<g transform="translate(-170 -170) scale(1.32)">${A.bedTop({ clock: ["23:32", "23:48"] })}</g>` +
+  A.dots("flat", [[40, 1130], [1040, 1130]], { step: 30, r: 5, opacity: 0.5 }) +
+  A.pill("pOk", 830, 600, "à l'heure", 700, 790, { dot: AM }) + A.pill("p1", 800, 470, "1ʳᵉ fois depuis des mois", 700, 640, { size: 32 }) +
+  A.pill("pSil", 840, 1010, "silence", 760, 1130, { size: 40 });
+const S = L.stage(root, ID, world, dots3(2));
+gsap.set(S.$("flat"), { opacity: 0 });
+gsap.set(S.$("eyes-open"), { opacity: 0 }); gsap.set(S.$("eyes-shut"), { opacity: 1 }); gsap.set([S.$("eyes-lidL"), S.$("eyes-lidR")], { opacity: 0 });
+L.cam(tl, S, { scale: 1.04 }, { scale: 1 }, 0, 3, "power2.out");
+// « à l'heure », « pour la première fois depuis des mois »
+L.pill(tl, S, "pOk", w("L21", 4));
+L.pill(tl, S, "p1", w("L21", 6));
+// la chambre : le réveil avance, les pastilles partent
+tl.set(S.$("clk-0"), { opacity: 0 }, w("L22", 0) + 0.2).set(S.$("clk-1"), { opacity: 1 }, w("L22", 0) + 0.2);
+L.pillOut(tl, S, "pOk", w("L22", 0) - 0.1); L.pillOut(tl, S, "p1", w("L22", 0) - 0.1);
+// « un silence pas possible » : les yeux s'ouvrent, la ligne plate traverse la chambre
+const sil = w("L22", 9);
+L.shut(tl, S, sil - 0.05, false);
+tl.fromTo(S.$("eyes-open"), { scale: 1, transformOrigin: "50% 50%" }, { scale: 1.35, duration: 0.18, ease: "back.out(3)", immediateRender: false }, sil);
+tl.fromTo(S.$("flat"), { opacity: 0 }, { opacity: 0.5, duration: 0.05 }, sil);
+L.drawDots(tl, S.$("flat"), sil, 0.8, { from: "center" });
+L.pill(tl, S, "pSil", w("L22", 10) + 0.1);

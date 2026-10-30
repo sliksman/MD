@@ -1,0 +1,19 @@
+// PLAN 6 — ET TOI ? Retour au cadre du lit, endormi. La question porte sur « l'heure de fin ».
+const AM = L.C.amber;
+const world = A.floorTop() + `<g transform="translate(-170 -170) scale(1.32)">${A.bedTop({ clock: ["23:50"] })}</g>`;
+const hud = A.title("title", "ÉPISODE 1", ["Et *toi* ?"], 350) +
+  `<g>${[0, 1, 2].map((i) => `<circle cx="${820 + i * 56}" cy="212" r="14" fill="${AM}"/>`).join("")}</g>` +
+  A.pill("pComment", 540, 410, "dis-le en commentaire ↓", undefined, undefined, { size: 34 }) +
+  `<g id="${A.id("lockup")}"><rect x="140" y="1330" width="720" height="150" rx="40" fill="#0b0d1a" fill-opacity=".88" stroke="#fff" stroke-opacity=".12" stroke-width="2"/>
+  ${A.listenIcon(170, 1350, 110)}
+  <text x="310" y="1405" font-family="Poppins" font-weight="700" font-size="44" fill="#fff">Listen</text>
+  <text x="310" y="1450" font-family="Poppins" font-weight="400" font-size="27" fill="#b8bdd6">Sounds of the World · App Store</text></g>`;
+const S = L.stage(root, ID, world, hud);
+gsap.set(S.$("eyes-open"), { opacity: 0 }); gsap.set(S.$("eyes-shut"), { opacity: 1 }); gsap.set([S.$("eyes-lidL"), S.$("eyes-lidR")], { opacity: 0 });
+gsap.set([S.$("title-over"), S.$("title-l0")], { opacity: 0 });
+L.cam(tl, S, { scale: 1.04 }, { scale: 1 }, 0, sc.hostDur, "power1.out");
+const et = w("L26", 0);
+tl.fromTo(S.$("title-over"), { opacity: 0 }, { opacity: 0.85, duration: 0.4 }, et - 0.3);
+tl.fromTo(S.$("title-l0"), { opacity: 0, y: 30, scale: 0.92, transformOrigin: "50% 50%" }, { opacity: 1, y: 0, scale: 1, duration: 0.35, ease: "back.out(2.6)" }, et - 0.05);
+L.pop(tl, S.$("pComment"), w("L26", 2), { from: 0.8, ease: "power3.out" });
+tl.fromTo(S.$("lockup"), { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: 0.4, ease: "back.out(2)" }, w("L26", 5) - 0.15);

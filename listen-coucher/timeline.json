@@ -1,0 +1,1318 @@
+{
+ "_doc": "GÉNÉRÉ par scripts/breathe.py depuis timeline.base.json — éditer la base, pas ce fichier.",
+ "duration": 76.15,
+ "fade": 0,
+ "scenes": [
+  {
+   "id": "p1",
+   "file": "p1-canape",
+   "start": 0,
+   "end": 16.1
+  },
+  {
+   "id": "p2",
+   "file": "p2-reveil",
+   "start": 16.1,
+   "end": 34.69
+  },
+  {
+   "id": "p3",
+   "file": "p3-journee",
+   "start": 34.69,
+   "end": 54.12
+  },
+  {
+   "id": "p4",
+   "file": "p4-lit",
+   "start": 54.12,
+   "end": 61.89
+  },
+  {
+   "id": "p5",
+   "file": "p5-listen",
+   "start": 61.89,
+   "end": 71.43
+  },
+  {
+   "id": "p6",
+   "file": "p6-et-toi",
+   "start": 71.43,
+   "end": 76.15
+  }
+ ],
+ "vo": [
+  {
+   "id": "L01",
+   "start": 0.12,
+   "end": 1.21,
+   "text": "0 h 34.",
+   "hl": [
+    "34."
+   ],
+   "words": [
+    [
+     "0",
+     0.12
+    ],
+    [
+     "h",
+     0.483
+    ],
+    [
+     "34.",
+     0.847
+    ]
+   ]
+  },
+  {
+   "id": "L02",
+   "start": 2.46,
+   "end": 3.76,
+   "text": "Ce n'est pas que tu n'arrives pas à dormir.",
+   "hl": [
+    "dormir."
+   ],
+   "words": [
+    [
+     "Ce",
+     2.46
+    ],
+    [
+     "n'est",
+     2.562
+    ],
+    [
+     "pas",
+     2.664
+    ],
+    [
+     "que",
+     2.766
+    ],
+    [
+     "tu",
+     2.868
+    ],
+    [
+     "n'arrives",
+     3.08
+    ],
+    [
+     "pas",
+     3.333
+    ],
+    [
+     "à",
+     3.46
+    ],
+    [
+     "dormir.",
+     3.587
+    ]
+   ]
+  },
+  {
+   "id": "L03",
+   "start": 3.78,
+   "end": 6.96,
+   "text": "Le problème c'est que tu n'as pas envie d'y aller.",
+   "hl": [
+    "envie"
+   ],
+   "words": [
+    [
+     "Le",
+     3.78
+    ],
+    [
+     "problème",
+     3.884
+    ],
+    [
+     "c'est",
+     4.092
+    ],
+    [
+     "que",
+     4.196
+    ],
+    [
+     "tu",
+     4.88
+    ],
+    [
+     "n'as",
+     5.01
+    ],
+    [
+     "pas",
+     5.26
+    ],
+    [
+     "envie",
+     5.368
+    ],
+    [
+     "d'y",
+     5.585
+    ],
+    [
+     "aller.",
+     5.693
+    ]
+   ]
+  },
+  {
+   "id": "L04",
+   "start": 6.98,
+   "end": 10.51,
+   "text": "T'as posé ton téléphone trois fois, il est revenu trois fois.",
+   "hl": [
+    "trois",
+    "fois,",
+    "fois."
+   ],
+   "words": [
+    [
+     "T'as",
+     6.98
+    ],
+    [
+     "posé",
+     7.149
+    ],
+    [
+     "ton",
+     7.487
+    ],
+    [
+     "téléphone",
+     7.656
+    ],
+    [
+     "trois",
+     8.162
+    ],
+    [
+     "fois,",
+     8.331
+    ],
+    [
+     "il",
+     8.84
+    ],
+    [
+     "est",
+     8.958
+    ],
+    [
+     "revenu",
+     9.076
+    ],
+    [
+     "trois",
+     9.55
+    ],
+    [
+     "fois.",
+     9.78
+    ]
+   ]
+  },
+  {
+   "id": "L05",
+   "start": 10.67,
+   "end": 11.66,
+   "text": "C'est pas de la fatigue, ça.",
+   "hl": [],
+   "words": [
+    [
+     "C'est",
+     10.67
+    ],
+    [
+     "pas",
+     10.794
+    ],
+    [
+     "de",
+     10.918
+    ],
+    [
+     "la",
+     11.041
+    ],
+    [
+     "fatigue,",
+     11.165
+    ],
+    [
+     "ça.",
+     11.536
+    ]
+   ]
+  },
+  {
+   "id": "L06",
+   "start": 12.14,
+   "end": 13.03,
+   "text": "C'est une négociation.",
+   "hl": [
+    "négociation."
+   ],
+   "words": [
+    [
+     "C'est",
+     12.14
+    ],
+    [
+     "une",
+     12.288
+    ],
+    [
+     "négociation.",
+     12.437
+    ]
+   ]
+  },
+  {
+   "id": "L07",
+   "start": 13.95,
+   "end": 16.9,
+   "text": "Et tu la perds tous les soirs.",
+   "hl": [
+    "perds"
+   ],
+   "words": [
+    [
+     "Et",
+     13.95
+    ],
+    [
+     "tu",
+     14.108
+    ],
+    [
+     "la",
+     14.265
+    ],
+    [
+     "perds",
+     14.422
+    ],
+    [
+     "tous",
+     14.75
+    ],
+    [
+     "les",
+     14.923
+    ],
+    [
+     "soirs.",
+     15.097
+    ]
+   ]
+  },
+  {
+   "id": "L08",
+   "start": 16.92,
+   "end": 19.59,
+   "text": "Un. Arrête de décider de ton heure de coucher.",
+   "hl": [
+    "coucher."
+   ],
+   "words": [
+    [
+     "Un.",
+     16.92
+    ],
+    [
+     "Arrête",
+     17.64
+    ],
+    [
+     "de",
+     18.0
+    ],
+    [
+     "décider",
+     18.18
+    ],
+    [
+     "de",
+     18.62
+    ],
+    [
+     "ton",
+     18.782
+    ],
+    [
+     "heure",
+     18.943
+    ],
+    [
+     "de",
+     19.105
+    ],
+    [
+     "coucher.",
+     19.267
+    ]
+   ]
+  },
+  {
+   "id": "L09",
+   "start": 20.06,
+   "end": 21.92,
+   "text": "Personne tient une heure de coucher.",
+   "hl": [],
+   "words": [
+    [
+     "Personne",
+     20.06
+    ],
+    [
+     "tient",
+     20.428
+    ],
+    [
+     "une",
+     20.611
+    ],
+    [
+     "heure",
+     20.795
+    ],
+    [
+     "de",
+     20.979
+    ],
+    [
+     "coucher.",
+     21.162
+    ]
+   ]
+  },
+  {
+   "id": "L10",
+   "start": 21.94,
+   "end": 23.6,
+   "text": "Décide de ton heure de fin.",
+   "hl": [
+    "fin."
+   ],
+   "words": [
+    [
+     "Décide",
+     21.94
+    ],
+    [
+     "de",
+     22.326
+    ],
+    [
+     "ton",
+     22.519
+    ],
+    [
+     "heure",
+     22.711
+    ],
+    [
+     "de",
+     22.904
+    ],
+    [
+     "fin.",
+     23.097
+    ]
+   ]
+  },
+  {
+   "id": "L11",
+   "start": 23.78,
+   "end": 26.9,
+   "text": "Celle où tu éteins, tu ranges, tu poses tout.",
+   "hl": [],
+   "words": [
+    [
+     "Celle",
+     23.78
+    ],
+    [
+     "où",
+     23.913
+    ],
+    [
+     "tu",
+     24.047
+    ],
+    [
+     "éteins,",
+     24.27
+    ],
+    [
+     "tu",
+     24.63
+    ],
+    [
+     "ranges,",
+     24.813
+    ],
+    [
+     "tu",
+     24.997
+    ],
+    [
+     "poses",
+     25.34
+    ],
+    [
+     "tout.",
+     25.525
+    ]
+   ]
+  },
+  {
+   "id": "L12",
+   "start": 26.92,
+   "end": 27.85,
+   "text": "Mets une alarme.",
+   "hl": [
+    "alarme."
+   ],
+   "words": [
+    [
+     "Mets",
+     26.92
+    ],
+    [
+     "une",
+     27.07
+    ],
+    [
+     "alarme.",
+     27.22
+    ]
+   ]
+  },
+  {
+   "id": "L13",
+   "start": 28.0,
+   "end": 30.71,
+   "text": "Pas pour te lever, pour t'arrêter.",
+   "hl": [
+    "t'arrêter."
+   ],
+   "words": [
+    [
+     "Pas",
+     28.0
+    ],
+    [
+     "pour",
+     28.136
+    ],
+    [
+     "te",
+     28.272
+    ],
+    [
+     "lever,",
+     28.408
+    ],
+    [
+     "pour",
+     29.07
+    ],
+    [
+     "t'arrêter.",
+     29.29
+    ]
+   ]
+  },
+  {
+   "id": "L14",
+   "start": 30.73,
+   "end": 32.41,
+   "text": "Elle sonne. Tu l'éteins.",
+   "hl": [],
+   "words": [
+    [
+     "Elle",
+     30.73
+    ],
+    [
+     "sonne.",
+     31.015
+    ],
+    [
+     "Tu",
+     31.59
+    ],
+    [
+     "l'éteins.",
+     31.757
+    ]
+   ]
+  },
+  {
+   "id": "L15",
+   "start": 32.43,
+   "end": 35.52,
+   "text": "Tu continues. Évidemment.",
+   "hl": [
+    "continues."
+   ],
+   "words": [
+    [
+     "Tu",
+     32.43
+    ],
+    [
+     "continues.",
+     32.555
+    ],
+    [
+     "Évidemment.",
+     33.31
+    ]
+   ]
+  },
+  {
+   "id": "L16",
+   "start": 35.54,
+   "end": 37.85,
+   "text": "Depuis sept heures ce matin, t'as pas eu dix minutes à toi.",
+   "hl": [
+    "dix",
+    "minutes"
+   ],
+   "words": [
+    [
+     "Depuis",
+     35.54
+    ],
+    [
+     "sept",
+     35.913
+    ],
+    [
+     "heures",
+     36.099
+    ],
+    [
+     "ce",
+     36.285
+    ],
+    [
+     "matin,",
+     36.471
+    ],
+    [
+     "t'as",
+     36.844
+    ],
+    [
+     "pas",
+     36.92
+    ],
+    [
+     "eu",
+     37.058
+    ],
+    [
+     "dix",
+     37.197
+    ],
+    [
+     "minutes",
+     37.335
+    ],
+    [
+     "à",
+     37.4
+    ],
+    [
+     "toi.",
+     37.62
+    ]
+   ]
+  },
+  {
+   "id": "L17",
+   "start": 38.99,
+   "end": 41.23,
+   "text": "Deux. Alors prends-les avant.",
+   "hl": [
+    "avant."
+   ],
+   "words": [
+    [
+     "Deux.",
+     38.99
+    ],
+    [
+     "Alors",
+     39.71
+    ],
+    [
+     "prends-les",
+     40.158
+    ],
+    [
+     "avant.",
+     40.382
+    ]
+   ]
+  },
+  {
+   "id": "L18",
+   "start": 41.25,
+   "end": 43.35,
+   "text": "Vingt minutes, sans écran. Décidé.",
+   "hl": [
+    "minutes,",
+    "Décidé."
+   ],
+   "words": [
+    [
+     "Vingt",
+     41.25
+    ],
+    [
+     "minutes,",
+     41.42
+    ],
+    [
+     "sans",
+     41.98
+    ],
+    [
+     "écran.",
+     42.213
+    ],
+    [
+     "Décidé.",
+     42.8
+    ]
+   ]
+  },
+  {
+   "id": "L19",
+   "start": 44.25,
+   "end": 48.79,
+   "text": "Quelques pages, un carnet, un disque en entier, ce que tu veux, du moment que ça se termine.",
+   "hl": [
+    "pages,",
+    "carnet,",
+    "disque"
+   ],
+   "words": [
+    [
+     "Quelques",
+     44.25
+    ],
+    [
+     "pages,",
+     44.863
+    ],
+    [
+     "un",
+     45.09
+    ],
+    [
+     "carnet,",
+     45.357
+    ],
+    [
+     "un",
+     45.81
+    ],
+    [
+     "disque",
+     45.95
+    ],
+    [
+     "en",
+     46.23
+    ],
+    [
+     "entier,",
+     46.37
+    ],
+    [
+     "ce",
+     46.91
+    ],
+    [
+     "que",
+     47.1
+    ],
+    [
+     "tu",
+     47.29
+    ],
+    [
+     "veux,",
+     47.48
+    ],
+    [
+     "du",
+     47.76
+    ],
+    [
+     "moment",
+     47.88
+    ],
+    [
+     "que",
+     48.12
+    ],
+    [
+     "ça",
+     48.24
+    ],
+    [
+     "se",
+     48.47
+    ],
+    [
+     "termine.",
+     48.577
+    ]
+   ]
+  },
+  {
+   "id": "L20",
+   "start": 49.79,
+   "end": 54.8,
+   "text": "Le problème, c'est pas que tu veuilles du temps pour toi, c'est l'heure à laquelle tu le prends.",
+   "hl": [
+    "l'heure",
+    "prends."
+   ],
+   "words": [
+    [
+     "Le",
+     49.79
+    ],
+    [
+     "problème,",
+     50.013
+    ],
+    [
+     "c'est",
+     50.56
+    ],
+    [
+     "pas",
+     50.675
+    ],
+    [
+     "que",
+     50.68
+    ],
+    [
+     "tu",
+     50.831
+    ],
+    [
+     "veuilles",
+     50.983
+    ],
+    [
+     "du",
+     51.134
+    ],
+    [
+     "temps",
+     51.286
+    ],
+    [
+     "pour",
+     51.437
+    ],
+    [
+     "toi,",
+     51.589
+    ],
+    [
+     "c'est",
+     52.22
+    ],
+    [
+     "l'heure",
+     52.338
+    ],
+    [
+     "à",
+     52.455
+    ],
+    [
+     "laquelle",
+     52.572
+    ],
+    [
+     "tu",
+     52.808
+    ],
+    [
+     "le",
+     52.925
+    ],
+    [
+     "prends.",
+     53.042
+    ]
+   ]
+  },
+  {
+   "id": "L21",
+   "start": 54.82,
+   "end": 58.61,
+   "text": "Là, t'es couché à l'heure pour la première fois depuis des mois",
+   "hl": [
+    "couché"
+   ],
+   "words": [
+    [
+     "Là,",
+     54.82
+    ],
+    [
+     "t'es",
+     54.987
+    ],
+    [
+     "couché",
+     55.155
+    ],
+    [
+     "à",
+     55.91
+    ],
+    [
+     "l'heure",
+     56.07
+    ],
+    [
+     "pour",
+     56.57
+    ],
+    [
+     "la",
+     56.86
+    ],
+    [
+     "première",
+     57.029
+    ],
+    [
+     "fois",
+     57.366
+    ],
+    [
+     "depuis",
+     57.535
+    ],
+    [
+     "des",
+     57.872
+    ],
+    [
+     "mois",
+     58.041
+    ]
+   ]
+  },
+  {
+   "id": "L22",
+   "start": 58.81,
+   "end": 62.64,
+   "text": "et ta chambre se met à faire un silence pas possible.",
+   "hl": [
+    "silence"
+   ],
+   "words": [
+    [
+     "et",
+     58.81
+    ],
+    [
+     "ta",
+     58.967
+    ],
+    [
+     "chambre",
+     59.123
+    ],
+    [
+     "se",
+     59.28
+    ],
+    [
+     "met",
+     59.437
+    ],
+    [
+     "à",
+     59.593
+    ],
+    [
+     "faire",
+     59.83
+    ],
+    [
+     "un",
+     59.988
+    ],
+    [
+     "silence",
+     60.145
+    ],
+    [
+     "pas",
+     60.83
+    ],
+    [
+     "possible.",
+     60.897
+    ]
+   ]
+  },
+  {
+   "id": "L23",
+   "start": 62.75,
+   "end": 66.04,
+   "text": "Trois. Mets un fond sonore sur l'appli Listen.",
+   "hl": [
+    "sonore",
+    "Listen."
+   ],
+   "words": [
+    [
+     "Trois.",
+     62.75
+    ],
+    [
+     "Mets",
+     63.43
+    ],
+    [
+     "un",
+     63.6
+    ],
+    [
+     "fond",
+     63.77
+    ],
+    [
+     "sonore",
+     63.94
+    ],
+    [
+     "sur",
+     65.1
+    ],
+    [
+     "l'appli",
+     65.31
+    ],
+    [
+     "Listen.",
+     65.73
+    ]
+   ]
+  },
+  {
+   "id": "L24",
+   "start": 66.06,
+   "end": 68.62,
+   "text": "C'est des endroits réels enregistrés sur place.",
+   "hl": [
+    "réels",
+    "place."
+   ],
+   "words": [
+    [
+     "C'est",
+     66.06
+    ],
+    [
+     "des",
+     66.27
+    ],
+    [
+     "endroits",
+     66.48
+    ],
+    [
+     "réels",
+     66.9
+    ],
+    [
+     "enregistrés",
+     67.19
+    ],
+    [
+     "sur",
+     67.663
+    ],
+    [
+     "place.",
+     67.782
+    ]
+   ]
+  },
+  {
+   "id": "L25",
+   "start": 68.75,
+   "end": 72.22,
+   "text": "Prends une terrasse de café et laisse tourner.",
+   "hl": [
+    "café",
+    "tourner."
+   ],
+   "words": [
+    [
+     "Prends",
+     68.75
+    ],
+    [
+     "une",
+     68.91
+    ],
+    [
+     "terrasse",
+     69.07
+    ],
+    [
+     "de",
+     69.39
+    ],
+    [
+     "café",
+     69.55
+    ],
+    [
+     "et",
+     70.04
+    ],
+    [
+     "laisse",
+     70.185
+    ],
+    [
+     "tourner.",
+     70.33
+    ]
+   ]
+  },
+  {
+   "id": "L26",
+   "start": 72.24,
+   "end": 74.07,
+   "text": "Et toi, c'est quoi ton heure de fin ?",
+   "hl": [
+    "toi,",
+    "fin"
+   ],
+   "words": [
+    [
+     "Et",
+     72.24
+    ],
+    [
+     "toi,",
+     72.43
+    ],
+    [
+     "c'est",
+     73.09
+    ],
+    [
+     "quoi",
+     73.253
+    ],
+    [
+     "ton",
+     73.417
+    ],
+    [
+     "heure",
+     73.58
+    ],
+    [
+     "de",
+     73.743
+    ],
+    [
+     "fin ?",
+     73.907
+    ]
+   ]
+  }
+ ],
+ "captions": {
+  "enabled": true,
+  "maxWords": 3,
+  "y": 1330,
+  "tail": 0.5,
+  "lead": 0.08
+ },
+ "captionY": [
+  [
+   0,
+   34.69,
+   1330
+  ],
+  [
+   34.69,
+   49.29,
+   1345
+  ],
+  [
+   49.29,
+   54.12,
+   1470
+  ],
+  [
+   54.12,
+   61.89,
+   1330
+  ],
+  [
+   61.89,
+   68.64,
+   1520
+  ],
+  [
+   68.64,
+   71.43,
+   1330
+  ],
+  [
+   71.43,
+   99,
+   1240
+  ]
+ ],
+ "sfx": [
+  {
+   "id": "wipe0",
+   "file": "whoosh.wav",
+   "at": {
+    "wipe": 0,
+    "+": -0.35
+   },
+   "vol": 0.7,
+   "note": "volet jaune"
+  },
+  {
+   "id": "wipe1",
+   "file": "whoosh.wav",
+   "at": {
+    "wipe": 1,
+    "+": -0.35
+   },
+   "vol": 0.7,
+   "note": "volet jaune"
+  },
+  {
+   "id": "wipe2",
+   "file": "whoosh.wav",
+   "at": {
+    "wipe": 2,
+    "+": -0.35
+   },
+   "vol": 0.7,
+   "note": "volet jaune"
+  },
+  {
+   "id": "wipe3",
+   "file": "whoosh.wav",
+   "at": {
+    "wipe": 3,
+    "+": -0.35
+   },
+   "vol": 0.7,
+   "note": "volet jaune"
+  },
+  {
+   "id": "wipe4",
+   "file": "whoosh.wav",
+   "at": {
+    "wipe": 4,
+    "+": -0.35
+   },
+   "vol": 0.7,
+   "note": "volet jaune"
+  },
+  {
+   "id": "hit0",
+   "file": "flop.wav",
+   "at": {
+    "vo": "L08",
+    "word": 0,
+    "+": 0.02
+   },
+   "vol": 0.9,
+   "note": "impact du chiffre 1"
+  },
+  {
+   "id": "hit1",
+   "file": "flop.wav",
+   "at": {
+    "vo": "L17",
+    "word": 0,
+    "+": 0.02
+   },
+   "vol": 0.9,
+   "note": "impact du chiffre 2"
+  },
+  {
+   "id": "hit2",
+   "file": "flop.wav",
+   "at": {
+    "vo": "L23",
+    "word": 0,
+    "+": 0.02
+   },
+   "vol": 0.9,
+   "note": "impact du chiffre 3"
+  },
+  {
+   "id": "alarm0",
+   "file": "alarm.wav",
+   "at": {
+    "vo": "L14",
+    "word": 0,
+    "+": 0.02
+   },
+   "vol": 0.55,
+   "note": "réveil (bip synthétique provisoire)"
+  },
+  {
+   "id": "alarm1",
+   "file": "alarm.wav",
+   "at": {
+    "vo": "L12",
+    "word": 2,
+    "+": 0.1
+   },
+   "vol": 0.4,
+   "note": "réveil armé"
+  }
+ ],
+ "wipes": [
+  16.1,
+  34.69,
+  54.12,
+  61.89,
+  71.43
+ ],
+ "voFile": "assets/audio/vo_v2.mp3",
+ "voDuration": 76.147
+}

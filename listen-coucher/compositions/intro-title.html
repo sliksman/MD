@@ -16,13 +16,12 @@
           const root = document.querySelector('[data-composition-id="intro-title"]');
           root.innerHTML = '<svg id="intro-svg" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg">' +
             '<defs><filter id="it-fShadow" x="-20%" y="-50%" width="140%" height="200%"><feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000" flood-opacity=".55"/></filter></defs>' +
-            A.title("title", "LES NUITS BLANCHES · ÉPISODE 3", ["Pourquoi tu *dors*", "toujours pas ?"], 280) + "</svg>";
+            A.title("title", "LES NUITS BLANCHES · ÉPISODE 1", ["Pourquoi tu te couches", "toujours *trop tard* ?"], 300, { size: 78 }) + "</svg>";
           const $ = (n) => root.querySelector("#it-" + n);
           const tl = gsap.timeline({ paused: true });
-          tl.fromTo($("title-over"), { opacity: 0, y: -10 }, { opacity: 0.85, y: 0, duration: 0.4, ease: "power2.out" }, 0.05);
-          tl.fromTo($("title-l0"), { opacity: 0, y: 60, scale: 0.85, transformOrigin: "50% 50%" }, { opacity: 1, y: 0, scale: 1, duration: 0.35, ease: "back.out(2.4)" }, 0.12);
-          tl.fromTo($("title-l1"), { opacity: 0, y: 60, scale: 0.85, transformOrigin: "50% 50%" }, { opacity: 1, y: 0, scale: 1, duration: 0.35, ease: "back.out(2.4)" }, 0.36);
-          tl.to($("title"), { opacity: 0, y: -40, duration: 0.6, ease: "power2.in" }, 4.3);
+          // lisible dès la première image (crochet) : pas d'entrée en fondu, juste un petit coup d'échelle
+          tl.fromTo($("title"), { scale: 0.97, transformOrigin: "50% 40%" }, { scale: 1, duration: 0.5, ease: "power2.out" }, 0);
+          tl.to($("title"), { opacity: 0, y: -40, duration: 0.5, ease: "power2.in" }, 2.3);
           window.__timelines["intro-title"] = tl;
         })();
       </script>

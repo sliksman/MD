@@ -1,0 +1,83 @@
+// PLAN 3 — LA JOURNÉE. Un cadran 24 h posé comme un objet, le mannequin au centre.
+// « Depuis sept heures… » : la journée se remplit, aucun trou. Astuce 2 : 20 minutes découpées en ambre, avant.
+// Le fait : même besoin de temps, mais l'heure change tout (l'arc ambre glisse de 00:34 vers 22:10).
+const AM = L.C.amber, COLD = "#9cc8ff";
+const dots3 = (n) => `<g id="${A.id("pdots")}">${[0, 1, 2].map((i) => `<circle id="${A.id("pd" + i)}" cx="${820 + i * 56}" cy="212" r="14" fill="${i < n ? AM : "#fff"}" opacity="${i < n ? 1 : 0.22}"/>`).join("")}</g>`;
+const CX = 540, CY = 950, R = 270;
+const [kx, ky] = A.hourPt(CX, CY, R, 0.57), [sx, sy] = A.hourPt(CX, CY, R, 7), [ax, ay] = A.hourPt(CX, CY, R, 22.27), [zx, zy] = A.hourPt(CX, CY, R, 3.8);
+const [px, py] = A.hourPt(540, 700, 230, 22.27), [qx, qy] = A.hourPt(540, 1040, 250, 0.57), [rx, ry] = A.hourPt(540, 1040, 250, 22.27);
+const slide = []; for (let h = 24.57; h >= 22.1; h -= 0.1) slide.push(A.hourPt(CX, CY, R * 1.44, h));
+const ring = `<g id="${A.id("ringG")}">${A.dayMap("dm", CX, CY, R, { carve: [22.1, 22.43] })}${A.personTop("pp", CX, CY, 0.92)}
+  <circle id="${A.id("kdot")}" cx="${kx}" cy="${ky}" r="24" fill="${AM}" filter="${A.u("fGlowS")}"/>
+${A.dots("slide", slide, { step: 26, r: 7, color: AM })}</g>`;
+const phoneDown = `<g id="${A.id("pdown")}" opacity="0" transform="rotate(12 790 930)"><rect x="755" y="872" width="70" height="116" rx="14" fill="#0b0d1a" stroke="#fff" stroke-opacity=".25" stroke-width="3"/></g>`;
+const world = A.bg() + ring + phoneDown +
+  A.pill("p7h", 790, 1185, "07:00", sx, sy, { size: 36 }) + A.pill("pZero", 240, 640, "00:34 · à toi : 0 min", kx, ky, { dot: AM, size: 36 }) + A.pill("pSomm", 880, 700, "sommeil", zx, zy, { size: 34 }) +
+  A.pill("pEcr", 190, 930, "sans écran", 755, 930, { size: 36 }) + A.pill("p20", 850, 480, "20 min", px, py, { dot: AM, size: 40 }) +
+  A.book("bk", 260, 1215, 0.6) + A.notebook("nb", 540, 1215, 0.6) + A.record("rc", 820, 1215, 0.6) +
+  A.pill("pNuit", 850, 860, "00:34", qx, qy, { size: 36 }) + A.pill("pSoir", 190, 760, "22:10", rx, ry, { dot: AM, size: 40 }) +
+  `<line id="${A.id("sNuit")}" x1="775" y1="860" x2="925" y2="860" stroke="${AM}" stroke-width="7" stroke-linecap="round" opacity="0"/>`;
+const hud = A.title("t1", "DEPUIS 7 H CE MATIN", ["Pas *dix minutes*", "à toi."], 270, { size: 76 }) +
+  A.title("t2", "LE PROBLÈME, CE N'EST PAS ÇA", ["C'est *l'heure*", "à laquelle tu le prends."], 270, { size: 72 }) +
+  A.bigNum("n2", "2", "Prends-les avant.") + dots3(1);
+const S = L.stage(root, ID, world, hud);
+["bk", "nb", "rc", "pdown", "slide", "sNuit"].forEach((n) => gsap.set(S.$(n), { opacity: 0 }));
+gsap.set(S.$("dm-carve"), { opacity: 0 });
+gsap.set([S.$("t1-over"), S.$("t1-l0"), S.$("t1-l1"), S.$("t2-over"), S.$("t2-l0"), S.$("t2-l1")], { opacity: 0 });
+L.blink(tl, S, 3.0, "ppEyes");
+const titleIn = (id, over, t0, t1) => { tl.fromTo(S.$(id + "-over"), { opacity: 0, y: -10 }, { opacity: 0.85, y: 0, duration: 0.3 }, over);
+  tl.fromTo(S.$(id + "-l0"), { opacity: 0, y: 40, scale: 0.9, transformOrigin: "50% 50%" }, { opacity: 1, y: 0, scale: 1, duration: 0.32, ease: "back.out(2.6)" }, t0);
+  if (t1 != null) tl.fromTo(S.$(id + "-l1"), { opacity: 0, y: 40, scale: 0.9, transformOrigin: "50% 50%" }, { opacity: 1, y: 0, scale: 1, duration: 0.32, ease: "back.out(2.6)" }, t1); };
+const draw = (el, t, d) => { const len = el.getTotalLength(); gsap.set(el, { strokeDasharray: len, strokeDashoffset: len }); tl.to(el, { strokeDashoffset: 0, duration: d, ease: "none" }, t); };
+
+// ---- « Depuis sept heures ce matin, t'as pas eu dix minutes à toi » : la journée se remplit
+titleIn("t1", w("L16", 0), w("L16", 6), w("L16", 10));
+const segT = [7.0, 8.5, 12.5, 13.5, 18.5, 20, 22, 24.57];
+const t0 = w("L16", 1), t1 = w("L16", 9), span = 24.57 - 7;
+for (let i = 0; i < 7; i++) { const a = t0 + (t1 - t0) * (segT[i] - 7) / span, b = t0 + (t1 - t0) * (segT[i + 1] - 7) / span; draw(S.$("dm-s" + i), a, Math.max(0.12, b - a)); }
+tl.fromTo(S.$("dm-sleep"), { opacity: 0 }, { opacity: 1, duration: 0.4 }, w("L16", 9));
+L.pill(tl, S, "p7h", w("L16", 1));
+L.pill(tl, S, "pZero", w("L16", 10));
+tl.fromTo(S.$("kdot"), { scale: 0, svgOrigin: kx + " " + ky }, { scale: 1, duration: 0.25, ease: "back.out(3)" }, w("L16", 10));
+L.pill(tl, S, "pSomm", w("L16", 11));
+L.blink(tl, S, w("L16", 11) + 0.3, "ppEyes");
+// pas de camera : la carte est l'objet
+
+// ---- « Deux. Alors prends-les avant. »
+const deux = w("L17", 0);
+["t1-over", "t1-l0", "t1-l1"].forEach((n) => tl.to(S.$(n), { opacity: 0, duration: 0.2 }, deux - 0.25));
+["p7h", "pZero", "pSomm"].forEach((n) => L.pillOut(tl, S, n, deux - 0.25));
+tl.to(S.$("kdot"), { opacity: 0, duration: 0.2 }, deux - 0.25);
+L.slam(tl, S, "n2", deux);
+tl.fromTo(S.$("n2-lab"), { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.3, ease: "back.out(2)" }, w("L17", 1));
+tl.to(S.$("pd1"), { fill: AM, opacity: 1, duration: 0.12 }, deux + 0.4);
+tl.fromTo(S.$("pd1"), { scale: 1.9, transformOrigin: "50% 50%" }, { scale: 1, duration: 0.3, ease: "back.out(3)", immediateRender: false }, deux + 0.4);
+// la carte monte et rétrécit
+tl.to(S.$("ringG"), { svgOrigin: CX + " " + CY, scale: 230 / 270, y: -250, duration: 0.7, ease: "power3.inOut" }, w("L17", 3));
+// « Vingt minutes » : la tranche ambre est découpée à 22:10
+const v20 = w("L18", 0);
+tl.fromTo(S.$("dm-carve"), { opacity: 0 }, { opacity: 1, duration: 0.3 }, v20);
+L.pill(tl, S, "p20", v20 + 0.1);
+// « sans écran » : le téléphone est posé face contre table
+const se = w("L18", 2);
+tl.fromTo(S.$("pdown"), { opacity: 0, y: -40 }, { opacity: 1, y: 0, duration: 0.3, ease: "back.out(2)" }, se);
+L.pill(tl, S, "pEcr", se + 0.1);
+// « Quelques pages, un carnet, un disque en entier » : un objet à la fois
+L.pop(tl, S.$("bk"), w("L19", 0), { from: 0.3, d: 0.4 });
+L.pop(tl, S.$("nb"), w("L19", 3), { from: 0.3, d: 0.4 });
+L.pop(tl, S.$("rc"), w("L19", 5), { from: 0.3, d: 0.4 });
+tl.fromTo(S.$("rc"), { rotation: 0, svgOrigin: "820 1215" }, { rotation: 360, duration: 3.2, ease: "none", immediateRender: false }, w("L19", 5) + 0.2);
+
+// ---- le fait : « c'est l'heure à laquelle tu le prends »
+const prob = w("L20", 0);
+["n2", "pEcr", "p20", "bk", "nb", "rc"].forEach((n) => tl.to(S.$(n), { opacity: 0, duration: 0.3 }, prob - 0.3));
+tl.to(S.$("pdown"), { opacity: 0, duration: 0.3 }, prob - 0.3);
+tl.to(S.$("ringG"), { svgOrigin: CX + " " + CY, scale: 250 / 270, y: 90, duration: 0.7, ease: "power3.inOut", immediateRender: false }, prob - 0.1);
+titleIn("t2", prob, w("L20", 12), w("L20", 14));
+// l'ancien repère 00:34 (bleu froid) est barré, l'arc ambre glisse vers 22:10
+tl.set(S.$("kdot"), { opacity: 1, attr: { fill: COLD } }, w("L20", 5));
+L.pill(tl, S, "pNuit", w("L20", 5));
+tl.fromTo(S.$("sNuit"), { opacity: 1, scaleX: 0, svgOrigin: "775 860" }, { scaleX: 1, duration: 0.16, ease: "power3.out" }, w("L20", 8));
+tl.fromTo(S.$("slide"), { opacity: 0 }, { opacity: 1, duration: 0.05 }, w("L20", 13));
+L.drawDots(tl, S.$("slide"), w("L20", 13), w("L20", 17) - w("L20", 13) + 0.2);
+L.pill(tl, S, "pSoir", w("L20", 17));

@@ -446,9 +446,9 @@
       <g transform="rotate(-32)"><ellipse cx="0" cy="-104" rx="44" ry="30" fill="${C.amber}"/><ellipse cx="0" cy="-110" rx="30" ry="16" fill="#fff" opacity=".28"/></g>
       <g transform="rotate(32)"><ellipse cx="0" cy="-104" rx="44" ry="30" fill="${C.amber}"/><ellipse cx="0" cy="-110" rx="30" ry="16" fill="#fff" opacity=".28"/></g>
       <rect x="-9" y="-124" width="18" height="30" rx="6" fill="#b88a3a"/>
-      <circle r="92" fill="${body}"/><circle r="92" fill="none" stroke="#fff" stroke-opacity=".5" stroke-width="4"/>
+      <circle id="${P}${name}-body" r="92" fill="${body}"/><circle r="92" fill="none" stroke="#fff" stroke-opacity=".5" stroke-width="4"/>
       <circle r="70" fill="${face}"/>
-      <text id="${P}${name}-t" x="0" y="16" text-anchor="middle" font-family="Nunito" font-weight="900" font-size="${o.size || 46}" fill="${tcol}">${o.time || "23:30"}</text>
+      ${(o.times || [o.time || "23:30"]).map((tm, i) => `<text id="${P}${name}-t${i}" x="0" y="16" text-anchor="middle" font-family="Nunito" font-weight="900" font-size="${o.size || 46}" fill="${tcol}" opacity="${i ? 0 : 1}">${tm}</text>`).join("")}
       <path d="M-48 -34 q48 -28 96 0" stroke="#fff" stroke-opacity=".16" stroke-width="6" fill="none" stroke-linecap="round"/>
       <rect x="-34" y="92" width="26" height="18" rx="6" fill="#8d88a6"/><rect x="8" y="92" width="26" height="18" rx="6" fill="#8d88a6"/></g></g>`;
     };

@@ -1,0 +1,92 @@
+[
+ {
+  "id": "wipe0",
+  "t": 15.75,
+  "frame": 473,
+  "dur": 0.7,
+  "file": "whoosh.wav",
+  "vol": 0.7,
+  "name": "volet jaune"
+ },
+ {
+  "id": "wipe1",
+  "t": 34.34,
+  "frame": 1030,
+  "dur": 0.7,
+  "file": "whoosh.wav",
+  "vol": 0.7,
+  "name": "volet jaune"
+ },
+ {
+  "id": "wipe2",
+  "t": 53.77,
+  "frame": 1613,
+  "dur": 0.7,
+  "file": "whoosh.wav",
+  "vol": 0.7,
+  "name": "volet jaune"
+ },
+ {
+  "id": "wipe3",
+  "t": 61.54,
+  "frame": 1846,
+  "dur": 0.7,
+  "file": "whoosh.wav",
+  "vol": 0.7,
+  "name": "volet jaune"
+ },
+ {
+  "id": "wipe4",
+  "t": 71.08,
+  "frame": 2132,
+  "dur": 0.7,
+  "file": "whoosh.wav",
+  "vol": 0.7,
+  "name": "volet jaune"
+ },
+ {
+  "id": "hit0",
+  "t": 16.94,
+  "frame": 508,
+  "dur": 0.22,
+  "file": "flop.wav",
+  "vol": 0.9,
+  "name": "impact du chiffre 1"
+ },
+ {
+  "id": "hit1",
+  "t": 39.01,
+  "frame": 1170,
+  "dur": 0.22,
+  "file": "flop.wav",
+  "vol": 0.9,
+  "name": "impact du chiffre 2"
+ },
+ {
+  "id": "hit2",
+  "t": 62.77,
+  "frame": 1883,
+  "dur": 0.22,
+  "file": "flop.wav",
+  "vol": 0.9,
+  "name": "impact du chiffre 3"
+ },
+ {
+  "id": "alarm0",
+  "t": 30.75,
+  "frame": 923,
+  "dur": 1.3,
+  "file": "alarm.wav",
+  "vol": 0.55,
+  "name": "réveil (bip synthétique provisoire)"
+ },
+ {
+  "id": "alarm1",
+  "t": 27.32,
+  "frame": 820,
+  "dur": 1.3,
+  "file": "alarm.wav",
+  "vol": 0.4,
+  "name": "réveil armé"
+ }
+]

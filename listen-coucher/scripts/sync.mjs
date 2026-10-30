@@ -243,7 +243,7 @@ ${Object.values(scenes).map(host).join("\n")}
         data-composition-id="intro-title"
         data-composition-src="compositions/intro-title.html"
         data-start="0"
-        data-duration="5.0"
+        data-duration="3.0"
         data-track-index="3"
         data-width="1080"
         data-height="1920"

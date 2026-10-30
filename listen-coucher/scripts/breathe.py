@@ -9,13 +9,20 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 SRC, DST = ROOT / "assets/audio/vo_norm.mp3", ROOT / "assets/audio/vo_v2.mp3"
 # (instant dans la voix d'origine, durée ajoutée) — toujours au milieu d'un silence existant
-GAPS = [(2.18, 1.6),    # après « Demain, tu te lèves à sept heures. »
-        (12.30, 0.9),   # après « trois choses », avant « Un. »
-        (27.84, 0.9),   # fin de l'astuce 1, avant « Voilà »
-        (35.60, 0.8),   # après « toute ta semaine. », avant « Deux. »
-        (54.12, 0.9),   # fin de l'astuce 2, avant « Là, normalement »
-        (62.24, 0.7),   # après « toute sa… cuisine », avant « Trois. »
-        (71.60, 0.8)]   # avant « Et toi ? »
+GAPS = [(1.485, 0.7),   # après « 0 h 34 » (lire le titre)
+        (5.495, 0.5),   # après « …pas envie d'y aller »
+        (12.09, 0.4),   # avant « Et tu la perds tous les soirs »
+        (14.05, 0.9),   # plan 1 → 2, avant « Un. »
+        (23.68, 0.5),   # avant « Mets une alarme »
+        (26.97, 0.5),   # avant « Elle sonne »
+        (30.74, 0.9),   # plan 2 → 3, avant « Depuis sept heures »
+        (33.83, 0.5),   # avant « Deux. »
+        (38.70, 0.4),   # avant « Quelques pages »
+        (43.74, 0.5),   # avant « Le problème, c'est pas que… »
+        (47.87, 0.9),   # plan 3 → 4, avant « Là, t'es couché »
+        (54.74, 0.9),   # plan 4 → 5, avant « Trois. »
+        (56.89, 0.4),   # avant « C'est des endroits réels »
+        (62.83, 1.2)]   # plan 5 → 6 (laisse la chambre pleine à l'image), avant « Et toi »
 TAIL = 1.2
 
 f, parts, prev = [], [], 0.0
