@@ -22,9 +22,11 @@
             o.setAttribute("textLength", "744"); o.setAttribute("lengthAdjust", "spacing"); l1.setAttribute("font-size", "92"); l1.setAttribute("y", "392"); })();
           const $ = (n) => root.querySelector("#it-" + n);
           const tl = gsap.timeline({ paused: true });
-          // lisible dès la première image (crochet) : pas d'entrée en fondu, juste un petit coup d'échelle
-          tl.fromTo($("title"), { scale: 0.97, transformOrigin: "50% 40%" }, { scale: 1, duration: 0.5, ease: "power2.out" }, 0);
-          tl.to($("title"), { opacity: 0, y: -40, duration: 0.5, ease: "power2.in" }, 2.3);
+          // même entrée que l'épisode 3 : surtitre en fondu, puis chaque ligne tombe avec un rebond
+          tl.fromTo($("title-over"), { opacity: 0, y: -10 }, { opacity: 0.85, y: 0, duration: 0.4, ease: "power2.out" }, 0.05);
+          tl.fromTo($("title-l0"), { opacity: 0, y: 60, scale: 0.85, transformOrigin: "50% 50%" }, { opacity: 1, y: 0, scale: 1, duration: 0.35, ease: "back.out(2.4)" }, 0.12);
+          tl.fromTo($("title-l1"), { opacity: 0, y: 60, scale: 0.85, transformOrigin: "50% 50%" }, { opacity: 1, y: 0, scale: 1, duration: 0.35, ease: "back.out(2.4)" }, 0.36);
+          tl.to($("title"), { opacity: 0, y: -40, duration: 0.45, ease: "power2.in" }, 2.15);
           window.__timelines["intro-title"] = tl;
         })();
       </script>
