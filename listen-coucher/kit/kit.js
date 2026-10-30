@@ -362,15 +362,15 @@
       <path d="M${x} ${y - 240} v610" stroke="#2d2955" stroke-width="5"/>
       <rect x="${x - 190}" y="${y - 120}" width="150" height="230" rx="40" fill="#5a52a0" transform="rotate(-8 ${x - 115} ${y})"/>
       <!-- jambes -->
-      <rect x="${x - 118}" y="${y + 20}" width="92" height="330" rx="44" fill="#2c3060" transform="rotate(4 ${x - 72} ${y + 180})"/>
-      <rect x="${x + 26}" y="${y + 20}" width="92" height="330" rx="44" fill="#262a58" transform="rotate(-6 ${x + 72} ${y + 180})"/>
+      <rect x="${x - 92}" y="${y + 30}" width="74" height="330" rx="36" fill="#2c3060" transform="rotate(4 ${x - 72} ${y + 180})"/>
+      <rect x="${x + 18}" y="${y + 30}" width="74" height="330" rx="36" fill="#262a58" transform="rotate(-6 ${x + 72} ${y + 180})"/>
       <!-- buste -->
-      <ellipse cx="${x}" cy="${y - 70}" rx="150" ry="132" fill="${u("gDuvet")}"/>
+      <ellipse cx="${x}" cy="${y - 70}" rx="104" ry="122" fill="${u("gDuvet")}"/>
       <!-- tête -->
       <g id="${P}head"><circle cx="${x}" cy="${y - 250}" r="78" fill="${u("gSkin")}"/>${A.eyes("eyes", x - 28, x + 28, y - 232, 13)}</g>
       ${o.held === false ? "" : `<!-- bras + téléphone -->
-      <g id="${P}phoneHeld"><rect x="${x - 135}" y="${y - 190}" width="60" height="150" rx="30" fill="#3a49a0" transform="rotate(-24 ${x - 105} ${y - 115})"/>
-      <rect x="${x + 75}" y="${y - 190}" width="60" height="150" rx="30" fill="#3a49a0" transform="rotate(24 ${x + 105} ${y - 115})"/>
+      <g id="${P}phoneHeld"><rect x="${x - 112}" y="${y - 190}" width="46" height="150" rx="23" fill="#3a49a0" transform="rotate(-22 ${x - 89} ${y - 115})"/>
+      <rect x="${x + 66}" y="${y - 190}" width="46" height="150" rx="23" fill="#3a49a0" transform="rotate(22 ${x + 89} ${y - 115})"/>
       <rect x="${x - 55}" y="${y - 175}" width="110" height="170" rx="18" fill="#0b0d1a" transform="rotate(-3 ${x} ${y - 90})"/>
       <rect id="${P}screen" x="${x - 47}" y="${y - 167}" width="94" height="154" rx="13" fill="#dcebff" transform="rotate(-3 ${x} ${y - 90})"/></g>
       <ellipse id="${P}halo" cx="${x}" cy="${y - 150}" rx="${o.halo || 430}" ry="${(o.halo || 430) * 0.95}" fill="${u("gHalo")}" opacity="${pw}"/>`}
@@ -455,7 +455,7 @@
     // personnage vu de dessus, dormeur/éveillé au centre d'une carte (tête + épaules)
     A.personTop = (name, cx, cy, k = 1, o = {}) => `<g id="${P}${name}"><g transform="translate(${cx} ${cy}) scale(${k})">
       <ellipse cx="0" cy="14" rx="124" ry="96" fill="#000" opacity=".35" filter="${u("fBlurL")}"/>
-      <ellipse cx="0" cy="62" rx="108" ry="74" fill="${u("gDuvet")}"/>
+      <ellipse cx="0" cy="66" rx="82" ry="60" fill="${u("gDuvet")}"/>
       <circle cx="0" cy="-12" r="62" fill="${u("gSkin")}"/>
       ${A.eyes(name + "Eyes", -22, 22, 0, 10)}</g></g>`;
     return A;
