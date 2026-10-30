@@ -44,7 +44,7 @@
   {
    "id": "L01",
    "start": 0.12,
-   "end": 0.96,
+   "end": 1.21,
    "text": "Minuit trente-quatre.",
    "hl": [
     "trente-quatre."
@@ -56,13 +56,13 @@
     ],
     [
      "trente-quatre.",
-     0.483
+     0.556
     ]
    ]
   },
   {
    "id": "L02",
-   "start": 0.98,
+   "start": 2.46,
    "end": 4.453,
    "text": "C'est pas que t'arrives pas à dormir, le problème.",
    "hl": [
@@ -71,19 +71,19 @@
    "words": [
     [
      "C'est",
-     0.98
-    ],
-    [
-     "pas",
      2.46
     ],
     [
+     "pas",
+     2.562
+    ],
+    [
      "que",
-     2.588
+     2.664
     ],
     [
      "t'arrives",
-     2.715
+     2.766
     ],
     [
      "pas",
@@ -1607,13 +1607,13 @@
    [
     "L02",
     2
-   ]
-  ],
-  [
+   ],
    [
     "L02",
     3
-   ],
+   ]
+  ],
+  [
    [
     "L02",
     4

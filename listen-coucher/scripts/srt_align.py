@@ -24,6 +24,14 @@ for block in re.split(r"\n\s*\n", SRT.strip()):
     a, b = [ts(x.strip()) for x in tl_.split("-->")]
     text = " ".join(lines[lines.index(tl_) + 1:])
     cues.append((a, b, text))
+# la transcription Premiere « normalise » (chiffres, « ne », « appli »…) : on la ramène au vocabulaire du script AVANT l'appariement des mots
+ALIASES = [(r"\b0 h 34\b", "minuit trente quatre"), (r"\bce n'est\b", "c'est"), (r"\btu n'(\w+)", r"t'\1"), (r"\btu (éteins)\b", r"t'\1"),
+           (r"\b1 h\b", "une heure"), (r"\b7 h\b", "sept heures"), (r"\b20 minutes\b", "vingt minutes"), (r"\bdécidé\b", "décidées"),
+           (r"\bappli\b", "app"), (r"\bSun\b", "Listen"), (r"\bMais une alarme\b", "Mets une alarme"), (r"\bMet un fond\b", "Mets un fond")]
+def fix_cue(t):
+    for pat, rep in ALIASES: t = re.sub(pat, rep, t, flags=re.I)
+    return t
+cues = [(a, b, fix_cue(t)) for a, b, t in cues]
 
 def norm(w):
     w = unicodedata.normalize("NFD", w.lower())
@@ -226,3 +234,8 @@ for l in T["vo"]:
 BASE.write_text(json.dumps(T, ensure_ascii=False, indent=1) + "\n")
 for l in T["vo"]:
     print(l["id"], f"{l['start']:6.2f}-{l['end']:6.2f}", " ".join(f"{w}@{t:.2f}" for w, t in l["words"])[:140])
+
+# --- diagnostic : mots dont le temps sort de l'intervalle de leur sous-titre SRT
+for k, c in enumerate(cue_of):
+    a, b, _ = cues[c]
+    if times[k] < a - 0.15 or times[k] > b + 0.15: print(f"  ⚠ « {SW[k][1]} » à {times[k]:.2f} hors du sous-titre {c} [{a:.2f}-{b:.2f}]")
