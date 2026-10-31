@@ -246,15 +246,15 @@ const index = `<!doctype html>
     <div id="root" data-composition-id="main" data-width="1080" data-height="1920" data-duration="${T.duration}">
 ${Object.values(scenes).map(host).join("\n")}
       <div
-        id="intro-title"
-        data-composition-id="intro-title"
-        data-composition-src="compositions/intro-title.html"
+        id="counter"
+        data-composition-id="counter"
+        data-composition-src="compositions/counter.html"
         data-start="0"
-        data-duration="3.0"
+        data-duration="${T.duration}"
         data-track-index="3"
         data-width="1080"
         data-height="1920"
-        style="z-index: 95"
+        style="z-index: 85"
       ></div>
       <div
         id="wipes"

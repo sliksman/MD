@@ -1,0 +1,1733 @@
+{
+ "_doc": "GÉNÉRÉ par scripts/breathe.py depuis timeline.base.json — éditer la base, pas ce fichier.",
+ "duration": 49.5,
+ "fade": 0,
+ "scenes": [
+  {
+   "id": "p1",
+   "file": "p1-hook",
+   "start": 0,
+   "end": 14.47
+  },
+  {
+   "id": "p2",
+   "file": "p2-regle1",
+   "start": 14.47,
+   "end": 22.7
+  },
+  {
+   "id": "p3",
+   "file": "p3-alarme",
+   "start": 22.7,
+   "end": 30.33
+  },
+  {
+   "id": "p4",
+   "file": "p4-regle2",
+   "start": 30.33,
+   "end": 41.82
+  },
+  {
+   "id": "p5",
+   "file": "p5-fin",
+   "start": 41.82,
+   "end": 49.5
+  }
+ ],
+ "captions": {
+  "enabled": true,
+  "maxWords": 3,
+  "y": 450,
+  "tail": 0.5,
+  "lead": 0.08
+ },
+ "captionY": [
+  [
+   0,
+   46.2,
+   450
+  ],
+  [
+   46.2,
+   99,
+   -400
+  ]
+ ],
+ "wipes": [
+  14.47
+ ],
+ "aliases": [
+  [
+   "\\b6 h 26\\b",
+   "six heures vingt six"
+  ],
+  [
+   "\\b0 h 34\\b",
+   "minuit trente quatre"
+  ],
+  [
+   "\\b0 h 50\\b",
+   "minuit cinquante"
+  ],
+  [
+   "\\b6 h 10\\b",
+   "six heures dix"
+  ],
+  [
+   "\\bcrolles\\b",
+   "scrolles"
+  ],
+  [
+   "sur les sons",
+   "sur Listen"
+  ]
+ ],
+ "sfx": [
+  {
+   "id": "wipe0",
+   "file": "whoosh.wav",
+   "at": {
+    "wipe": 0,
+    "+": -0.35
+   },
+   "vol": 0.7,
+   "note": "volet ambre"
+  },
+  {
+   "id": "alarm0",
+   "file": "alarm.wav",
+   "at": {
+    "vo": "L01",
+    "word": 6,
+    "+": -0.02
+   },
+   "vol": 0.5,
+   "note": "le petit réveil sonne"
+  },
+  {
+   "id": "pop0",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L03",
+    "word": 1,
+    "+": 0.0
+   },
+   "vol": 0.5,
+   "note": "pastille 00:34"
+  },
+  {
+   "id": "flop0",
+   "file": "flop.wav",
+   "at": {
+    "vo": "L04",
+    "word": 1,
+    "+": 0.0
+   },
+   "vol": 0.6,
+   "note": "posé (1)"
+  },
+  {
+   "id": "pop1",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L04",
+    "word": 2,
+    "+": 0.12
+   },
+   "vol": 0.5,
+   "note": "revenu (1)"
+  },
+  {
+   "id": "flop1",
+   "file": "flop.wav",
+   "at": {
+    "vo": "L04",
+    "word": 4,
+    "+": 0.0
+   },
+   "vol": 0.6,
+   "note": "posé (2)"
+  },
+  {
+   "id": "pop2",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L05",
+    "word": 2,
+    "+": 0.0
+   },
+   "vol": 0.5,
+   "note": "revenu (2)"
+  },
+  {
+   "id": "cam0",
+   "file": "whoosh.wav",
+   "at": {
+    "vo": "L06",
+    "word": 0,
+    "+": -0.1
+   },
+   "vol": 0.45,
+   "note": "dézoom : le mur de traits"
+  },
+  {
+   "id": "pop3",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L07",
+    "word": 5,
+    "+": 0.0
+   },
+   "vol": 0.6,
+   "note": "pastille « volonté »"
+  },
+  {
+   "id": "slide0",
+   "file": "whoosh.wav",
+   "at": {
+    "vo": "L07",
+    "word": 6,
+    "+": -0.06
+   },
+   "vol": 0.35,
+   "note": "le trait barre « volonté »"
+  },
+  {
+   "id": "hit0",
+   "file": "flop.wav",
+   "at": {
+    "vo": "L08",
+    "word": 2,
+    "+": 0.02
+   },
+   "vol": 0.9,
+   "note": "le 1 claque"
+  },
+  {
+   "id": "pop4",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L08",
+    "word": 6,
+    "+": 0.0
+   },
+   "vol": 0.5,
+   "note": "pastille heure de fin"
+  },
+  {
+   "id": "pop5",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L08",
+    "word": 8,
+    "+": 0.0
+   },
+   "vol": 0.45,
+   "note": "00:34 → 00:45"
+  },
+  {
+   "id": "pop6",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L08",
+    "word": 12,
+    "+": 0.0
+   },
+   "vol": 0.5,
+   "note": "pastille heure de coucher"
+  },
+  {
+   "id": "slide1",
+   "file": "whoosh.wav",
+   "at": {
+    "vo": "L08",
+    "word": 14,
+    "+": -0.06
+   },
+   "vol": 0.3,
+   "note": "trait : coucher barré"
+  },
+  {
+   "id": "slide2",
+   "file": "whoosh.wav",
+   "at": {
+    "vo": "L09",
+    "word": 0,
+    "+": 0.0
+   },
+   "vol": 0.5,
+   "note": "la bande d'alarme traverse"
+  },
+  {
+   "id": "pop7",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L09",
+    "word": 2,
+    "+": 0.0
+   },
+   "vol": 0.5,
+   "note": "pastille pas pour dormir"
+  },
+  {
+   "id": "alarm1",
+   "file": "alarm.wav",
+   "at": {
+    "vo": "L09",
+    "word": 5,
+    "+": 0.0
+   },
+   "vol": 0.45,
+   "note": "la bande sonne"
+  },
+  {
+   "id": "alarm2",
+   "file": "alarm.wav",
+   "at": {
+    "vo": "L10",
+    "word": 0,
+    "+": -0.31
+   },
+   "vol": 0.55,
+   "note": "gros plan : elle sonne (réveil avant la voix)"
+  },
+  {
+   "id": "pop8",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L10",
+    "word": 3,
+    "+": 0.0
+   },
+   "vol": 0.5,
+   "note": "tu l'éteins"
+  },
+  {
+   "id": "alarm3",
+   "file": "alarm.wav",
+   "at": {
+    "vo": "L10",
+    "word": 4,
+    "+": -0.05
+   },
+   "vol": 0.6,
+   "note": "elle sonne (2) plus fort"
+  },
+  {
+   "id": "flop2",
+   "file": "flop.wav",
+   "at": {
+    "vo": "L10",
+    "word": 7,
+    "+": 0.26
+   },
+   "vol": 0.8,
+   "note": "le téléphone atterrit face contre table"
+  },
+  {
+   "id": "slide3",
+   "file": "whoosh.wav",
+   "at": {
+    "vo": "L10",
+    "word": 7,
+    "+": 0.0
+   },
+   "vol": 0.3,
+   "note": "le téléphone vole vers la table"
+  },
+  {
+   "id": "hit1",
+   "file": "flop.wav",
+   "at": {
+    "vo": "L12",
+    "word": 2,
+    "+": 0.02
+   },
+   "vol": 0.9,
+   "note": "le 2 claque"
+  },
+  {
+   "id": "slide4",
+   "file": "whoosh.wav",
+   "at": {
+    "vo": "L13",
+    "word": 0,
+    "+": -0.12
+   },
+   "vol": 0.5,
+   "note": "on plonge dans l'écran"
+  },
+  {
+   "id": "pop9",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L14",
+    "word": 1,
+    "+": 0.0
+   },
+   "vol": 0.6,
+   "note": "tap : lecture"
+  },
+  {
+   "id": "slide5",
+   "file": "whoosh.wav",
+   "at": {
+    "vo": "L14",
+    "word": 3,
+    "+": -0.05
+   },
+   "vol": 0.4,
+   "note": "le téléphone se retourne"
+  },
+  {
+   "id": "flop3",
+   "file": "flop.wav",
+   "at": {
+    "vo": "L14",
+    "word": 3,
+    "+": 0.8
+   },
+   "vol": 0.5,
+   "note": "il se pose, écran contre le bois"
+  },
+  {
+   "id": "pop10",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L15",
+    "word": 1,
+    "+": 0.0
+   },
+   "vol": 0.3,
+   "note": "arc 1"
+  },
+  {
+   "id": "pop11",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L15",
+    "word": 1,
+    "+": 0.24
+   },
+   "vol": 0.25,
+   "note": "arc 2"
+  },
+  {
+   "id": "pop12",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L15",
+    "word": 1,
+    "+": 0.48
+   },
+   "vol": 0.2,
+   "note": "arc 3"
+  },
+  {
+   "id": "pop13",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L17",
+    "word": 6,
+    "+": 0.0
+   },
+   "vol": 0.45,
+   "note": "pastille commentaire"
+  },
+  {
+   "id": "hit2",
+   "file": "whoosh.wav",
+   "at": {
+    "vo": "L12",
+    "word": 0,
+    "+": -0.45
+   },
+   "vol": 0.45,
+   "note": "le néon s'allume (premier néon)"
+  }
+ ],
+ "overrides": [
+  [
+   "L10",
+   6,
+   24.66
+  ],
+  [
+   "L10",
+   7,
+   24.92
+  ]
+ ],
+ "endOverrides": {},
+ "vo": [
+  {
+   "id": "L01",
+   "start": 0.04,
+   "end": 3.01,
+   "text": "Dans six heures vingt-six, ton réveil sonne.",
+   "hl": [
+    "sonne."
+   ],
+   "words": [
+    [
+     "Dans",
+     0.04
+    ],
+    [
+     "six",
+     0.19
+    ],
+    [
+     "heures",
+     0.34
+    ],
+    [
+     "vingt-six,",
+     0.49
+    ],
+    [
+     "ton",
+     1.51
+    ],
+    [
+     "réveil",
+     1.663
+    ],
+    [
+     "sonne.",
+     2.05
+    ]
+   ]
+  },
+  {
+   "id": "L02",
+   "start": 3.03,
+   "end": 4.78,
+   "text": "Et toi, tu scrolles.",
+   "hl": [
+    "scrolles."
+   ],
+   "words": [
+    [
+     "Et",
+     3.03
+    ],
+    [
+     "toi,",
+     3.215
+    ],
+    [
+     "tu",
+     3.77
+    ],
+    [
+     "scrolles.",
+     3.99
+    ]
+   ]
+  },
+  {
+   "id": "L03",
+   "start": 4.8,
+   "end": 6.12,
+   "text": "Minuit trente-quatre.",
+   "hl": [
+    "trente-quatre."
+   ],
+   "words": [
+    [
+     "Minuit",
+     4.8
+    ],
+    [
+     "trente-quatre.",
+     5.068
+    ]
+   ]
+  },
+  {
+   "id": "L04",
+   "start": 6.14,
+   "end": 7.57,
+   "text": "T'as posé ton téléphone deux fois.",
+   "hl": [
+    "posé"
+   ],
+   "words": [
+    [
+     "T'as",
+     6.14
+    ],
+    [
+     "posé",
+     6.304
+    ],
+    [
+     "ton",
+     6.633
+    ],
+    [
+     "téléphone",
+     6.797
+    ],
+    [
+     "deux",
+     7.18
+    ],
+    [
+     "fois.",
+     7.375
+    ]
+   ]
+  },
+  {
+   "id": "L05",
+   "start": 8.07,
+   "end": 9.78,
+   "text": "Il est revenu deux fois.",
+   "hl": [
+    "revenu"
+   ],
+   "words": [
+    [
+     "Il",
+     8.07
+    ],
+    [
+     "est",
+     8.19
+    ],
+    [
+     "revenu",
+     8.31
+    ],
+    [
+     "deux",
+     8.8
+    ],
+    [
+     "fois.",
+     9.04
+    ]
+   ]
+  },
+  {
+   "id": "L06",
+   "start": 9.91,
+   "end": 11.93,
+   "text": "Cette négo, tu la perds depuis des mois.",
+   "hl": [
+    "perds"
+   ],
+   "words": [
+    [
+     "Cette",
+     9.91
+    ],
+    [
+     "négo,",
+     10.11
+    ],
+    [
+     "tu",
+     10.77
+    ],
+    [
+     "la",
+     10.936
+    ],
+    [
+     "perds",
+     11.101
+    ],
+    [
+     "depuis",
+     11.267
+    ],
+    [
+     "des",
+     11.599
+    ],
+    [
+     "mois.",
+     11.764
+    ]
+   ]
+  },
+  {
+   "id": "L07",
+   "start": 12.69,
+   "end": 14.93,
+   "text": "Et c'est pas une question de volonté.",
+   "hl": [
+    "volonté."
+   ],
+   "words": [
+    [
+     "Et",
+     12.69
+    ],
+    [
+     "c'est",
+     12.98
+    ],
+    [
+     "pas",
+     13.09
+    ],
+    [
+     "une",
+     13.11
+    ],
+    [
+     "question",
+     13.234
+    ],
+    [
+     "de",
+     13.483
+    ],
+    [
+     "volonté.",
+     13.607
+    ]
+   ]
+  },
+  {
+   "id": "L08",
+   "start": 14.95,
+   "end": 19.22,
+   "text": "Règle numéro un : décide de ton heure de fin, pas de ton heure de coucher.",
+   "hl": [
+    "un",
+    "fin,"
+   ],
+   "words": [
+    [
+     "Règle",
+     14.95
+    ],
+    [
+     "numéro",
+     15.138
+    ],
+    [
+     "un :",
+     15.702
+    ],
+    [
+     "décide",
+     16.23
+    ],
+    [
+     "de",
+     16.553
+    ],
+    [
+     "ton",
+     16.714
+    ],
+    [
+     "heure",
+     16.876
+    ],
+    [
+     "de",
+     17.037
+    ],
+    [
+     "fin,",
+     17.199
+    ],
+    [
+     "pas",
+     17.87
+    ],
+    [
+     "de",
+     18.011
+    ],
+    [
+     "ton",
+     18.153
+    ],
+    [
+     "heure",
+     18.294
+    ],
+    [
+     "de",
+     18.436
+    ],
+    [
+     "coucher.",
+     18.577
+    ]
+   ]
+  },
+  {
+   "id": "L09",
+   "start": 19.24,
+   "end": 23.05,
+   "text": "Une alarme. Pas pour dormir. Pour poser le téléphone.",
+   "hl": [
+    "alarme.",
+    "poser"
+   ],
+   "words": [
+    [
+     "Une",
+     19.24
+    ],
+    [
+     "alarme.",
+     19.427
+    ],
+    [
+     "Pas",
+     20.19
+    ],
+    [
+     "pour",
+     20.365
+    ],
+    [
+     "dormir.",
+     20.54
+    ],
+    [
+     "Pour",
+     21.46
+    ],
+    [
+     "poser",
+     21.541
+    ],
+    [
+     "le",
+     21.704
+    ],
+    [
+     "téléphone.",
+     21.786
+    ]
+   ]
+  },
+  {
+   "id": "L10",
+   "start": 23.07,
+   "end": 27.06,
+   "text": "Elle sonne. Tu l'éteins. Elle sonne. Tu poses.",
+   "hl": [
+    "sonne.",
+    "poses."
+   ],
+   "words": [
+    [
+     "Elle",
+     23.07
+    ],
+    [
+     "sonne.",
+     23.325
+    ],
+    [
+     "Tu",
+     24.11
+    ],
+    [
+     "l'éteins.",
+     24.243
+    ],
+    [
+     "Elle",
+     25.05
+    ],
+    [
+     "sonne.",
+     25.24
+    ],
+    [
+     "Tu",
+     26.01
+    ],
+    [
+     "poses.",
+     26.27
+    ]
+   ]
+  },
+  {
+   "id": "L11",
+   "start": 27.08,
+   "end": 30.88,
+   "text": "Et là, ta chambre fait un silence pas possible.",
+   "hl": [
+    "silence"
+   ],
+   "words": [
+    [
+     "Et",
+     27.08
+    ],
+    [
+     "là,",
+     27.245
+    ],
+    [
+     "ta",
+     27.87
+    ],
+    [
+     "chambre",
+     28.05
+    ],
+    [
+     "fait",
+     28.23
+    ],
+    [
+     "un",
+     28.68
+    ],
+    [
+     "silence",
+     28.68
+    ],
+    [
+     "pas",
+     29.16
+    ],
+    [
+     "possible.",
+     29.277
+    ]
+   ]
+  },
+  {
+   "id": "L12",
+   "start": 30.9,
+   "end": 33.8,
+   "text": "Règle numéro deux : remplis ce silence.",
+   "hl": [
+    "deux",
+    "silence."
+   ],
+   "words": [
+    [
+     "Règle",
+     30.9
+    ],
+    [
+     "numéro",
+     31.092
+    ],
+    [
+     "deux :",
+     31.668
+    ],
+    [
+     "remplis",
+     32.22
+    ],
+    [
+     "ce",
+     32.7
+    ],
+    [
+     "silence.",
+     32.94
+    ]
+   ]
+  },
+  {
+   "id": "L13",
+   "start": 33.82,
+   "end": 37.3,
+   "text": "Sur Listen, une terrasse de café, enregistrée sur place.",
+   "hl": [
+    "Listen,",
+    "café,"
+   ],
+   "words": [
+    [
+     "Sur",
+     33.82
+    ],
+    [
+     "Listen,",
+     34.057
+    ],
+    [
+     "une",
+     34.66
+    ],
+    [
+     "terrasse",
+     34.823
+    ],
+    [
+     "de",
+     35.15
+    ],
+    [
+     "café,",
+     35.313
+    ],
+    [
+     "enregistrée",
+     35.86
+    ],
+    [
+     "sur",
+     36.268
+    ],
+    [
+     "place.",
+     36.404
+    ]
+   ]
+  },
+  {
+   "id": "L14",
+   "start": 37.32,
+   "end": 39.56,
+   "text": "Tu lances, tu retournes le téléphone.",
+   "hl": [
+    "retournes"
+   ],
+   "words": [
+    [
+     "Tu",
+     37.32
+    ],
+    [
+     "lances,",
+     37.585
+    ],
+    [
+     "tu",
+     38.13
+    ],
+    [
+     "retournes",
+     38.236
+    ],
+    [
+     "le",
+     38.447
+    ],
+    [
+     "téléphone.",
+     38.553
+    ]
+   ]
+  },
+  {
+   "id": "L15",
+   "start": 39.58,
+   "end": 42.16,
+   "text": "Le bruit des autres, sans l'écran.",
+   "hl": [
+    "autres,",
+    "l'écran."
+   ],
+   "words": [
+    [
+     "Le",
+     39.58
+    ],
+    [
+     "bruit",
+     39.74
+    ],
+    [
+     "des",
+     39.98
+    ],
+    [
+     "autres,",
+     40.235
+    ],
+    [
+     "sans",
+     40.87
+    ],
+    [
+     "l'écran.",
+     41.043
+    ]
+   ]
+  },
+  {
+   "id": "L16",
+   "start": 42.18,
+   "end": 46.24,
+   "text": "Minuit cinquante. Six heures dix devant toi. Téléphone retourné.",
+   "hl": [
+    "dix",
+    "retourné."
+   ],
+   "words": [
+    [
+     "Minuit",
+     42.18
+    ],
+    [
+     "cinquante.",
+     42.525
+    ],
+    [
+     "Six",
+     43.44
+    ],
+    [
+     "heures",
+     43.687
+    ],
+    [
+     "dix",
+     43.933
+    ],
+    [
+     "devant",
+     44.07
+    ],
+    [
+     "toi.",
+     44.357
+    ],
+    [
+     "Téléphone",
+     44.98
+    ],
+    [
+     "retourné.",
+     45.395
+    ]
+   ]
+  },
+  {
+   "id": "L17",
+   "start": 46.26,
+   "end": 48.01,
+   "text": "Et toi, c'est quoi ton heure de fin ?",
+   "hl": [
+    "toi,",
+    "fin"
+   ],
+   "words": [
+    [
+     "Et",
+     46.26
+    ],
+    [
+     "toi,",
+     46.45
+    ],
+    [
+     "c'est",
+     47.08
+    ],
+    [
+     "quoi",
+     47.235
+    ],
+    [
+     "ton",
+     47.39
+    ],
+    [
+     "heure",
+     47.545
+    ],
+    [
+     "de",
+     47.7
+    ],
+    [
+     "fin ?",
+     47.855
+    ]
+   ]
+  }
+ ],
+ "capGroups": [
+  [
+   [
+    "L01",
+    0
+   ],
+   [
+    "L01",
+    1
+   ],
+   [
+    "L01",
+    2
+   ],
+   [
+    "L01",
+    3
+   ]
+  ],
+  [
+   [
+    "L01",
+    4
+   ],
+   [
+    "L01",
+    5
+   ],
+   [
+    "L01",
+    6
+   ]
+  ],
+  [
+   [
+    "L02",
+    0
+   ],
+   [
+    "L02",
+    1
+   ]
+  ],
+  [
+   [
+    "L02",
+    2
+   ],
+   [
+    "L02",
+    3
+   ]
+  ],
+  [
+   [
+    "L03",
+    0
+   ],
+   [
+    "L03",
+    1
+   ]
+  ],
+  [
+   [
+    "L04",
+    0
+   ],
+   [
+    "L04",
+    1
+   ],
+   [
+    "L04",
+    2
+   ],
+   [
+    "L04",
+    3
+   ]
+  ],
+  [
+   [
+    "L04",
+    4
+   ],
+   [
+    "L04",
+    5
+   ]
+  ],
+  [
+   [
+    "L05",
+    0
+   ],
+   [
+    "L05",
+    1
+   ],
+   [
+    "L05",
+    2
+   ],
+   [
+    "L05",
+    3
+   ],
+   [
+    "L05",
+    4
+   ]
+  ],
+  [
+   [
+    "L06",
+    0
+   ],
+   [
+    "L06",
+    1
+   ]
+  ],
+  [
+   [
+    "L06",
+    2
+   ],
+   [
+    "L06",
+    3
+   ],
+   [
+    "L06",
+    4
+   ],
+   [
+    "L06",
+    5
+   ],
+   [
+    "L06",
+    6
+   ],
+   [
+    "L06",
+    7
+   ]
+  ],
+  [
+   [
+    "L07",
+    0
+   ],
+   [
+    "L07",
+    1
+   ],
+   [
+    "L07",
+    2
+   ],
+   [
+    "L07",
+    3
+   ],
+   [
+    "L07",
+    4
+   ]
+  ],
+  [
+   [
+    "L07",
+    5
+   ],
+   [
+    "L07",
+    6
+   ]
+  ],
+  [
+   [
+    "L08",
+    0
+   ],
+   [
+    "L08",
+    1
+   ],
+   [
+    "L08",
+    2
+   ]
+  ],
+  [
+   [
+    "L08",
+    3
+   ],
+   [
+    "L08",
+    4
+   ],
+   [
+    "L08",
+    5
+   ],
+   [
+    "L08",
+    6
+   ],
+   [
+    "L08",
+    7
+   ],
+   [
+    "L08",
+    8
+   ]
+  ],
+  [
+   [
+    "L08",
+    9
+   ],
+   [
+    "L08",
+    10
+   ],
+   [
+    "L08",
+    11
+   ],
+   [
+    "L08",
+    12
+   ],
+   [
+    "L08",
+    13
+   ],
+   [
+    "L08",
+    14
+   ]
+  ],
+  [
+   [
+    "L09",
+    0
+   ],
+   [
+    "L09",
+    1
+   ]
+  ],
+  [
+   [
+    "L09",
+    2
+   ],
+   [
+    "L09",
+    3
+   ],
+   [
+    "L09",
+    4
+   ]
+  ],
+  [
+   [
+    "L09",
+    5
+   ],
+   [
+    "L09",
+    6
+   ],
+   [
+    "L09",
+    7
+   ],
+   [
+    "L09",
+    8
+   ]
+  ],
+  [
+   [
+    "L10",
+    0
+   ],
+   [
+    "L10",
+    1
+   ]
+  ],
+  [
+   [
+    "L10",
+    2
+   ],
+   [
+    "L10",
+    3
+   ]
+  ],
+  [
+   [
+    "L10",
+    4
+   ],
+   [
+    "L10",
+    5
+   ]
+  ],
+  [
+   [
+    "L10",
+    6
+   ],
+   [
+    "L10",
+    7
+   ]
+  ],
+  [
+   [
+    "L11",
+    0
+   ],
+   [
+    "L11",
+    1
+   ]
+  ],
+  [
+   [
+    "L11",
+    2
+   ],
+   [
+    "L11",
+    3
+   ],
+   [
+    "L11",
+    4
+   ]
+  ],
+  [
+   [
+    "L11",
+    5
+   ],
+   [
+    "L11",
+    6
+   ],
+   [
+    "L11",
+    7
+   ],
+   [
+    "L11",
+    8
+   ]
+  ],
+  [
+   [
+    "L12",
+    0
+   ],
+   [
+    "L12",
+    1
+   ],
+   [
+    "L12",
+    2
+   ]
+  ],
+  [
+   [
+    "L12",
+    3
+   ],
+   [
+    "L12",
+    4
+   ],
+   [
+    "L12",
+    5
+   ]
+  ],
+  [
+   [
+    "L13",
+    0
+   ],
+   [
+    "L13",
+    1
+   ]
+  ],
+  [
+   [
+    "L13",
+    2
+   ],
+   [
+    "L13",
+    3
+   ],
+   [
+    "L13",
+    4
+   ],
+   [
+    "L13",
+    5
+   ]
+  ],
+  [
+   [
+    "L13",
+    6
+   ],
+   [
+    "L13",
+    7
+   ],
+   [
+    "L13",
+    8
+   ]
+  ],
+  [
+   [
+    "L14",
+    0
+   ],
+   [
+    "L14",
+    1
+   ]
+  ],
+  [
+   [
+    "L14",
+    2
+   ],
+   [
+    "L14",
+    3
+   ],
+   [
+    "L14",
+    4
+   ],
+   [
+    "L14",
+    5
+   ]
+  ],
+  [
+   [
+    "L15",
+    0
+   ],
+   [
+    "L15",
+    1
+   ],
+   [
+    "L15",
+    2
+   ],
+   [
+    "L15",
+    3
+   ]
+  ],
+  [
+   [
+    "L15",
+    4
+   ],
+   [
+    "L15",
+    5
+   ]
+  ],
+  [
+   [
+    "L16",
+    0
+   ],
+   [
+    "L16",
+    1
+   ]
+  ],
+  [
+   [
+    "L16",
+    2
+   ],
+   [
+    "L16",
+    3
+   ],
+   [
+    "L16",
+    4
+   ],
+   [
+    "L16",
+    5
+   ],
+   [
+    "L16",
+    6
+   ]
+  ],
+  [
+   [
+    "L16",
+    7
+   ],
+   [
+    "L16",
+    8
+   ]
+  ],
+  [
+   [
+    "L17",
+    0
+   ],
+   [
+    "L17",
+    1
+   ]
+  ],
+  [
+   [
+    "L17",
+    2
+   ],
+   [
+    "L17",
+    3
+   ],
+   [
+    "L17",
+    4
+   ],
+   [
+    "L17",
+    5
+   ],
+   [
+    "L17",
+    6
+   ],
+   [
+    "L17",
+    7
+   ]
+  ]
+ ],
+ "voFile": "assets/audio/vo_v2.mp3",
+ "voDuration": 49.502
+}

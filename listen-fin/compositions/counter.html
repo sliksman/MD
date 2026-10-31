@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+        #root { position: absolute; inset: 0; pointer-events: none; }
+        #counter-svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+      </style>
+      <div id="root" data-composition-id="counter" data-width="1080" data-height="1920"></div>
+      <script>
+        (function () {
+          // Compte à rebours « avant ton réveil » : le fil du film. Gros (hook) → petit (milieu) → gros (fin, crème) → effacé.
+          // Il descend à la seconde ; deux sauts dans le temps (l'alarme de 00:45, puis 00:50) sont des défilements rapides.
+          // Chaque valeur affichée est un <text> allumé/éteint par tl.set (rien ne dépend d'un callback : seek-safe).
+          const L = window.LS, w = L.w;
+          const root = document.querySelector('[data-composition-id="counter"]');
+          const AM = "#F5B85A", CREAM = "#F1EDE4";
+          const D = 106, C = 54, SIZE = 176;                    // largeur d'un chiffre / des deux-points (cellules fixes : pas de gigue)
+          const fmt = (s) => { const h = Math.floor(s / 3600), m = Math.floor((s % 3600) / 60), x = s % 60; return [h, m, x].map((n) => String(n).padStart(2, "0")).join(":"); };
+          function glyphs(str) {
+            const cells = str.split("").map((c) => (c === ":" ? C : D));
+            const total = cells.reduce((a, b) => a + b, 0);
+            let x = 540 - total / 2, out = "";
+            str.split("").forEach((c, i) => { out += '<tspan x="' + (x + cells[i] / 2).toFixed(1) + '">' + c + "</tspan>"; x += cells[i]; });
+            return out;
+          }
+          root.innerHTML =
+            '<svg id="counter-svg" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg" data-layout-allow-overflow>' +
+            '<defs><filter id="cShadow" x="-20%" y="-50%" width="140%" height="200%"><feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000" flood-opacity=".55"/></filter></defs>' +
+            '<g id="cwrap">' +
+            '<text id="lblA" x="540" y="179" text-anchor="middle" font-family="Nunito" font-weight="800" font-size="27" letter-spacing="8" fill="' + CREAM + '" fill-opacity=".8">AVANT TON RÉVEIL</text>' +
+            '<text id="lblB" x="540" y="179" text-anchor="middle" font-family="Nunito" font-weight="800" font-size="27" letter-spacing="8" fill="' + CREAM + '" fill-opacity=".8" opacity="0">DEVANT TOI</text>' +
+            '<text id="lblS" x="540" y="292" text-anchor="middle" font-family="Nunito" font-weight="800" font-size="20" letter-spacing="6" fill="' + CREAM + '" fill-opacity=".6" opacity="0">AVANT TON RÉVEIL</text>' +
+            '<g id="cg" style="color:' + AM + '" filter="url(#cShadow)"></g></g></svg>';
+          const cg = root.querySelector("#cg");
+          const tl = gsap.timeline({ paused: true });
+
+          // --- planning des valeurs affichées : [instant, secondes restantes]
+          const V0 = 6 * 3600 + 26 * 60 + 14, V1 = 6 * 3600 + 15 * 60, V2 = 6 * 3600 + 10 * 60;
+          const ts1 = w("L10", 0) - 0.6, te1 = w("L10", 0);       // saut 1 : l'alarme de 00:45
+          const ts2 = w("L16", 0) - 0.5, te2 = ts2 + 0.6;         // saut 2 : minuit cinquante
+          const END = w("L17", 0) - 0.1;
+          const states = [];
+          const ease = (p) => (p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2);
+          for (let k = 0; ; k++) { const t = k; if (t >= ts1) break; states.push([t, V0 - k]); }
+          const vAt1 = V0 - Math.floor(ts1);
+          for (let i = 0; i < 12; i++) { const p = (i + 1) / 12; states.push([ts1 + 0.05 * i, Math.round(vAt1 + (V1 - vAt1) * ease(i / 12))]); }
+          for (let k = 0; ; k++) { const t = te1 + k; if (t >= ts2) break; states.push([t, V1 - k]); }
+          const vAt2 = V1 - Math.floor(ts2 - te1);
+          for (let i = 0; i < 12; i++) states.push([ts2 + 0.05 * i, Math.round(vAt2 + (V2 - vAt2) * ease(i / 12))]);
+          states.push([te2, V2]);
+          states.sort((a, b) => a[0] - b[0]);
+          // les ticks de la seconde 1 sont posés en retard sur le saut 1 : on ne garde que ce qui précède le suivant
+          const seq = [];
+          states.forEach((s) => { if (!seq.length || s[0] > seq[seq.length - 1][0] + 0.001) seq.push(s); });
+          seq.forEach((s, i) => {
+            const el = document.createElementNS("http://www.w3.org/2000/svg", "text");
+            el.setAttribute("y", "330"); el.setAttribute("text-anchor", "middle"); el.setAttribute("font-family", "Nunito");
+            el.setAttribute("font-weight", "900"); el.setAttribute("font-size", String(SIZE)); el.setAttribute("fill", "currentColor");
+            el.setAttribute("opacity", i === 0 ? "1" : "0");
+            el.innerHTML = glyphs(fmt(s[1]));
+            cg.appendChild(el);
+            if (i > 0) tl.set(el, { opacity: 1 }, s[0]);
+            if (i > 0) tl.set(seq[i - 1].el, { opacity: 0 }, s[0]);
+            s.el = el;
+          });
+
+          // --- gros → petit (avant « Minuit trente-quatre »), petit → gros (après le saut 2), couleur crème, label, disparition
+          const tSmall = w("L03", 0) - 0.05;
+          tl.to(cg, { scale: 0.4, y: -80, svgOrigin: "540 330", duration: 0.35, ease: "power3.inOut" }, tSmall);
+          tl.to(root.querySelector("#lblA"), { opacity: 0, duration: 0.15 }, tSmall);
+          tl.to(root.querySelector("#lblS"), { opacity: 1, duration: 0.25 }, tSmall + 0.2);
+          // silence : le compteur s'efface presque
+          tl.to(root.querySelector("#cwrap"), { opacity: 0.4, duration: 0.3, ease: "power2.out" }, w("L11", 5));
+          tl.to(root.querySelector("#cwrap"), { opacity: 1, duration: 0.3, ease: "power2.out" }, w("L12", 0) - 0.4);
+          // fin : il regrossit, devient crème (la tension retombe), « DEVANT TOI »
+          tl.to(cg, { scale: 1, y: 0, duration: 0.4, ease: "back.out(1.6)" }, te2 - 0.1);
+          tl.to(root.querySelector("#lblS"), { opacity: 0, duration: 0.15 }, te2 - 0.1);
+          tl.to(root.querySelector("#lblA"), { opacity: 1, duration: 0.25 }, te2 + 0.2);
+          const tc = w("L16", 2);
+          tl.to(cg, { color: CREAM, duration: 0.5, ease: "power2.inOut" }, tc);
+          tl.to(root.querySelector("#lblA"), { opacity: 0, duration: 0.2 }, tc);
+          tl.to(root.querySelector("#lblB"), { opacity: 1, duration: 0.3 }, tc + 0.1);
+          tl.to(root.querySelector("#cwrap"), { opacity: 0, duration: 0.25, ease: "power2.in" }, END);
+          window.__timelines["counter"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

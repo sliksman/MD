@@ -9,23 +9,13 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 SRC, DST = ROOT / "assets/audio/vo_norm.mp3", ROOT / "assets/audio/vo_v2.mp3"
 # (instant dans la voix d'origine, durée ajoutée) — toujours au milieu d'un silence existant
-GAPS = [(1.54, 0.7),    # après « Vingt-trois heures dix » (lire le titre)
-        (6.17, 0.4),    # avant « Tu bosses dedans »
-        (10.90, 0.4),   # avant « Et le soir »
-        (14.19, 0.5),   # avant « Il refuse »
-        (15.25, 0.9),   # plan 1 → 2, avant « Un. »
-        (29.05, 0.6),   # avant « Bon. » (échec de l'astuce 1)
-        (33.40, 0.35),  # avant « Vingt minutes. Trente. »
-        (36.24, 0.9),   # plan 2 → 3, avant « Deux. »
-        (39.13, 0.4),   # après « Oui. »
-        (46.52, 0.4),   # avant « Ton lit doit plus être… »
-        (48.70, 0.9),   # plan 3 → 4, avant « Deux heures du mat' »
-        (51.36, 0.4),   # avant « Et un salon vide »
-        (55.22, 0.9),   # plan 4 → 5, avant « Trois. »
-        (56.00, 0.35),  # entre « Trois. » et « Mets une ambiance »
-        (63.24, 1.0),   # plan 5 → 6, avant « Tu retournes te coucher »
-        (66.54, 0.5)]   # avant « Et toi ? »
-TAIL = 1.2
+GAPS = [(2.50, 0.30),    # après « sonne » (le réveil)
+        (11.89, 0.25),   # après « des mois » (le dézoom revient sur la tête)
+        (13.67, 0.50),   # plan 1 → 2 : volet ambre, avant « Règle numéro un »
+        (21.50, 0.30),   # plan 2 → 3 : coupe, avant « Elle sonne »
+        (28.63, 0.70),   # plan 3 → 4 : la respiration avant « Règle numéro deux »
+        (39.62, 0.30)]   # plan 4 → 5 : coupe, avant « Minuit cinquante »
+TAIL = 0.6
 
 f, parts, prev = [], [], 0.0
 for i, (t, g) in enumerate(GAPS):

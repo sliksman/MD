@@ -6,7 +6,7 @@ await p.setContent('<html><head><link rel="stylesheet" href="'+BASE+'/kit/kit.cs
 for(const f of ['assets/vendor/gsap.min.js','timeline.js','kit/kit.js']) await p.addScriptTag({url:BASE+'/'+f});
 const res=await p.evaluate(async(MAP)=>{ const os=LS.stage; LS.stage=function(){const S=os.apply(this,arguments); const o=S.$; S.$=(n)=>{const e=o(n); if(!e) console.log('NULL '+n); return e;}; return S;};
  window.__timelines={}; const out={};
- for(const id of ['p1','p2','p3','p4','p5','p6']){
+ for(const id of Object.keys(MAP)){
   const file=MAP[id];
   const txt=await (await fetch('/compositions/'+file+'.html')).text();
   const m=txt.match(/<template>([\s\S]*)<\/template>/)[1];

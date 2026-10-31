@@ -114,6 +114,48 @@
       <text id="${P}${name}-over" x="${x + 150}" y="${y - 120}" font-family="Nunito" font-weight="800" font-size="27" letter-spacing="8" fill="${C.cream}" fill-opacity=".85">ASTUCE ${n}</text>
       <text id="${P}${name}-lab" x="${x + 150}" y="${y - 50}" font-family="Fraunces" font-style="italic" font-weight="500" font-size="62" fill="${C.cream}">${esc(label)}</text></g>`;
 
+    // ---- nouveau format « Heure de fin » ----
+    // chiffre de règle (mêmes ids que bigNum : seed, ring, n, over, lab → L.slam)
+    A.ruleNum = (name, n, label, x = 110, y = 840) => `<g id="${P}${name}">
+      <circle id="${P}${name}-seed" cx="${x + 70}" cy="${y - 90}" r="22" fill="${C.amber}" filter="${u("fGlowS")}"/>
+      <circle id="${P}${name}-ring" cx="${x + 70}" cy="${y - 90}" r="130" fill="none" stroke="${C.amber}" stroke-width="10" opacity="0"/>
+      <text id="${P}${name}-n" x="${x}" y="${y}" font-family="Fraunces" font-style="italic" font-weight="700" font-size="260" fill="${C.amber}" filter="${u("fShadow")}">${n}</text>
+      <text id="${P}${name}-over" x="${x + 175}" y="${y - 150}" font-family="Nunito" font-weight="800" font-size="27" letter-spacing="8" fill="${C.cream}" fill-opacity=".85">RÈGLE ${n}</text>
+      <text id="${P}${name}-lab" x="${x + 175}" y="${y - 76}" font-family="Fraunces" font-style="italic" font-weight="500" font-size="62" fill="${C.cream}">${esc(label)}</text></g>`;
+    // score POSÉ / REVENU : traits individuels (ids name-p0..p2, name-r0..r2), boîtes name-P et name-R
+    A.tally = (name, y = 1420) => {
+      const box = (x, label, k, col) => `<g id="${P}${name}-${k}" opacity="0"><rect x="${x - 20}" y="${y - 58}" width="360" height="160" rx="30" fill="#0b0d1a" fill-opacity=".82" stroke="#fff" stroke-opacity=".12" stroke-width="2"/>
+        <text x="${x}" y="${y - 16}" font-family="Nunito" font-weight="800" font-size="24" letter-spacing="6" fill="${C.cream}" fill-opacity=".8">${label}</text>
+        ${[0, 1, 2].map((i) => `<rect id="${P}${name}-${k.toLowerCase()}${i}" x="${x + i * 34}" y="${y + 6}" width="15" height="72" rx="7" fill="${col}" opacity="0"/>`).join("")}</g>`;
+      return box(120, "POSÉ", "P", C.amber) + box(540, "REVENU", "R", "#9cc8ff");
+    };
+    // téléphone tenu au-dessus du visage (dos), halo bleu froid sur le visage, traînées de scroll
+    A.heldPhone = (name, cx = 560, cy = 905, hx = 542, hy = 780) => `<g id="${P}${name}">
+      <ellipse id="${P}${name}-halo" cx="${hx}" cy="${hy}" rx="300" ry="260" fill="url(#${P}gHalo)" opacity=".95"/>
+      <g id="${P}${name}-body" transform="rotate(-8 ${cx} ${cy})"><rect x="${cx - 72}" y="${cy - 128}" width="144" height="256" rx="26" fill="#0b0d1a" stroke="#9cc8ff" stroke-opacity=".9" stroke-width="5" filter="url(#${P}fGlowS)"/>
+      <rect x="${cx - 52}" y="${cy - 108}" width="38" height="38" rx="10" fill="#1d2140"/></g>
+      <ellipse cx="${cx - 40}" cy="${cy + 90}" rx="44" ry="30" fill="url(#${P}gSkin)"/><ellipse cx="${cx + 66}" cy="${cy + 60}" rx="30" ry="44" fill="url(#${P}gSkin)"/>
+      ${[0, 1, 2].map((i) => `<rect id="${P}${name}-sw${i}" x="${cx + 110 + i * 26}" y="${cy - 120 + i * 40}" width="10" height="${120 - i * 26}" rx="5" fill="#9cc8ff" opacity="0"/>`).join("")}</g>`;
+    // téléphone posé sur la table de nuit, écran allumé (face visible) ou face contre table (dos) avec liseré néon qui fuit
+    A.tablePhoneLit = (name, x = 230, y = 744) => `<g id="${P}${name}" opacity="0"><ellipse cx="${x}" cy="${y}" rx="150" ry="170" fill="url(#${P}gHalo)" opacity=".6"/>
+      <rect x="${x - 35}" y="${y - 64}" width="70" height="128" rx="14" fill="#0b0d1a" stroke="#fff" stroke-opacity=".2" stroke-width="3"/><rect x="${x - 29}" y="${y - 58}" width="58" height="116" rx="10" fill="#cfe2ff"/></g>`;
+    A.downPhone = (name, x = 230, y = 744) => `<g id="${P}${name}" opacity="0"><rect id="${P}${name}-rim" x="${x - 40}" y="${y - 70}" width="80" height="140" rx="16" fill="none" stroke="url(#${P}gNeon)" stroke-width="10" filter="url(#${P}fGlowN)" opacity="0"/>
+      <rect x="${x - 35}" y="${y - 64}" width="70" height="128" rx="14" fill="#0b0d1a" stroke="#fff" stroke-opacity=".18" stroke-width="3"/><rect x="${x - 25}" y="${y - 54}" width="22" height="22" rx="6" fill="#1d2140"/></g>`;
+    // gros plan du téléphone qui sonne (écran d'alarme ambre), tenu à deux mains
+    A.alarmPhone = (name, time = "00:45") => `<g id="${P}${name}"><g id="${P}${name}-waves">
+      ${[150, 230, 310].map((r, i) => `<path d="M${540 - 250 - r * 0.25} ${1040 - r} q-${r * 0.5} ${r} 0 ${2 * r}" stroke="${C.amber}" stroke-width="${10 - i * 3}" fill="none" opacity="${0.8 - i * 0.22}" stroke-linecap="round"/><path d="M${540 + 250 + r * 0.25} ${1040 - r} q${r * 0.5} ${r} 0 ${2 * r}" stroke="${C.amber}" stroke-width="${10 - i * 3}" fill="none" opacity="${0.8 - i * 0.22}" stroke-linecap="round"/>`).join("")}</g>
+      <g id="${P}${name}-body"><rect x="330" y="640" width="420" height="820" rx="70" fill="#0b0d1a" stroke="#fff" stroke-opacity=".2" stroke-width="4"/>
+      <rect x="352" y="662" width="376" height="776" rx="54" fill="${C.amber}" opacity=".95"/><rect x="480" y="680" width="120" height="34" rx="17" fill="#000"/>
+      <text x="540" y="840" text-anchor="middle" font-family="Nunito" font-weight="800" font-size="26" letter-spacing="6" fill="#2a1d3a">HEURE DE FIN</text>
+      <text x="540" y="990" text-anchor="middle" font-family="Nunito" font-weight="900" font-size="150" fill="#2a1d3a">${time}</text>
+      <text x="540" y="1060" text-anchor="middle" font-family="Fraunces" font-style="italic" font-weight="500" font-size="40" fill="#4a3a22">pose le téléphone</text>
+      <rect x="390" y="1300" width="300" height="84" rx="42" fill="#2a1d3a" opacity=".85"/><circle cx="432" cy="1342" r="34" fill="${C.cream}"/>
+      <text x="575" y="1352" text-anchor="middle" font-family="Nunito" font-weight="800" font-size="26" fill="${C.cream}">arrêter</text></g>
+      <ellipse cx="300" cy="1330" rx="70" ry="120" fill="url(#${P}gSkin)" transform="rotate(-20 300 1330)"/><ellipse cx="770" cy="1260" rx="64" ry="130" fill="url(#${P}gSkin)" transform="rotate(18 770 1260)"/>
+      <ellipse cx="470" cy="1345" rx="60" ry="40" fill="url(#${P}gSkin)"/></g>`;
+    // fond sombre et large (le hors-champ quand la caméra s'éloigne)
+    A.void = () => `<rect x="-1200" y="-1200" width="3480" height="4320" fill="${C.night0}"/>`;
+
     // points lumineux le long d'une polyligne ; chaque point est un <circle class="dot">
     A.dots = (name, pts, o = {}) => {
       const step = o.step || 34, r = o.r || 8, color = o.color || "#fff", op = o.opacity ?? 1;
@@ -632,14 +674,14 @@
     tl.fromTo(S.cam, Object.assign({ svgOrigin: "540 960" }, from), Object.assign({ svgOrigin: "540 960", duration: d, ease }, to), t);
   }
   // chiffre d'astuce qui claque : graine → chiffre surdimensionné qui retombe + onde de choc + secousse
-  function slam(tl, S, name, t) {
+  function slam(tl, S, name, t, o = {}) {
     const g = S.$(name);
     if (g) tl.fromTo(g, { opacity: 0 }, { opacity: 1, duration: 0.01 }, t - 0.02);
     tl.fromTo(S.$(name + "-seed"), { scale: 1, opacity: 1, transformOrigin: "50% 50%" }, { scale: 0, opacity: 0, duration: 0.12, ease: "power2.in" }, t - 0.12);
     tl.fromTo(S.$(name + "-n"), { scale: 2.4, opacity: 0, rotation: -14, transformOrigin: "40% 60%" }, { scale: 1, opacity: 1, rotation: 0, duration: 0.3, ease: "back.out(2.2)" }, t);
     tl.fromTo(S.$(name + "-ring"), { scale: 0.3, opacity: 1, transformOrigin: "50% 50%" }, { scale: 3.2, opacity: 0, duration: 0.5, ease: "power2.out" }, t + 0.12);
     tl.fromTo(S.$(name + "-over"), { opacity: 0, x: -30 }, { opacity: 0.85, x: 0, duration: 0.25, ease: "power3.out" }, t + 0.15);
-    punch(tl, S, t + 0.1, 0.05);
+    if (!o.noPunch) punch(tl, S, t + 0.1, 0.05);
   }
   // petit coup de caméra (sur le calque d'inclinaison, indépendant des mouvements de caméra)
   function punch(tl, S, t, amt = 0.035) {
