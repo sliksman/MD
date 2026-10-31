@@ -360,15 +360,15 @@
       <rect x="${x - 300}" y="${y - 300}" width="90" height="700" rx="40" fill="#463f78"/>
       <rect x="${x + 210}" y="${y - 300}" width="90" height="700" rx="40" fill="#463f78"/>
       <rect x="${x - 205}" y="${y - 240}" width="410" height="610" rx="30" fill="#413b70"/>
-      <path d="M${x} ${y - 240} v610" stroke="#2d2955" stroke-width="5"/>
+      ${o.empty ? `<rect x="${x - 190}" y="${y - 235}" width="182" height="590" rx="26" fill="#4d4688"/><rect x="${x + 8}" y="${y - 235}" width="182" height="590" rx="26" fill="#4d4688"/><rect x="${x - 190}" y="${y - 240}" width="380" height="60" rx="26" fill="#6a62b0"/>` : `<path d="M${x} ${y - 240} v610" stroke="#2d2955" stroke-width="5"/>`}
       <rect x="${x - 190}" y="${y - 120}" width="150" height="230" rx="40" fill="#5a52a0" transform="rotate(-8 ${x - 115} ${y})"/>
-      <!-- jambes -->
+      ${o.empty ? "" : `<!-- jambes -->
       <rect x="${x - 92}" y="${y + 30}" width="74" height="330" rx="36" fill="#2c3060" transform="rotate(4 ${x - 72} ${y + 180})"/>
       <rect x="${x + 18}" y="${y + 30}" width="74" height="330" rx="36" fill="#262a58" transform="rotate(-6 ${x + 72} ${y + 180})"/>
       <!-- buste -->
       <ellipse cx="${x}" cy="${y - 70}" rx="104" ry="122" fill="${u("gDuvet")}"/>
       <!-- tête -->
-      <g id="${P}head"><circle cx="${x}" cy="${y - 250}" r="78" fill="${u("gSkin")}"/>${A.eyes("eyes", x - 28, x + 28, y - 232, 13)}</g>
+      <g id="${P}head"><circle cx="${x}" cy="${y - 250}" r="78" fill="${u("gSkin")}"/>${A.eyes("eyes", x - 28, x + 28, y - 232, 13)}</g>`}
       ${o.held === false ? "" : `<!-- bras + téléphone -->
       <g id="${P}phoneHeld"><g id="${P}arms"><rect x="${x - 112}" y="${y - 190}" width="46" height="150" rx="23" fill="#3a49a0" transform="rotate(-22 ${x - 89} ${y - 115})"/>
       <rect x="${x + 66}" y="${y - 190}" width="46" height="150" rx="23" fill="#3a49a0" transform="rotate(22 ${x + 89} ${y - 115})"/></g><g id="${P}phoneBody">
@@ -546,13 +546,25 @@
       <text x="8" y="-30" text-anchor="middle" font-family="Nunito" font-weight="900" font-size="26" fill="${C.cream}" fill-opacity=".85">MODE</text><text x="8" y="2" text-anchor="middle" font-family="Nunito" font-weight="900" font-size="26" fill="${C.cream}" fill-opacity=".85">D'EMPLOI</text>
       <text x="8" y="44" text-anchor="middle" font-family="Nunito" font-weight="800" font-size="20" fill="${C.cream}" fill-opacity=".5">${title}</text></g></g>`;
 
-    // lit vu de dessus, simple : cadre, matelas, oreiller, couette (open : couette rabattue en biais = on vient de se lever)
-    A.bedPlain = (x, y, w, h, o = {}) => `<g id="${P}${o.id || "bedPlain"}"><ellipse cx="${x + w / 2 + 10}" cy="${y + h / 2 + 24}" rx="${w * 0.62}" ry="${h * 0.58}" fill="#000" opacity=".3" filter="${u("fBlurL")}"/>
+    // lit vu de dessus : cadre + tête de lit, drap, deux oreillers, couette matelassée (open : couette repoussée en biais, creux du corps)
+    A.bedPlain = (x, y, w, h, o = {}) => {
+      const pw = w * 0.42, ph = h * 0.15, py = y + h * 0.04;
+      const duvetClosed = `<rect x="${x - 2}" y="${y + h * 0.3}" width="${w + 4}" height="${h * 0.7 + 2}" rx="20" fill="${u("gDuvet")}"/>
+        <rect x="${x - 2}" y="${y + h * 0.3}" width="${w + 4}" height="${h * 0.085}" rx="12" fill="${C.duvetEdge}"/>
+        ${[0.5, 0.68, 0.86].map((k) => `<line x1="${x + 14}" y1="${y + h * k}" x2="${x + w - 14}" y2="${y + h * k}" stroke="#fff" stroke-opacity=".1" stroke-width="3" stroke-linecap="round"/>`).join("")}
+        <line x1="${x + w / 2}" y1="${y + h * 0.4}" x2="${x + w / 2}" y2="${y + h - 14}" stroke="#fff" stroke-opacity=".08" stroke-width="3"/>`;
+      const duvetOpen = `<ellipse cx="${x + w * 0.3}" cy="${y + h * 0.5}" rx="${w * 0.21}" ry="${h * 0.3}" fill="#b9b1a2" opacity=".55"/>
+        <path d="M${x + w * 0.52} ${y + h * 0.3} L${x + w + 2} ${y + h * 0.2} L${x + w + 2} ${y + h + 2} L${x + w * 0.12} ${y + h + 2} L${x + w * 0.12} ${y + h * 0.68} Z" fill="${u("gDuvet")}" stroke="${u("gDuvet")}" stroke-width="8" stroke-linejoin="round"/>
+        <line x1="${x + w * 0.12}" y1="${y + h * 0.68}" x2="${x + w * 0.52}" y2="${y + h * 0.3}" stroke="${C.duvetEdge}" stroke-width="${h * 0.055}" stroke-linecap="round"/>
+        ${[0.62, 0.78, 0.92].map((k) => `<line x1="${x + w * 0.2}" y1="${y + h * k}" x2="${x + w - 14}" y2="${y + h * k}" stroke="#fff" stroke-opacity=".1" stroke-width="3" stroke-linecap="round"/>`).join("")}`;
+      return `<g id="${P}${o.id || "bedPlain"}"><ellipse cx="${x + w / 2 + 10}" cy="${y + h / 2 + 24}" rx="${w * 0.62}" ry="${h * 0.58}" fill="#000" opacity=".3" filter="${u("fBlurL")}"/>
       <rect x="${x - 14}" y="${y - 14}" width="${w + 28}" height="${h + 28}" rx="30" fill="${u("gWood")}"/>
-      <rect x="${x}" y="${y}" width="${w}" height="${h}" rx="22" fill="#cfc8bb"/>
-      <rect x="${x + w * 0.12}" y="${y + 18}" width="${w * 0.76}" height="${h * 0.15}" rx="26" fill="${u("gPillow")}"/>
-      ${o.open ? `<g transform="rotate(-16 ${x + w * 0.2} ${y + h * 0.62})"><rect x="${x - 6}" y="${y + h * 0.34}" width="${w * 0.86}" height="${h * 0.5}" rx="20" fill="${u("gDuvet")}"/><rect x="${x - 6}" y="${y + h * 0.34}" width="${w * 0.86}" height="${h * 0.07}" rx="10" fill="${C.duvetEdge}"/></g>`
-        : `<rect x="${x}" y="${y + h * 0.26}" width="${w}" height="${h * 0.74}" rx="22" fill="${u("gDuvet")}"/><rect x="${x}" y="${y + h * 0.26}" width="${w}" height="${h * 0.07}" rx="10" fill="${C.duvetEdge}"/>`}</g>`;
+      <rect x="${x - 14}" y="${y - 26}" width="${w + 28}" height="${h * 0.07 + 12}" rx="14" fill="${u("gWoodDark")}"/>
+      <rect x="${x}" y="${y}" width="${w}" height="${h}" rx="20" fill="#e8e2d6"/>
+      <rect x="${x + w * 0.06}" y="${py}" width="${pw}" height="${ph}" rx="${ph * 0.45}" fill="${u("gPillow")}"/><rect x="${x + w * 0.52}" y="${py}" width="${pw}" height="${ph}" rx="${ph * 0.45}" fill="${u("gPillow")}"/>
+      <rect x="${x + w * 0.06 + 6}" y="${py + 6}" width="${pw - 12}" height="${ph - 12}" rx="${ph * 0.35}" fill="none" stroke="#000" stroke-opacity=".08" stroke-width="3"/><rect x="${x + w * 0.52 + 6}" y="${py + 6}" width="${pw - 12}" height="${ph - 12}" rx="${ph * 0.35}" fill="none" stroke="#000" stroke-opacity=".08" stroke-width="3"/>
+      ${o.open ? duvetOpen : duvetClosed}</g>`;
+    };
     // dormeur en coupe (tête sur l'oreiller, bosse sous la couette)
     A.sleeperSec = () => `<g id="${P}sleeper"><ellipse cx="560" cy="926" rx="250" ry="34" fill="#2f3b86" opacity=".55"/>
       <circle cx="252" cy="912" r="44" fill="${u("gSkin")}"/><path d="M232 912 q10 9 20 0 M262 912 q10 9 20 0" stroke="#5b4636" stroke-width="5" fill="none" stroke-linecap="round"/></g>`;

@@ -874,7 +874,7 @@
   {
    "id": "L19",
    "start": 51.57,
-   "end": 55.635,
+   "end": 54.93,
    "text": "Et un salon vide à deux heures du mat', c'est encore plus silencieux qu'une chambre.",
    "hl": [
     "silencieux"
@@ -934,17 +934,17 @@
     ],
     [
      "qu'une",
-     54.63
+     54.5
     ],
     [
      "chambre.",
-     55.51
+     54.68
     ]
    ]
   },
   {
    "id": "L20",
-   "start": 55.655,
+   "start": 55.51,
    "end": 57.33,
    "text": "Trois. Mets une ambiance.",
    "hl": [
@@ -953,7 +953,7 @@
    "words": [
     [
      "Trois.",
-     55.655
+     55.51
     ],
     [
      "Mets",
@@ -2915,6 +2915,19 @@
    ]
   ]
  ],
- "overrides": [],
- "endOverrides": {}
+ "overrides": [
+  [
+   "L19",
+   13,
+   54.5
+  ],
+  [
+   "L19",
+   14,
+   54.68
+  ]
+ ],
+ "endOverrides": {
+  "L19": 54.93
+ }
 }
