@@ -121,7 +121,7 @@
    "at": {
     "vo": "L04",
     "word": 1,
-    "+": 0.0
+    "+": 0.12
    },
    "vol": 0.6,
    "note": "posé (1)"
@@ -132,7 +132,7 @@
    "at": {
     "vo": "L04",
     "word": 2,
-    "+": 0.12
+    "+": 0.3
    },
    "vol": 0.5,
    "note": "revenu (1)"
@@ -143,7 +143,7 @@
    "at": {
     "vo": "L04",
     "word": 4,
-    "+": 0.0
+    "+": 0.12
    },
    "vol": 0.6,
    "note": "posé (2)"
@@ -154,7 +154,7 @@
    "at": {
     "vo": "L05",
     "word": 2,
-    "+": 0.0
+    "+": 0.15
    },
    "vol": 0.5,
    "note": "revenu (2)"
@@ -330,7 +330,7 @@
    "at": {
     "vo": "L10",
     "word": 7,
-    "+": 0.0
+    "+": -0.1
    },
    "vol": 0.3,
    "note": "le téléphone vole vers la table"
@@ -444,6 +444,50 @@
    },
    "vol": 0.45,
    "note": "le néon s'allume (premier néon)"
+  },
+  {
+   "id": "slide6",
+   "file": "whoosh.wav",
+   "at": {
+    "vo": "L04",
+    "word": 1,
+    "+": -0.2
+   },
+   "vol": 0.25,
+   "note": "le téléphone vole vers la table (1)"
+  },
+  {
+   "id": "slide7",
+   "file": "whoosh.wav",
+   "at": {
+    "vo": "L04",
+    "word": 2,
+    "+": 0.18
+   },
+   "vol": 0.25,
+   "note": "il revient dans la main (1)"
+  },
+  {
+   "id": "slide8",
+   "file": "whoosh.wav",
+   "at": {
+    "vo": "L04",
+    "word": 4,
+    "+": -0.2
+   },
+   "vol": 0.25,
+   "note": "le téléphone vole vers la table (2)"
+  },
+  {
+   "id": "slide9",
+   "file": "whoosh.wav",
+   "at": {
+    "vo": "L05",
+    "word": 2,
+    "+": -0.15
+   },
+   "vol": 0.25,
+   "note": "il revient dans la main (2)"
   }
  ],
  "overrides": [

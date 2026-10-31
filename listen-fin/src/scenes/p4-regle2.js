@@ -5,7 +5,7 @@ const AM = L.C.amber, WARM = "#ffd28a", O = "470 850";
 // plan large (monde, sous la caméra)
 const wideG = `<g id="${A.id("wideG")}" opacity="0">${A.bg()}${A.bedTop({ clock: ["00:47"] })}
   <rect id="${A.id("dk")}" x="-1200" y="-1200" width="3480" height="4320" fill="#04050d" opacity=".58"/>
-  ${A.downPhone("dph")}${A.warmDots("w", 230, 744, 3, 130, 90)}</g>`;
+  ${A.downPhone("dph")}${A.warmDots("w", 230, 744, 3, 110, 60, 35)}</g>`;
 // vues plein cadre (au-dessus de la caméra) : la table de nuit, l'écran de Listen, le dos du téléphone
 const tblG = `<g id="${A.id("tblG")}"><rect width="1080" height="1920" fill="#0a0c1c"/>
   <ellipse id="${A.id("bloom")}" cx="540" cy="1195" rx="440" ry="540" fill="${L.C.violet}" opacity="0" filter="url(#${A.id("fBlurL")})"/>

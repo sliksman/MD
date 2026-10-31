@@ -4,7 +4,7 @@ const AM = L.C.amber, O = "470 850";
 const bedG = A.bedTop({ clock: ["00:45"] });
 const world = A.void() + A.bg() + bedG +
   `<rect id="${A.id("dk")}" x="-1200" y="-1200" width="3480" height="4320" fill="#04050d" opacity=".42"/>` +
-  A.heldPhone("held") + A.downPhone("dph") + A.dots("fly", [[520, 880], [440, 800], [350, 750], [262, 742]], { step: 30, r: 8, color: AM, opacity: 0.95 });
+  A.heldPhone("held") + A.downPhone("dph") + A.flyer("fl");
 const gA = `<g id="${A.id("gA")}"><rect width="1080" height="1920" fill="#10132c"/>${A.alarmPhone("aph")}</g>`;
 const gD = `<g id="${A.id("gD")}" opacity="0"><rect x="-100" y="-100" width="1280" height="2120" fill="#070914"/>
   <rect x="190" y="700" width="700" height="440" rx="150" fill="url(#${A.id("gPillow")})" opacity=".85"/>
@@ -13,7 +13,8 @@ const gD = `<g id="${A.id("gD")}" opacity="0"><rect x="-100" y="-100" width="128
   <rect width="1080" height="1920" fill="#04050d" opacity=".5"/>${A.dots("flat", [[30, 600], [1050, 600]], { step: 30, r: 5, opacity: 0.55 })}
   <rect width="1080" height="1920" filter="url(#${A.id("fGrain")})" opacity=".16" style="pointer-events:none"/></g>`;
 const S = L.stage(root, ID, world, gA + gD + A.tally("ty", 1420));
-gsap.set([S.$("fly"), S.$("dph")], { opacity: 0 });
+gsap.set(S.$("dph"), { opacity: 0 });
+gsap.set(S.$("fl"), { x: 560, y: 905 });
 gsap.set(S.$("held"), { opacity: 0 });
 gsap.set(S.$("phone"), { opacity: 0 });
 gsap.set(S.cam, { scale: 1.2, svgOrigin: O });
@@ -54,15 +55,21 @@ wide(true, a3);
 const box = (k, t) => tl.fromTo(S.$("ty-" + k), { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.25, ease: "power3.out", immediateRender: false }, t);
 box("P", a3); box("R", a3);
 const pz = w("L10", 7);
-tl.set(S.$("held"), { opacity: 0 }, pz + 0.02);
-tl.set(S.$("fly"), { opacity: 1 }, pz + 0.02);
-L.drawDots(tl, S.$("fly"), pz + 0.02, 0.2, { ir: false });
-tl.to(S.$("fly"), { opacity: 0, duration: 0.2 }, pz + 0.3);
-tl.set(S.$("dph"), { opacity: 1 }, pz + 0.24);
-tl.fromTo(S.$("dph"), { scale: 1.6, svgOrigin: "230 744" }, { scale: 1, duration: 0.14, ease: "power3.in", immediateRender: false }, pz + 0.24);
-tl.to(S.$("dk"), { opacity: 0.6, duration: 0.2 }, pz + 0.38);
-tl.fromTo(S.$("ty-p2"), { opacity: 0, scaleY: 0, transformOrigin: "50% 100%" }, { opacity: 1, scaleY: 1, duration: 0.2, ease: "back.out(3)", immediateRender: false }, pz + 0.38);
-tl.fromTo(S.$("ty-P"), { scale: 1, transformOrigin: "50% 50%" }, { scale: 1.12, duration: 0.1, yoyo: true, repeat: 1, ease: "power2.out", immediateRender: false }, pz + 0.38);
+// le téléphone quitte la main, décrit un arc et atterrit face contre table
+const HAND = { x: 560, y: 905, s: 1, r: -8 }, TBL = { x: 230, y: 744, s: 0.49, r: 0 }, fd = 0.36, ft = pz - 0.1;
+tl.to(S.$("held"), { opacity: 0, duration: 0.1 }, ft);
+tl.set(S.$("fl"), { opacity: 1, x: HAND.x, y: HAND.y }, ft);
+tl.set(S.$("fl-in"), { scale: HAND.s, rotation: HAND.r }, ft);
+tl.to(S.$("fl"), { x: TBL.x, duration: fd, ease: "power2.inOut" }, ft);
+tl.to(S.$("fl"), { y: Math.min(HAND.y, TBL.y) - 55, duration: fd * 0.45, ease: "power2.out" }, ft);
+tl.to(S.$("fl"), { y: TBL.y, duration: fd * 0.55, ease: "power2.in" }, ft + fd * 0.45);
+tl.to(S.$("fl-in"), { scale: TBL.s, rotation: TBL.r, duration: fd, ease: "power2.inOut" }, ft);
+tl.set(S.$("fl"), { opacity: 0 }, ft + fd);
+tl.set(S.$("dph"), { opacity: 1 }, ft + fd);
+tl.fromTo(S.$("dph"), { scale: 1.2, svgOrigin: "230 744" }, { scale: 1, duration: 0.14, ease: "back.out(3)", immediateRender: false }, ft + fd);
+tl.to(S.$("dk"), { opacity: 0.6, duration: 0.2 }, ft + fd);
+tl.fromTo(S.$("ty-p2"), { opacity: 0, scaleY: 0, transformOrigin: "50% 100%" }, { opacity: 1, scaleY: 1, duration: 0.2, ease: "back.out(3)", immediateRender: false }, ft + fd);
+tl.fromTo(S.$("ty-P"), { scale: 1, transformOrigin: "50% 50%" }, { scale: 1.12, duration: 0.1, yoyo: true, repeat: 1, ease: "power2.out", immediateRender: false }, ft + fd);
 
 // « Et là, ta chambre fait un silence pas possible. » — le plan large pousse lentement vers la tête, puis tout se vide
 tl.to(S.cam, { scale: 1.45, duration: w("L11", 5) - pz, ease: "power1.in" }, pz + 0.5);

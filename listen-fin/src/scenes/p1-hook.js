@@ -6,7 +6,7 @@ const rnd = (() => { let k = 11; return () => ((k = (k * 9301 + 49297) % 233280)
 
 // mur de traits : un <path> par marque, hors de la zone du lit, classé du plus proche au plus lointain (apparition en vague)
 const marks = [];
-for (let y = -560; y < 2500; y += 108) for (let x = -480; x < 1420; x += 150) {
+for (let y = 300; y < 2500; y += 108) for (let x = -480; x < 1420; x += 150) {
   const mx = x + rnd() * 26, my = y + rnd() * 26;
   if (mx > 110 && mx < 790 && my > 520 && my < 1700) continue;
   marks.push({ x: mx, y: my, c: rnd() < 0.8 ? COLD : AM });
@@ -19,9 +19,9 @@ const tremble = `<g id="${A.id("trm")}" opacity="0" stroke="${AM}" stroke-width=
   <circle id="${A.id("ring")}" cx="304" cy="667" r="44" fill="none" stroke="${AM}" stroke-width="6" opacity="0"/>`;
 const world = A.void() + A.bg() + wall + bedG + tremble +
   `<rect id="${A.id("dk")}" x="-1200" y="-1200" width="3480" height="4320" fill="#04050d" opacity=".42" style="pointer-events:none"/>` +
-  A.tablePhoneLit("tph") + A.heldPhone("held") + A.pill("p34", 215, 1000, "00:34", 304, 690, { size: 48, w: 200, dot: AM });
+  A.tablePhoneLit("tph") + A.heldPhone("held") + A.flyer("fl") + A.pill("p34", 215, 1000, "00:34", 304, 690, { size: 48, w: 200, dot: AM });
 const hud = A.tally("ty", 1420) +
-  A.pill("pVol", 540, 1180, "volonté", 542, 800, { size: 104 }) + `<line id="${A.id("sVol")}" x1="330" y1="1172" x2="760" y2="1172" stroke="${AM}" stroke-width="16" stroke-linecap="round" opacity="0"/>`;
+  A.pill("pVol", 540, 1180, "volonté", 542, 800, { size: 104 }) + `<line id="${A.id("sVol")}" x1="342" y1="1196" x2="738" y2="1186" stroke="${AM}" stroke-width="14" stroke-linecap="round" stroke-dasharray="397" stroke-dashoffset="397" opacity="0"/>`;
 const S = L.stage(root, ID, world, hud);
 gsap.set([S.$("trm"), S.$("ring"), S.$("tph"), S.$("p34"), S.$("sVol")], { opacity: 0 });
 gsap.set(S.$("phone"), { opacity: 0 });
@@ -54,30 +54,49 @@ tl.set(S.$("p34"), { opacity: 1 }, mn - 0.02);
 L.pill(tl, S, "p34", mn);
 tl.to(S.$("p34"), { opacity: 0, duration: 0.2 }, w("L04", 0) - 0.05);
 
-// --- « T'as posé ton téléphone deux fois. Il est revenu deux fois. » : le gag. Caméra fixe ; l'objet change d'état.
-const state = (t, held) => {     // held = le téléphone est dans la main
-  tl.set(S.$("held"), { opacity: held ? 1 : 0 }, t);
-  tl.set(S.$("tph"), { opacity: held ? 0 : 1 }, t);
-  tl.to(S.$("dk"), { opacity: held ? 0.42 : 0.56, duration: 0.05 }, t);
-  tl.to(S.$("eyes-pup"), { x: held ? 0 : -7, duration: 0.1 }, t);
-  if (held) tl.fromTo(S.$("held"), { y: 36 }, { y: 0, duration: 0.14, ease: "back.out(2.4)", immediateRender: false }, t);
-  else tl.fromTo(S.$("tph"), { scale: 1.25, svgOrigin: "230 744" }, { scale: 1, duration: 0.12, ease: "power3.out", immediateRender: false }, t);
+// --- « T'as posé ton téléphone deux fois. Il est revenu deux fois. » : le gag. Caméra fixe ; le téléphone VOYAGE (arc, rotation, rétrécissement)
+const HAND = { x: 560, y: 905, s: 1, r: -8 }, TBL = { x: 230, y: 744, s: 0.49, r: 0 };
+gsap.set(S.$("fl"), { x: HAND.x, y: HAND.y });
+const flight = (t, a, b, d) => {
+  tl.set(S.$("fl"), { opacity: 1, x: a.x, y: a.y }, t);
+  tl.set(S.$("fl-in"), { scale: a.s, rotation: a.r }, t);
+  tl.to(S.$("fl"), { x: b.x, duration: d, ease: "power2.inOut" }, t);
+  tl.to(S.$("fl"), { y: Math.min(a.y, b.y) - 55, duration: d * 0.45, ease: "power2.out" }, t);
+  tl.to(S.$("fl"), { y: b.y, duration: d * 0.55, ease: "power2.in" }, t + d * 0.45);
+  tl.to(S.$("fl-in"), { scale: b.s, rotation: b.r, duration: d, ease: "power2.inOut" }, t);
+  tl.set(S.$("fl"), { opacity: 0 }, t + d);
+};
+const pose = (t, d = 0.32) => {
+  tl.to(S.$("held"), { opacity: 0, duration: 0.1 }, t);
+  flight(t, HAND, TBL, d);
+  tl.set(S.$("tph"), { opacity: 1 }, t + d);
+  tl.fromTo(S.$("tph"), { scale: 1.2, svgOrigin: "230 744" }, { scale: 1, duration: 0.14, ease: "back.out(3)", immediateRender: false }, t + d);
+  tl.to(S.$("dk"), { opacity: 0.56, duration: 0.2 }, t + d - 0.1);
+  tl.to(S.$("eyes-pup"), { x: -7, duration: 0.15 }, t + d);
+};
+const toHand = (t, d = 0.3) => {
+  tl.set(S.$("tph"), { opacity: 0 }, t);
+  flight(t, TBL, HAND, d);
+  tl.set(S.$("held"), { opacity: 1 }, t + d - 0.02);
+  tl.fromTo(S.$("held"), { y: 14 }, { y: 0, duration: 0.14, ease: "power3.out", immediateRender: false }, t + d - 0.02);
+  tl.to(S.$("dk"), { opacity: 0.42, duration: 0.15 }, t + d - 0.05);
+  tl.to(S.$("eyes-pup"), { x: 0, duration: 0.12 }, t + d);
 };
 const tick = (id, t) => tl.fromTo(S.$(id), { opacity: 0, scaleY: 0, transformOrigin: "50% 100%" }, { opacity: 1, scaleY: 1, duration: 0.16, ease: "back.out(2.6)", immediateRender: false }, t);
 const box = (k, t) => tl.fromTo(S.$("ty-" + k), { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.25, ease: "power3.out", immediateRender: false }, t);
-const pose1 = w("L04", 1), back1 = w("L04", 2) + 0.12, pose2 = w("L04", 4), back2 = w("L05", 2);
-state(pose1, false); box("P", pose1); tick("ty-p0", pose1 + 0.08);
-state(back1, true); box("R", back1); tick("ty-r0", back1 + 0.08);
-state(pose2, false); tick("ty-p1", pose2 + 0.08);
-state(back2, true); tick("ty-r1", back2 + 0.08);
-L.blink(tl, S, back2 + 0.5);
+const p1t = w("L04", 1) - 0.2, b1t = p1t + 0.48, p2t = w("L04", 4) - 0.2, b2t = w("L05", 2) - 0.15;
+pose(p1t); box("P", p1t + 0.32); tick("ty-p0", p1t + 0.4);
+toHand(b1t); box("R", b1t + 0.3); tick("ty-r0", b1t + 0.38);
+pose(p2t); tick("ty-p1", p2t + 0.4);
+toHand(b2t); tick("ty-r1", b2t + 0.38);
+L.blink(tl, S, b2t + 0.8);
 tl.to(S.$("ty-P"), { opacity: 0, duration: 0.2 }, w("L06", 0) - 0.1);
 tl.to(S.$("ty-R"), { opacity: 0, duration: 0.2 }, w("L06", 0) - 0.1);
 
 // --- « Cette négo, tu la perds depuis des mois. » : dézoom, le mur de traits recouvre la chambre
 const dz = w("L06", 0) - 0.05;
 tl.to(S.cam, { scale: 0.58, duration: w("L06", 7) + 0.25 - dz, ease: "power2.inOut" }, dz);
-tl.to(marksEl, { opacity: 0.5, y: 0, duration: 0.2, ease: "power2.out", stagger: { each: 1.5 / marksEl.length } }, w("L06", 2) - 0.2);
+tl.to(marksEl, { opacity: 0.45, y: 0, duration: 0.2, ease: "power2.out", stagger: { each: 1.5 / marksEl.length } }, w("L06", 2) - 0.2);
 
 // --- « Et c'est pas une question de volonté. » : retour sur la tête, le mot « volonté » barré, énorme
 const back = w("L06", 7) + 0.3;
@@ -86,4 +105,4 @@ tl.to(S.$("wall"), { opacity: 0.2, duration: 0.5 }, w("L07", 0) - 0.2);
 L.blink(tl, S, w("L07", 3));
 L.pill(tl, S, "pVol", w("L07", 5));
 tl.set(S.$("sVol"), { opacity: 1 }, w("L07", 6) - 0.04);
-tl.fromTo(S.$("sVol"), { scaleX: 0, svgOrigin: "330 1172" }, { scaleX: 1, duration: 0.2, ease: "power3.out", immediateRender: false }, w("L07", 6) - 0.04);
+tl.fromTo(S.$("sVol"), { strokeDashoffset: 397 }, { strokeDashoffset: 0, duration: 0.22, ease: "power2.out", immediateRender: false }, w("L07", 6) - 0.04);

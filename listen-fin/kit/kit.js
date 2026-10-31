@@ -153,6 +153,8 @@
       <text x="575" y="1352" text-anchor="middle" font-family="Nunito" font-weight="800" font-size="26" fill="${C.cream}">arrêter</text></g>
       <ellipse cx="300" cy="1330" rx="70" ry="120" fill="url(#${P}gSkin)" transform="rotate(-20 300 1330)"/><ellipse cx="770" cy="1260" rx="64" ry="130" fill="url(#${P}gSkin)" transform="rotate(18 770 1260)"/>
       <ellipse cx="470" cy="1345" rx="60" ry="40" fill="url(#${P}gSkin)"/></g>`;
+    // téléphone qui voyage entre la main et la table (dos du téléphone ; le groupe name se translate, name-in tourne/grossit autour de son centre)
+    A.flyer = (name) => `<g id="${P}${name}" opacity="0"><g id="${P}${name}-in"><rect x="-72" y="-128" width="144" height="256" rx="26" fill="#0b0d1a" stroke="#9cc8ff" stroke-opacity=".9" stroke-width="5" filter="url(#${P}fGlowS)"/><rect x="-52" y="-108" width="38" height="38" rx="10" fill="#1d2140"/></g></g>`;
     // fond sombre et large (le hors-champ quand la caméra s'éloigne)
     A.void = () => `<rect x="-1200" y="-1200" width="3480" height="4320" fill="${C.night0}"/>`;
 
@@ -472,7 +474,7 @@
       <circle cx="0" cy="0" r="108" fill="#15122a"/>${[30, 50, 70, 90].map((r) => `<circle r="${r}" fill="none" stroke="#fff" stroke-opacity=".12" stroke-width="3"/>`).join("")}
       <circle r="34" fill="${C.amber}"/><circle r="6" fill="#15122a"/><path d="M-70 -70 q70 -50 140 0" stroke="#fff" stroke-opacity=".18" stroke-width="8" fill="none" stroke-linecap="round"/></g></g>`;
     // téléphone posé face contre table (écran éteint) avec petit rayonnement chaud (son de café)
-    A.warmDots = (name, cx, cy, n = 3, r0 = 150, dr = 120) => { let s = ""; for (let i = 0; i < n; i++) s += A.dots(`${name}${i}`, A.arc(cx, cy, r0 + i * dr, -52 + i * 3, 52 - i * 3), { step: 26, r: 8, color: "#ffd28a", glow: "fGlowA" }); return s; };
+    A.warmDots = (name, cx, cy, n = 3, r0 = 150, dr = 120, half = 52) => { let s = ""; for (let i = 0; i < n; i++) s += A.dots(`${name}${i}`, A.arc(cx, cy, r0 + i * dr, -half + i * 3, half - i * 3), { step: 26, r: 8, color: "#ffd28a", glow: "fGlowA" }); return s; };
 
     // table de chevet vue de dessus
     A.sideTable = (name, cx, cy, w = 380, h = 520) => `<g id="${P}${name}">
