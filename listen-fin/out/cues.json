@@ -1,0 +1,299 @@
+[
+ {
+  "id": "wipe0",
+  "t": 14.12,
+  "frame": 424,
+  "dur": 0.7,
+  "file": "whoosh.wav",
+  "vol": 0.7,
+  "name": "volet ambre"
+ },
+ {
+  "id": "alarm0",
+  "t": 2.03,
+  "frame": 61,
+  "dur": 1.3,
+  "file": "alarm.wav",
+  "vol": 0.5,
+  "name": "le petit réveil sonne"
+ },
+ {
+  "id": "pop0",
+  "t": 5.068,
+  "frame": 152,
+  "dur": 0.18,
+  "file": "pop.wav",
+  "vol": 0.5,
+  "name": "pastille 00:34"
+ },
+ {
+  "id": "flop0",
+  "t": 6.304,
+  "frame": 189,
+  "dur": 0.22,
+  "file": "flop.wav",
+  "vol": 0.6,
+  "name": "posé (1)"
+ },
+ {
+  "id": "pop1",
+  "t": 6.753,
+  "frame": 203,
+  "dur": 0.18,
+  "file": "pop.wav",
+  "vol": 0.5,
+  "name": "revenu (1)"
+ },
+ {
+  "id": "flop1",
+  "t": 7.18,
+  "frame": 215,
+  "dur": 0.22,
+  "file": "flop.wav",
+  "vol": 0.6,
+  "name": "posé (2)"
+ },
+ {
+  "id": "pop2",
+  "t": 8.31,
+  "frame": 249,
+  "dur": 0.18,
+  "file": "pop.wav",
+  "vol": 0.5,
+  "name": "revenu (2)"
+ },
+ {
+  "id": "cam0",
+  "t": 9.81,
+  "frame": 294,
+  "dur": 0.7,
+  "file": "whoosh.wav",
+  "vol": 0.45,
+  "name": "dézoom : le mur de traits"
+ },
+ {
+  "id": "pop3",
+  "t": 13.483,
+  "frame": 404,
+  "dur": 0.18,
+  "file": "pop.wav",
+  "vol": 0.6,
+  "name": "pastille « volonté »"
+ },
+ {
+  "id": "slide0",
+  "t": 13.547,
+  "frame": 406,
+  "dur": 0.7,
+  "file": "whoosh.wav",
+  "vol": 0.35,
+  "name": "le trait barre « volonté »"
+ },
+ {
+  "id": "hit0",
+  "t": 15.722,
+  "frame": 472,
+  "dur": 0.22,
+  "file": "flop.wav",
+  "vol": 0.9,
+  "name": "le 1 claque"
+ },
+ {
+  "id": "pop4",
+  "t": 16.876,
+  "frame": 506,
+  "dur": 0.18,
+  "file": "pop.wav",
+  "vol": 0.5,
+  "name": "pastille heure de fin"
+ },
+ {
+  "id": "pop5",
+  "t": 17.199,
+  "frame": 516,
+  "dur": 0.18,
+  "file": "pop.wav",
+  "vol": 0.45,
+  "name": "00:34 → 00:45"
+ },
+ {
+  "id": "pop6",
+  "t": 18.294,
+  "frame": 549,
+  "dur": 0.18,
+  "file": "pop.wav",
+  "vol": 0.5,
+  "name": "pastille heure de coucher"
+ },
+ {
+  "id": "slide1",
+  "t": 18.517,
+  "frame": 556,
+  "dur": 0.7,
+  "file": "whoosh.wav",
+  "vol": 0.3,
+  "name": "trait : coucher barré"
+ },
+ {
+  "id": "slide2",
+  "t": 19.24,
+  "frame": 577,
+  "dur": 0.7,
+  "file": "whoosh.wav",
+  "vol": 0.5,
+  "name": "la bande d'alarme traverse"
+ },
+ {
+  "id": "pop7",
+  "t": 20.19,
+  "frame": 606,
+  "dur": 0.18,
+  "file": "pop.wav",
+  "vol": 0.5,
+  "name": "pastille pas pour dormir"
+ },
+ {
+  "id": "alarm1",
+  "t": 21.46,
+  "frame": 644,
+  "dur": 1.3,
+  "file": "alarm.wav",
+  "vol": 0.45,
+  "name": "la bande sonne"
+ },
+ {
+  "id": "alarm2",
+  "t": 22.76,
+  "frame": 683,
+  "dur": 1.3,
+  "file": "alarm.wav",
+  "vol": 0.55,
+  "name": "gros plan : elle sonne (réveil avant la voix)"
+ },
+ {
+  "id": "pop8",
+  "t": 24.243,
+  "frame": 727,
+  "dur": 0.18,
+  "file": "pop.wav",
+  "vol": 0.5,
+  "name": "tu l'éteins"
+ },
+ {
+  "id": "alarm3",
+  "t": 25,
+  "frame": 750,
+  "dur": 1.3,
+  "file": "alarm.wav",
+  "vol": 0.6,
+  "name": "elle sonne (2) plus fort"
+ },
+ {
+  "id": "flop2",
+  "t": 26.53,
+  "frame": 796,
+  "dur": 0.22,
+  "file": "flop.wav",
+  "vol": 0.8,
+  "name": "le téléphone atterrit face contre table"
+ },
+ {
+  "id": "slide3",
+  "t": 26.27,
+  "frame": 788,
+  "dur": 0.7,
+  "file": "whoosh.wav",
+  "vol": 0.3,
+  "name": "le téléphone vole vers la table"
+ },
+ {
+  "id": "hit1",
+  "t": 31.688,
+  "frame": 951,
+  "dur": 0.22,
+  "file": "flop.wav",
+  "vol": 0.9,
+  "name": "le 2 claque"
+ },
+ {
+  "id": "slide4",
+  "t": 33.7,
+  "frame": 1011,
+  "dur": 0.7,
+  "file": "whoosh.wav",
+  "vol": 0.5,
+  "name": "on plonge dans l'écran"
+ },
+ {
+  "id": "pop9",
+  "t": 37.585,
+  "frame": 1128,
+  "dur": 0.18,
+  "file": "pop.wav",
+  "vol": 0.6,
+  "name": "tap : lecture"
+ },
+ {
+  "id": "slide5",
+  "t": 38.186,
+  "frame": 1146,
+  "dur": 0.7,
+  "file": "whoosh.wav",
+  "vol": 0.4,
+  "name": "le téléphone se retourne"
+ },
+ {
+  "id": "flop3",
+  "t": 39.036,
+  "frame": 1171,
+  "dur": 0.22,
+  "file": "flop.wav",
+  "vol": 0.5,
+  "name": "il se pose, écran contre le bois"
+ },
+ {
+  "id": "pop10",
+  "t": 39.74,
+  "frame": 1192,
+  "dur": 0.18,
+  "file": "pop.wav",
+  "vol": 0.3,
+  "name": "arc 1"
+ },
+ {
+  "id": "pop11",
+  "t": 39.98,
+  "frame": 1199,
+  "dur": 0.18,
+  "file": "pop.wav",
+  "vol": 0.25,
+  "name": "arc 2"
+ },
+ {
+  "id": "pop12",
+  "t": 40.22,
+  "frame": 1207,
+  "dur": 0.18,
+  "file": "pop.wav",
+  "vol": 0.2,
+  "name": "arc 3"
+ },
+ {
+  "id": "pop13",
+  "t": 47.7,
+  "frame": 1431,
+  "dur": 0.18,
+  "file": "pop.wav",
+  "vol": 0.45,
+  "name": "pastille commentaire"
+ },
+ {
+  "id": "hit2",
+  "t": 30.45,
+  "frame": 914,
+  "dur": 0.7,
+  "file": "whoosh.wav",
+  "vol": 0.45,
+  "name": "le néon s'allume (premier néon)"
+ }
+]
