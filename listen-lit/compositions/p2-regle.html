@@ -1,0 +1,97 @@
+<!doctype html>
+<!-- GÉNÉRÉ par scripts/sync.mjs depuis src/scenes/p2-regle.js — éditer la source, pas ce fichier. -->
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+        #root { position: absolute; inset: 0; }
+      </style>
+      <div id="root" data-composition-id="p2" data-width="1080" data-height="1920"></div>
+      <script>
+        (function () {
+          const ID = "p2";
+          const L = window.LS;
+          const sc = L.scene(ID);
+          const A = L.art(ID + "-");
+          const root = document.querySelector('[data-composition-id="p2"]');
+          const tl = gsap.timeline({ paused: true });
+          const w = sc.w;
+          // PLAN 2 — LA RÈGLE DU LIT. Le lit se vide, les objets sont expulsés, on dézoome sur le plan du studio (le lit = la nuit,
+          // même à un mètre), puis on se couche : le plafond, connu par cœur (échec de l'astuce 1).
+          const AM = L.C.amber, COLD = "#9cc8ff";
+          const strikeEl = (name, x1, x2, y, wd = 9) => `<line id="${A.id(name)}" x1="${x1}" y1="${y}" x2="${x2}" y2="${y}" stroke="${AM}" stroke-width="${wd}" stroke-linecap="round" opacity="0"/>`;
+          const dots3 = (n) => `<g id="${A.id("pdots")}">${[0, 1, 2].map((i) => `<circle id="${A.id("pd" + i)}" cx="${820 + i * 56}" cy="212" r="14" fill="${i < n ? AM : "#fff"}" opacity="${i < n ? 1 : 0.22}"/>`).join("")}</g>`;
+          const curve = (p0, p1, bend = 80, n = 14) => { const mx = (p0[0] + p1[0]) / 2 + bend, my = (p0[1] + p1[1]) / 2 - bend;
+            return Array.from({ length: n + 1 }, (_, i) => { const t = i / n; return [(1 - t) ** 2 * p0[0] + 2 * (1 - t) * t * mx + t * t * p1[0], (1 - t) ** 2 * p0[1] + 2 * (1 - t) * t * my + t * t * p1[1]]; }); };
+          const pile = `<g id="${A.id("pile")}"><g transform="translate(640 930)"><ellipse cx="0" cy="4" rx="90" ry="10" fill="#000" opacity=".3"/>${[0, 1, 2, 3].map((i) => `<rect x="${-80 + i * 3}" y="${-24 - i * 22}" width="160" height="20" rx="4" fill="${i % 2 ? "#cfc8bb" : "#e6dfd2"}"/>`).join("")}</g></g>`;
+          const sec = `<g id="${A.id("secG")}">${A.bedSection()}${A.laptopObj("lap", 470, 930)}${pile}${A.phoneObj("phn", 840, 930)}
+            ${A.pill("pDor", 420, 560, "dormir", 420, 930, { size: 44, dot: AM })}${A.pill("pSais", 760, 640, "et ce que tu sais", 760, 930, { size: 40 })}
+            ${A.pill("pMa", 790, 1250, "mails", 800, 1150, { size: 38 })}${strikeEl("sMa", 712, 868, 1250)}${A.pill("pDo", 440, 1250, "dossiers", 560, 1150, { size: 38 })}${strikeEl("sDo", 330, 550, 1250)}${A.pill("pSc", 880, 1170, "scroll", 990, 1100, { size: 38 })}${strikeEl("sSc", 792, 968, 1170)}</g>`;
+          const std = `<g id="${A.id("stdG")}" opacity="0">${A.studioPlan()}
+            <g id="${A.id("dim")}"><line x1="400" y1="1080" x2="700" y2="1080" stroke="#fff" stroke-width="4" stroke-dasharray="3 12" stroke-linecap="round"/><line x1="400" y1="1062" x2="400" y2="1098" stroke="#fff" stroke-width="4"/><line x1="700" y1="1062" x2="700" y2="1098" stroke="#fff" stroke-width="4"/></g>
+            ${A.pill("pNuit", 270, 450, "le lit : la nuit", 260, 640, { dot: AM, size: 40 })}${A.pill("pAil", 800, 430, "le reste : ailleurs", 820, 1130, { size: 40 })}${A.pill("p1m", 550, 1190, "1 m", 550, 1080, { size: 40, w: 150 })}</g>`;
+          const ceil = `<g id="${A.id("ceilG")}" opacity="0">${A.ceilingView()}${A.upEyes(540, 1365, 38)}
+            ${A.pill("p20", 250, 1325, "20 min", 270, 1260, { size: 40 })}${A.pill("p30", 830, 1325, "30 min", 790, 1260, { size: 40, dot: AM })}${A.pill("pPla", 760, 540, "connu par cœur", 610, 920, { size: 38 })}</g>`;
+          const hud = A.bigNum("n1", "1", "Ton lit sert à deux choses.") + dots3(0);
+          const S = L.stage(root, ID, sec + std + ceil, hud);
+          ["lap", "pile", "phn"].forEach((n) => gsap.set(S.$(n), { opacity: 0 }));
+          ["sMa", "sDo", "sSc"].forEach((n) => gsap.set(S.$(n), { opacity: 0 }));
+          gsap.set(S.$("crack"), { opacity: 0 });
+          L.blink(tl, S, 4.5);
+          const look = (t, x) => tl.to(S.$("eyes-pup"), { x, duration: 0.15, ease: "power2.out" }, t);
+
+          // « Un. Ton lit sert à deux choses. »
+          const un = w("L07", 0);
+          L.slam(tl, S, "n1", un);
+          tl.fromTo(S.$("n1-lab"), { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.3, ease: "back.out(2)" }, w("L07", 1));
+          tl.to(S.$("pd0"), { fill: AM, opacity: 1, duration: 0.12 }, un + 0.4);
+          tl.fromTo(S.$("pd0"), { scale: 1.9, transformOrigin: "50% 50%" }, { scale: 1, duration: 0.3, ease: "back.out(3)", immediateRender: false }, un + 0.4);
+          // « Dormir, et ce que tu sais. »
+          L.pill(tl, S, "pDor", w("L08", 0));
+          L.pill(tl, S, "pSais", w("L08", 2));
+          look(w("L08", 2), 4);
+          L.shut(tl, S, w("L08", 4) - 0.05, true); L.shut(tl, S, w("L08", 4) + 0.3, false);   // clin d'œil appuyé : un clignement
+          // « C'est tout. » : tout s'efface, les objets reviennent sur le lit pour être chassés
+          ["pDor", "pSais", "n1-lab"].forEach((n) => tl.to(S.$(n), { opacity: 0, duration: 0.25 }, w("L08", 6)));
+          const back = (name, t) => { tl.fromTo(S.$(name), { opacity: 0, scale: 0.6, svgOrigin: "560 930" }, { opacity: 1, scale: 1, duration: 0.25, ease: "back.out(2.4)", immediateRender: false }, t); };
+          back("lap", w("L08", 6) + 0.05); back("pile", w("L08", 6) + 0.12); back("phn", w("L08", 6) + 0.2);
+          // « Pas de mails, pas de dossiers, pas de scroll. » : chaque objet est expulsé du lit
+          const out = (name, t, fx, fy, k, ox, oy) => {
+            tl.to(S.$(name), { x: fx, duration: 0.55, ease: "power1.out", immediateRender: false }, t);
+            tl.to(S.$(name), { keyframes: [{ y: -150, duration: 0.22, ease: "power2.out" }, { y: fy, duration: 0.33, ease: "bounce.out" }], immediateRender: false }, t);
+            tl.to(S.$(name), { scale: k, svgOrigin: `${ox} ${oy}`, duration: 0.55, immediateRender: false }, t);
+          };
+          out("lap", w("L09", 2) - 0.25, 330, 198, 0.7, 470, 930); L.pill(tl, S, "pMa", w("L09", 2) - 0.1);
+          tl.fromTo(S.$("sMa"), { opacity: 1, scaleX: 0, svgOrigin: "712 1250" }, { scaleX: 1, duration: 0.16, ease: "power3.out", immediateRender: false }, w("L09", 2) + 0.1);
+          out("pile", w("L09", 5) - 0.25, -40, 198, 1, 640, 930); L.pill(tl, S, "pDo", w("L09", 5) - 0.1);
+          tl.fromTo(S.$("sDo"), { opacity: 1, scaleX: 0, svgOrigin: "330 1250" }, { scaleX: 1, duration: 0.16, ease: "power3.out", immediateRender: false }, w("L09", 5) + 0.1);
+          out("phn", w("L09", 8) - 0.25, 150, 198, 0.7, 840, 930); L.pill(tl, S, "pSc", w("L09", 8) - 0.1);
+          tl.fromTo(S.$("sSc"), { opacity: 1, scaleX: 0, svgOrigin: "792 1170" }, { scaleX: 1, duration: 0.16, ease: "power3.out", immediateRender: false }, w("L09", 8) + 0.1);
+          look(w("L09", 8), 5);
+
+          // « Même dans vingt mètres carrés… » : on dézoome sur le plan du studio
+          const dz = w("L10", 0) - 0.15;
+          tl.to(S.$("secG"), { scale: 0.28, x: -285, y: -225, svgOrigin: "540 1000", opacity: 0, duration: 0.55, ease: "power3.inOut", immediateRender: false }, dz);
+          tl.fromTo(S.$("stdG"), { opacity: 0, scale: 3.4, svgOrigin: "255 775" }, { opacity: 1, scale: 1, duration: 0.6, ease: "power3.inOut", immediateRender: false }, dz);
+          L.pill(tl, S, "pNuit", w("L10", 6));
+          tl.fromTo(S.$("zone"), { strokeDasharray: "4 18", opacity: 0.25 }, { opacity: 1, duration: 0.3 }, w("L10", 5));
+          L.pill(tl, S, "pAil", w("L10", 11));
+          tl.fromTo(S.$("dim"), { opacity: 0, scaleX: 0, svgOrigin: "400 1080" }, { opacity: 1, scaleX: 1, duration: 0.5, ease: "power2.out", immediateRender: true }, w("L10", 15));
+          L.pill(tl, S, "p1m", w("L10", 18) - 0.2);
+          // « Bon. Ce soir tu t'y couches… » : on zoome sur le lit, plafond
+          const cz = w("L11", 5);
+          tl.to(S.$("stdG"), { scale: 4.2, svgOrigin: "255 775", opacity: 0, duration: 0.5, ease: "power3.in", immediateRender: false }, cz - 0.1);
+          tl.fromTo(S.$("ceilG"), { opacity: 0, scale: 0.65, svgOrigin: "540 800" }, { opacity: 1, scale: 1, duration: 0.55, ease: "power3.out", immediateRender: false }, cz + 0.2);
+          L.pill(tl, S, "p20", w("L12", 0));
+          L.pill(tl, S, "p30", w("L12", 2));
+          L.drawDots(tl, S.$("crack"), w("L13", 3), 1.4, { ir: false });
+          tl.fromTo(S.$("crack"), { opacity: 0 }, { opacity: 0.55, duration: 0.05 }, w("L13", 3));
+          L.pill(tl, S, "pPla", w("L13", 3) + 0.5);
+
+          window.__timelines[ID] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

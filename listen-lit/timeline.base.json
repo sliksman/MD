@@ -1,0 +1,2920 @@
+{
+ "_doc": "Chronologie dans le temps de la voix D'ORIGINE (assets/audio/vo_norm.mp3). Ne pas éditer timeline.json : il est généré par scripts/breathe.py (respirations) à partir de ce fichier.",
+ "duration": 70.14,
+ "fade": 0,
+ "scenes": [
+  {
+   "id": "p1",
+   "file": "p1-lit",
+   "start": 0,
+   "end": 15.25
+  },
+  {
+   "id": "p2",
+   "file": "p2-regle",
+   "start": 15.25,
+   "end": 36.24
+  },
+  {
+   "id": "p3",
+   "file": "p3-sors",
+   "start": 36.24,
+   "end": 48.7
+  },
+  {
+   "id": "p4",
+   "file": "p4-salon",
+   "start": 48.7,
+   "end": 55.22
+  },
+  {
+   "id": "p5",
+   "file": "p5-listen",
+   "start": 55.22,
+   "end": 63.24
+  },
+  {
+   "id": "p6",
+   "file": "p6-retour",
+   "start": 63.24,
+   "end": 70.14
+  }
+ ],
+ "vo": [
+  {
+   "id": "L01",
+   "start": 0.03,
+   "end": 1.3,
+   "text": "Vingt-trois heures dix.",
+   "hl": [
+    "heures",
+    "dix."
+   ],
+   "words": [
+    [
+     "Vingt-trois",
+     0.03
+    ],
+    [
+     "heures",
+     0.4
+    ],
+    [
+     "dix.",
+     0.585
+    ]
+   ]
+  },
+  {
+   "id": "L02",
+   "start": 1.78,
+   "end": 4.45,
+   "text": "C'est pas ton lit, le problème. Enfin si.",
+   "hl": [
+    "problème.",
+    "si."
+   ],
+   "words": [
+    [
+     "C'est",
+     1.78
+    ],
+    [
+     "pas",
+     1.977
+    ],
+    [
+     "ton",
+     2.173
+    ],
+    [
+     "lit,",
+     2.26
+    ],
+    [
+     "le",
+     2.45
+    ],
+    [
+     "problème.",
+     2.64
+    ],
+    [
+     "Enfin",
+     3.47
+    ],
+    [
+     "si.",
+     3.97
+    ]
+   ]
+  },
+  {
+   "id": "L03",
+   "start": 4.74,
+   "end": 5.91,
+   "text": "Mais c'est pas lui qui a commencé.",
+   "hl": [
+    "commencé."
+   ],
+   "words": [
+    [
+     "Mais",
+     4.74
+    ],
+    [
+     "c'est",
+     4.94
+    ],
+    [
+     "pas",
+     5.03
+    ],
+    [
+     "lui",
+     5.156
+    ],
+    [
+     "qui",
+     5.281
+    ],
+    [
+     "a",
+     5.407
+    ],
+    [
+     "commencé.",
+     5.533
+    ]
+   ]
+  },
+  {
+   "id": "L04",
+   "start": 6.42,
+   "end": 11.13,
+   "text": "Tu bosses dedans, tu manges dedans, tu regardes trois heures de vidéos dedans.",
+   "hl": [
+    "trois",
+    "heures"
+   ],
+   "words": [
+    [
+     "Tu",
+     6.42
+    ],
+    [
+     "bosses",
+     6.692
+    ],
+    [
+     "dedans,",
+     6.965
+    ],
+    [
+     "tu",
+     7.46
+    ],
+    [
+     "manges",
+     7.765
+    ],
+    [
+     "dedans,",
+     8.07
+    ],
+    [
+     "tu",
+     8.78
+    ],
+    [
+     "regardes",
+     8.903
+    ],
+    [
+     "trois",
+     9.24
+    ],
+    [
+     "heures",
+     9.443
+    ],
+    [
+     "de",
+     9.646
+    ],
+    [
+     "vidéos",
+     9.849
+    ],
+    [
+     "dedans.",
+     10.254
+    ]
+   ]
+  },
+  {
+   "id": "L05",
+   "start": 11.15,
+   "end": 14.49,
+   "text": "Et le soir, tu lui demandes de redevenir un lit. Tout de suite.",
+   "hl": [
+    "lit."
+   ],
+   "words": [
+    [
+     "Et",
+     11.15
+    ],
+    [
+     "le",
+     11.317
+    ],
+    [
+     "soir,",
+     11.483
+    ],
+    [
+     "tu",
+     11.88
+    ],
+    [
+     "lui",
+     12.017
+    ],
+    [
+     "demandes",
+     12.153
+    ],
+    [
+     "de",
+     12.427
+    ],
+    [
+     "redevenir",
+     12.563
+    ],
+    [
+     "un",
+     13.0
+    ],
+    [
+     "lit.",
+     13.09
+    ],
+    [
+     "Tout",
+     13.54
+    ],
+    [
+     "de",
+     13.65
+    ],
+    [
+     "suite.",
+     13.76
+    ]
+   ]
+  },
+  {
+   "id": "L06",
+   "start": 14.51,
+   "end": 15.52,
+   "text": "Il refuse.",
+   "hl": [
+    "refuse."
+   ],
+   "words": [
+    [
+     "Il",
+     14.51
+    ],
+    [
+     "refuse.",
+     14.66
+    ]
+   ]
+  },
+  {
+   "id": "L07",
+   "start": 15.54,
+   "end": 17.84,
+   "text": "Un. Ton lit sert à deux choses.",
+   "hl": [
+    "deux"
+   ],
+   "words": [
+    [
+     "Un.",
+     15.54
+    ],
+    [
+     "Ton",
+     16.21
+    ],
+    [
+     "lit",
+     16.46
+    ],
+    [
+     "sert",
+     16.6
+    ],
+    [
+     "à",
+     16.808
+    ],
+    [
+     "deux",
+     17.015
+    ],
+    [
+     "choses.",
+     17.222
+    ]
+   ]
+  },
+  {
+   "id": "L08",
+   "start": 17.86,
+   "end": 20.57,
+   "text": "Dormir, et ce que tu sais. C'est tout.",
+   "hl": [
+    "sais."
+   ],
+   "words": [
+    [
+     "Dormir,",
+     17.86
+    ],
+    [
+     "et",
+     18.28
+    ],
+    [
+     "ce",
+     18.78
+    ],
+    [
+     "que",
+     18.938
+    ],
+    [
+     "tu",
+     19.095
+    ],
+    [
+     "sais.",
+     19.252
+    ],
+    [
+     "C'est",
+     19.89
+    ],
+    [
+     "tout.",
+     20.02
+    ]
+   ]
+  },
+  {
+   "id": "L09",
+   "start": 20.59,
+   "end": 23.2,
+   "text": "Pas de mails, pas de dossiers, pas de scroll.",
+   "hl": [
+    "scroll."
+   ],
+   "words": [
+    [
+     "Pas",
+     20.59
+    ],
+    [
+     "de",
+     20.797
+    ],
+    [
+     "mails,",
+     21.003
+    ],
+    [
+     "pas",
+     21.39
+    ],
+    [
+     "de",
+     21.565
+    ],
+    [
+     "dossiers,",
+     21.74
+    ],
+    [
+     "pas",
+     22.27
+    ],
+    [
+     "de",
+     22.477
+    ],
+    [
+     "scroll.",
+     22.683
+    ]
+   ]
+  },
+  {
+   "id": "L10",
+   "start": 23.3,
+   "end": 29.37,
+   "text": "Même dans vingt mètres carrés : le lit c'est la nuit, le reste se passe ailleurs. Même à un mètre.",
+   "hl": [
+    "nuit,",
+    "ailleurs.",
+    "mètre."
+   ],
+   "words": [
+    [
+     "Même",
+     23.3
+    ],
+    [
+     "dans",
+     23.498
+    ],
+    [
+     "vingt",
+     23.697
+    ],
+    [
+     "mètres",
+     23.895
+    ],
+    [
+     "carrés :",
+     24.093
+    ],
+    [
+     "le",
+     24.82
+    ],
+    [
+     "lit",
+     25.03
+    ],
+    [
+     "c'est",
+     25.48
+    ],
+    [
+     "la",
+     25.667
+    ],
+    [
+     "nuit,",
+     25.853
+    ],
+    [
+     "le",
+     26.28
+    ],
+    [
+     "reste",
+     26.475
+    ],
+    [
+     "se",
+     26.83
+    ],
+    [
+     "passe",
+     27.1
+    ],
+    [
+     "ailleurs.",
+     27.26
+    ],
+    [
+     "Même",
+     27.99
+    ],
+    [
+     "à",
+     28.145
+    ],
+    [
+     "un",
+     28.3
+    ],
+    [
+     "mètre.",
+     28.455
+    ]
+   ]
+  },
+  {
+   "id": "L11",
+   "start": 30.05,
+   "end": 32.59,
+   "text": "Bon. Ce soir tu t'y couches juste pour dormir.",
+   "hl": [
+    "dormir."
+   ],
+   "words": [
+    [
+     "Bon.",
+     30.05
+    ],
+    [
+     "Ce",
+     30.223
+    ],
+    [
+     "soir",
+     30.397
+    ],
+    [
+     "tu",
+     30.65
+    ],
+    [
+     "t'y",
+     30.98
+    ],
+    [
+     "couches",
+     31.183
+    ],
+    [
+     "juste",
+     31.68
+    ],
+    [
+     "pour",
+     31.77
+    ],
+    [
+     "dormir.",
+     31.933
+    ]
+   ]
+  },
+  {
+   "id": "L12",
+   "start": 32.61,
+   "end": 34.4,
+   "text": "Vingt minutes. Trente.",
+   "hl": [
+    "minutes.",
+    "Trente."
+   ],
+   "words": [
+    [
+     "Vingt",
+     32.61
+    ],
+    [
+     "minutes.",
+     32.767
+    ],
+    [
+     "Trente.",
+     33.71
+    ]
+   ]
+  },
+  {
+   "id": "L13",
+   "start": 34.52,
+   "end": 36.43,
+   "text": "Tu connais ton plafond par cœur, maintenant.",
+   "hl": [
+    "plafond",
+    "cœur,"
+   ],
+   "words": [
+    [
+     "Tu",
+     34.52
+    ],
+    [
+     "connais",
+     34.668
+    ],
+    [
+     "ton",
+     34.965
+    ],
+    [
+     "plafond",
+     35.113
+    ],
+    [
+     "par",
+     35.33
+    ],
+    [
+     "cœur,",
+     35.434
+    ],
+    [
+     "maintenant.",
+     35.538
+    ]
+   ]
+  },
+  {
+   "id": "L14",
+   "start": 36.45,
+   "end": 39.58,
+   "text": "Deux. Pour dormir, sors de ton lit. Oui.",
+   "hl": [
+    "sors",
+    "Oui."
+   ],
+   "words": [
+    [
+     "Deux.",
+     36.45
+    ],
+    [
+     "Pour",
+     37.16
+    ],
+    [
+     "dormir,",
+     37.407
+    ],
+    [
+     "sors",
+     38.13
+    ],
+    [
+     "de",
+     38.315
+    ],
+    [
+     "ton",
+     38.5
+    ],
+    [
+     "lit.",
+     38.685
+    ],
+    [
+     "Oui.",
+     39.39
+    ]
+   ]
+  },
+  {
+   "id": "L15",
+   "start": 40.04,
+   "end": 44.81,
+   "text": "Si ça vient pas, lève-toi, va dans une autre pièce, lumière faible, un truc ennuyeux.",
+   "hl": [
+    "lève-toi,",
+    "pièce,",
+    "faible,",
+    "ennuyeux."
+   ],
+   "words": [
+    [
+     "Si",
+     40.04
+    ],
+    [
+     "ça",
+     40.279
+    ],
+    [
+     "vient",
+     40.517
+    ],
+    [
+     "pas,",
+     40.756
+    ],
+    [
+     "lève-toi,",
+     40.82
+    ],
+    [
+     "va",
+     41.6
+    ],
+    [
+     "dans",
+     41.797
+    ],
+    [
+     "une",
+     41.993
+    ],
+    [
+     "autre",
+     42.29
+    ],
+    [
+     "pièce,",
+     42.42
+    ],
+    [
+     "lumière",
+     42.81
+    ],
+    [
+     "faible,",
+     43.29
+    ],
+    [
+     "un",
+     43.71
+    ],
+    [
+     "truc",
+     43.89
+    ],
+    [
+     "ennuyeux.",
+     44.07
+    ]
+   ]
+  },
+  {
+   "id": "L16",
+   "start": 44.97,
+   "end": 46.31,
+   "text": "Tu reviens quand le sommeil revient.",
+   "hl": [
+    "revient."
+   ],
+   "words": [
+    [
+     "Tu",
+     44.97
+    ],
+    [
+     "reviens",
+     45.155
+    ],
+    [
+     "quand",
+     45.525
+    ],
+    [
+     "le",
+     45.6
+    ],
+    [
+     "sommeil",
+     45.742
+    ],
+    [
+     "revient.",
+     46.026
+    ]
+   ]
+  },
+  {
+   "id": "L17",
+   "start": 46.73,
+   "end": 48.94,
+   "text": "Ton lit doit plus être l'endroit où tu perds.",
+   "hl": [
+    "perds."
+   ],
+   "words": [
+    [
+     "Ton",
+     46.73
+    ],
+    [
+     "lit",
+     46.95
+    ],
+    [
+     "doit",
+     47.06
+    ],
+    [
+     "plus",
+     47.25
+    ],
+    [
+     "être",
+     47.44
+    ],
+    [
+     "l'endroit",
+     47.63
+    ],
+    [
+     "où",
+     47.93
+    ],
+    [
+     "tu",
+     48.05
+    ],
+    [
+     "perds.",
+     48.28
+    ]
+   ]
+  },
+  {
+   "id": "L18",
+   "start": 48.96,
+   "end": 51.15,
+   "text": "Deux heures du mat'. T'es debout dans ton salon.",
+   "hl": [
+    "mat'.",
+    "salon."
+   ],
+   "words": [
+    [
+     "Deux",
+     48.96
+    ],
+    [
+     "heures",
+     49.125
+    ],
+    [
+     "du",
+     49.29
+    ],
+    [
+     "mat'.",
+     49.455
+    ],
+    [
+     "T'es",
+     50.19
+    ],
+    [
+     "debout",
+     50.373
+    ],
+    [
+     "dans",
+     50.63
+    ],
+    [
+     "ton",
+     50.76
+    ],
+    [
+     "salon.",
+     50.89
+    ]
+   ]
+  },
+  {
+   "id": "L19",
+   "start": 51.57,
+   "end": 55.635,
+   "text": "Et un salon vide à deux heures du mat', c'est encore plus silencieux qu'une chambre.",
+   "hl": [
+    "silencieux"
+   ],
+   "words": [
+    [
+     "Et",
+     51.57
+    ],
+    [
+     "un",
+     51.758
+    ],
+    [
+     "salon",
+     51.946
+    ],
+    [
+     "vide",
+     52.322
+    ],
+    [
+     "à",
+     52.4
+    ],
+    [
+     "deux",
+     52.538
+    ],
+    [
+     "heures",
+     52.676
+    ],
+    [
+     "du",
+     52.814
+    ],
+    [
+     "mat',",
+     52.952
+    ],
+    [
+     "c'est",
+     53.43
+    ],
+    [
+     "encore",
+     53.527
+    ],
+    [
+     "plus",
+     53.87
+    ],
+    [
+     "silencieux",
+     54.08
+    ],
+    [
+     "qu'une",
+     54.63
+    ],
+    [
+     "chambre.",
+     55.51
+    ]
+   ]
+  },
+  {
+   "id": "L20",
+   "start": 55.655,
+   "end": 57.33,
+   "text": "Trois. Mets une ambiance.",
+   "hl": [
+    "ambiance."
+   ],
+   "words": [
+    [
+     "Trois.",
+     55.655
+    ],
+    [
+     "Mets",
+     56.2
+    ],
+    [
+     "une",
+     56.385
+    ],
+    [
+     "ambiance.",
+     56.57
+    ]
+   ]
+  },
+  {
+   "id": "L21",
+   "start": 57.35,
+   "end": 60.08,
+   "text": "Sur l'app Listen, une pluie, une forêt.",
+   "hl": [
+    "Listen,",
+    "pluie,",
+    "forêt."
+   ],
+   "words": [
+    [
+     "Sur",
+     57.35
+    ],
+    [
+     "l'app",
+     57.625
+    ],
+    [
+     "Listen,",
+     57.99
+    ],
+    [
+     "une",
+     58.43
+    ],
+    [
+     "pluie,",
+     58.69
+    ],
+    [
+     "une",
+     58.95
+    ],
+    [
+     "forêt.",
+     59.21
+    ]
+   ]
+  },
+  {
+   "id": "L22",
+   "start": 60.1,
+   "end": 63.5,
+   "text": "Un truc assez constant pour que ta tête ait plus rien à surveiller.",
+   "hl": [
+    "constant",
+    "surveiller."
+   ],
+   "words": [
+    [
+     "Un",
+     60.1
+    ],
+    [
+     "truc",
+     60.328
+    ],
+    [
+     "assez",
+     60.555
+    ],
+    [
+     "constant",
+     61.09
+    ],
+    [
+     "pour",
+     61.29
+    ],
+    [
+     "que",
+     61.424
+    ],
+    [
+     "ta",
+     61.558
+    ],
+    [
+     "tête",
+     61.692
+    ],
+    [
+     "ait",
+     62.04
+    ],
+    [
+     "plus",
+     62.04
+    ],
+    [
+     "rien",
+     62.193
+    ],
+    [
+     "à",
+     62.347
+    ],
+    [
+     "surveiller.",
+     62.5
+    ]
+   ]
+  },
+  {
+   "id": "L23",
+   "start": 63.52,
+   "end": 64.5,
+   "text": "Tu retournes te coucher.",
+   "hl": [
+    "coucher."
+   ],
+   "words": [
+    [
+     "Tu",
+     63.52
+    ],
+    [
+     "retournes",
+     63.693
+    ],
+    [
+     "te",
+     64.13
+    ],
+    [
+     "coucher.",
+     64.253
+    ]
+   ]
+  },
+  {
+   "id": "L24",
+   "start": 64.94,
+   "end": 66.83,
+   "text": "Ton lit a retrouvé son métier.",
+   "hl": [
+    "métier."
+   ],
+   "words": [
+    [
+     "Ton",
+     64.94
+    ],
+    [
+     "lit",
+     65.125
+    ],
+    [
+     "a",
+     65.41
+    ],
+    [
+     "retrouvé",
+     65.527
+    ],
+    [
+     "son",
+     65.879
+    ],
+    [
+     "métier.",
+     65.996
+    ]
+   ]
+  },
+  {
+   "id": "L25",
+   "start": 66.85,
+   "end": 69.5,
+   "text": "Et toi ? Tu fais quoi quand t'arrives pas à dormir ?",
+   "hl": [
+    "toi",
+    "dormir"
+   ],
+   "words": [
+    [
+     "Et",
+     66.85
+    ],
+    [
+     "toi ?",
+     67.055
+    ],
+    [
+     "Tu",
+     67.69
+    ],
+    [
+     "fais",
+     67.883
+    ],
+    [
+     "quoi",
+     68.077
+    ],
+    [
+     "quand",
+     68.36
+    ],
+    [
+     "t'arrives",
+     68.67
+    ],
+    [
+     "pas",
+     68.67
+    ],
+    [
+     "à",
+     68.748
+    ],
+    [
+     "dormir ?",
+     68.825
+    ]
+   ]
+  }
+ ],
+ "captions": {
+  "enabled": true,
+  "maxWords": 3,
+  "y": 1380,
+  "tail": 0.5,
+  "lead": 0.08
+ },
+ "captionY": [
+  [
+   0,
+   15.25,
+   1390
+  ],
+  [
+   15.25,
+   29.0,
+   1400
+  ],
+  [
+   29.0,
+   36.24,
+   1500
+  ],
+  [
+   36.24,
+   48.7,
+   1500
+  ],
+  [
+   48.7,
+   55.22,
+   1500
+  ],
+  [
+   55.22,
+   61.0,
+   1520
+  ],
+  [
+   61.0,
+   63.24,
+   1500
+  ],
+  [
+   63.24,
+   66.5,
+   1390
+  ],
+  [
+   66.5,
+   99,
+   1240
+  ]
+ ],
+ "wipes": [
+  15.25,
+  36.24,
+  48.7,
+  55.22,
+  63.24
+ ],
+ "aliases": [
+  [
+   "\\b23 h 10\\b",
+   "vingt-trois heures dix"
+  ],
+  [
+   "\\b2 h du mat\\b",
+   "deux heures du mat"
+  ],
+  [
+   "\\b3 h\\b",
+   "trois heures"
+  ],
+  [
+   "\\b20 mètres\\b",
+   "vingt mètres"
+  ],
+  [
+   "\\b20 minutes\\b",
+   "vingt minutes"
+  ],
+  [
+   "\\b30\\b",
+   "trente"
+  ],
+  [
+   "\\bmail\\b",
+   "mails"
+  ],
+  [
+   "\\bdossier\\b",
+   "dossiers"
+  ],
+  [
+   "est ce que",
+   "et ce que"
+  ],
+  [
+   "couche juste",
+   "couches juste"
+  ],
+  [
+   "lève toi",
+   "lève-toi"
+  ],
+  [
+   "ne vient pas",
+   "vient pas"
+  ],
+  [
+   "tes deux bouts",
+   "t'es debout"
+  ],
+  [
+   "\\bappli\\b",
+   "app"
+  ],
+  [
+   "\\bSun\\b",
+   "Listen"
+  ],
+  [
+   "mais une ambiance",
+   "mets une ambiance"
+  ],
+  [
+   "que ta tête est",
+   "que ta tête ait"
+  ],
+  [
+   "tu reviens Quand",
+   "tu reviens quand"
+  ],
+  [
+   "Dormir est",
+   "Dormir et"
+  ],
+  [
+   "\\bUn ton lit",
+   "Un. Ton lit"
+  ],
+  [
+   "qu'une chambre trois",
+   "qu'une chambre. Trois."
+  ]
+ ],
+ "sfx": [
+  {
+   "id": "wipe0",
+   "file": "whoosh.wav",
+   "at": {
+    "wipe": 0,
+    "+": -0.35
+   },
+   "vol": 0.7,
+   "note": "volet jaune"
+  },
+  {
+   "id": "wipe1",
+   "file": "whoosh.wav",
+   "at": {
+    "wipe": 1,
+    "+": -0.35
+   },
+   "vol": 0.7,
+   "note": "volet jaune"
+  },
+  {
+   "id": "wipe2",
+   "file": "whoosh.wav",
+   "at": {
+    "wipe": 2,
+    "+": -0.35
+   },
+   "vol": 0.7,
+   "note": "volet jaune"
+  },
+  {
+   "id": "wipe3",
+   "file": "whoosh.wav",
+   "at": {
+    "wipe": 3,
+    "+": -0.35
+   },
+   "vol": 0.7,
+   "note": "volet jaune"
+  },
+  {
+   "id": "wipe4",
+   "file": "whoosh.wav",
+   "at": {
+    "wipe": 4,
+    "+": -0.35
+   },
+   "vol": 0.7,
+   "note": "volet jaune"
+  },
+  {
+   "id": "hit0",
+   "file": "flop.wav",
+   "at": {
+    "vo": "L07",
+    "word": 0,
+    "+": 0.02
+   },
+   "vol": 0.9,
+   "note": "impact du chiffre d'astuce"
+  },
+  {
+   "id": "hit1",
+   "file": "flop.wav",
+   "at": {
+    "vo": "L14",
+    "word": 0,
+    "+": 0.02
+   },
+   "vol": 0.9,
+   "note": "impact du chiffre d'astuce"
+  },
+  {
+   "id": "hit2",
+   "file": "flop.wav",
+   "at": {
+    "vo": "L20",
+    "word": 0,
+    "+": 0.02
+   },
+   "vol": 0.9,
+   "note": "impact du chiffre d'astuce"
+  },
+  {
+   "id": "flop0",
+   "file": "flop.wav",
+   "at": {
+    "vo": "L04",
+    "word": 1,
+    "+": 0.04
+   },
+   "vol": 0.7,
+   "note": "un objet tombe sur le lit"
+  },
+  {
+   "id": "flop1",
+   "file": "flop.wav",
+   "at": {
+    "vo": "L04",
+    "word": 4,
+    "+": 0.04
+   },
+   "vol": 0.7,
+   "note": "un objet tombe sur le lit"
+  },
+  {
+   "id": "flop2",
+   "file": "flop.wav",
+   "at": {
+    "vo": "L04",
+    "word": 8,
+    "+": 0.04
+   },
+   "vol": 0.7,
+   "note": "un objet tombe sur le lit"
+  },
+  {
+   "id": "flop3",
+   "file": "flop.wav",
+   "at": {
+    "vo": "L09",
+    "word": 2,
+    "+": 0.3
+   },
+   "vol": 0.55,
+   "note": "l'objet atterrit par terre"
+  },
+  {
+   "id": "flop4",
+   "file": "flop.wav",
+   "at": {
+    "vo": "L09",
+    "word": 5,
+    "+": 0.3
+   },
+   "vol": 0.55,
+   "note": "l'objet atterrit par terre"
+  },
+  {
+   "id": "flop5",
+   "file": "flop.wav",
+   "at": {
+    "vo": "L09",
+    "word": 8,
+    "+": 0.3
+   },
+   "vol": 0.55,
+   "note": "l'objet atterrit par terre"
+  },
+  {
+   "id": "slide0",
+   "file": "whoosh.wav",
+   "at": {
+    "vo": "L06",
+    "word": 0,
+    "+": -0.1
+   },
+   "vol": 0.4,
+   "note": "la lettre de démission glisse"
+  },
+  {
+   "id": "slide1",
+   "file": "whoosh.wav",
+   "at": {
+    "vo": "L09",
+    "word": 2,
+    "+": -0.25
+   },
+   "vol": 0.35,
+   "note": "l'objet est expulsé du lit"
+  },
+  {
+   "id": "slide2",
+   "file": "whoosh.wav",
+   "at": {
+    "vo": "L09",
+    "word": 5,
+    "+": -0.25
+   },
+   "vol": 0.35,
+   "note": "l'objet est expulsé du lit"
+  },
+  {
+   "id": "slide3",
+   "file": "whoosh.wav",
+   "at": {
+    "vo": "L09",
+    "word": 8,
+    "+": -0.25
+   },
+   "vol": 0.35,
+   "note": "l'objet est expulsé du lit"
+  },
+  {
+   "id": "cam0",
+   "file": "whoosh.wav",
+   "at": {
+    "vo": "L10",
+    "word": 0,
+    "+": -0.15
+   },
+   "vol": 0.45,
+   "note": "mouvement de caméra"
+  },
+  {
+   "id": "cam1",
+   "file": "whoosh.wav",
+   "at": {
+    "vo": "L11",
+    "word": 5,
+    "+": -0.1
+   },
+   "vol": 0.45,
+   "note": "mouvement de caméra"
+  },
+  {
+   "id": "cam2",
+   "file": "whoosh.wav",
+   "at": {
+    "vo": "L15",
+    "word": 4,
+    "+": -0.2
+   },
+   "vol": 0.45,
+   "note": "mouvement de caméra"
+  },
+  {
+   "id": "cam3",
+   "file": "whoosh.wav",
+   "at": {
+    "vo": "L16",
+    "word": 0,
+    "+": 0
+   },
+   "vol": 0.45,
+   "note": "mouvement de caméra"
+  },
+  {
+   "id": "cam4",
+   "file": "whoosh.wav",
+   "at": {
+    "vo": "L22",
+    "word": 0,
+    "+": 0.1
+   },
+   "vol": 0.45,
+   "note": "mouvement de caméra"
+  },
+  {
+   "id": "cam5",
+   "file": "whoosh.wav",
+   "at": {
+    "vo": "L25",
+    "word": 0,
+    "+": -0.3
+   },
+   "vol": 0.45,
+   "note": "mouvement de caméra"
+  },
+  {
+   "id": "pop0",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L02",
+    "word": 4,
+    "+": 0
+   },
+   "vol": 0.4,
+   "note": "apparition"
+  },
+  {
+   "id": "pop1",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L02",
+    "word": 7,
+    "+": 0
+   },
+   "vol": 0.4,
+   "note": "apparition"
+  },
+  {
+   "id": "pop2",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L03",
+    "word": 3,
+    "+": 0
+   },
+   "vol": 0.4,
+   "note": "apparition"
+  },
+  {
+   "id": "pop3",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L04",
+    "word": 1,
+    "+": 0.1
+   },
+   "vol": 0.4,
+   "note": "apparition"
+  },
+  {
+   "id": "pop4",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L04",
+    "word": 4,
+    "+": 0.1
+   },
+   "vol": 0.4,
+   "note": "apparition"
+  },
+  {
+   "id": "pop5",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L04",
+    "word": 8,
+    "+": 0.1
+   },
+   "vol": 0.4,
+   "note": "apparition"
+  },
+  {
+   "id": "pop6",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L05",
+    "word": 8,
+    "+": 0
+   },
+   "vol": 0.4,
+   "note": "apparition"
+  },
+  {
+   "id": "pop7",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L06",
+    "word": 1,
+    "+": 0
+   },
+   "vol": 0.4,
+   "note": "apparition"
+  },
+  {
+   "id": "pop8",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L08",
+    "word": 0,
+    "+": 0
+   },
+   "vol": 0.4,
+   "note": "apparition"
+  },
+  {
+   "id": "pop9",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L08",
+    "word": 2,
+    "+": 0
+   },
+   "vol": 0.4,
+   "note": "apparition"
+  },
+  {
+   "id": "pop10",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L09",
+    "word": 2,
+    "+": -0.1
+   },
+   "vol": 0.4,
+   "note": "apparition"
+  },
+  {
+   "id": "pop11",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L09",
+    "word": 5,
+    "+": -0.1
+   },
+   "vol": 0.4,
+   "note": "apparition"
+  },
+  {
+   "id": "pop12",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L09",
+    "word": 8,
+    "+": -0.1
+   },
+   "vol": 0.4,
+   "note": "apparition"
+  },
+  {
+   "id": "pop13",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L10",
+    "word": 6,
+    "+": 0
+   },
+   "vol": 0.4,
+   "note": "apparition"
+  },
+  {
+   "id": "pop14",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L10",
+    "word": 11,
+    "+": 0
+   },
+   "vol": 0.4,
+   "note": "apparition"
+  },
+  {
+   "id": "pop15",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L10",
+    "word": 18,
+    "+": -0.2
+   },
+   "vol": 0.4,
+   "note": "apparition"
+  },
+  {
+   "id": "pop16",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L12",
+    "word": 0,
+    "+": 0
+   },
+   "vol": 0.4,
+   "note": "apparition"
+  },
+  {
+   "id": "pop17",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L12",
+    "word": 2,
+    "+": 0
+   },
+   "vol": 0.4,
+   "note": "apparition"
+  },
+  {
+   "id": "pop18",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L13",
+    "word": 3,
+    "+": 0.5
+   },
+   "vol": 0.4,
+   "note": "apparition"
+  },
+  {
+   "id": "pop19",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L14",
+    "word": 3,
+    "+": 0.1
+   },
+   "vol": 0.4,
+   "note": "apparition"
+  },
+  {
+   "id": "pop20",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L15",
+    "word": 5,
+    "+": 0
+   },
+   "vol": 0.4,
+   "note": "apparition"
+  },
+  {
+   "id": "pop21",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L15",
+    "word": 10,
+    "+": 0
+   },
+   "vol": 0.4,
+   "note": "apparition"
+  },
+  {
+   "id": "pop22",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L15",
+    "word": 13,
+    "+": 0
+   },
+   "vol": 0.4,
+   "note": "apparition"
+  },
+  {
+   "id": "pop23",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L16",
+    "word": 4,
+    "+": 0
+   },
+   "vol": 0.4,
+   "note": "apparition"
+  },
+  {
+   "id": "pop24",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L17",
+    "word": 6,
+    "+": 0
+   },
+   "vol": 0.4,
+   "note": "apparition"
+  },
+  {
+   "id": "pop25",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L19",
+    "word": 12,
+    "+": 0.35
+   },
+   "vol": 0.4,
+   "note": "apparition"
+  },
+  {
+   "id": "pop26",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L21",
+    "word": 4,
+    "+": 0
+   },
+   "vol": 0.4,
+   "note": "apparition"
+  },
+  {
+   "id": "pop27",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L22",
+    "word": 10,
+    "+": 0
+   },
+   "vol": 0.4,
+   "note": "apparition"
+  },
+  {
+   "id": "pop28",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L24",
+    "word": 4,
+    "+": 0
+   },
+   "vol": 0.4,
+   "note": "apparition"
+  },
+  {
+   "id": "pop29",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L25",
+    "word": 2,
+    "+": 0
+   },
+   "vol": 0.4,
+   "note": "apparition"
+  }
+ ],
+ "capGroups": [
+  [
+   [
+    "L01",
+    0
+   ],
+   [
+    "L01",
+    1
+   ],
+   [
+    "L01",
+    2
+   ]
+  ],
+  [
+   [
+    "L02",
+    0
+   ],
+   [
+    "L02",
+    1
+   ],
+   [
+    "L02",
+    2
+   ],
+   [
+    "L02",
+    3
+   ]
+  ],
+  [
+   [
+    "L02",
+    4
+   ],
+   [
+    "L02",
+    5
+   ]
+  ],
+  [
+   [
+    "L02",
+    6
+   ],
+   [
+    "L02",
+    7
+   ]
+  ],
+  [
+   [
+    "L03",
+    0
+   ],
+   [
+    "L03",
+    1
+   ],
+   [
+    "L03",
+    2
+   ],
+   [
+    "L03",
+    3
+   ]
+  ],
+  [
+   [
+    "L03",
+    4
+   ],
+   [
+    "L03",
+    5
+   ],
+   [
+    "L03",
+    6
+   ]
+  ],
+  [
+   [
+    "L04",
+    0
+   ],
+   [
+    "L04",
+    1
+   ],
+   [
+    "L04",
+    2
+   ]
+  ],
+  [
+   [
+    "L04",
+    3
+   ],
+   [
+    "L04",
+    4
+   ],
+   [
+    "L04",
+    5
+   ]
+  ],
+  [
+   [
+    "L04",
+    6
+   ],
+   [
+    "L04",
+    7
+   ],
+   [
+    "L04",
+    8
+   ]
+  ],
+  [
+   [
+    "L04",
+    9
+   ],
+   [
+    "L04",
+    10
+   ],
+   [
+    "L04",
+    11
+   ],
+   [
+    "L04",
+    12
+   ]
+  ],
+  [
+   [
+    "L05",
+    0
+   ],
+   [
+    "L05",
+    1
+   ],
+   [
+    "L05",
+    2
+   ]
+  ],
+  [
+   [
+    "L05",
+    3
+   ],
+   [
+    "L05",
+    4
+   ],
+   [
+    "L05",
+    5
+   ]
+  ],
+  [
+   [
+    "L05",
+    6
+   ],
+   [
+    "L05",
+    7
+   ],
+   [
+    "L05",
+    8
+   ],
+   [
+    "L05",
+    9
+   ]
+  ],
+  [
+   [
+    "L05",
+    10
+   ],
+   [
+    "L05",
+    11
+   ],
+   [
+    "L05",
+    12
+   ]
+  ],
+  [
+   [
+    "L06",
+    0
+   ],
+   [
+    "L06",
+    1
+   ]
+  ],
+  [
+   [
+    "L07",
+    0
+   ]
+  ],
+  [
+   [
+    "L07",
+    1
+   ],
+   [
+    "L07",
+    2
+   ],
+   [
+    "L07",
+    3
+   ],
+   [
+    "L07",
+    4
+   ],
+   [
+    "L07",
+    5
+   ],
+   [
+    "L07",
+    6
+   ]
+  ],
+  [
+   [
+    "L08",
+    0
+   ],
+   [
+    "L08",
+    1
+   ],
+   [
+    "L08",
+    2
+   ],
+   [
+    "L08",
+    3
+   ],
+   [
+    "L08",
+    4
+   ],
+   [
+    "L08",
+    5
+   ]
+  ],
+  [
+   [
+    "L08",
+    6
+   ],
+   [
+    "L08",
+    7
+   ]
+  ],
+  [
+   [
+    "L09",
+    0
+   ],
+   [
+    "L09",
+    1
+   ],
+   [
+    "L09",
+    2
+   ]
+  ],
+  [
+   [
+    "L09",
+    3
+   ],
+   [
+    "L09",
+    4
+   ],
+   [
+    "L09",
+    5
+   ]
+  ],
+  [
+   [
+    "L09",
+    6
+   ],
+   [
+    "L09",
+    7
+   ],
+   [
+    "L09",
+    8
+   ]
+  ],
+  [
+   [
+    "L10",
+    0
+   ],
+   [
+    "L10",
+    1
+   ],
+   [
+    "L10",
+    2
+   ],
+   [
+    "L10",
+    3
+   ],
+   [
+    "L10",
+    4
+   ]
+  ],
+  [
+   [
+    "L10",
+    5
+   ],
+   [
+    "L10",
+    6
+   ],
+   [
+    "L10",
+    7
+   ],
+   [
+    "L10",
+    8
+   ],
+   [
+    "L10",
+    9
+   ]
+  ],
+  [
+   [
+    "L10",
+    10
+   ],
+   [
+    "L10",
+    11
+   ],
+   [
+    "L10",
+    12
+   ],
+   [
+    "L10",
+    13
+   ],
+   [
+    "L10",
+    14
+   ]
+  ],
+  [
+   [
+    "L10",
+    15
+   ],
+   [
+    "L10",
+    16
+   ],
+   [
+    "L10",
+    17
+   ],
+   [
+    "L10",
+    18
+   ]
+  ],
+  [
+   [
+    "L11",
+    0
+   ]
+  ],
+  [
+   [
+    "L11",
+    1
+   ],
+   [
+    "L11",
+    2
+   ],
+   [
+    "L11",
+    3
+   ],
+   [
+    "L11",
+    4
+   ],
+   [
+    "L11",
+    5
+   ]
+  ],
+  [
+   [
+    "L11",
+    6
+   ],
+   [
+    "L11",
+    7
+   ],
+   [
+    "L11",
+    8
+   ]
+  ],
+  [
+   [
+    "L12",
+    0
+   ],
+   [
+    "L12",
+    1
+   ]
+  ],
+  [
+   [
+    "L12",
+    2
+   ]
+  ],
+  [
+   [
+    "L13",
+    0
+   ],
+   [
+    "L13",
+    1
+   ],
+   [
+    "L13",
+    2
+   ],
+   [
+    "L13",
+    3
+   ],
+   [
+    "L13",
+    4
+   ],
+   [
+    "L13",
+    5
+   ]
+  ],
+  [
+   [
+    "L13",
+    6
+   ]
+  ],
+  [
+   [
+    "L14",
+    0
+   ]
+  ],
+  [
+   [
+    "L14",
+    1
+   ],
+   [
+    "L14",
+    2
+   ]
+  ],
+  [
+   [
+    "L14",
+    3
+   ],
+   [
+    "L14",
+    4
+   ],
+   [
+    "L14",
+    5
+   ],
+   [
+    "L14",
+    6
+   ]
+  ],
+  [
+   [
+    "L14",
+    7
+   ]
+  ],
+  [
+   [
+    "L15",
+    0
+   ],
+   [
+    "L15",
+    1
+   ],
+   [
+    "L15",
+    2
+   ],
+   [
+    "L15",
+    3
+   ]
+  ],
+  [
+   [
+    "L15",
+    4
+   ]
+  ],
+  [
+   [
+    "L15",
+    5
+   ],
+   [
+    "L15",
+    6
+   ],
+   [
+    "L15",
+    7
+   ],
+   [
+    "L15",
+    8
+   ],
+   [
+    "L15",
+    9
+   ]
+  ],
+  [
+   [
+    "L15",
+    10
+   ],
+   [
+    "L15",
+    11
+   ]
+  ],
+  [
+   [
+    "L15",
+    12
+   ],
+   [
+    "L15",
+    13
+   ],
+   [
+    "L15",
+    14
+   ]
+  ],
+  [
+   [
+    "L16",
+    0
+   ],
+   [
+    "L16",
+    1
+   ],
+   [
+    "L16",
+    2
+   ]
+  ],
+  [
+   [
+    "L16",
+    3
+   ],
+   [
+    "L16",
+    4
+   ],
+   [
+    "L16",
+    5
+   ]
+  ],
+  [
+   [
+    "L17",
+    0
+   ],
+   [
+    "L17",
+    1
+   ],
+   [
+    "L17",
+    2
+   ],
+   [
+    "L17",
+    3
+   ],
+   [
+    "L17",
+    4
+   ]
+  ],
+  [
+   [
+    "L17",
+    5
+   ],
+   [
+    "L17",
+    6
+   ],
+   [
+    "L17",
+    7
+   ],
+   [
+    "L17",
+    8
+   ]
+  ],
+  [
+   [
+    "L18",
+    0
+   ],
+   [
+    "L18",
+    1
+   ],
+   [
+    "L18",
+    2
+   ],
+   [
+    "L18",
+    3
+   ]
+  ],
+  [
+   [
+    "L18",
+    4
+   ],
+   [
+    "L18",
+    5
+   ],
+   [
+    "L18",
+    6
+   ],
+   [
+    "L18",
+    7
+   ],
+   [
+    "L18",
+    8
+   ]
+  ],
+  [
+   [
+    "L19",
+    0
+   ],
+   [
+    "L19",
+    1
+   ],
+   [
+    "L19",
+    2
+   ],
+   [
+    "L19",
+    3
+   ]
+  ],
+  [
+   [
+    "L19",
+    4
+   ],
+   [
+    "L19",
+    5
+   ],
+   [
+    "L19",
+    6
+   ],
+   [
+    "L19",
+    7
+   ],
+   [
+    "L19",
+    8
+   ]
+  ],
+  [
+   [
+    "L19",
+    9
+   ],
+   [
+    "L19",
+    10
+   ],
+   [
+    "L19",
+    11
+   ]
+  ],
+  [
+   [
+    "L19",
+    12
+   ],
+   [
+    "L19",
+    13
+   ],
+   [
+    "L19",
+    14
+   ]
+  ],
+  [
+   [
+    "L20",
+    0
+   ]
+  ],
+  [
+   [
+    "L20",
+    1
+   ],
+   [
+    "L20",
+    2
+   ],
+   [
+    "L20",
+    3
+   ]
+  ],
+  [
+   [
+    "L21",
+    0
+   ],
+   [
+    "L21",
+    1
+   ],
+   [
+    "L21",
+    2
+   ]
+  ],
+  [
+   [
+    "L21",
+    3
+   ],
+   [
+    "L21",
+    4
+   ]
+  ],
+  [
+   [
+    "L21",
+    5
+   ],
+   [
+    "L21",
+    6
+   ]
+  ],
+  [
+   [
+    "L22",
+    0
+   ],
+   [
+    "L22",
+    1
+   ],
+   [
+    "L22",
+    2
+   ],
+   [
+    "L22",
+    3
+   ]
+  ],
+  [
+   [
+    "L22",
+    4
+   ],
+   [
+    "L22",
+    5
+   ],
+   [
+    "L22",
+    6
+   ],
+   [
+    "L22",
+    7
+   ]
+  ],
+  [
+   [
+    "L22",
+    8
+   ],
+   [
+    "L22",
+    9
+   ],
+   [
+    "L22",
+    10
+   ],
+   [
+    "L22",
+    11
+   ],
+   [
+    "L22",
+    12
+   ]
+  ],
+  [
+   [
+    "L23",
+    0
+   ],
+   [
+    "L23",
+    1
+   ],
+   [
+    "L23",
+    2
+   ],
+   [
+    "L23",
+    3
+   ]
+  ],
+  [
+   [
+    "L24",
+    0
+   ],
+   [
+    "L24",
+    1
+   ],
+   [
+    "L24",
+    2
+   ],
+   [
+    "L24",
+    3
+   ],
+   [
+    "L24",
+    4
+   ],
+   [
+    "L24",
+    5
+   ]
+  ],
+  [
+   [
+    "L25",
+    0
+   ],
+   [
+    "L25",
+    1
+   ]
+  ],
+  [
+   [
+    "L25",
+    2
+   ],
+   [
+    "L25",
+    3
+   ],
+   [
+    "L25",
+    4
+   ],
+   [
+    "L25",
+    5
+   ]
+  ],
+  [
+   [
+    "L25",
+    6
+   ],
+   [
+    "L25",
+    7
+   ],
+   [
+    "L25",
+    8
+   ],
+   [
+    "L25",
+    9
+   ]
+  ]
+ ],
+ "overrides": [],
+ "endOverrides": {}
+}

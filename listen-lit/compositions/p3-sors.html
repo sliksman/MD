@@ -1,0 +1,87 @@
+<!doctype html>
+<!-- GÉNÉRÉ par scripts/sync.mjs depuis src/scenes/p3-sors.js — éditer la source, pas ce fichier. -->
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+        #root { position: absolute; inset: 0; }
+      </style>
+      <div id="root" data-composition-id="p3" data-width="1080" data-height="1920"></div>
+      <script>
+        (function () {
+          const ID = "p3";
+          const L = window.LS;
+          const sc = L.scene(ID);
+          const A = L.art(ID + "-");
+          const root = document.querySelector('[data-composition-id="p3"]');
+          const tl = gsap.timeline({ paused: true });
+          const w = sc.w;
+          // PLAN 3 — SORS DE TON LIT. Une seule maison vue de dessus, une seule caméra : on commence serré sur la chambre (couette rabattue),
+          // on dézoome en suivant le personnage dans le couloir jusqu'au salon (lumière faible, un mode d'emploi), puis on revient au lit refait.
+          const AM = L.C.amber, COLD = "#9cc8ff";
+          const strikeEl = (name, x1, x2, y, wd = 9) => `<line id="${A.id(name)}" x1="${x1}" y1="${y}" x2="${x2}" y2="${y}" stroke="${AM}" stroke-width="${wd}" stroke-linecap="round" opacity="0"/>`;
+          const dots3 = (n) => `<g id="${A.id("pdots")}">${[0, 1, 2].map((i) => `<circle id="${A.id("pd" + i)}" cx="${820 + i * 56}" cy="212" r="14" fill="${i < n ? AM : "#fff"}" opacity="${i < n ? 1 : 0.22}"/>`).join("")}</g>`;
+          const path = [[390, 640], [440, 760], [540, 900], [540, 1040], [620, 1150], [700, 1215]];
+          const world = A.floorTop() +
+            `<rect x="110" y="400" width="860" height="360" rx="22" fill="#1c2150"/>` + A.rug(330, 600, 330, 250, { id: "rugS" }) +
+            `<rect x="440" y="760" width="200" height="320" fill="#161a40"/>` + `<rect x="110" y="1080" width="860" height="420" rx="22" fill="#232a63"/>` +
+            `<ellipse cx="300" cy="1250" rx="230" ry="150" fill="url(#${A.id("gWarm")})" opacity=".5"/>` +
+            A.bedPlain(160, 440, 230, 280, { id: "bedO", open: true }) + `<g id="${A.id("bedC")}" opacity="0">${A.bedPlain(160, 440, 230, 280, { id: "bedClosed" })}</g>` +
+            A.dots("walk", path, { step: 30, r: 7, color: AM, opacity: 0.9 }) +
+            `<ellipse id="${A.id("shad")}" cx="560" cy="1100" rx="48" ry="130" fill="#000" opacity=".28" transform="rotate(14 560 1100)"/>` +
+            A.personTop("pp", 330, 700, 0.7) + A.bookTitled("bk", 790, 1310, 0.7, "(lecture facile)") +
+            A.pill("pSors", 450, 430, "sors", 400, 620, { size: 40, dot: AM }) +
+            A.pill("pAut", 700, 520, "une autre pièce", 540, 880, { size: 38 }) + A.pill("pLum", 270, 1000, "lumière faible", 300, 1230, { size: 36 }) + A.pill("pEnn", 800, 1100, "un truc ennuyeux", 790, 1260, { size: 36, dot: AM }) +
+            A.pill("pRev", 330, 300, "quand le sommeil revient", 330, 560, { size: 30 }) + A.pill("pPer", 470, 385, "tu perds", 340, 640, { size: 42 }) + strikeEl("sPer", 349, 591, 385);
+          const hud = A.bigNum("n2", "2", "Sors de ton lit.") + dots3(1);
+          const S = L.stage(root, ID, world, hud);
+          ["walk", "shad"].forEach((n) => gsap.set(S.$(n), { opacity: 0 }));
+          gsap.set(S.$("sPer"), { opacity: 0 });
+          // caméra : serré sur la chambre (le lit), puis on dézoome sur la maison
+          const Z = 2.0, zx = (cx, cy) => ({ x: Z * (540 - cx), y: Z * (960 - cy) });
+          const zb = zx(330, 600);
+          gsap.set(S.cam, { scale: Z, x: zb.x, y: zb.y, svgOrigin: "540 960" });
+          L.blink(tl, S, 3.2, "ppEyes");
+
+          // « Deux. Pour dormir, sors de ton lit. Oui. »
+          const deux = w("L14", 0);
+          L.slam(tl, S, "n2", deux);
+          tl.fromTo(S.$("n2-lab"), { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.3, ease: "back.out(2)" }, w("L14", 1));
+          tl.to(S.$("pd1"), { fill: AM, opacity: 1, duration: 0.12 }, deux + 0.4);
+          tl.fromTo(S.$("pd1"), { scale: 1.9, transformOrigin: "50% 50%" }, { scale: 1, duration: 0.3, ease: "back.out(3)", immediateRender: false }, deux + 0.4);
+          // la personne se lève du lit
+          tl.fromTo(S.$("pp"), { x: -80, y: -40, opacity: 0, scale: 0.8, transformOrigin: "50% 50%" }, { x: 0, y: 0, opacity: 1, scale: 1, duration: 0.5, ease: "power2.out" }, w("L14", 3));
+          L.pill(tl, S, "pSors", w("L14", 3) + 0.1);
+          tl.to(S.$("pSors"), { opacity: 0, duration: 0.25 }, w("L14", 7));
+          // « Si ça vient pas, lève-toi, va dans une autre pièce… » : la caméra dézoome et suit le chemin
+          const walk = w("L15", 4);
+          tl.to(S.cam, { scale: 1, x: 0, y: 0, duration: 0.9, ease: "power3.inOut" }, walk - 0.2);
+          tl.to(S.$("n2"), { opacity: 0, duration: 0.2 }, walk - 0.2);
+          tl.fromTo(S.$("walk"), { opacity: 0 }, { opacity: 1, duration: 0.05 }, walk);
+          L.drawDots(tl, S.$("walk"), walk, w("L15", 9) - walk, { ir: false });
+          const way = [[440, 780], [540, 900], [540, 1040], [620, 1150], [700, 1215]];
+          const dur = Math.max(0.3, (w("L15", 9) - walk) / way.length);
+          way.forEach(([x, y], i) => tl.to(S.$("pp"), { x: x - 330, y: y - 700, duration: dur, ease: "sine.inOut", immediateRender: false }, walk + 0.05 + i * dur));
+          tl.fromTo(S.$("shad"), { opacity: 0 }, { opacity: 0.28, duration: 0.3 }, walk + 0.6);
+          L.pill(tl, S, "pAut", w("L15", 5));
+          L.pill(tl, S, "pLum", w("L15", 10));
+          L.pill(tl, S, "pEnn", w("L15", 13));
+          // « Tu reviens quand le sommeil revient. » : retour au lit, la couette se referme
+          const rev = w("L16", 0);
+          ["pAut", "pLum", "pEnn", "shad", "walk"].forEach((n) => tl.to(S.$(n), { opacity: 0, duration: 0.25 }, rev - 0.1));
+          tl.to(S.cam, { scale: Z, ...zb, duration: 0.8, ease: "power3.inOut", immediateRender: false }, rev);
+          tl.to(S.$("pp"), { x: 0, y: 0, duration: 0.7, ease: "sine.inOut", immediateRender: false }, rev);
+          tl.to(S.$("pp"), { opacity: 0, scale: 0.7, duration: 0.25, immediateRender: false }, rev + 0.75);
+          tl.to(S.$("bedC"), { opacity: 1, duration: 0.4 }, rev + 0.75);
+          L.pill(tl, S, "pRev", w("L16", 4));
+          // « Ton lit doit plus être l'endroit où tu perds. »
+          L.pill(tl, S, "pPer", w("L17", 7) - 0.4);
+          tl.fromTo(S.$("sPer"), { opacity: 1, scaleX: 0, svgOrigin: "349 385" }, { scaleX: 1, duration: 0.18, ease: "power3.out", immediateRender: false }, w("L17", 7));
+
+          window.__timelines[ID] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

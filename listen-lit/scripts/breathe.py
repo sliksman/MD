@@ -9,20 +9,22 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 SRC, DST = ROOT / "assets/audio/vo_norm.mp3", ROOT / "assets/audio/vo_v2.mp3"
 # (instant dans la voix d'origine, durée ajoutée) — toujours au milieu d'un silence existant
-GAPS = [(1.485, 0.7),   # après « 0 h 34 » (lire le titre)
-        (5.495, 0.5),   # après « …pas envie d'y aller »
-        (12.09, 0.4),   # avant « Et tu la perds tous les soirs »
-        (14.05, 0.9),   # plan 1 → 2, avant « Un. »
-        (23.68, 0.5),   # avant « Mets une alarme »
-        (26.97, 0.5),   # avant « Elle sonne »
-        (30.74, 0.9),   # plan 2 → 3, avant « Depuis sept heures »
-        (33.83, 0.5),   # avant « Deux. »
-        (38.70, 0.4),   # avant « Quelques pages »
-        (43.74, 0.5),   # avant « Le problème, c'est pas que… »
-        (47.87, 0.9),   # plan 3 → 4, avant « Là, t'es couché »
-        (54.74, 0.9),   # plan 4 → 5, avant « Trois. »
-        (56.89, 0.4),   # avant « C'est des endroits réels »
-        (62.83, 1.2)]   # plan 5 → 6 (laisse la chambre pleine à l'image), avant « Et toi »
+GAPS = [(1.54, 0.7),    # après « Vingt-trois heures dix » (lire le titre)
+        (6.17, 0.4),    # avant « Tu bosses dedans »
+        (10.90, 0.4),   # avant « Et le soir »
+        (14.19, 0.5),   # avant « Il refuse »
+        (15.25, 0.9),   # plan 1 → 2, avant « Un. »
+        (29.05, 0.6),   # avant « Bon. » (échec de l'astuce 1)
+        (33.40, 0.35),  # avant « Vingt minutes. Trente. »
+        (36.24, 0.9),   # plan 2 → 3, avant « Deux. »
+        (39.13, 0.4),   # après « Oui. »
+        (46.52, 0.4),   # avant « Ton lit doit plus être… »
+        (48.70, 0.9),   # plan 3 → 4, avant « Deux heures du mat' »
+        (51.36, 0.4),   # avant « Et un salon vide »
+        (55.22, 0.9),   # plan 4 → 5, avant « Trois. »
+        (56.00, 0.35),  # entre « Trois. » et « Mets une ambiance »
+        (63.24, 1.0),   # plan 5 → 6, avant « Tu retournes te coucher »
+        (66.54, 0.5)]   # avant « Et toi ? »
 TAIL = 1.2
 
 f, parts, prev = [], [], 0.0

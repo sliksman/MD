@@ -25,9 +25,7 @@ for block in re.split(r"\n\s*\n", SRT.strip()):
     text = " ".join(lines[lines.index(tl_) + 1:])
     cues.append((a, b, text))
 # la transcription Premiere « normalise » (chiffres, « ne », « appli »…) : on la ramène au vocabulaire du script AVANT l'appariement des mots
-ALIASES = [(r"\b0 h 34\b", "minuit trente quatre"), (r"\bce n'est\b", "c'est"), (r"\btu n'(\w+)", r"t'\1"), (r"\btu (éteins)\b", r"t'\1"),
-           (r"\b1 h\b", "une heure"), (r"\b7 h\b", "sept heures"), (r"\b20 minutes\b", "vingt minutes"), (r"\bdécidé\b", "décidées"),
-           (r"\bappli\b", "app"), (r"\bSun\b", "Listen"), (r"\bMais une alarme\b", "Mets une alarme"), (r"\bMet un fond\b", "Mets un fond")]
+ALIASES = [tuple(x) for x in T.get("aliases", [])] or [(r"\b0 h 34\b", "minuit trente quatre"), (r"\bce n'est\b", "c'est")]
 def fix_cue(t):
     for pat, rep in ALIASES: t = re.sub(pat, rep, t, flags=re.I)
     return t
@@ -160,8 +158,8 @@ for c, i0, i1 in groups:
 ends = {}
 for c, i0, i1 in groups: ends[i1] = round(offset(cues[c][1]), 3)
 # --- corrections manuelles (le DP place mal quelques mots collés dans un même sous-titre du SRT)
-OVERRIDES = {("L16", 10): 33.0, ("L16", 11): 33.22, ("L17", 0): 34.09}   # « à toi. » / « Deux. » : silence 33.56–34.09 entre les deux
-END_OVERRIDES = {"L16": 33.45}
+OVERRIDES = {(lid, i): t for lid, i, t in T.get("overrides", [])}   # temps imposés à la main (mot du script mal placé par l'alignement)
+END_OVERRIDES = dict(T.get("endOverrides", {}))
 gidx = [(l["id"], i) for l in T["vo"] for i in range(len(words_of(l["text"])))]
 for k, (lid, i) in enumerate(gidx):
     if (lid, i) in OVERRIDES: times[k] = OVERRIDES[(lid, i)]
@@ -194,7 +192,7 @@ merged = []
 for sg in segs:
     if merged and len(sg) == 1 and re.search(r"[.?!]$", SW[sg[0]][1]) and SW[merged[-1][-1]][1].endswith(",") and len(merged[-1]) <= 4 and SW[merged[-1][0]][0] == SW[sg[0]][0]:
         merged[-1] = merged[-1] + sg   # « …la fatigue, ça. » reste ensemble
-    elif merged and len(merged[-1]) == 1 and not re.search(r"[.?!]$", SW[merged[-1][0]][1]) and SW[merged[-1][0]][0] == SW[sg[0]][0]:
+    elif merged and len(merged[-1]) == 1 and not re.search(r"[.?!]$", SW[merged[-1][0]][1]) and SW[merged[-1][0]][0] == SW[sg[0]][0] and times[sg[0]] - times[merged[-1][0]] < 0.55:
         merged[-1] = merged[-1] + sg
     else: merged.append(sg)
 cap_groups = []

@@ -1,0 +1,86 @@
+<!doctype html>
+<!-- GÉNÉRÉ par scripts/sync.mjs depuis src/scenes/p1-lit.js — éditer la source, pas ce fichier. -->
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+        #root { position: absolute; inset: 0; }
+      </style>
+      <div id="root" data-composition-id="p1" data-width="1080" data-height="1920"></div>
+      <script>
+        (function () {
+          const ID = "p1";
+          const L = window.LS;
+          const sc = L.scene(ID);
+          const A = L.art(ID + "-");
+          const root = document.querySelector('[data-composition-id="p1"]');
+          const tl = gsap.timeline({ paused: true });
+          const w = sc.w;
+          // PLAN 1 — LE LIT EN COUPE. Le lit est le personnage (yeux sur la tête de lit). Trois objets tombent dedans, il refuse.
+          // La caméra part des yeux du lit et recule ; chaque phrase déclenche un événement (objets qui tombent, matelas qui s'écrase,
+          // yeux qui se plissent, lettre de démission).
+          const AM = L.C.amber, COLD = "#9cc8ff";
+          const strikeEl = (name, x1, x2, y, wd = 9) => `<line id="${A.id(name)}" x1="${x1}" y1="${y}" x2="${x2}" y2="${y}" stroke="${AM}" stroke-width="${wd}" stroke-linecap="round" opacity="0"/>`;
+          const world = A.bg() + A.bedSection() + A.bigClock("clk", 400, 520, ["23:10", "23:18"], { size: 92, w: 280, h: 118 }) +
+            A.laptopObj("lap", 470, 930) + A.plateObj("plt", 690, 930) + A.phoneObj("phn", 840, 930) + A.letter("ltr", 250, 830, 0.7) +
+            A.pill("pPb", 330, 520, "le problème", 120, 800, { size: 40 }) + strikeEl("sPb", 228, 432, 520) +
+            A.pill("pSi", 800, 560, "enfin si", 640, 940, { size: 40 }) + A.pill("pLui", 700, 400, "pas lui qui a commencé", 330, 940, { size: 36, dot: AM }) +
+            A.pill("pBos", 400, 470, "bosser", 470, 790, { size: 38 }) + A.pill("pMan", 700, 560, "manger", 690, 880, { size: 38 }) + A.pill("p3h", 860, 400, "3 h de vidéos", 850, 790, { size: 38, dot: COLD }) +
+            A.pill("pLit", 760, 600, "redevenir un lit", 540, 930, { size: 36 }) + A.pill("pRef", 520, 470, "il refuse", 140, 800, { size: 44, dot: AM });
+          const S = L.stage(root, ID, world, "");
+          gsap.set(S.$("sPb"), { opacity: 0 });
+          // caméra : on part de la tête de lit (ses yeux), on recule pour découvrir la chambre
+          tl.fromTo(S.cam, { scale: 1.3, svgOrigin: "150 850" }, { scale: 1, svgOrigin: "150 850", duration: 2.8, ease: "power2.inOut" }, 0.1);
+          L.blink(tl, S, 3.0); L.blink(tl, S, 12.4);
+          // l'heure avance dans la respiration après le titre, puis l'horloge s'efface
+          tl.set(S.$("clk-0"), { opacity: 0 }, w("L01", 2) + 0.6).set(S.$("clk-1"), { opacity: 1 }, w("L01", 2) + 0.6);
+          tl.fromTo(S.$("clk"), { scale: 1, transformOrigin: "50% 50%" }, { scale: 1.1, duration: 0.07, yoyo: true, repeat: 1, ease: "power2.out", immediateRender: false }, w("L01", 2) + 0.6);
+          tl.to(S.$("clk"), { opacity: 0, y: -30, duration: 0.3, ease: "power2.in" }, w("L02", 0) - 0.1);
+
+          // « C'est pas ton lit, le problème. Enfin si. » (le lit regarde la pastille)
+          const look = (t, x) => tl.to(S.$("eyes-pup"), { x, duration: 0.15, ease: "power2.out" }, t);
+          L.pill(tl, S, "pPb", w("L02", 4));
+          look(w("L02", 4), 5);
+          tl.fromTo(S.$("sPb"), { opacity: 1, scaleX: 0, svgOrigin: "228 520" }, { scaleX: 1, duration: 0.16, ease: "power3.out" }, w("L02", 6));
+          L.pill(tl, S, "pSi", w("L02", 7));
+          // « Mais c'est pas lui qui a commencé. »
+          L.pill(tl, S, "pLui", w("L03", 3));
+          look(w("L03", 3), -3);
+          ["pPb", "sPb", "pSi", "pLui"].forEach((n) => tl.to(S.$(n), { opacity: 0, duration: 0.25 }, w("L04", 0) - 0.2));
+          look(w("L04", 0) - 0.1, 0);
+
+          // « Tu bosses, tu manges, tu regardes trois heures de vidéos » : les objets tombent un par un
+          const drop = (name, t, dx) => {
+            tl.fromTo(S.$(name), { y: -900, rotation: dx, transformOrigin: "50% 100%" }, { y: 0, rotation: 0, duration: 0.34, ease: "power2.in", immediateRender: name === "lap" ? true : false }, t);
+            tl.fromTo(S.$("duvetSec"), { scaleY: 1, svgOrigin: "620 998" }, { scaleY: 0.86, duration: 0.07, yoyo: true, repeat: 1, ease: "power2.out", immediateRender: false }, t + 0.34);
+            tl.fromTo(S.$(name), { y: 0 }, { y: -16, duration: 0.09, yoyo: true, repeat: 1, ease: "power2.out", immediateRender: false }, t + 0.36);
+            L.lids(tl, S, t + 0.34, 0.5, 0.05); L.lids(tl, S, t + 0.56, 0, 0.15);
+          };
+          ["phn", "plt"].forEach((n) => gsap.set(S.$(n), { y: -900 }));
+          drop("lap", w("L04", 1) - 0.3, -6);
+          L.pill(tl, S, "pBos", w("L04", 1) + 0.1);
+          drop("plt", w("L04", 4) - 0.3, 5);
+          L.pill(tl, S, "pMan", w("L04", 4) + 0.1);
+          drop("phn", w("L04", 8) - 0.3, -8);
+          L.pill(tl, S, "p3h", w("L04", 8) + 0.1);
+          tl.fromTo(S.$("phn"), { opacity: 0 }, { opacity: 1, duration: 0.01 }, w("L04", 8) - 0.31);
+          tl.fromTo(S.$("plt"), { opacity: 0 }, { opacity: 1, duration: 0.01, immediateRender: true }, w("L04", 4) - 0.31);
+          tl.fromTo(S.$("lap"), { opacity: 0 }, { opacity: 1, duration: 0.01, immediateRender: true }, w("L04", 1) - 0.31);
+          ["pBos", "pMan", "p3h"].forEach((n) => tl.to(S.$(n), { opacity: 0, duration: 0.25 }, w("L05", 0) - 0.15));
+
+          // « Et le soir, tu lui demandes de redevenir un lit. » : il essaie, la pile se soulève, rien ne bouge
+          ["lap", "plt", "phn"].forEach((n, i) => tl.fromTo(S.$(n), { y: 0 }, { y: -22, duration: 0.1, yoyo: true, repeat: 1, ease: "power2.out", immediateRender: false }, w("L05", 7) + i * 0.08));
+          L.pill(tl, S, "pLit", w("L05", 8));
+          tl.to(S.$("pLit"), { opacity: 0, duration: 0.25 }, w("L06", 0) - 0.1);
+          // « Il refuse. » : la lettre de démission glisse sur l'oreiller, les yeux se ferment
+          tl.fromTo(S.$("ltr"), { x: 760, y: -60, rotation: 14, opacity: 0 }, { x: 0, y: 0, rotation: 0, opacity: 1, duration: 0.45, ease: "power3.out" }, w("L06", 0) - 0.1);
+          L.shut(tl, S, w("L06", 0), true);
+          L.pill(tl, S, "pRef", w("L06", 1));
+
+          window.__timelines[ID] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>
