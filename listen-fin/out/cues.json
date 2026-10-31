@@ -28,8 +28,8 @@
  },
  {
   "id": "flop0",
-  "t": 6.304,
-  "frame": 189,
+  "t": 6.424,
+  "frame": 193,
   "dur": 0.22,
   "file": "flop.wav",
   "vol": 0.6,
@@ -37,8 +37,8 @@
  },
  {
   "id": "pop1",
-  "t": 6.753,
-  "frame": 203,
+  "t": 6.933,
+  "frame": 208,
   "dur": 0.18,
   "file": "pop.wav",
   "vol": 0.5,
@@ -46,8 +46,8 @@
  },
  {
   "id": "flop1",
-  "t": 7.18,
-  "frame": 215,
+  "t": 7.3,
+  "frame": 219,
   "dur": 0.22,
   "file": "flop.wav",
   "vol": 0.6,
@@ -55,8 +55,8 @@
  },
  {
   "id": "pop2",
-  "t": 8.31,
-  "frame": 249,
+  "t": 8.46,
+  "frame": 254,
   "dur": 0.18,
   "file": "pop.wav",
   "vol": 0.5,
@@ -199,8 +199,8 @@
  },
  {
   "id": "slide3",
-  "t": 26.27,
-  "frame": 788,
+  "t": 26.17,
+  "frame": 785,
   "dur": 0.7,
   "file": "whoosh.wav",
   "vol": 0.3,
@@ -295,5 +295,41 @@
   "file": "whoosh.wav",
   "vol": 0.45,
   "name": "le néon s'allume (premier néon)"
+ },
+ {
+  "id": "slide6",
+  "t": 6.104,
+  "frame": 183,
+  "dur": 0.7,
+  "file": "whoosh.wav",
+  "vol": 0.25,
+  "name": "le téléphone vole vers la table (1)"
+ },
+ {
+  "id": "slide7",
+  "t": 6.813,
+  "frame": 204,
+  "dur": 0.7,
+  "file": "whoosh.wav",
+  "vol": 0.25,
+  "name": "il revient dans la main (1)"
+ },
+ {
+  "id": "slide8",
+  "t": 6.98,
+  "frame": 209,
+  "dur": 0.7,
+  "file": "whoosh.wav",
+  "vol": 0.25,
+  "name": "le téléphone vole vers la table (2)"
+ },
+ {
+  "id": "slide9",
+  "t": 8.16,
+  "frame": 245,
+  "dur": 0.7,
+  "file": "whoosh.wav",
+  "vol": 0.25,
+  "name": "il revient dans la main (2)"
  }
 ]
