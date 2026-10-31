@@ -1246,5 +1246,16 @@
         "attribution": "unversioned"
       }
     ]
-  }
+  },
+  "renders": {
+    "latest": {
+      "id": "7e7edf29-b8c3-4b33-ab60-5e48f6c19e19",
+      "completedAt": 1793489129707,
+      "output": "/home/user/MD/listen-fin/out/fin-render.mp4",
+      "status": "completed",
+      "revision": null
+    },
+    "retainedRevisions": []
+  },
+  "pendingArtifactCleanup": []
 }
