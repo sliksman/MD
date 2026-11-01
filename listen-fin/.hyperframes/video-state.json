@@ -2993,13 +2993,14 @@
   },
   "renders": {
     "latest": {
-      "id": "5f2c4961-e604-4da8-9548-ecfa0268b5e4",
-      "completedAt": 1793491447858,
+      "id": "2b6d2f76-b37e-4812-a505-0b655b92a327",
+      "completedAt": 1793530013393,
       "output": "/home/user/MD/listen-fin/out/fin-render.mp4",
       "status": "completed",
-      "revision": "2aff932c-7eee-477a-828e-3d985b975f22"
+      "revision": "845ce2cf-0ca4-4f14-8ab0-0654a608d2c3"
     },
     "retainedRevisions": [
+      "845ce2cf-0ca4-4f14-8ab0-0654a608d2c3",
       "2aff932c-7eee-477a-828e-3d985b975f22"
     ]
   },
