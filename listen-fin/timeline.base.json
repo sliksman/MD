@@ -488,6 +488,39 @@
    },
    "vol": 0.25,
    "note": "il revient dans la main (2)"
+  },
+  {
+   "id": "slide10",
+   "file": "whoosh.wav",
+   "at": {
+    "vo": "L02",
+    "word": 0,
+    "+": -0.23
+   },
+   "vol": 0.35,
+   "note": "coupe 1 : gros plan sur le visage"
+  },
+  {
+   "id": "slide11",
+   "file": "whoosh.wav",
+   "at": {
+    "vo": "L03",
+    "word": 0,
+    "+": -0.04
+   },
+   "vol": 0.35,
+   "note": "coupe 2 : gros plan sur le réveil"
+  },
+  {
+   "id": "flop4",
+   "file": "flop.wav",
+   "at": {
+    "vo": "L04",
+    "word": 0,
+    "+": -0.24
+   },
+   "vol": 0.4,
+   "note": "coupe 3 : retour au plan large"
   }
  ],
  "overrides": [

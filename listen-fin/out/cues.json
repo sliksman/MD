@@ -331,5 +331,32 @@
   "file": "whoosh.wav",
   "vol": 0.25,
   "name": "il revient dans la main (2)"
+ },
+ {
+  "id": "slide10",
+  "t": 2.8,
+  "frame": 84,
+  "dur": 0.7,
+  "file": "whoosh.wav",
+  "vol": 0.35,
+  "name": "coupe 1 : gros plan sur le visage"
+ },
+ {
+  "id": "slide11",
+  "t": 4.76,
+  "frame": 143,
+  "dur": 0.7,
+  "file": "whoosh.wav",
+  "vol": 0.35,
+  "name": "coupe 2 : gros plan sur le réveil"
+ },
+ {
+  "id": "flop4",
+  "t": 5.9,
+  "frame": 177,
+  "dur": 0.22,
+  "file": "flop.wav",
+  "vol": 0.4,
+  "name": "coupe 3 : retour au plan large"
  }
 ]
