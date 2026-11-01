@@ -624,14 +624,16 @@
       <g id="${P}cam" data-layout-allow-overflow>${world}</g><g id="${P}hud">${hud || ""}</g>${art(P).vignette()}${art(P).grain()}</svg></div></div>`;
     const $ = (name) => root.querySelector("#" + P + name);
     const lidEls = root.querySelectorAll('[id$="-lidL"],[id$="-lidR"]');
-    lidEls.forEach((el) => gsap.set(el, Object.assign({ scaleY: 0 }, og(el, "50% 0%"))));
+    root.querySelectorAll("[data-ox]").forEach((el) => gsap.set(el, { svgOrigin: el.getAttribute("data-ox") + " " + el.getAttribute("data-oy") }));   // origine épinglée une fois pour toutes
+    lidEls.forEach((el) => gsap.set(el, { scaleY: 0 }));
     return { $, P, stage: $("stage"), tilt: $("tilt"), cam: $("cam"), hud: $("hud") };
   }
 
   // ---------------------------------------------------------------- animation (seek-safe)
-  // Un transformOrigin en pourcentage posé sur un élément SVG est résolu à (0,0) (coin haut-gauche) : le zoom/la rotation partent alors du coin.
-  // Chaque élément animé en échelle porte donc son centre en data-ox / data-oy, utilisé en svgOrigin (coordonnées SVG absolues).
-  const og = (el, fb) => (el && el.getAttribute && el.getAttribute("data-ox") != null ? { svgOrigin: el.getAttribute("data-ox") + " " + el.getAttribute("data-oy") } : { transformOrigin: fb });
+  // Un transformOrigin en pourcentage posé sur un élément SVG est résolu au coin haut-gauche de sa boîte : le zoom/la rotation partent du coin.
+  // Chaque élément animé en échelle porte donc son centre en data-ox / data-oy ; stage() l'épingle UNE FOIS en svgOrigin (gsap.set), jamais dans un tween :
+  // le moteur de rendu saute à la fin de la timeline puis revient, et une origine posée dans un tween (immediateRender:false) est alors perdue.
+  const og = (el, fb) => (el && el.getAttribute && el.getAttribute("data-ox") != null ? {} : { transformOrigin: fb });   // origine déjà épinglée par stage() ; repli en % seulement pour les éléments sans data-ox
   const pop = (tl, el, t, o = {}) => {
     if (!el) return;
     tl.fromTo(el, Object.assign({ scale: o.from ?? 0.4, opacity: 0 }, og(el, o.origin || "50% 50%")),
@@ -650,7 +652,7 @@
   function drawDots(tl, g, t, d = 0.6, o = {}) {
     if (!g) return;
     const ds = g.querySelectorAll(".dot");
-    tl.fromTo(ds, { opacity: 0, scale: 0, svgOrigin: (i, el) => el.getAttribute("data-ox") + " " + el.getAttribute("data-oy") }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2)", immediateRender: o.ir ?? true, stagger: { each: d / Math.max(1, ds.length), from: o.from || "start" } }, t);
+    tl.fromTo(ds, { opacity: 0, scale: 0 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2)", immediateRender: o.ir ?? true, stagger: { each: d / Math.max(1, ds.length), from: o.from || "start" } }, t);
   }
   // pulsation (scintillement) finie d'un groupe de .dot
   function shimmer(tl, g, t, until, o = {}) {

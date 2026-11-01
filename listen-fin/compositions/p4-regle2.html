@@ -34,6 +34,8 @@
           const backG = `<g id="${A.id("backG")}" opacity="0"><rect x="318" y="628" width="444" height="885" rx="66" fill="none" stroke="url(#${A.id("gNeon")})" stroke-width="12" filter="url(#${A.id("fGlowN")})"/>
             <rect x="330" y="640" width="420" height="861" rx="60" fill="#0b0d1a" stroke="#fff" stroke-opacity=".18" stroke-width="4"/><rect x="362" y="672" width="120" height="120" rx="30" fill="#1d2140"/></g>`;
           const S = L.stage(root, ID, A.void() + wideG, tblG + uiG + backG + A.ruleNum("r2", "2", "Une ambiance.", 110, 860));
+          // origines épinglées une fois pour toutes (jamais dans un tween : le rendu saute à la fin puis revient)
+          [["big-on", "540 1195"], ["tblG", "540 1195"], ["uiG", "540 1070"], ["uiZ", "540 1560"], ["tap", "682 1412"], ["phoneBig", "540 1070"], ["backG", "540 1070"], ["dph", "230 744"]].forEach(([n, o]) => gsap.set(S.$(n), { svgOrigin: o }));
           gsap.set(S.$("screenOff"), { opacity: 0 });
           gsap.set(S.$("phone"), { opacity: 0 });
           gsap.set(S.$("r2-lab"), { opacity: 0 });
@@ -45,7 +47,7 @@
 
           // --- le téléphone s'allume (dès la coupe : le visuel précède la voix) — premier néon du film
           tl.fromTo(S.$("big-on"), { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, 0.12);
-          tl.fromTo(S.$("big-on"), { scale: 1.3, svgOrigin: "540 1195" }, { scale: 1, duration: 0.45, ease: "back.out(2)", immediateRender: false }, 0.12);
+          tl.fromTo(S.$("big-on"), { scale: 1.3 }, { scale: 1, duration: 0.45, ease: "back.out(2)", immediateRender: false }, 0.12);
           tl.to(S.$("bloom"), { opacity: 0.35, duration: 0.6, ease: "power2.out" }, 0.12);
           // « Règle numéro deux : » — le « 2 » claque ; « remplis ce silence. »
           L.slam(tl, S, "r2", w("L12", 2), { noPunch: true });
@@ -53,30 +55,30 @@
 
           // « Sur Listen, » — on plonge dans l'écran
           const dive = w("L13", 0);
-          tl.to(S.$("tblG"), { scale: 3.4, svgOrigin: "540 1195", duration: 0.42, ease: "power3.in" }, dive - 0.1);
+          tl.to(S.$("tblG"), { scale: 3.4, duration: 0.42, ease: "power3.in" }, dive - 0.1);
           tl.to(S.$("r2"), { opacity: 0, duration: 0.15 }, dive - 0.15);
-          tl.fromTo(S.$("uiG"), { opacity: 0, scale: 0.5, svgOrigin: "540 1070" }, { opacity: 1, scale: 1, duration: 0.45, ease: "power3.out", immediateRender: true }, dive + 0.05);
+          tl.fromTo(S.$("uiG"), { opacity: 0, scale: 0.5 }, { opacity: 1, scale: 1, duration: 0.45, ease: "power3.out", immediateRender: true }, dive + 0.05);
           tl.set(S.$("tblG"), { opacity: 0 }, dive + 0.4);
           // « …une terrasse de café, » — la piste est lue de près
-          tl.fromTo(S.$("uiZ"), { scale: 1, svgOrigin: "540 1560" }, { scale: 1.15, duration: 0.5, ease: "power2.inOut", immediateRender: false }, w("L13", 2) - 0.1);
+          tl.fromTo(S.$("uiZ"), { scale: 1 }, { scale: 1.15, duration: 0.5, ease: "power2.inOut", immediateRender: false }, w("L13", 2) - 0.1);
           tl.fromTo(S.$("trackHi"), { opacity: 0 }, { opacity: 1, duration: 0.3 }, w("L13", 5));
           // « Tu lances, » — le doigt tape la lecture
           const tap = w("L14", 1);
-          tl.fromTo(S.$("tap"), { opacity: 0.9, scale: 0.5, svgOrigin: "682 1412" }, { opacity: 0, scale: 1.5, duration: 0.6, ease: "power2.out", immediateRender: false }, tap);
+          tl.fromTo(S.$("tap"), { opacity: 0.9, scale: 0.5 }, { opacity: 0, scale: 1.5, duration: 0.6, ease: "power2.out", immediateRender: false }, tap);
           tl.set(S.$("play"), { opacity: 0 }, tap + 0.1).set(S.$("pause"), { opacity: 1 }, tap + 0.1);
 
           // « tu retournes le téléphone. » — dézoom, le téléphone se retourne, rétrécit vers la table de nuit
           const fl = w("L14", 3);
           tl.to(S.$("uiZ"), { scale: 1, duration: 0.3, ease: "power2.inOut" }, fl - 0.4);
-          tl.fromTo(S.$("phoneBig"), { scaleX: 1, svgOrigin: "540 1070" }, { scaleX: 0, duration: 0.14, ease: "power2.in", immediateRender: false }, fl - 0.05);
+          tl.fromTo(S.$("phoneBig"), { scaleX: 1 }, { scaleX: 0, duration: 0.14, ease: "power2.in", immediateRender: false }, fl - 0.05);
           tl.set(S.$("backG"), { opacity: 1 }, fl + 0.09);
-          tl.fromTo(S.$("backG"), { scaleX: 0, svgOrigin: "540 1070" }, { scaleX: 1, duration: 0.14, ease: "power2.out", immediateRender: false }, fl + 0.09);
+          tl.fromTo(S.$("backG"), { scaleX: 0 }, { scaleX: 1, duration: 0.14, ease: "power2.out", immediateRender: false }, fl + 0.09);
           tl.to(S.$("uiG"), { opacity: 0, duration: 0.3 }, fl + 0.22);
           tl.to(S.$("backG"), { scale: 0.2, x: -372, y: -338, duration: 0.5, ease: "power3.inOut" }, fl + 0.3);
           tl.fromTo(S.$("wideG"), { opacity: 0 }, { opacity: 1, duration: 0.3 }, fl + 0.3);
           tl.to(S.$("backG"), { opacity: 0, duration: 0.08 }, fl + 0.82);
           tl.fromTo(S.$("dph"), { opacity: 0 }, { opacity: 1, duration: 0.05, immediateRender: true }, fl + 0.75);
-          tl.fromTo(S.$("dph"), { scale: 1.18, svgOrigin: "230 744" }, { scale: 1, duration: 0.15, ease: "power3.out", immediateRender: false }, fl + 0.8);
+          tl.fromTo(S.$("dph"), { scale: 1.18 }, { scale: 1, duration: 0.15, ease: "power3.out", immediateRender: false }, fl + 0.8);
 
           // « Le bruit des autres, sans l'écran. » — des arcs de points chauds remplissent la chambre
           ["w0", "w1", "w2"].forEach((r, i) => {

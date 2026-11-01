@@ -3849,15 +3849,15 @@
   },
   "renders": {
     "latest": {
-      "id": "66feaa5a-4041-4c83-9476-63ac83e0a361",
-      "completedAt": 1793530946161,
+      "id": "82e97370-4dbe-4a45-be7f-c15fc0beb3a6",
+      "completedAt": 1793532524090,
       "output": "/home/user/MD/listen-fin/out/fin-render.mp4",
       "status": "completed",
-      "revision": "8a01786f-e991-4aab-b5d7-98cd015a2821"
+      "revision": "ba0cc7fc-4140-4908-9aa7-35932d2c8cfc"
     },
     "retainedRevisions": [
-      "8a01786f-e991-4aab-b5d7-98cd015a2821",
-      "845ce2cf-0ca4-4f14-8ab0-0654a608d2c3"
+      "ba0cc7fc-4140-4908-9aa7-35932d2c8cfc",
+      "8a01786f-e991-4aab-b5d7-98cd015a2821"
     ]
   },
   "pendingArtifactCleanup": []

@@ -9,6 +9,8 @@ const world = A.void() + A.bg() +
   A.pill("pDor", 540, 760, "pas pour dormir", undefined, undefined, { size: 44 }) + strike("sDor", 360, 720, 768, 762, 6) +
   A.alarmBand("band", { cx: 540, cy: 1100, text: "ALARME · 00:45", sub: "pour poser le téléphone", size: 84 });
 const S = L.stage(root, ID, world, A.ruleNum("r1", "1", "L'heure de fin.", 110, 860));
+// origines épinglées une fois pour toutes (jamais dans un tween : le rendu saute à la fin puis revient)
+[["ac", "560 1090"], ["band-b", "540 1100"]].forEach(([n, o]) => gsap.set(S.$(n), { svgOrigin: o }));
 gsap.set([S.$("sCou"), S.$("sDor")], { opacity: 0 });
 gsap.set(S.$("r1-lab"), { opacity: 0 });
 gsap.set(S.$("band"), { opacity: 0 });
@@ -22,7 +24,7 @@ const stick = (name, org, t) => {
 tl.fromTo(S.cam, { scale: 1, svgOrigin: "540 960" }, { scale: 1.07, duration: sc.end - sc.start, ease: "none" }, 0);
 
 // le réveil entre dès la sortie du volet
-tl.fromTo(S.$("ac"), { scale: 0.3, opacity: 0, svgOrigin: "560 1090" }, { scale: 1, opacity: 1, duration: 0.4, ease: "back.out(2.2)", immediateRender: true }, 0.08);
+tl.fromTo(S.$("ac"), { scale: 0.3, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.4, ease: "back.out(2.2)", immediateRender: true }, 0.08);
 tl.set(S.$("ac-t0"), { opacity: 1 }, 0);
 // « Règle numéro un : » — le « 1 » claque sur « un »
 L.slam(tl, S, "r1", w("L08", 2), { noPunch: true });
@@ -30,7 +32,7 @@ tl.fromTo(S.$("r1-lab"), { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0
 // « …ton heure de fin, » : la pastille, puis le réveil passe à 00:45
 L.pill(tl, S, "pFin", w("L08", 6));
 tl.set(S.$("ac-t0"), { opacity: 0 }, w("L08", 8)).set(S.$("ac-t1"), { opacity: 1 }, w("L08", 8));
-tl.fromTo(S.$("ac"), { scale: 1, svgOrigin: "560 1090" }, { scale: 1.12, duration: 0.08, yoyo: true, repeat: 1, ease: "power2.out", immediateRender: false }, w("L08", 8));
+tl.fromTo(S.$("ac"), { scale: 1 }, { scale: 1.12, duration: 0.08, yoyo: true, repeat: 1, ease: "power2.out", immediateRender: false }, w("L08", 8));
 // « …pas de ton heure de coucher. » : la pastille, puis le trait ambre
 L.pill(tl, S, "pCou", w("L08", 12));
 stick("sCou", "366 1477", w("L08", 14));
@@ -46,5 +48,5 @@ tl.fromTo(S.$("band-b"), { x: -1500 }, { x: 0, duration: 0.38, ease: "back.out(1
 L.pill(tl, S, "pDor", w("L09", 2));
 stick("sDor", "360 768", w("L09", 4));
 // « Pour poser le téléphone. » : la bande sonne
-tl.fromTo(S.$("band-b"), { rotation: -1.6, svgOrigin: "540 1100" }, { rotation: 1.6, duration: 0.06, yoyo: true, repeat: 9, ease: "none", immediateRender: false }, w("L09", 5));
+tl.fromTo(S.$("band-b"), { rotation: -1.6 }, { rotation: 1.6, duration: 0.06, yoyo: true, repeat: 9, ease: "none", immediateRender: false }, w("L09", 5));
 tl.set(S.$("band-b"), { rotation: 0 }, w("L09", 5) + 0.64);

@@ -9,6 +9,8 @@ const hud = A.title("title", "", ["Et *toi*, c'est quoi", "ton heure de fin ?"],
   `<g id="${A.id("lockup")}" opacity="0"><rect x="140" y="1330" width="720" height="150" rx="40" fill="#0b0d1a" fill-opacity=".9" stroke="#fff" stroke-opacity=".12" stroke-width="2"/>${A.listenIcon(170, 1350, 110)}
   <text x="310" y="1405" font-family="Poppins" font-weight="700" font-size="44" fill="#fff">Listen</text><text x="310" y="1450" font-family="Poppins" font-weight="400" font-size="27" fill="#b8bdd6">Sounds of the World · lien en bio</text></g>`;
 const S = L.stage(root, ID, world, hud);
+// origines épinglées une fois pour toutes (jamais dans un tween : le rendu saute à la fin puis revient)
+[["title-l0", "540 272"], ["title-l1", "540 363"]].forEach(([n, o]) => gsap.set(S.$(n), { svgOrigin: o }));
 gsap.set(S.$("phone"), { opacity: 0 });
 gsap.set(S.$("dph-rim"), { opacity: 1 }); gsap.set(S.$("dph"), { opacity: 1 });
 ["w0", "w1", "w2"].forEach((n) => gsap.set(S.$(n), { opacity: 1 }));
@@ -28,7 +30,7 @@ L.shut(tl, S, w("L16", 4), true);
 // « Et toi, c'est quoi ton heure de fin ? » — dézoom, la question en grand
 const q = w("L17", 0);
 tl.to(S.cam, { scale: 1.02, duration: 1.3, ease: "power2.inOut" }, q - 0.1);
-tl.fromTo(S.$("title-l0"), { opacity: 0, y: 34, scale: 0.9, svgOrigin: "540 272" }, { opacity: 1, y: 0, scale: 1, duration: 0.35, ease: "back.out(2.4)" }, q + 0.04);
-tl.fromTo(S.$("title-l1"), { opacity: 0, y: 34, scale: 0.9, svgOrigin: "540 363" }, { opacity: 1, y: 0, scale: 1, duration: 0.35, ease: "back.out(2.4)" }, w("L17", 3));
+tl.fromTo(S.$("title-l0"), { opacity: 0, y: 34, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.35, ease: "back.out(2.4)" }, q + 0.04);
+tl.fromTo(S.$("title-l1"), { opacity: 0, y: 34, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.35, ease: "back.out(2.4)" }, w("L17", 3));
 L.pill(tl, S, "pCom", w("L17", 6));
 tl.fromTo(S.$("lockup"), { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: 0.4, ease: "back.out(2)" }, w("L17", 7) + 0.1);

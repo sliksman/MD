@@ -37,6 +37,8 @@ const gK = `<g id="${A.id("gK")}" opacity="0"><rect width="1080" height="1920" f
 const hud = gF + gK + A.tally("ty", 1420) +
   A.pill("pVol", 540, 1180, "volonté", 542, 800, { size: 104 }) + `<line id="${A.id("sVol")}" x1="342" y1="1196" x2="738" y2="1186" stroke="${AM}" stroke-width="14" stroke-linecap="round" stroke-dasharray="397" stroke-dashoffset="397" opacity="0"/>`;
 const S = L.stage(root, ID, world, hud);
+// origines épinglées une fois pour toutes (jamais dans un tween : le rendu saute à la fin puis revient)
+[["ring", "304 667"], ["gF", "540 960"], ["kIn", "540 925"], ["kc", "540 925"], ["tph", "230 744"]].forEach(([n, o]) => gsap.set(S.$(n), { svgOrigin: o }));
 gsap.set([S.$("trm"), S.$("ring"), S.$("tph"), S.$("sVol")], { opacity: 0 });
 gsap.set(S.$("phone"), { opacity: 0 });
 const marksEl = [...S.$("wall").querySelectorAll(".mk")];
@@ -61,11 +63,11 @@ tl.fromTo(S.$("trm"), { opacity: 0.2 }, { opacity: 1, duration: 0.08, yoyo: true
 tl.set(S.$("trm"), { opacity: 0 }, sonne + 0.75);
 tl.fromTo(S.$("clk"), { x: -4 }, { x: 4, duration: 0.05, yoyo: true, repeat: 13, ease: "none", immediateRender: false }, sonne);
 tl.set(S.$("clk"), { x: 0 }, sonne + 0.72);
-[0, 0.28].forEach((d) => tl.fromTo(S.$("ring"), { opacity: 0.9, scale: 0.5, svgOrigin: "304 667" }, { opacity: 0, scale: 2.4, duration: 0.55, ease: "power2.out", immediateRender: false }, sonne + d));
+[0, 0.28].forEach((d) => tl.fromTo(S.$("ring"), { opacity: 0.9, scale: 0.5 }, { opacity: 0, scale: 2.4, duration: 0.55, ease: "power2.out", immediateRender: false }, sonne + d));
 
 // --- coupe 1 (« Et toi, tu scrolles. ») : gros plan sur le visage éclairé, les yeux balaient de haut en bas à chaque glissement
 tl.set(S.$("gF"), { opacity: 1 }, cut1);
-tl.fromTo(S.$("gF"), { scale: 1.06, svgOrigin: "540 960" }, { scale: 1.12, duration: cut2 - cut1, ease: "none", immediateRender: false }, cut1);
+tl.fromTo(S.$("gF"), { scale: 1.06 }, { scale: 1.12, duration: cut2 - cut1, ease: "none", immediateRender: false }, cut1);
 for (let t = cut1 + 0.12, k = 0; t < cut2 - 0.25; t += 0.42, k++) {
   tl.fromTo(S.$("eyesF-pup"), { y: 14 }, { y: -14, duration: 0.3, ease: "power2.out", immediateRender: false }, t);
   tl.fromTo(S.$("fHalo"), { opacity: 0.55 }, { opacity: 0.3, duration: 0.07, yoyo: true, repeat: 1, ease: "power1.out", immediateRender: false }, t);
@@ -74,10 +76,10 @@ for (let t = cut1 + 0.12, k = 0; t < cut2 - 0.25; t += 0.42, k++) {
 tl.set(S.$("gF"), { opacity: 0 }, cut2);
 // --- coupe 2 (« Minuit trente-quatre. ») : gros plan du réveil, 00:00 puis 00:34 ; la lumière bleue de l'écran passe à droite
 tl.set(S.$("gK"), { opacity: 1 }, cut2);
-tl.fromTo(S.$("kIn"), { scale: 1, svgOrigin: "540 925" }, { scale: 1.08, duration: cut3 - cut2, ease: "none", immediateRender: false }, cut2);
+tl.fromTo(S.$("kIn"), { scale: 1 }, { scale: 1.08, duration: cut3 - cut2, ease: "none", immediateRender: false }, cut2);
 const mn = w("L03", 1);
 tl.set(S.$("kc-0"), { opacity: 0 }, mn).set(S.$("kc-1"), { opacity: 1 }, mn);
-tl.fromTo(S.$("kc"), { scale: 1, svgOrigin: "540 925" }, { scale: 1.1, duration: 0.09, yoyo: true, repeat: 1, ease: "power2.out", immediateRender: false }, mn);
+tl.fromTo(S.$("kc"), { scale: 1 }, { scale: 1.1, duration: 0.09, yoyo: true, repeat: 1, ease: "power2.out", immediateRender: false }, mn);
 tl.fromTo(S.$("kHalo"), { opacity: 0.5 }, { opacity: 0.25, duration: 0.07, yoyo: true, repeat: 5, ease: "none", immediateRender: false }, cut2 + 0.1);
 tl.set(S.$("gK"), { opacity: 0 }, cut3);
 
@@ -97,7 +99,7 @@ const pose = (t, d = 0.32) => {
   tl.to(S.$("held"), { opacity: 0, duration: 0.1 }, t);
   flight(t, HAND, TBL, d);
   tl.set(S.$("tph"), { opacity: 1 }, t + d);
-  tl.fromTo(S.$("tph"), { scale: 1.2, svgOrigin: "230 744" }, { scale: 1, duration: 0.14, ease: "back.out(3)", immediateRender: false }, t + d);
+  tl.fromTo(S.$("tph"), { scale: 1.2 }, { scale: 1, duration: 0.14, ease: "back.out(3)", immediateRender: false }, t + d);
   tl.to(S.$("dk"), { opacity: 0.56, duration: 0.2 }, t + d - 0.1);
   tl.to(S.$("eyes-pup"), { x: -7, duration: 0.15 }, t + d);
 };
