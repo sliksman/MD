@@ -1,6 +1,6 @@
 // PLAN 3 — ELLE SONNE / TU LE POSES / LE SILENCE. Coupes sèches rythmées sur les phrases (gros plan du réveil ↔ plan large du lit), puis le seul
 // temps calme du film : tête en gros plan, la chambre presque noire, une ligne de points plate, tous les bruitages coupés.
-const AM = L.C.amber, O = "470 850";
+const AM = L.C.amber, O = "540 800";
 const bedG = A.bedTop({ clock: ["00:45"] });
 const world = A.void() + A.bg() + bedG +
   `<rect id="${A.id("dk")}" x="-1200" y="-1200" width="3480" height="4320" fill="#04050d" opacity=".42"/>` +

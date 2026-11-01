@@ -1,7 +1,7 @@
 // PLAN 4 — RÈGLE NUMÉRO DEUX. Du noir au néon, sans volet : le téléphone sur la table de nuit s'allume (première apparition du néon).
 // On plonge dans l'écran de Listen, on lance la piste, puis le téléphone se retourne, écran contre le bois : seul un liseré néon fuit dessous
 // et des arcs de points chauds remplissent la chambre. Aucune lumière d'écran dans le dernier plan.
-const AM = L.C.amber, WARM = "#ffd28a", O = "470 850";
+const AM = L.C.amber, WARM = "#ffd28a", O = "540 800";
 // plan large (monde, sous la caméra)
 const wideG = `<g id="${A.id("wideG")}" opacity="0">${A.bg()}${A.bedTop({ clock: ["00:47"] })}
   <rect id="${A.id("dk")}" x="-1200" y="-1200" width="3480" height="4320" fill="#04050d" opacity=".58"/>
@@ -53,7 +53,7 @@ tl.fromTo(S.$("phoneBig"), { scaleX: 1, svgOrigin: "540 1070" }, { scaleX: 0, du
 tl.set(S.$("backG"), { opacity: 1 }, fl + 0.09);
 tl.fromTo(S.$("backG"), { scaleX: 0, svgOrigin: "540 1070" }, { scaleX: 1, duration: 0.14, ease: "power2.out", immediateRender: false }, fl + 0.09);
 tl.to(S.$("uiG"), { opacity: 0, duration: 0.3 }, fl + 0.22);
-tl.to(S.$("backG"), { scale: 0.2, x: -358, y: -347, duration: 0.5, ease: "power3.inOut" }, fl + 0.3);
+tl.to(S.$("backG"), { scale: 0.2, x: -372, y: -338, duration: 0.5, ease: "power3.inOut" }, fl + 0.3);
 tl.fromTo(S.$("wideG"), { opacity: 0 }, { opacity: 1, duration: 0.3 }, fl + 0.3);
 tl.to(S.$("backG"), { opacity: 0, duration: 0.08 }, fl + 0.82);
 tl.fromTo(S.$("dph"), { opacity: 0 }, { opacity: 1, duration: 0.05, immediateRender: true }, fl + 0.75);

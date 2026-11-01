@@ -1,12 +1,12 @@
 // PLAN 1 — LE HOOK. Plongée sur le lit, chambre sombre : la seule vraie lumière est le halo bleu du téléphone sur le visage.
 // Le compteur (composition « counter ») descend à la seconde. Caméra fixe en orientation, jamais de pulsation : elle pousse en continu,
 // se retire pour le gag « posé / revenu » (le téléphone change d'état, pas la caméra), puis dézoome sur le mur de traits (« depuis des mois »).
-const AM = L.C.amber, COLD = "#9cc8ff", O = "470 850";
+const AM = L.C.amber, COLD = "#9cc8ff", O = "540 800";
 const rnd = (() => { let k = 11; return () => ((k = (k * 9301 + 49297) % 233280) / 233280); })();
 
 // mur de traits : un <path> par marque, hors de la zone du lit, classé du plus proche au plus lointain (apparition en vague)
 const marks = [];
-for (let y = 300; y < 2500; y += 108) for (let x = -480; x < 1420; x += 150) {
+for (let y = 300; y < 2780; y += 108) for (let x = -520; x < 1600; x += 150) {
   const mx = x + rnd() * 26, my = y + rnd() * 26;
   if (mx > 110 && mx < 790 && my > 520 && my < 1700) continue;
   marks.push({ x: mx, y: my, c: rnd() < 0.8 ? COLD : AM });

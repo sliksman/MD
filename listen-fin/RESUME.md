@@ -19,6 +19,7 @@ Même chaîne que les autres épisodes. Spécificités :
 - `scripts/sync.mjs` n'écrit plus de titre d'ouverture et ajoute la composition `counter`.
 - Scènes : `p1-hook` (0–14,5 s) · volet · `p2-regle1` (→ 22,7) · `p3-alarme` (→ 30,3) · `p4-regle2` (→ 41,8) · `p5-fin`.
 - Kit : ajouts `A.ruleNum`, `A.tally`, `A.heldPhone`, `A.tablePhoneLit`, `A.downPhone`, `A.alarmPhone`, `A.void`, et `L.slam(…, { noPunch })`.
+- **Ancrage des caméras :** `O = "540 800"` dans toutes les scènes (axe du lit, hauteur de la tête). Un ancrage à gauche (470) fait zoomer « vers la gauche » : le sujet dérive hors du centre. Si on change le cadrage, garder l'ancrage sur le sujet, pas sur la table de nuit.
 - Pièges appris : `transformOrigin: "230px 744px"` est mal interprété sur un groupe SVG → utiliser `svgOrigin: "230 744"` ; ne pas animer `x` sur un groupe qui porte déjà un attribut `transform="rotate(…)"` (animer le groupe enfant).
 
 ## Écarts voix / script à vérifier (l'utilisateur est le seul à avoir écouté la prise)
