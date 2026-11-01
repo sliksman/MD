@@ -1,7 +1,7 @@
 {
   "version": 1,
   "historyId": "16368d80-7cf5-4d9d-a586-037c74ba7986",
-  "currentRevision": "5fc2093c-94f1-4f24-aaa5-bfab14698edb",
+  "currentRevision": "ba0cc7fc-4140-4908-9aa7-35932d2c8cfc",
   "pendingChanges": false,
   "files": {
     "AGENTS.md": {
@@ -261,8 +261,8 @@
       "content": "/root/.cache/hyperframes/history/16368d80-7cf5-4d9d-a586-037c74ba7986/blobs/44/443d06ffe1818deba8f84a79bf0369e089f89b140582b6bce021da15afe8bf23"
     },
     "RESUME.md": {
-      "hash": "6f3870e6629ffde4aa1c49575e1bc3d13cf94bfbc8370eb773e3693886e0a8e9",
-      "content": "/root/.cache/hyperframes/history/16368d80-7cf5-4d9d-a586-037c74ba7986/blobs/6f/6f3870e6629ffde4aa1c49575e1bc3d13cf94bfbc8370eb773e3693886e0a8e9"
+      "hash": "68eb919c01c3921ae6fcf71e9e88ca6e5a0a25fc37d590fc563bbecf50c4b8a2",
+      "content": "/root/.cache/hyperframes/history/16368d80-7cf5-4d9d-a586-037c74ba7986/blobs/68/68eb919c01c3921ae6fcf71e9e88ca6e5a0a25fc37d590fc563bbecf50c4b8a2"
     }
   },
   "revisions": {
@@ -721,6 +721,21 @@
         "src/scenes/p5-fin.js": {
           "before": "/root/.cache/hyperframes/history/16368d80-7cf5-4d9d-a586-037c74ba7986/blobs/9e/9e53a73317f713918c30bf74c02250a8ae8c71992ea9124af6b592c8c9dec5d3",
           "after": "/root/.cache/hyperframes/history/16368d80-7cf5-4d9d-a586-037c74ba7986/blobs/d3/d3349a2a089fc5ee953747c73834f32d31db7ce457747a7b226b078794d25abb"
+        }
+      }
+    },
+    "ba0cc7fc-4140-4908-9aa7-35932d2c8cfc": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1793531996048,
+      "endedAt": 1793531996049,
+      "files": {
+        "RESUME.md": {
+          "before": "/root/.cache/hyperframes/history/16368d80-7cf5-4d9d-a586-037c74ba7986/blobs/6f/6f3870e6629ffde4aa1c49575e1bc3d13cf94bfbc8370eb773e3693886e0a8e9",
+          "after": "/root/.cache/hyperframes/history/16368d80-7cf5-4d9d-a586-037c74ba7986/blobs/68/68eb919c01c3921ae6fcf71e9e88ca6e5a0a25fc37d590fc563bbecf50c4b8a2"
         }
       }
     }
