@@ -2677,13 +2677,15 @@
   },
   "renders": {
     "latest": {
-      "id": "7e7edf29-b8c3-4b33-ab60-5e48f6c19e19",
-      "completedAt": 1793489129707,
+      "id": "5f2c4961-e604-4da8-9548-ecfa0268b5e4",
+      "completedAt": 1793491447858,
       "output": "/home/user/MD/listen-fin/out/fin-render.mp4",
       "status": "completed",
-      "revision": null
+      "revision": "2aff932c-7eee-477a-828e-3d985b975f22"
     },
-    "retainedRevisions": []
+    "retainedRevisions": [
+      "2aff932c-7eee-477a-828e-3d985b975f22"
+    ]
   },
   "pendingArtifactCleanup": []
 }
