@@ -20,6 +20,8 @@ Même chaîne que les autres épisodes. Spécificités :
 - Scènes : `p1-hook` (0–14,5 s) · volet · `p2-regle1` (→ 22,7) · `p3-alarme` (→ 30,3) · `p4-regle2` (→ 41,8) · `p5-fin`.
 - Kit : ajouts `A.ruleNum`, `A.tally`, `A.heldPhone`, `A.tablePhoneLit`, `A.downPhone`, `A.alarmPhone`, `A.void`, et `L.slam(…, { noPunch })`.
 - **Ancrage des caméras :** `O = "540 800"` dans toutes les scènes (axe du lit, hauteur de la tête). Un ancrage à gauche (470) fait zoomer « vers la gauche » : le sujet dérive hors du centre. Si on change le cadrage, garder l'ancrage sur le sujet, pas sur la table de nuit.
+- **Piège majeur (kit) :** dans HyperFrames, un `transformOrigin` en pourcentage (« 50% 50% ») posé sur un élément SVG est résolu à (0, 0), le coin haut-gauche : le zoom, la rotation ou l'échelle partent du coin. Mesuré sur un rendu : origine du gros plan à x ≈ −90, y ≈ 0. Le kit porte maintenant le centre de chaque élément animé en `data-ox` / `data-oy` et le passe en `svgOrigin` (helper `L.og`). Dans les scènes, toujours `svgOrigin: "x y"` en coordonnées SVG absolues, jamais de pourcentage.
+- Vérification des ancrages de caméra : à partir de la matrice de `#<scène>-cam`, le point fixe est (e/(1−a), f/(1−d)) ; il vaut (540, 800) pour toutes les caméras.
 - Pièges appris : `transformOrigin: "230px 744px"` est mal interprété sur un groupe SVG → utiliser `svgOrigin: "230 744"` ; ne pas animer `x` sur un groupe qui porte déjà un attribut `transform="rotate(…)"` (animer le groupe enfant).
 
 ## Écarts voix / script à vérifier (l'utilisateur est le seul à avoir écouté la prise)

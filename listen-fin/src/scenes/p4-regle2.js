@@ -26,7 +26,7 @@ L.initLids(S, 0.0);
 
 // --- le téléphone s'allume (dès la coupe : le visuel précède la voix) — premier néon du film
 tl.fromTo(S.$("big-on"), { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, 0.12);
-tl.fromTo(S.$("big-on"), { scale: 1.3, transformOrigin: "50% 50%" }, { scale: 1, duration: 0.45, ease: "back.out(2)", immediateRender: false }, 0.12);
+tl.fromTo(S.$("big-on"), { scale: 1.3, svgOrigin: "540 1195" }, { scale: 1, duration: 0.45, ease: "back.out(2)", immediateRender: false }, 0.12);
 tl.to(S.$("bloom"), { opacity: 0.35, duration: 0.6, ease: "power2.out" }, 0.12);
 // « Règle numéro deux : » — le « 2 » claque ; « remplis ce silence. »
 L.slam(tl, S, "r2", w("L12", 2), { noPunch: true });
@@ -43,7 +43,7 @@ tl.fromTo(S.$("uiZ"), { scale: 1, svgOrigin: "540 1560" }, { scale: 1.15, durati
 tl.fromTo(S.$("trackHi"), { opacity: 0 }, { opacity: 1, duration: 0.3 }, w("L13", 5));
 // « Tu lances, » — le doigt tape la lecture
 const tap = w("L14", 1);
-tl.fromTo(S.$("tap"), { opacity: 0.9, scale: 0.5, transformOrigin: "50% 50%" }, { opacity: 0, scale: 1.5, duration: 0.6, ease: "power2.out", immediateRender: false }, tap);
+tl.fromTo(S.$("tap"), { opacity: 0.9, scale: 0.5, svgOrigin: "682 1412" }, { opacity: 0, scale: 1.5, duration: 0.6, ease: "power2.out", immediateRender: false }, tap);
 tl.set(S.$("play"), { opacity: 0 }, tap + 0.1).set(S.$("pause"), { opacity: 1 }, tap + 0.1);
 
 // « tu retournes le téléphone. » — dézoom, le téléphone se retourne, rétrécit vers la table de nuit

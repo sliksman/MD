@@ -89,9 +89,9 @@
         const sx = ax < lx ? lx : ax > lx + wdt ? lx + wdt : ax;
         const sy = ax >= lx && ax <= lx + wdt ? (ay < ly ? ly : ly + h) : y;
         line = `<line id="${P}${name}-ln" x1="${sx}" y1="${sy}" x2="${ax}" y2="${ay}" stroke="#fff" stroke-opacity=".8" stroke-width="3"/>
-        <circle id="${P}${name}-dot" cx="${ax}" cy="${ay}" r="11" fill="${dot}" filter="${u("fGlowS")}"/>`;
+        <circle id="${P}${name}-dot" data-ox="${ax}" data-oy="${ay}" cx="${ax}" cy="${ay}" r="11" fill="${dot}" filter="${u("fGlowS")}"/>`;
       }
-      return `<g id="${P}${name}">${line}<g id="${P}${name}-b"><rect x="${lx}" y="${ly}" width="${wdt}" height="${h}" rx="${h / 2}" fill="#14162a" fill-opacity=".84" stroke="#fff" stroke-opacity=".14" stroke-width="2"/>
+      return `<g id="${P}${name}" data-ox="${x}" data-oy="${y}">${line}<g id="${P}${name}-b" data-ox="${x}" data-oy="${y}"><rect x="${lx}" y="${ly}" width="${wdt}" height="${h}" rx="${h / 2}" fill="#14162a" fill-opacity=".84" stroke="#fff" stroke-opacity=".14" stroke-width="2"/>
       <text x="${x}" y="${y + size * 0.36}" text-anchor="middle" font-family="Nunito" font-weight="800" font-size="${size}" fill="${C.cream}">${esc(text)}</text>${o.extra || ""}</g></g>`;
     };
 
@@ -117,16 +117,16 @@
     // ---- nouveau format « Heure de fin » ----
     // chiffre de règle (mêmes ids que bigNum : seed, ring, n, over, lab → L.slam)
     A.ruleNum = (name, n, label, x = 110, y = 840) => `<g id="${P}${name}">
-      <circle id="${P}${name}-seed" cx="${x + 70}" cy="${y - 90}" r="22" fill="${C.amber}" filter="${u("fGlowS")}"/>
-      <circle id="${P}${name}-ring" cx="${x + 70}" cy="${y - 90}" r="130" fill="none" stroke="${C.amber}" stroke-width="10" opacity="0"/>
-      <text id="${P}${name}-n" x="${x}" y="${y}" font-family="Fraunces" font-style="italic" font-weight="700" font-size="260" fill="${C.amber}" filter="${u("fShadow")}">${n}</text>
+      <circle id="${P}${name}-seed" data-ox="${x + 70}" data-oy="${y - 90}" cx="${x + 70}" cy="${y - 90}" r="22" fill="${C.amber}" filter="${u("fGlowS")}"/>
+      <circle id="${P}${name}-ring" data-ox="${x + 70}" data-oy="${y - 90}" cx="${x + 70}" cy="${y - 90}" r="130" fill="none" stroke="${C.amber}" stroke-width="10" opacity="0"/>
+      <text id="${P}${name}-n" data-ox="${x + 70}" data-oy="${y - 90}" x="${x}" y="${y}" font-family="Fraunces" font-style="italic" font-weight="700" font-size="260" fill="${C.amber}" filter="${u("fShadow")}">${n}</text>
       <text id="${P}${name}-over" x="${x + 175}" y="${y - 150}" font-family="Nunito" font-weight="800" font-size="27" letter-spacing="8" fill="${C.cream}" fill-opacity=".85">RÈGLE ${n}</text>
       <text id="${P}${name}-lab" x="${x + 175}" y="${y - 76}" font-family="Fraunces" font-style="italic" font-weight="500" font-size="62" fill="${C.cream}">${esc(label)}</text></g>`;
     // score POSÉ / REVENU : traits individuels (ids name-p0..p2, name-r0..r2), boîtes name-P et name-R
     A.tally = (name, y = 1420) => {
-      const box = (x, label, k, col) => `<g id="${P}${name}-${k}" opacity="0"><rect x="${x - 20}" y="${y - 58}" width="360" height="160" rx="30" fill="#0b0d1a" fill-opacity=".82" stroke="#fff" stroke-opacity=".12" stroke-width="2"/>
+      const box = (x, label, k, col) => `<g id="${P}${name}-${k}" data-ox="${x + 160}" data-oy="${y + 22}" opacity="0"><rect x="${x - 20}" y="${y - 58}" width="360" height="160" rx="30" fill="#0b0d1a" fill-opacity=".82" stroke="#fff" stroke-opacity=".12" stroke-width="2"/>
         <text x="${x}" y="${y - 16}" font-family="Nunito" font-weight="800" font-size="24" letter-spacing="6" fill="${C.cream}" fill-opacity=".8">${label}</text>
-        ${[0, 1, 2].map((i) => `<rect id="${P}${name}-${k.toLowerCase()}${i}" x="${x + i * 34}" y="${y + 6}" width="15" height="72" rx="7" fill="${col}" opacity="0"/>`).join("")}</g>`;
+        ${[0, 1, 2].map((i) => `<rect id="${P}${name}-${k.toLowerCase()}${i}" data-ox="${x + i * 34 + 7.5}" data-oy="${y + 78}" x="${x + i * 34}" y="${y + 6}" width="15" height="72" rx="7" fill="${col}" opacity="0"/>`).join("")}</g>`;
       return box(120, "POSÉ", "P", C.amber) + box(540, "REVENU", "R", "#9cc8ff");
     };
     // téléphone tenu au-dessus du visage (dos), halo bleu froid sur le visage, traînées de scroll
@@ -168,7 +168,7 @@
         while (acc <= len) {
           const t = acc / len;
           if (!(o.gapEvery && i % o.gapEvery >= o.gapEvery - 2))
-            out += `<circle class="dot" cx="${(x1 + (x2 - x1) * t).toFixed(1)}" cy="${(y1 + (y2 - y1) * t).toFixed(1)}" r="${r}" fill="${color}"/>`;
+            out += `<circle class="dot" data-ox="${(x1 + (x2 - x1) * t).toFixed(1)}" data-oy="${(y1 + (y2 - y1) * t).toFixed(1)}" cx="${(x1 + (x2 - x1) * t).toFixed(1)}" cy="${(y1 + (y2 - y1) * t).toFixed(1)}" r="${r}" fill="${color}"/>`;
           acc += step; i++;
         }
         acc -= len;
@@ -182,8 +182,8 @@
     A.eyes = (name, x1, x2, y, r = 11) => `<g id="${P}${name}">
       <g id="${P}${name}-open"><circle cx="${x1}" cy="${y}" r="${r}" fill="#fff"/><circle cx="${x2}" cy="${y}" r="${r}" fill="#fff"/>
       <g id="${P}${name}-pup"><circle cx="${x1 + 1}" cy="${y + 2}" r="${r * 0.46}" fill="${C.ink}"/><circle cx="${x2 + 1}" cy="${y + 2}" r="${r * 0.46}" fill="${C.ink}"/></g></g>
-      <rect id="${P}${name}-lidL" x="${x1 - r - 3}" y="${y - r - 3}" width="${2 * r + 6}" height="${2 * r + 6}" fill="#dcb391"/>
-      <rect id="${P}${name}-lidR" x="${x2 - r - 3}" y="${y - r - 3}" width="${2 * r + 6}" height="${2 * r + 6}" fill="#dcb391"/>
+      <rect id="${P}${name}-lidL" data-ox="${x1}" data-oy="${y - r - 3}" x="${x1 - r - 3}" y="${y - r - 3}" width="${2 * r + 6}" height="${2 * r + 6}" fill="#dcb391"/>
+      <rect id="${P}${name}-lidR" data-ox="${x2}" data-oy="${y - r - 3}" x="${x2 - r - 3}" y="${y - r - 3}" width="${2 * r + 6}" height="${2 * r + 6}" fill="#dcb391"/>
       <g id="${P}${name}-shut" opacity="0"><path d="M${x1 - r} ${y} q${r} ${r * 0.8} ${2 * r} 0 M${x2 - r} ${y} q${r} ${r * 0.8} ${2 * r} 0" stroke="#5b4636" stroke-width="${r * 0.45}" fill="none" stroke-linecap="round"/></g></g>`;
 
     // téléphone posé (vue du dessus) : écran noir + calque néon (opacity 0 → 1)
@@ -624,30 +624,33 @@
       <g id="${P}cam" data-layout-allow-overflow>${world}</g><g id="${P}hud">${hud || ""}</g>${art(P).vignette()}${art(P).grain()}</svg></div></div>`;
     const $ = (name) => root.querySelector("#" + P + name);
     const lidEls = root.querySelectorAll('[id$="-lidL"],[id$="-lidR"]');
-    if (lidEls.length) gsap.set(lidEls, { scaleY: 0, transformOrigin: "50% 0%" });
+    lidEls.forEach((el) => gsap.set(el, Object.assign({ scaleY: 0 }, og(el, "50% 0%"))));
     return { $, P, stage: $("stage"), tilt: $("tilt"), cam: $("cam"), hud: $("hud") };
   }
 
   // ---------------------------------------------------------------- animation (seek-safe)
+  // Un transformOrigin en pourcentage posé sur un élément SVG est résolu à (0,0) (coin haut-gauche) : le zoom/la rotation partent alors du coin.
+  // Chaque élément animé en échelle porte donc son centre en data-ox / data-oy, utilisé en svgOrigin (coordonnées SVG absolues).
+  const og = (el, fb) => (el && el.getAttribute && el.getAttribute("data-ox") != null ? { svgOrigin: el.getAttribute("data-ox") + " " + el.getAttribute("data-oy") } : { transformOrigin: fb });
   const pop = (tl, el, t, o = {}) => {
     if (!el) return;
-    tl.fromTo(el, { scale: o.from ?? 0.4, opacity: 0, transformOrigin: o.origin || "50% 50%" },
+    tl.fromTo(el, Object.assign({ scale: o.from ?? 0.4, opacity: 0 }, og(el, o.origin || "50% 50%")),
       { scale: 1, opacity: 1, duration: o.d || 0.32, ease: o.ease || "back.out(2.4)" }, t);
   };
-  const hide = (tl, el, t, d = 0.25) => el && tl.to(el, { opacity: 0, scale: 0.85, duration: d, ease: "power2.in", transformOrigin: "50% 50%" }, t);
+  const hide = (tl, el, t, d = 0.25) => el && tl.to(el, Object.assign({ opacity: 0, scale: 0.85, duration: d, ease: "power2.in" }, og(el, "50% 50%")), t);
   // pastille : point d'ancrage → trait → bulle
   function pill(tl, S, name, t) {
     const dot = S.$(name + "-dot"), ln = S.$(name + "-ln"), b = S.$(name + "-b");
-    if (dot) tl.fromTo(dot, { scale: 0, transformOrigin: "50% 50%" }, { scale: 1, duration: 0.22, ease: "back.out(3.5)" }, t);
+    if (dot) tl.fromTo(dot, Object.assign({ scale: 0 }, og(dot, "50% 50%")), { scale: 1, duration: 0.22, ease: "back.out(3.5)" }, t);
     if (ln) tl.fromTo(ln, { opacity: 0 }, { opacity: 1, duration: 0.1 }, t + 0.06);
     pop(tl, b, t + 0.1, { from: 0.45, d: 0.3, ease: "back.out(2.6)" });
   }
-  function pillOut(tl, S, name, t) { const g = S.$(name); if (g) tl.to(g, { opacity: 0, scale: 0.9, transformOrigin: "50% 50%", duration: 0.2, ease: "power2.in" }, t); }
+  function pillOut(tl, S, name, t) { const g = S.$(name); if (g) tl.to(g, Object.assign({ opacity: 0, scale: 0.9, duration: 0.2, ease: "power2.in" }, og(g, "50% 50%")), t); }
   // apparition point par point d'un groupe de .dot
   function drawDots(tl, g, t, d = 0.6, o = {}) {
     if (!g) return;
     const ds = g.querySelectorAll(".dot");
-    tl.fromTo(ds, { opacity: 0, scale: 0, transformOrigin: "50% 50%" }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2)", immediateRender: o.ir ?? true, stagger: { each: d / Math.max(1, ds.length), from: o.from || "start" } }, t);
+    tl.fromTo(ds, { opacity: 0, scale: 0, svgOrigin: (i, el) => el.getAttribute("data-ox") + " " + el.getAttribute("data-oy") }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2)", immediateRender: o.ir ?? true, stagger: { each: d / Math.max(1, ds.length), from: o.from || "start" } }, t);
   }
   // pulsation (scintillement) finie d'un groupe de .dot
   function shimmer(tl, g, t, until, o = {}) {
@@ -658,12 +661,12 @@
   }
   function blink(tl, S, t, name = "eyes") {
     const L = S.$(name + "-lidL"), R = S.$(name + "-lidR");
-    tl.fromTo([L, R], { scaleY: 0, transformOrigin: "50% 0%" }, { scaleY: 1, duration: 0.07, ease: "power1.in", yoyo: true, repeat: 1 }, t);
+    [L, R].forEach((el) => tl.fromTo(el, Object.assign({ scaleY: 0 }, og(el, "50% 0%")), { scaleY: 1, duration: 0.07, ease: "power1.in", yoyo: true, repeat: 1 }, t));
   }
   function lids(tl, S, t, amount, d = 0.3, name = "eyes") {
-    tl.to([S.$(name + "-lidL"), S.$(name + "-lidR")], { scaleY: amount, transformOrigin: "50% 0%", duration: d, ease: "power2.inOut" }, t);
+    [S.$(name + "-lidL"), S.$(name + "-lidR")].forEach((el) => tl.to(el, Object.assign({ scaleY: amount, duration: d, ease: "power2.inOut" }, og(el, "50% 0%")), t));
   }
-  function initLids(S, amount = 0, name = "eyes") { gsap.set([S.$(name + "-lidL"), S.$(name + "-lidR")], { scaleY: amount, transformOrigin: "50% 0%" }); }
+  function initLids(S, amount = 0, name = "eyes") { [S.$(name + "-lidL"), S.$(name + "-lidR")].forEach((el) => gsap.set(el, Object.assign({ scaleY: amount }, og(el, "50% 0%")))); }
   function shut(tl, S, t, closed = true, name = "eyes") {
     tl.to(S.$(name + "-open"), { opacity: closed ? 0 : 1, duration: 0.2 }, t);
     tl.to(S.$(name + "-shut"), { opacity: closed ? 1 : 0, duration: 0.2 }, t);
@@ -679,9 +682,9 @@
   function slam(tl, S, name, t, o = {}) {
     const g = S.$(name);
     if (g) tl.fromTo(g, { opacity: 0 }, { opacity: 1, duration: 0.01 }, t - 0.02);
-    tl.fromTo(S.$(name + "-seed"), { scale: 1, opacity: 1, transformOrigin: "50% 50%" }, { scale: 0, opacity: 0, duration: 0.12, ease: "power2.in" }, t - 0.12);
-    tl.fromTo(S.$(name + "-n"), { scale: 2.4, opacity: 0, rotation: -14, transformOrigin: "40% 60%" }, { scale: 1, opacity: 1, rotation: 0, duration: 0.3, ease: "back.out(2.2)" }, t);
-    tl.fromTo(S.$(name + "-ring"), { scale: 0.3, opacity: 1, transformOrigin: "50% 50%" }, { scale: 3.2, opacity: 0, duration: 0.5, ease: "power2.out" }, t + 0.12);
+    tl.fromTo(S.$(name + "-seed"), Object.assign({ scale: 1, opacity: 1 }, og(S.$(name + "-seed"), "50% 50%")), { scale: 0, opacity: 0, duration: 0.12, ease: "power2.in" }, t - 0.12);
+    tl.fromTo(S.$(name + "-n"), Object.assign({ scale: 2.4, opacity: 0, rotation: -14 }, og(S.$(name + "-n"), "40% 60%")), { scale: 1, opacity: 1, rotation: 0, duration: 0.3, ease: "back.out(2.2)" }, t);
+    tl.fromTo(S.$(name + "-ring"), Object.assign({ scale: 0.3, opacity: 1 }, og(S.$(name + "-ring"), "50% 50%")), { scale: 3.2, opacity: 0, duration: 0.5, ease: "power2.out" }, t + 0.12);
     tl.fromTo(S.$(name + "-over"), { opacity: 0, x: -30 }, { opacity: 0.85, x: 0, duration: 0.25, ease: "power3.out" }, t + 0.15);
     if (!o.noPunch) punch(tl, S, t + 0.1, 0.05);
   }
@@ -694,5 +697,5 @@
     tl.fromTo(o, { v: 0 }, { v: values.length - 1, duration: d, ease: "power1.inOut", onUpdate: () => { el.textContent = values[Math.round(o.v)]; } }, t);
   }
 
-  window.LS = { C, w, scene, art, stage, pop, slam, punch, hide, pill, pillOut, drawDots, shimmer, blink, lids, initLids, shut, fadeIn, cam, setText, esc };
+  window.LS = { C, og, w, scene, art, stage, pop, slam, punch, hide, pill, pillOut, drawDots, shimmer, blink, lids, initLids, shut, fadeIn, cam, setText, esc };
 })();

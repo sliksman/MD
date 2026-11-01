@@ -24,7 +24,7 @@ gsap.set(S.$("ty-P"), { opacity: 0 }); gsap.set(S.$("ty-R"), { opacity: 0 });
 const cut = (el, on, t) => tl.set(S.$(el), { opacity: on ? 1 : 0 }, t);
 const ring = (t0, t1, amp) => {   // le téléphone vibre et ses ondes pulsent
   const n = Math.max(2, Math.round((t1 - t0) / 0.05));
-  tl.fromTo(S.$("aph-body"), { x: -amp, rotation: -amp * 0.5, transformOrigin: "50% 50%" }, { x: amp, rotation: amp * 0.5, duration: 0.05, yoyo: true, repeat: n, ease: "none", immediateRender: false }, t0);
+  tl.fromTo(S.$("aph-body"), { x: -amp, rotation: -amp * 0.5, svgOrigin: "540 1050" }, { x: amp, rotation: amp * 0.5, duration: 0.05, yoyo: true, repeat: n, ease: "none", immediateRender: false }, t0);
   tl.fromTo(S.$("aph-waves"), { opacity: 1 }, { opacity: 0.35, duration: 0.11, yoyo: true, repeat: Math.round((t1 - t0) / 0.11), ease: "none", immediateRender: false }, t0);
   tl.set(S.$("aph-body"), { x: 0, rotation: 0 }, t1);
 };
@@ -44,7 +44,7 @@ tl.to(S.$("held-halo"), { opacity: 0.2, duration: 0.25 }, w("L10", 3) + 0.1);
 tl.to(S.$("dk"), { opacity: 0.52, duration: 0.25 }, w("L10", 3) + 0.1);
 // « Elle sonne. » — gros plan, plus fort : la deuxième fois, le réveil enfle
 cut("gA", true, a2);
-tl.fromTo(S.$("gA"), { scale: 1, transformOrigin: "50% 50%" }, { scale: 1.1, duration: a3 - a2, ease: "none", immediateRender: false }, a2);
+tl.fromTo(S.$("gA"), { scale: 1, svgOrigin: "540 960" }, { scale: 1.1, duration: a3 - a2, ease: "none", immediateRender: false }, a2);
 ring(a2, a3, 10);
 // « Tu poses. » — plan large : le téléphone vole vers la table et atterrit face contre table
 cut("gA", false, a3);
@@ -68,8 +68,8 @@ tl.set(S.$("fl"), { opacity: 0 }, ft + fd);
 tl.set(S.$("dph"), { opacity: 1 }, ft + fd);
 tl.fromTo(S.$("dph"), { scale: 1.2, svgOrigin: "230 744" }, { scale: 1, duration: 0.14, ease: "back.out(3)", immediateRender: false }, ft + fd);
 tl.to(S.$("dk"), { opacity: 0.6, duration: 0.2 }, ft + fd);
-tl.fromTo(S.$("ty-p2"), { opacity: 0, scaleY: 0, transformOrigin: "50% 100%" }, { opacity: 1, scaleY: 1, duration: 0.2, ease: "back.out(3)", immediateRender: false }, ft + fd);
-tl.fromTo(S.$("ty-P"), { scale: 1, transformOrigin: "50% 50%" }, { scale: 1.12, duration: 0.1, yoyo: true, repeat: 1, ease: "power2.out", immediateRender: false }, ft + fd);
+tl.fromTo(S.$("ty-p2"), Object.assign({ opacity: 0, scaleY: 0 }, L.og(S.$("ty-p2"), "50% 100%")), { opacity: 1, scaleY: 1, duration: 0.2, ease: "back.out(3)", immediateRender: false }, ft + fd);
+tl.fromTo(S.$("ty-P"), Object.assign({ scale: 1 }, L.og(S.$("ty-P"), "50% 50%")), { scale: 1.12, duration: 0.1, yoyo: true, repeat: 1, ease: "power2.out", immediateRender: false }, ft + fd);
 
 // « Et là, ta chambre fait un silence pas possible. » — le plan large pousse lentement vers la tête, puis tout se vide
 tl.to(S.cam, { scale: 1.45, duration: w("L11", 5) - pz, ease: "power1.in" }, pz + 0.5);

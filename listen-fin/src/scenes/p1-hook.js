@@ -61,11 +61,11 @@ tl.fromTo(S.$("trm"), { opacity: 0.2 }, { opacity: 1, duration: 0.08, yoyo: true
 tl.set(S.$("trm"), { opacity: 0 }, sonne + 0.75);
 tl.fromTo(S.$("clk"), { x: -4 }, { x: 4, duration: 0.05, yoyo: true, repeat: 13, ease: "none", immediateRender: false }, sonne);
 tl.set(S.$("clk"), { x: 0 }, sonne + 0.72);
-[0, 0.28].forEach((d) => tl.fromTo(S.$("ring"), { opacity: 0.9, scale: 0.5, transformOrigin: "50% 50%" }, { opacity: 0, scale: 2.4, duration: 0.55, ease: "power2.out", immediateRender: false }, sonne + d));
+[0, 0.28].forEach((d) => tl.fromTo(S.$("ring"), { opacity: 0.9, scale: 0.5, svgOrigin: "304 667" }, { opacity: 0, scale: 2.4, duration: 0.55, ease: "power2.out", immediateRender: false }, sonne + d));
 
 // --- coupe 1 (« Et toi, tu scrolles. ») : gros plan sur le visage éclairé, les yeux balaient de haut en bas à chaque glissement
 tl.set(S.$("gF"), { opacity: 1 }, cut1);
-tl.fromTo(S.$("gF"), { scale: 1.06, transformOrigin: "50% 50%" }, { scale: 1.12, duration: cut2 - cut1, ease: "none", immediateRender: false }, cut1);
+tl.fromTo(S.$("gF"), { scale: 1.06, svgOrigin: "540 960" }, { scale: 1.12, duration: cut2 - cut1, ease: "none", immediateRender: false }, cut1);
 for (let t = cut1 + 0.12, k = 0; t < cut2 - 0.25; t += 0.42, k++) {
   tl.fromTo(S.$("eyesF-pup"), { y: 14 }, { y: -14, duration: 0.3, ease: "power2.out", immediateRender: false }, t);
   tl.fromTo(S.$("fHalo"), { opacity: 0.55 }, { opacity: 0.3, duration: 0.07, yoyo: true, repeat: 1, ease: "power1.out", immediateRender: false }, t);
@@ -77,7 +77,7 @@ tl.set(S.$("gK"), { opacity: 1 }, cut2);
 tl.fromTo(S.$("kIn"), { scale: 1, svgOrigin: "540 925" }, { scale: 1.08, duration: cut3 - cut2, ease: "none", immediateRender: false }, cut2);
 const mn = w("L03", 1);
 tl.set(S.$("kc-0"), { opacity: 0 }, mn).set(S.$("kc-1"), { opacity: 1 }, mn);
-tl.fromTo(S.$("kc"), { scale: 1, transformOrigin: "50% 50%" }, { scale: 1.1, duration: 0.09, yoyo: true, repeat: 1, ease: "power2.out", immediateRender: false }, mn);
+tl.fromTo(S.$("kc"), { scale: 1, svgOrigin: "540 925" }, { scale: 1.1, duration: 0.09, yoyo: true, repeat: 1, ease: "power2.out", immediateRender: false }, mn);
 tl.fromTo(S.$("kHalo"), { opacity: 0.5 }, { opacity: 0.25, duration: 0.07, yoyo: true, repeat: 5, ease: "none", immediateRender: false }, cut2 + 0.1);
 tl.set(S.$("gK"), { opacity: 0 }, cut3);
 
@@ -109,7 +109,7 @@ const toHand = (t, d = 0.3) => {
   tl.to(S.$("dk"), { opacity: 0.42, duration: 0.15 }, t + d - 0.05);
   tl.to(S.$("eyes-pup"), { x: 0, duration: 0.12 }, t + d);
 };
-const tick = (id, t) => tl.fromTo(S.$(id), { opacity: 0, scaleY: 0, transformOrigin: "50% 100%" }, { opacity: 1, scaleY: 1, duration: 0.16, ease: "back.out(2.6)", immediateRender: false }, t);
+const tick = (id, t) => tl.fromTo(S.$(id), Object.assign({ opacity: 0, scaleY: 0 }, L.og(S.$(id), "50% 100%")), { opacity: 1, scaleY: 1, duration: 0.16, ease: "back.out(2.6)", immediateRender: false }, t);
 const box = (k, t) => tl.fromTo(S.$("ty-" + k), { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.25, ease: "power3.out", immediateRender: false }, t);
 const p1t = w("L04", 1) - 0.2, b1t = p1t + 0.48, p2t = w("L04", 4) - 0.2, b2t = w("L05", 2) - 0.15;
 pose(p1t); box("P", p1t + 0.32); tick("ty-p0", p1t + 0.4);

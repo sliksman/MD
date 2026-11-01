@@ -65,7 +65,7 @@
           L.pill(tl, S, "pDor", w("L09", 2));
           stick("sDor", "360 768", w("L09", 4));
           // « Pour poser le téléphone. » : la bande sonne
-          tl.fromTo(S.$("band-b"), { rotation: -1.6, transformOrigin: "50% 50%" }, { rotation: 1.6, duration: 0.06, yoyo: true, repeat: 9, ease: "none", immediateRender: false }, w("L09", 5));
+          tl.fromTo(S.$("band-b"), { rotation: -1.6, svgOrigin: "540 1100" }, { rotation: 1.6, duration: 0.06, yoyo: true, repeat: 9, ease: "none", immediateRender: false }, w("L09", 5));
           tl.set(S.$("band-b"), { rotation: 0 }, w("L09", 5) + 0.64);
 
           window.__timelines[ID] = tl;

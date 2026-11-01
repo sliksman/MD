@@ -28,7 +28,7 @@ L.shut(tl, S, w("L16", 4), true);
 // « Et toi, c'est quoi ton heure de fin ? » — dézoom, la question en grand
 const q = w("L17", 0);
 tl.to(S.cam, { scale: 1.02, duration: 1.3, ease: "power2.inOut" }, q - 0.1);
-tl.fromTo(S.$("title-l0"), { opacity: 0, y: 34, scale: 0.9, transformOrigin: "50% 50%" }, { opacity: 1, y: 0, scale: 1, duration: 0.35, ease: "back.out(2.4)" }, q + 0.04);
-tl.fromTo(S.$("title-l1"), { opacity: 0, y: 34, scale: 0.9, transformOrigin: "50% 50%" }, { opacity: 1, y: 0, scale: 1, duration: 0.35, ease: "back.out(2.4)" }, w("L17", 3));
+tl.fromTo(S.$("title-l0"), { opacity: 0, y: 34, scale: 0.9, svgOrigin: "540 272" }, { opacity: 1, y: 0, scale: 1, duration: 0.35, ease: "back.out(2.4)" }, q + 0.04);
+tl.fromTo(S.$("title-l1"), { opacity: 0, y: 34, scale: 0.9, svgOrigin: "540 363" }, { opacity: 1, y: 0, scale: 1, duration: 0.35, ease: "back.out(2.4)" }, w("L17", 3));
 L.pill(tl, S, "pCom", w("L17", 6));
 tl.fromTo(S.$("lockup"), { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: 0.4, ease: "back.out(2)" }, w("L17", 7) + 0.1);
