@@ -4412,15 +4412,15 @@
   },
   "renders": {
     "latest": {
-      "id": "1af3f249-1407-42ac-8cd5-72ea2e0c3686",
-      "completedAt": 1793533242768,
+      "id": "ad0cae16-e1b3-4cc5-8729-3c242f9a38f4",
+      "completedAt": 1793631971390,
       "output": "/home/user/MD/listen-fin/out/fin-render.mp4",
       "status": "completed",
-      "revision": "8d957e8f-007b-4679-98e3-46e560c7bf59"
+      "revision": "3c9d57c9-249d-4486-95ac-3cd480e7d628"
     },
     "retainedRevisions": [
-      "8d957e8f-007b-4679-98e3-46e560c7bf59",
-      "ba0cc7fc-4140-4908-9aa7-35932d2c8cfc"
+      "3c9d57c9-249d-4486-95ac-3cd480e7d628",
+      "8d957e8f-007b-4679-98e3-46e560c7bf59"
     ]
   },
   "pendingArtifactCleanup": []
