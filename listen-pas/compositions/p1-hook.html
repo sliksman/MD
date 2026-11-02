@@ -21,7 +21,7 @@
           // l'heure du petit réveil (et celle du haut, dans la composition « counter ») passe de 03:11 à 03:12 sur « douze ». Caméra : poussée continue.
           const AM = L.C.amber, O = "540 800";
           const ticks = Array.from({ length: 21 }, (_, i) => `<rect id="${A.id("tk" + i)}" data-ox="${297 + (i % 7) * 70}" data-oy="${1374 + Math.floor(i / 7) * 62}" x="${290 + (i % 7) * 70}" y="${1330 + Math.floor(i / 7) * 62}" width="14" height="44" rx="7" fill="${AM}" opacity="0"/>`).join("");
-          const world = A.void() + A.bg() + A.bedTop({ clock: ["03:11", "03:12"] }) + `<rect x="-1200" y="-1200" width="3480" height="4320" fill="#04050d" opacity=".5"/>`;
+          const world = A.void() + A.bg() + `<g opacity=".72">${A.bedTop({ clock: ["03:11", "03:12"] })}</g>`;
           const S = L.stage(root, ID, world, ticks);
           gsap.set(S.$("phone"), { opacity: 0 });                                   // pas de téléphone sur la table dans ce plan
           gsap.set(S.$("eyes-open"), { opacity: 0 }); gsap.set(S.$("eyes-shut"), { opacity: 1 }); gsap.set([S.$("eyes-lidL"), S.$("eyes-lidR")], { opacity: 0 });

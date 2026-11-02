@@ -177,7 +177,9 @@
       <rect x="250" y="760" width="580" height="760" rx="14" fill="#1a1f4d" stroke="#fff" stroke-opacity=".12" stroke-width="3"/>
       ${Array.from({ length: 5 }, (_, i) => `<line x1="250" y1="${910 + i * 152}" x2="830" y2="${910 + i * 152}" stroke="#fff" stroke-opacity=".12" stroke-width="3"/>` + [0, 1].map((j) => `<rect ${i === 0 && j === 0 ? `id="${P}${name}-win"` : ""} x="${330 + j * 260}" y="${790 + i * 152}" width="130" height="92" rx="8" fill="${i === 0 ? "#ffd28a" : "#0c0f2a"}" opacity="${i === 0 ? 0.95 : 0.9}"/>`).join("")).join("")}
       <rect x="215" y="716" width="650" height="44" rx="10" fill="#3a4290"/><rect x="520" y="640" width="12" height="76" fill="#aab0c8"/><circle cx="526" cy="636" r="10" fill="${C.amber}"/>
-      <rect x="590" y="805" width="60" height="30" rx="8" fill="${C.cream}" opacity=".9"/><circle cx="610" cy="832" r="12" fill="${u("gSkin")}"/></g>`;
+      <rect x="590" y="805" width="60" height="30" rx="8" fill="${C.cream}" opacity=".9"/><circle cx="610" cy="832" r="12" fill="${u("gSkin")}"/>
+      <polyline points="735,910 735,886 750,886 750,862 765,862 765,838 780,838 780,814 795,814 795,790 810,790 810,766 828,766" fill="none" stroke="${C.cream}" stroke-opacity=".75" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>
+      <rect x="800" y="716" width="30" height="46" fill="#0c0f2a"/><rect x="778" y="672" width="52" height="44" rx="6" fill="#3a4290" stroke="#fff" stroke-opacity=".15" stroke-width="3"/><rect x="796" y="684" width="16" height="32" rx="3" fill="#0c0f2a"/></g>`;
     // chambre vue de dessus : sol, murs, porte en haut à droite ; repère : x 150..930, y 560..1500
     A.room = (name = "room") => `<g id="${P}${name}"><rect x="150" y="560" width="780" height="940" rx="22" fill="#14183f" stroke="#fff" stroke-opacity=".10" stroke-width="4"/>
       <rect x="700" y="540" width="180" height="40" rx="6" fill="#3a4290"/></g>`;

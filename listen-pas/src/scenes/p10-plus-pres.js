@@ -3,7 +3,7 @@
 const AM = L.C.amber, O = "480 950";
 const dots = Array.from({ length: 11 }, (_, i) => { const t = i / 10, x = 790 - 150 * Math.pow(t, 0.8), y = 590 + 560 * Math.pow(t, 1.1), r = 7 + t * 22;
   return `<circle id="${A.id("d" + i)}" data-ox="${x.toFixed(0)}" data-oy="${y.toFixed(0)}" cx="${x.toFixed(0)}" cy="${y.toFixed(0)}" r="${r.toFixed(1)}" fill="${AM}" fill-opacity="${(0.25 + t * 0.75).toFixed(2)}" filter="url(#${A.id("fGlowS")})" opacity="0"/>`; }).join("");
-const world = A.floorTop() + A.room("room") + `<g transform="translate(180 520) scale(.55)">${A.bedTop({ clock: ["03:11"] })}</g>` + dots + A.ring("pk", 650, 1150, 40) +
+const world = A.bg() + A.room("room") + `<g transform="translate(180 520) scale(.55)">${A.bedTop({ clock: ["03:11"] })}</g>` + dots + A.ring("pk", 650, 1150, 40) +
   A.pill("pN1", 700, 640, "NUIT 1", undefined, undefined, { size: 30 }) + A.pill("pN11", 770, 1190, "NUIT 11", 650, 1150, { size: 34, dot: AM });
 const S = L.stage(root, ID, world, "");
 gsap.set(S.$("phone"), { opacity: 0 });

@@ -1,6 +1,6 @@
 // PLAN 3 — « Des pas. » Deux empreintes ambre se posent l'une après l'autre ; un anneau part de chacune (le bruit). Coupe sèche avec le plan précédent.
 const AM = L.C.amber;
-const world = A.bg() + `<rect width="1080" height="1920" fill="#04050d" opacity=".2"/>` +
+const world = A.bg() +
   A.foot("f1", 430, 1290, -8, 1.35) + A.foot("f2", 640, 1230, 6, 1.35) + A.ring("r1", 430, 1290, 110) + A.ring("r2", 640, 1230, 110) +
   A.pill("pPas", 540, 1480, "des pas", undefined, undefined, { size: 50, dot: AM });
 const S = L.stage(root, ID, world, "");

@@ -5,8 +5,8 @@ const AM = L.C.amber, O = "540 800";
 const dup = (str) => str.replace(/ id="([^"]+)"/g, ' id="$1-c"');                         // copie du lit sans ids en double
 const recPhone = `<g id="${A.id("rp")}"><rect x="195" y="680" width="70" height="128" rx="14" fill="#0b0d1a" stroke="#9cc8ff" stroke-opacity=".7" stroke-width="3"/><rect x="201" y="686" width="58" height="116" rx="10" fill="#101a3a"/>
   ${A.wave("rpw", 208, 252, 750, [{ x: 230, h: 14, w: 12 }], { step: 4, noise: 3, color: "#9cc8ff", w: 3, op: 1 })}<circle id="${A.id("rdot")}" cx="230" cy="708" r="7" fill="${AM}" filter="url(#${A.id("fGlowS")})"/></g>`;
-const world = A.void() + A.bg() + A.bedTop({ clock: ["03:11", "03:12"] }) + `<rect id="${A.id("dk")}" x="-1200" y="-1200" width="3480" height="4320" fill="#04050d" opacity=".55"/>` + recPhone;
-const gSt = `<g id="${A.id("gSt")}" opacity="0">${A.floorTop()}<rect width="1080" height="1920" fill="#04050d" opacity=".93"/>${A.room("room2")}<g transform="translate(180 520) scale(.55)" opacity=".7">${dup(A.bedTop({ clock: ["03:12"] }))}</g>` +
+const world = A.void() + A.bg() + `<g opacity=".72">${A.bedTop({ clock: ["03:11", "03:12"] })}</g>` + `<rect id="${A.id("dk")}" x="-1200" y="-1200" width="3480" height="4320" fill="#04050d" opacity="0"/>` + recPhone;
+const gSt = `<g id="${A.id("gSt")}" opacity="0">${A.bg()}<rect width="1080" height="1920" fill="#04050d" opacity=".93"/>${A.room("room2")}<g transform="translate(180 520) scale(.55)" opacity=".7">${dup(A.bedTop({ clock: ["03:12"] }))}</g>` +
   A.foot("s1", 780, 640, 25, 0.8) + A.foot("s2", 730, 790, 20, 0.9) + A.foot("s3", 690, 950, 15, 1.0) + A.foot("s4", 640, 1160, 8, 1.5) +
   A.ring("q1", 780, 640, 90) + A.ring("q2", 730, 790, 120) + A.ring("q3", 690, 950, 150) + A.ring("q4", 640, 1160, 170, AM, 8) + A.ring("q5", 640, 1160, 280, AM, 7) + `</g>`;
 const eye = (cx, n) => `<g id="${A.id("eye" + n)}" data-ox="${cx}" data-oy="960"><ellipse cx="${cx}" cy="960" rx="185" ry="135" fill="#e9e6f2"/><circle cx="${cx}" cy="960" r="82" fill="#2a1d3a"/><circle cx="${cx}" cy="960" r="30" fill="#05060c"/>
