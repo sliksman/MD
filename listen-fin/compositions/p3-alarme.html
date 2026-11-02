@@ -30,7 +30,7 @@
             <circle cx="540" cy="930" r="230" fill="url(#${A.id("gSkin")})"/>${A.eyes("eyesD", 463, 617, 905, 36)}
             <rect x="-100" y="1180" width="1280" height="900" fill="url(#${A.id("gDuvet")})"/><rect x="-100" y="1180" width="1280" height="40" fill="${L.C.duvetEdge}"/>
             <rect width="1080" height="1920" fill="#04050d" opacity=".5"/>${A.dots("flat", [[30, 600], [1050, 600]], { step: 30, r: 5, opacity: 0.55 })}
-            <rect width="1080" height="1920" filter="url(#${A.id("fGrain")})" opacity=".16" style="pointer-events:none"/></g>`;
+            <rect id="${A.id("gdGrain")}" width="1080" height="1920" filter="url(#${A.id("fGrain")})" opacity=".16" style="pointer-events:none"/></g>`;
           const S = L.stage(root, ID, world, gA + gD + A.tally("ty", 1420));
           // origines épinglées une fois pour toutes (jamais dans un tween : le rendu saute à la fin puis revient)
           [["aph-body", "540 1050"], ["gA", "540 960"], ["dph", "230 744"]].forEach(([n, o]) => gsap.set(S.$(n), { svgOrigin: o }));
@@ -100,6 +100,8 @@
           cut("gD", true, sil);
           L.drawDots(tl, S.$("flat"), sil, 0.9, { from: "center", ir: true });
           L.blink(tl, S, sil + 1.0, "eyesD");
+          // le grain du silence retombe avant la coupe vers le plan 4 : on arrive dans le noir sans marche de luminosité
+          tl.to(S.$("gdGrain"), { opacity: 0, duration: 0.5, ease: "power2.inOut" }, sc.end - sc.start - 0.55);
 
           window.__timelines[ID] = tl;
         })();
