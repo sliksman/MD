@@ -1,0 +1,30 @@
+// PLAN 5 — « Je suis monté voir. Y a pas de voisin. Juste le toit. » Le toit vu de dessus : le personnage y monte par un chemin de points,
+// s'arrête au milieu ; « pas de voisin » est barré ; « juste le toit » : le vide, trois anneaux pâles qui ne rencontrent rien.
+const AM = L.C.amber, O = "540 1000";
+const line = (name, x1, y1, x2, y2, wd) => { const L0 = Math.ceil(Math.hypot(x2 - x1, y2 - y1)) + 1; return `<line id="${A.id(name)}" data-len="${L0}" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${AM}" stroke-width="${wd}" stroke-linecap="round" stroke-dasharray="${L0}" stroke-dashoffset="${L0}" opacity="0"/>`; };
+const world = A.floorTop() + `<rect x="110" y="590" width="860" height="920" rx="18" fill="#23296a" stroke="#fff" stroke-opacity=".12" stroke-width="4"/>` +
+  Array.from({ length: 8 }, (_, i) => `<line x1="110" y1="${700 + i * 100}" x2="970" y2="${700 + i * 100}" stroke="#fff" stroke-opacity=".07" stroke-width="3"/>`).join("") +
+  `<rect x="150" y="1340" width="170" height="130" rx="10" fill="#3a4290"/><text x="235" y="1415" text-anchor="middle" font-family="Nunito" font-weight="800" font-size="30" fill="${L.C.cream}" fill-opacity=".8">ESCALIER</text>` +
+  `<circle cx="800" cy="720" r="30" fill="#aab0c8"/><line x1="800" y1="720" x2="860" y2="640" stroke="#aab0c8" stroke-width="8" stroke-linecap="round"/><circle cx="330" cy="760" r="42" fill="#12163a" stroke="#aab0c8" stroke-width="6"/>` +
+  A.dots("up", [[235, 1330], [300, 1230], [420, 1140], [520, 1060], [560, 990]], { step: 30, r: 7, color: AM, opacity: 0.9 }) +
+  A.personTop("pp", 235, 1330, 0.8) + A.ring("e1", 560, 1000, 90, "#fff", 4) + A.ring("e2", 560, 1000, 90, "#fff", 4) + A.ring("e3", 560, 1000, 90, "#fff", 4) +
+  A.pill("pVo", 360, 1170, "pas de voisin", undefined, undefined, { size: 40 }) + line("sVo", 205, 1179, 515, 1173, 7) + A.pill("pTo", 600, 1330, "juste le toit", 570, 1030, { size: 52, dot: AM });
+const S = L.stage(root, ID, world, "");
+gsap.set(S.cam, { scale: 1, svgOrigin: O });
+tl.to(S.cam, { scale: 1.07, duration: sc.end - sc.start, ease: "none" }, 0);
+gsap.set(S.$("sVo"), { opacity: 0 });
+// « Je suis monté voir. » : le personnage suit le chemin de points
+const wp = [[235, 1330], [300, 1230], [420, 1140], [520, 1060], [560, 990]];
+const s0 = w("L04", 0), s1 = w("L04", 3) + 0.1;
+L.drawDots(tl, S.$("up"), s0 - 0.05, s1 - s0, { ir: true });
+for (let i = 1; i < wp.length; i++) {
+  const d = (s1 - s0) / (wp.length - 1);
+  tl.to(S.$("pp"), { x: wp[i][0] - 235, y: wp[i][1] - 1330, duration: d, ease: "none" }, s0 + (i - 1) * d);
+}
+L.blink(tl, S, w("L04", 5), "ppEyes");
+// « Y a pas de voisin. » : pastille, puis trait ambre
+L.pill(tl, S, "pVo", w("L04", 8) - 0.1);
+{ const e = S.$("sVo"), L0 = +e.getAttribute("data-len"); tl.set(e, { opacity: 1 }, w("L04", 8) + 0.2); tl.fromTo(e, { strokeDashoffset: L0 }, { strokeDashoffset: 0, duration: 0.2, ease: "power2.out", immediateRender: false }, w("L04", 8) + 0.2); }
+// « Juste le toit. » : le vide
+L.pill(tl, S, "pTo", w("L04", 11) - 0.05);
+["e1", "e2", "e3"].forEach((r, i) => tl.fromTo(S.$(r), { opacity: 0.5, scale: 0.3 }, { opacity: 0, scale: 2.6, duration: 1.1, ease: "power1.out", immediateRender: false }, w("L04", 11) + i * 0.3));

@@ -1,0 +1,20 @@
+// PLAN 10 — « Et que chaque nuit, c'est un peu plus près. » La chambre vue de dessus, noire. Onze points ambre, de la porte (loin, petit, pâle) au pied du lit
+// (près, gros, vif) : un par nuit, de plus en plus vite. Le dernier est à un mètre du lit.
+const AM = L.C.amber, O = "480 950";
+const dots = Array.from({ length: 11 }, (_, i) => { const t = i / 10, x = 790 - 150 * Math.pow(t, 0.8), y = 590 + 560 * Math.pow(t, 1.1), r = 7 + t * 22;
+  return `<circle id="${A.id("d" + i)}" data-ox="${x.toFixed(0)}" data-oy="${y.toFixed(0)}" cx="${x.toFixed(0)}" cy="${y.toFixed(0)}" r="${r.toFixed(1)}" fill="${AM}" fill-opacity="${(0.25 + t * 0.75).toFixed(2)}" filter="url(#${A.id("fGlowS")})" opacity="0"/>`; }).join("");
+const world = A.floorTop() + A.room("room") + `<g transform="translate(180 520) scale(.55)">${A.bedTop({ clock: ["03:11"] })}</g>` + dots + A.ring("pk", 650, 1150, 40) +
+  A.pill("pN1", 700, 640, "NUIT 1", undefined, undefined, { size: 30 }) + A.pill("pN11", 770, 1190, "NUIT 11", 650, 1150, { size: 34, dot: AM });
+const S = L.stage(root, ID, world, "");
+gsap.set(S.$("phone"), { opacity: 0 });
+gsap.set(S.$("eyes-open"), { opacity: 0 }); gsap.set(S.$("eyes-shut"), { opacity: 1 }); gsap.set([S.$("eyes-lidL"), S.$("eyes-lidR")], { opacity: 0 });
+gsap.set(S.cam, { scale: 1, svgOrigin: O });
+tl.to(S.cam, { scale: 1.1, duration: sc.end - sc.start, ease: "none" }, 0);
+const a = w("L08", 12) - 0.05, b = w("L08", 20) - 0.05;
+for (let i = 0; i < 11; i++) {
+  const u = i / 10, t = a + (b - a) * (1 - Math.pow(1 - u, 1.6));
+  tl.fromTo(S.$("d" + i), { opacity: 0, scale: 0 }, { opacity: 1, scale: 1, duration: 0.2, ease: "back.out(3)" }, t);
+}
+L.pill(tl, S, "pN1", a + 0.05);
+L.pill(tl, S, "pN11", b + 0.05);
+tl.fromTo(S.$("pk"), { opacity: 0.9, scale: 0.4 }, { opacity: 0, scale: 5, duration: 0.8, ease: "power2.out", immediateRender: false }, b);

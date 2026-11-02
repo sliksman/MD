@@ -1,0 +1,39 @@
+<!doctype html>
+<!-- GÉNÉRÉ par scripts/sync.mjs depuis src/scenes/p2-craquement.js — éditer la source, pas ce fichier. -->
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+        #root { position: absolute; inset: 0; }
+      </style>
+      <div id="root" data-composition-id="p2" data-width="1080" data-height="1920"></div>
+      <script>
+        (function () {
+          const ID = "p2";
+          const L = window.LS;
+          const sc = L.scene(ID);
+          const A = L.art(ID + "-");
+          const root = document.querySelector('[data-composition-id="p2"]');
+          const tl = gsap.timeline({ paused: true });
+          const w = sc.w;
+          // PLAN 2 — « Pas un craquement. » Une onde déchirée, puis « craquement » barré (trait ambre, au milieu des lettres) et l'onde barrée.
+          const AM = L.C.amber;
+          const line = (name, x1, y1, x2, y2, wd) => { const L0 = Math.ceil(Math.hypot(x2 - x1, y2 - y1)) + 1; return `<line id="${A.id(name)}" data-len="${L0}" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${AM}" stroke-width="${wd}" stroke-linecap="round" stroke-dasharray="${L0}" stroke-dashoffset="${L0}" opacity="0"/>`; };
+          const world = A.bg() + `<rect width="1080" height="1920" fill="#04050d" opacity=".2"/>` +
+            A.wave("wv", 160, 920, 840, [{ x: 330, h: 90, w: 14 }, { x: 440, h: 70, w: 12 }, { x: 560, h: 110, w: 16 }, { x: 690, h: 60, w: 12 }], { draw: true, op: 0.6 }) +
+            A.pill("pCr", 540, 1000, "craquement", undefined, undefined, { size: 50 }) + line("sPill", 300, 1010, 780, 1004, 7) + line("sWave", 150, 872, 930, 808, 10);
+          const S = L.stage(root, ID, world, "");
+          const draw = (name, t, d) => { const e = S.$(name), L0 = +e.getAttribute("data-len"); tl.set(e, { opacity: 1 }, t - 0.01); tl.fromTo(e, { strokeDashoffset: L0 }, { strokeDashoffset: 0, duration: d, ease: "power2.out", immediateRender: false }, t - 0.01); };
+          gsap.set([S.$("sPill"), S.$("sWave")], { opacity: 0 });
+          { const e = S.$("wv"), L0 = +e.getAttribute("data-len"); tl.fromTo(e, { strokeDashoffset: L0 }, { strokeDashoffset: 0, duration: 0.55, ease: "none", immediateRender: true }, w("L02", 0) - 0.05); }
+          L.pill(tl, S, "pCr", w("L02", 2) - 0.12);
+          draw("sPill", w("L02", 2) + 0.1, 0.18);
+          draw("sWave", w("L02", 2) + 0.28, 0.16);
+
+          window.__timelines[ID] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

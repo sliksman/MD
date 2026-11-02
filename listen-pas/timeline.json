@@ -1,0 +1,1664 @@
+{
+ "_doc": "GÉNÉRÉ par scripts/breathe.py depuis timeline.base.json — éditer la base, pas ce fichier.",
+ "duration": 47.75,
+ "fade": 0,
+ "scenes": [
+  {
+   "id": "p1",
+   "file": "p1-hook",
+   "start": 0,
+   "end": 3.8
+  },
+  {
+   "id": "p2",
+   "file": "p2-craquement",
+   "start": 3.8,
+   "end": 4.985
+  },
+  {
+   "id": "p3",
+   "file": "p3-pas",
+   "start": 4.985,
+   "end": 6.17
+  },
+  {
+   "id": "p4",
+   "file": "p4-immeuble",
+   "start": 6.17,
+   "end": 9.07
+  },
+  {
+   "id": "p5",
+   "file": "p5-toit",
+   "start": 9.07,
+   "end": 13.775
+  },
+  {
+   "id": "p6",
+   "file": "p6-enregistre",
+   "start": 13.775,
+   "end": 16.27
+  },
+  {
+   "id": "p7",
+   "file": "p7-pics",
+   "start": 16.27,
+   "end": 23.52
+  },
+  {
+   "id": "p8",
+   "file": "p8-nuits",
+   "start": 23.52,
+   "end": 28.07
+  },
+  {
+   "id": "p9",
+   "file": "p9-pas-den-haut",
+   "start": 28.07,
+   "end": 31.67
+  },
+  {
+   "id": "p10",
+   "file": "p10-plus-pres",
+   "start": 31.67,
+   "end": 34.27
+  },
+  {
+   "id": "p11",
+   "file": "p11-fin",
+   "start": 34.27,
+   "end": 47.75
+  }
+ ],
+ "captions": {
+  "enabled": true,
+  "maxWords": 3,
+  "y": 450,
+  "tail": 0.5,
+  "lead": 0.08
+ },
+ "captionY": [
+  [
+   0,
+   99,
+   450
+  ]
+ ],
+ "wipes": [],
+ "aliases": [
+  [
+   "\\b3 h 12\\b",
+   "trois heures douze"
+  ],
+  [
+   "\\b3 h 11\\b",
+   "trois heures onze"
+  ],
+  [
+   "par un craquement",
+   "pas un craquement"
+  ],
+  [
+   "Y.a pas",
+   "Y a pas"
+  ],
+  [
+   "voisins",
+   "voisin"
+  ],
+  [
+   "pas dans",
+   "pas d'en haut"
+  ],
+  [
+   "Peut être",
+   "Peut-être"
+  ]
+ ],
+ "sfx": [
+  {
+   "id": "slide00",
+   "file": "whoosh.wav",
+   "at": {
+    "vo": "L02",
+    "word": 0,
+    "+": -0.24
+   },
+   "vol": 0.3,
+   "note": "coupe vers le plan p2"
+  },
+  {
+   "id": "slide01",
+   "file": "whoosh.wav",
+   "at": {
+    "vo": "L02",
+    "word": 3,
+    "+": -0.385
+   },
+   "vol": 0.3,
+   "note": "coupe vers le plan p3"
+  },
+  {
+   "id": "slide02",
+   "file": "whoosh.wav",
+   "at": {
+    "vo": "L03",
+    "word": 0,
+    "+": -0.32
+   },
+   "vol": 0.3,
+   "note": "coupe vers le plan p4"
+  },
+  {
+   "id": "slide03",
+   "file": "whoosh.wav",
+   "at": {
+    "vo": "L04",
+    "word": 0,
+    "+": -0.3
+   },
+   "vol": 0.3,
+   "note": "coupe vers le plan p5"
+  },
+  {
+   "id": "slide04",
+   "file": "whoosh.wav",
+   "at": {
+    "vo": "L05",
+    "word": 0,
+    "+": -0.275
+   },
+   "vol": 0.3,
+   "note": "coupe vers le plan p6"
+  },
+  {
+   "id": "slide05",
+   "file": "whoosh.wav",
+   "at": {
+    "vo": "L06",
+    "word": 0,
+    "+": -0.34
+   },
+   "vol": 0.3,
+   "note": "coupe vers le plan p7"
+  },
+  {
+   "id": "slide06",
+   "file": "whoosh.wav",
+   "at": {
+    "vo": "L07",
+    "word": 0,
+    "+": -0.9
+   },
+   "vol": 0.2,
+   "note": "coupe vers le plan p8"
+  },
+  {
+   "id": "slide07",
+   "file": "whoosh.wav",
+   "at": {
+    "vo": "L08",
+    "word": 0,
+    "+": -0.3
+   },
+   "vol": 0.3,
+   "note": "coupe vers le plan p9"
+  },
+  {
+   "id": "slide08",
+   "file": "whoosh.wav",
+   "at": {
+    "vo": "L08",
+    "word": 12,
+    "+": -0.3
+   },
+   "vol": 0.3,
+   "note": "coupe vers le plan p10"
+  },
+  {
+   "id": "slide09",
+   "file": "whoosh.wav",
+   "at": {
+    "vo": "L09",
+    "word": 0,
+    "+": -0.32
+   },
+   "vol": 0.3,
+   "note": "coupe vers le plan p11"
+  },
+  {
+   "id": "pop00",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L01",
+    "word": 11,
+    "+": 0.0
+   },
+   "vol": 0.55,
+   "note": "l'heure flippe 03:11 → 03:12"
+  },
+  {
+   "id": "pop01",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L02",
+    "word": 2,
+    "+": 0.0
+   },
+   "vol": 0.5,
+   "note": "pastille craquement"
+  },
+  {
+   "id": "slide20",
+   "file": "whoosh.wav",
+   "at": {
+    "vo": "L02",
+    "word": 2,
+    "+": 0.3
+   },
+   "vol": 0.3,
+   "note": "trait : craquement barré"
+  },
+  {
+   "id": "slide21",
+   "file": "whoosh.wav",
+   "at": {
+    "vo": "L02",
+    "word": 2,
+    "+": 0.48
+   },
+   "vol": 0.3,
+   "note": "trait : l'onde barrée"
+  },
+  {
+   "id": "flop00",
+   "file": "flop.wav",
+   "at": {
+    "vo": "L02",
+    "word": 3,
+    "+": 0.0
+   },
+   "vol": 0.85,
+   "note": "pas (1)"
+  },
+  {
+   "id": "flop01",
+   "file": "flop.wav",
+   "at": {
+    "vo": "L02",
+    "word": 4,
+    "+": 0.0
+   },
+   "vol": 0.85,
+   "note": "pas (2)"
+  },
+  {
+   "id": "pop02",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L02",
+    "word": 4,
+    "+": 0.08
+   },
+   "vol": 0.5,
+   "note": "pastille des pas"
+  },
+  {
+   "id": "flop02",
+   "file": "flop.wav",
+   "at": {
+    "vo": "L03",
+    "word": 0,
+    "+": 0.0
+   },
+   "vol": 0.6,
+   "note": "un pas sur la dalle du toit"
+  },
+  {
+   "id": "flop03",
+   "file": "flop.wav",
+   "at": {
+    "vo": "L03",
+    "word": 0,
+    "+": 0.42
+   },
+   "vol": 0.6,
+   "note": "un pas sur la dalle du toit"
+  },
+  {
+   "id": "flop04",
+   "file": "flop.wav",
+   "at": {
+    "vo": "L03",
+    "word": 0,
+    "+": 0.84
+   },
+   "vol": 0.6,
+   "note": "un pas sur la dalle du toit"
+  },
+  {
+   "id": "pop03",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L03",
+    "word": 1,
+    "+": 0.05
+   },
+   "vol": 0.5,
+   "note": "pastille au-dessus de moi"
+  },
+  {
+   "id": "pop04",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L03",
+    "word": 6,
+    "+": 0.0
+   },
+   "vol": 0.5,
+   "note": "pastille dernier étage"
+  },
+  {
+   "id": "pop05",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L04",
+    "word": 8,
+    "+": -0.1
+   },
+   "vol": 0.5,
+   "note": "pastille pas de voisin"
+  },
+  {
+   "id": "slide22",
+   "file": "whoosh.wav",
+   "at": {
+    "vo": "L04",
+    "word": 8,
+    "+": 0.2
+   },
+   "vol": 0.3,
+   "note": "trait : voisin barré"
+  },
+  {
+   "id": "pop06",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L04",
+    "word": 11,
+    "+": -0.05
+   },
+   "vol": 0.5,
+   "note": "pastille juste le toit"
+  },
+  {
+   "id": "hit00",
+   "file": "flop.wav",
+   "at": {
+    "vo": "L06",
+    "word": 4,
+    "+": 0.0
+   },
+   "vol": 0.95,
+   "note": "pic 1"
+  },
+  {
+   "id": "hit01",
+   "file": "flop.wav",
+   "at": {
+    "vo": "L06",
+    "word": 5,
+    "+": 0.0
+   },
+   "vol": 0.95,
+   "note": "pic 2"
+  },
+  {
+   "id": "hit02",
+   "file": "flop.wav",
+   "at": {
+    "vo": "L06",
+    "word": 6,
+    "+": 0.0
+   },
+   "vol": 0.95,
+   "note": "pic 3"
+  },
+  {
+   "id": "pop07",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L06",
+    "word": 9,
+    "+": 0.15
+   },
+   "vol": 0.35,
+   "note": "pastille silence"
+  },
+  {
+   "id": "slide23",
+   "file": "whoosh.wav",
+   "at": {
+    "vo": "L07",
+    "word": 2,
+    "+": 0.0
+   },
+   "vol": 0.4,
+   "note": "les quatrièmes pics fantômes, barrés"
+  },
+  {
+   "id": "pop08",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L07",
+    "word": 7,
+    "+": 0.0
+   },
+   "vol": 0.5,
+   "note": "la nuit 11 s'allume"
+  },
+  {
+   "id": "pop09",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L08",
+    "word": 1,
+    "+": 0.0
+   },
+   "vol": 0.4,
+   "note": "la source dans l'étage"
+  },
+  {
+   "id": "slide24",
+   "file": "whoosh.wav",
+   "at": {
+    "vo": "L08",
+    "word": 8,
+    "+": 0.0
+   },
+   "vol": 0.4,
+   "note": "la flèche vers le toit"
+  },
+  {
+   "id": "slide25",
+   "file": "whoosh.wav",
+   "at": {
+    "vo": "L08",
+    "word": 11,
+    "+": -0.05
+   },
+   "vol": 0.45,
+   "note": "la flèche est barrée"
+  },
+  {
+   "id": "pop10",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L08",
+    "word": 12,
+    "+": -0.05
+   },
+   "vol": 0.22,
+   "note": "nuit 1 : un point plus près"
+  },
+  {
+   "id": "pop11",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L08",
+    "word": 12,
+    "+": 0.237
+   },
+   "vol": 0.265,
+   "note": "nuit 2 : un point plus près"
+  },
+  {
+   "id": "pop12",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L08",
+    "word": 12,
+    "+": 0.505
+   },
+   "vol": 0.31,
+   "note": "nuit 3 : un point plus près"
+  },
+  {
+   "id": "pop13",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L08",
+    "word": 12,
+    "+": 0.754
+   },
+   "vol": 0.355,
+   "note": "nuit 4 : un point plus près"
+  },
+  {
+   "id": "pop14",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L08",
+    "word": 12,
+    "+": 0.983
+   },
+   "vol": 0.4,
+   "note": "nuit 5 : un point plus près"
+  },
+  {
+   "id": "pop15",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L08",
+    "word": 12,
+    "+": 1.19
+   },
+   "vol": 0.44499999999999995,
+   "note": "nuit 6 : un point plus près"
+  },
+  {
+   "id": "pop16",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L08",
+    "word": 12,
+    "+": 1.373
+   },
+   "vol": 0.49,
+   "note": "nuit 7 : un point plus près"
+  },
+  {
+   "id": "pop17",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L08",
+    "word": 12,
+    "+": 1.53
+   },
+   "vol": 0.535,
+   "note": "nuit 8 : un point plus près"
+  },
+  {
+   "id": "pop18",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L08",
+    "word": 12,
+    "+": 1.659
+   },
+   "vol": 0.58,
+   "note": "nuit 9 : un point plus près"
+  },
+  {
+   "id": "pop19",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L08",
+    "word": 12,
+    "+": 1.754
+   },
+   "vol": 0.625,
+   "note": "nuit 10 : un point plus près"
+  },
+  {
+   "id": "pop20",
+   "file": "pop.wav",
+   "at": {
+    "vo": "L08",
+    "word": 12,
+    "+": 1.8
+   },
+   "vol": 0.6699999999999999,
+   "note": "nuit 11 : un point plus près"
+  },
+  {
+   "id": "hit03",
+   "file": "flop.wav",
+   "at": {
+    "vo": "L10",
+    "word": 1,
+    "+": 0.263
+   },
+   "vol": 0.9,
+   "note": "la voix coupe : l'horloge flippe"
+  },
+  {
+   "id": "step00",
+   "file": "step.wav",
+   "at": {
+    "vo": "L10",
+    "word": 1,
+    "+": 1.163
+   },
+   "vol": 1.0,
+   "note": "pas 1"
+  },
+  {
+   "id": "step01",
+   "file": "step.wav",
+   "at": {
+    "vo": "L10",
+    "word": 1,
+    "+": 1.963
+   },
+   "vol": 1.0,
+   "note": "pas 2"
+  },
+  {
+   "id": "step02",
+   "file": "step.wav",
+   "at": {
+    "vo": "L10",
+    "word": 1,
+    "+": 2.763
+   },
+   "vol": 1.0,
+   "note": "pas 3"
+  },
+  {
+   "id": "step03",
+   "file": "step_heavy.wav",
+   "at": {
+    "vo": "L10",
+    "word": 1,
+    "+": 4.163
+   },
+   "vol": 1.0,
+   "note": "le quatrième pas, dans la pièce"
+  },
+  {
+   "id": "slide26",
+   "file": "whoosh.wav",
+   "at": {
+    "vo": "L10",
+    "word": 1,
+    "+": 4.963
+   },
+   "vol": 0.25,
+   "note": "les yeux s'ouvrent"
+  }
+ ],
+ "overrides": [],
+ "endOverrides": {},
+ "vo": [
+  {
+   "id": "L01",
+   "start": 0.11,
+   "end": 3.57,
+   "text": "Depuis trois semaines, mon appartement fait un bruit à trois heures douze.",
+   "hl": [
+    "douze."
+   ],
+   "words": [
+    [
+     "Depuis",
+     0.11
+    ],
+    [
+     "trois",
+     0.59
+    ],
+    [
+     "semaines,",
+     0.72
+    ],
+    [
+     "mon",
+     1.33
+    ],
+    [
+     "appartement",
+     1.56
+    ],
+    [
+     "fait",
+     2.192
+    ],
+    [
+     "un",
+     2.24
+    ],
+    [
+     "bruit",
+     2.462
+    ],
+    [
+     "à",
+     2.72
+    ],
+    [
+     "trois",
+     2.905
+    ],
+    [
+     "heures",
+     3.127
+    ],
+    [
+     "douze.",
+     3.348
+    ]
+   ]
+  },
+  {
+   "id": "L02",
+   "start": 4.02,
+   "end": 6.09,
+   "text": "Pas un craquement. Des pas.",
+   "hl": [
+    "craquement.",
+    "pas."
+   ],
+   "words": [
+    [
+     "Pas",
+     4.02
+    ],
+    [
+     "un",
+     4.182
+    ],
+    [
+     "craquement.",
+     4.344
+    ],
+    [
+     "Des",
+     5.35
+    ],
+    [
+     "pas.",
+     5.59
+    ]
+   ]
+  },
+  {
+   "id": "L03",
+   "start": 6.47,
+   "end": 8.76,
+   "text": "Au-dessus de moi. Je suis au dernier étage.",
+   "hl": [
+    "étage."
+   ],
+   "words": [
+    [
+     "Au-dessus",
+     6.47
+    ],
+    [
+     "de",
+     6.842
+    ],
+    [
+     "moi.",
+     6.966
+    ],
+    [
+     "Je",
+     7.76
+    ],
+    [
+     "suis",
+     7.903
+    ],
+    [
+     "au",
+     8.046
+    ],
+    [
+     "dernier",
+     8.189
+    ],
+    [
+     "étage.",
+     8.474
+    ]
+   ]
+  },
+  {
+   "id": "L04",
+   "start": 9.35,
+   "end": 13.45,
+   "text": "Je suis monté voir. Y a pas de voisin. Juste le toit.",
+   "hl": [
+    "toit."
+   ],
+   "words": [
+    [
+     "Je",
+     9.35
+    ],
+    [
+     "suis",
+     9.506
+    ],
+    [
+     "monté",
+     9.662
+    ],
+    [
+     "voir.",
+     9.974
+    ],
+    [
+     "Y",
+     10.58
+    ],
+    [
+     "a",
+     10.685
+    ],
+    [
+     "pas",
+     10.79
+    ],
+    [
+     "de",
+     10.895
+    ],
+    [
+     "voisin.",
+     11.0
+    ],
+    [
+     "Juste",
+     11.64
+    ],
+    [
+     "le",
+     11.955
+    ],
+    [
+     "toit.",
+     12.95
+    ]
+   ]
+  },
+  {
+   "id": "L05",
+   "start": 14.03,
+   "end": 16.49,
+   "text": "Alors j'ai laissé mon téléphone enregistrer la nuit.",
+   "hl": [
+    "enregistrer"
+   ],
+   "words": [
+    [
+     "Alors",
+     14.03
+    ],
+    [
+     "j'ai",
+     14.383
+    ],
+    [
+     "laissé",
+     14.45
+    ],
+    [
+     "mon",
+     14.74
+    ],
+    [
+     "téléphone",
+     14.885
+    ],
+    [
+     "enregistrer",
+     15.21
+    ],
+    [
+     "la",
+     15.703
+    ],
+    [
+     "nuit.",
+     15.827
+    ]
+   ]
+  },
+  {
+   "id": "L06",
+   "start": 16.59,
+   "end": 24.38,
+   "text": "Trois heures douze pile. Un. Deux. Trois. Puis un silence.",
+   "hl": [
+    "pile.",
+    "silence."
+   ],
+   "words": [
+    [
+     "Trois",
+     16.59
+    ],
+    [
+     "heures",
+     16.805
+    ],
+    [
+     "douze",
+     17.11
+    ],
+    [
+     "pile.",
+     17.54
+    ],
+    [
+     "Un.",
+     18.49
+    ],
+    [
+     "Deux.",
+     19.41
+    ],
+    [
+     "Trois.",
+     20.43
+    ],
+    [
+     "Puis",
+     21.91
+    ],
+    [
+     "un",
+     22.102
+    ],
+    [
+     "silence.",
+     22.295
+    ]
+   ]
+  },
+  {
+   "id": "L07",
+   "start": 24.4,
+   "end": 28.33,
+   "text": "Toujours trois. Jamais quatre. Onze nuits de suite.",
+   "hl": [
+    "trois.",
+    "quatre."
+   ],
+   "words": [
+    [
+     "Toujours",
+     24.4
+    ],
+    [
+     "trois.",
+     24.773
+    ],
+    [
+     "Jamais",
+     25.52
+    ],
+    [
+     "quatre.",
+     25.947
+    ],
+    [
+     "Onze",
+     26.89
+    ],
+    [
+     "nuits",
+     27.07
+    ],
+    [
+     "de",
+     27.25
+    ],
+    [
+     "suite.",
+     27.43
+    ]
+   ]
+  },
+  {
+   "id": "L08",
+   "start": 28.35,
+   "end": 34.55,
+   "text": "Et en réécoutant, j'ai compris que ça ne vient pas d'en haut. Et que chaque nuit, c'est un peu plus près.",
+   "hl": [
+    "haut.",
+    "près."
+   ],
+   "words": [
+    [
+     "Et",
+     28.35
+    ],
+    [
+     "en",
+     28.56
+    ],
+    [
+     "réécoutant,",
+     28.77
+    ],
+    [
+     "j'ai",
+     29.91
+    ],
+    [
+     "compris",
+     30.107
+    ],
+    [
+     "que",
+     30.39
+    ],
+    [
+     "ça",
+     30.527
+    ],
+    [
+     "ne",
+     30.664
+    ],
+    [
+     "vient",
+     30.801
+    ],
+    [
+     "pas",
+     30.939
+    ],
+    [
+     "d'en",
+     31.076
+    ],
+    [
+     "haut.",
+     31.213
+    ],
+    [
+     "Et",
+     31.95
+    ],
+    [
+     "que",
+     32.112
+    ],
+    [
+     "chaque",
+     32.274
+    ],
+    [
+     "nuit,",
+     32.598
+    ],
+    [
+     "c'est",
+     33.08
+    ],
+    [
+     "un",
+     33.26
+    ],
+    [
+     "peu",
+     33.44
+    ],
+    [
+     "plus",
+     33.62
+    ],
+    [
+     "près.",
+     33.8
+    ]
+   ]
+  },
+  {
+   "id": "L09",
+   "start": 34.57,
+   "end": 39.28,
+   "text": "Cette nuit, pour l'instant, j'ai pas entendu de pas. Il est trois heures onze.",
+   "hl": [
+    "pas.",
+    "onze."
+   ],
+   "words": [
+    [
+     "Cette",
+     34.57
+    ],
+    [
+     "nuit,",
+     34.805
+    ],
+    [
+     "pour",
+     35.22
+    ],
+    [
+     "l'instant,",
+     35.41
+    ],
+    [
+     "j'ai",
+     36.02
+    ],
+    [
+     "pas",
+     36.109
+    ],
+    [
+     "entendu",
+     36.197
+    ],
+    [
+     "de",
+     36.463
+    ],
+    [
+     "pas.",
+     36.551
+    ],
+    [
+     "Il",
+     37.45
+    ],
+    [
+     "est",
+     37.682
+    ],
+    [
+     "trois",
+     37.915
+    ],
+    [
+     "heures",
+     38.148
+    ],
+    [
+     "onze.",
+     38.93
+    ]
+   ]
+  },
+  {
+   "id": "L10",
+   "start": 40.5,
+   "end": 41.29,
+   "text": "Peut-être que",
+   "hl": [
+    "que"
+   ],
+   "words": [
+    [
+     "Peut-être",
+     40.5
+    ],
+    [
+     "que",
+     41.027
+    ]
+   ]
+  }
+ ],
+ "capGroups": [
+  [
+   [
+    "L01",
+    0
+   ],
+   [
+    "L01",
+    1
+   ],
+   [
+    "L01",
+    2
+   ]
+  ],
+  [
+   [
+    "L01",
+    3
+   ],
+   [
+    "L01",
+    4
+   ],
+   [
+    "L01",
+    5
+   ],
+   [
+    "L01",
+    6
+   ],
+   [
+    "L01",
+    7
+   ]
+  ],
+  [
+   [
+    "L01",
+    8
+   ],
+   [
+    "L01",
+    9
+   ],
+   [
+    "L01",
+    10
+   ],
+   [
+    "L01",
+    11
+   ]
+  ],
+  [
+   [
+    "L02",
+    0
+   ],
+   [
+    "L02",
+    1
+   ],
+   [
+    "L02",
+    2
+   ]
+  ],
+  [
+   [
+    "L02",
+    3
+   ],
+   [
+    "L02",
+    4
+   ]
+  ],
+  [
+   [
+    "L03",
+    0
+   ],
+   [
+    "L03",
+    1
+   ],
+   [
+    "L03",
+    2
+   ]
+  ],
+  [
+   [
+    "L03",
+    3
+   ],
+   [
+    "L03",
+    4
+   ],
+   [
+    "L03",
+    5
+   ],
+   [
+    "L03",
+    6
+   ],
+   [
+    "L03",
+    7
+   ]
+  ],
+  [
+   [
+    "L04",
+    0
+   ],
+   [
+    "L04",
+    1
+   ],
+   [
+    "L04",
+    2
+   ],
+   [
+    "L04",
+    3
+   ]
+  ],
+  [
+   [
+    "L04",
+    4
+   ],
+   [
+    "L04",
+    5
+   ],
+   [
+    "L04",
+    6
+   ],
+   [
+    "L04",
+    7
+   ],
+   [
+    "L04",
+    8
+   ]
+  ],
+  [
+   [
+    "L04",
+    9
+   ],
+   [
+    "L04",
+    10
+   ],
+   [
+    "L04",
+    11
+   ]
+  ],
+  [
+   [
+    "L05",
+    0
+   ],
+   [
+    "L05",
+    1
+   ],
+   [
+    "L05",
+    2
+   ],
+   [
+    "L05",
+    3
+   ],
+   [
+    "L05",
+    4
+   ]
+  ],
+  [
+   [
+    "L05",
+    5
+   ],
+   [
+    "L05",
+    6
+   ],
+   [
+    "L05",
+    7
+   ]
+  ],
+  [
+   [
+    "L06",
+    0
+   ],
+   [
+    "L06",
+    1
+   ],
+   [
+    "L06",
+    2
+   ],
+   [
+    "L06",
+    3
+   ]
+  ],
+  [
+   [
+    "L06",
+    4
+   ]
+  ],
+  [
+   [
+    "L06",
+    5
+   ]
+  ],
+  [
+   [
+    "L06",
+    6
+   ]
+  ],
+  [
+   [
+    "L06",
+    7
+   ],
+   [
+    "L06",
+    8
+   ],
+   [
+    "L06",
+    9
+   ]
+  ],
+  [
+   [
+    "L07",
+    0
+   ],
+   [
+    "L07",
+    1
+   ]
+  ],
+  [
+   [
+    "L07",
+    2
+   ],
+   [
+    "L07",
+    3
+   ]
+  ],
+  [
+   [
+    "L07",
+    4
+   ],
+   [
+    "L07",
+    5
+   ],
+   [
+    "L07",
+    6
+   ],
+   [
+    "L07",
+    7
+   ]
+  ],
+  [
+   [
+    "L08",
+    0
+   ],
+   [
+    "L08",
+    1
+   ],
+   [
+    "L08",
+    2
+   ]
+  ],
+  [
+   [
+    "L08",
+    3
+   ],
+   [
+    "L08",
+    4
+   ],
+   [
+    "L08",
+    5
+   ],
+   [
+    "L08",
+    6
+   ],
+   [
+    "L08",
+    7
+   ],
+   [
+    "L08",
+    8
+   ]
+  ],
+  [
+   [
+    "L08",
+    9
+   ],
+   [
+    "L08",
+    10
+   ],
+   [
+    "L08",
+    11
+   ]
+  ],
+  [
+   [
+    "L08",
+    12
+   ],
+   [
+    "L08",
+    13
+   ],
+   [
+    "L08",
+    14
+   ],
+   [
+    "L08",
+    15
+   ]
+  ],
+  [
+   [
+    "L08",
+    16
+   ],
+   [
+    "L08",
+    17
+   ],
+   [
+    "L08",
+    18
+   ],
+   [
+    "L08",
+    19
+   ],
+   [
+    "L08",
+    20
+   ]
+  ],
+  [
+   [
+    "L09",
+    0
+   ],
+   [
+    "L09",
+    1
+   ]
+  ],
+  [
+   [
+    "L09",
+    2
+   ],
+   [
+    "L09",
+    3
+   ]
+  ],
+  [
+   [
+    "L09",
+    4
+   ],
+   [
+    "L09",
+    5
+   ],
+   [
+    "L09",
+    6
+   ],
+   [
+    "L09",
+    7
+   ],
+   [
+    "L09",
+    8
+   ]
+  ],
+  [
+   [
+    "L09",
+    9
+   ],
+   [
+    "L09",
+    10
+   ],
+   [
+    "L09",
+    11
+   ],
+   [
+    "L09",
+    12
+   ],
+   [
+    "L09",
+    13
+   ]
+  ],
+  [
+   [
+    "L10",
+    0
+   ],
+   [
+    "L10",
+    1
+   ]
+  ]
+ ],
+ "voFile": "assets/audio/vo_v2.mp3",
+ "voDuration": 47.752
+}

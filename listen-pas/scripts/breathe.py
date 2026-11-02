@@ -9,13 +9,11 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 SRC, DST = ROOT / "assets/audio/vo_norm.mp3", ROOT / "assets/audio/vo_v2.mp3"
 # (instant dans la voix d'origine, durée ajoutée) — toujours au milieu d'un silence existant
-GAPS = [(2.50, 0.30),    # après « sonne » (le réveil)
-        (11.89, 0.25),   # après « des mois » (le dézoom revient sur la tête)
-        (13.67, 0.50),   # plan 1 → 2 : volet ambre, avant « Règle numéro un »
-        (21.50, 0.30),   # plan 2 → 3 : coupe, avant « Elle sonne »
-        (28.63, 0.70),   # plan 3 → 4 : la respiration avant « Règle numéro deux »
-        (39.62, 0.30)]   # plan 4 → 5 : coupe, avant « Minuit cinquante »
-TAIL = 0.6
+GAPS = [(4.925, 0.12),   # entre « Pas un craquement » et « Des pas » : la coupe tombe dans le silence
+        (13.53, 0.25),   # « juste le toit » → l'enregistrement
+        (22.70, 0.90),   # « Puis un silence. » : le vrai silence (la ligne reste plate)
+        (38.12, 0.50)]   # « Il est trois heures onze. » → l'horloge attend avant « Peut-être que »
+TAIL = 5.6               # après la voix coupée : horloge 03:12, trois pas, un quatrième, les yeux
 
 f, parts, prev = [], [], 0.0
 for i, (t, g) in enumerate(GAPS):

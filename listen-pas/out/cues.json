@@ -1,0 +1,461 @@
+[
+ {
+  "id": "slide00",
+  "t": 3.78,
+  "frame": 113,
+  "dur": 0.7,
+  "file": "whoosh.wav",
+  "vol": 0.3,
+  "name": "coupe vers le plan p2"
+ },
+ {
+  "id": "slide01",
+  "t": 4.965,
+  "frame": 149,
+  "dur": 0.7,
+  "file": "whoosh.wav",
+  "vol": 0.3,
+  "name": "coupe vers le plan p3"
+ },
+ {
+  "id": "slide02",
+  "t": 6.15,
+  "frame": 185,
+  "dur": 0.7,
+  "file": "whoosh.wav",
+  "vol": 0.3,
+  "name": "coupe vers le plan p4"
+ },
+ {
+  "id": "slide03",
+  "t": 9.05,
+  "frame": 272,
+  "dur": 0.7,
+  "file": "whoosh.wav",
+  "vol": 0.3,
+  "name": "coupe vers le plan p5"
+ },
+ {
+  "id": "slide04",
+  "t": 13.755,
+  "frame": 413,
+  "dur": 0.7,
+  "file": "whoosh.wav",
+  "vol": 0.3,
+  "name": "coupe vers le plan p6"
+ },
+ {
+  "id": "slide05",
+  "t": 16.25,
+  "frame": 488,
+  "dur": 0.7,
+  "file": "whoosh.wav",
+  "vol": 0.3,
+  "name": "coupe vers le plan p7"
+ },
+ {
+  "id": "slide06",
+  "t": 23.5,
+  "frame": 705,
+  "dur": 0.7,
+  "file": "whoosh.wav",
+  "vol": 0.2,
+  "name": "coupe vers le plan p8"
+ },
+ {
+  "id": "slide07",
+  "t": 28.05,
+  "frame": 842,
+  "dur": 0.7,
+  "file": "whoosh.wav",
+  "vol": 0.3,
+  "name": "coupe vers le plan p9"
+ },
+ {
+  "id": "slide08",
+  "t": 31.65,
+  "frame": 950,
+  "dur": 0.7,
+  "file": "whoosh.wav",
+  "vol": 0.3,
+  "name": "coupe vers le plan p10"
+ },
+ {
+  "id": "slide09",
+  "t": 34.25,
+  "frame": 1028,
+  "dur": 0.7,
+  "file": "whoosh.wav",
+  "vol": 0.3,
+  "name": "coupe vers le plan p11"
+ },
+ {
+  "id": "pop00",
+  "t": 3.348,
+  "frame": 100,
+  "dur": 0.18,
+  "file": "pop.wav",
+  "vol": 0.55,
+  "name": "l'heure flippe 03:11 → 03:12"
+ },
+ {
+  "id": "pop01",
+  "t": 4.344,
+  "frame": 130,
+  "dur": 0.18,
+  "file": "pop.wav",
+  "vol": 0.5,
+  "name": "pastille craquement"
+ },
+ {
+  "id": "slide20",
+  "t": 4.644,
+  "frame": 139,
+  "dur": 0.7,
+  "file": "whoosh.wav",
+  "vol": 0.3,
+  "name": "trait : craquement barré"
+ },
+ {
+  "id": "slide21",
+  "t": 4.824,
+  "frame": 145,
+  "dur": 0.7,
+  "file": "whoosh.wav",
+  "vol": 0.3,
+  "name": "trait : l'onde barrée"
+ },
+ {
+  "id": "flop00",
+  "t": 5.35,
+  "frame": 161,
+  "dur": 0.22,
+  "file": "flop.wav",
+  "vol": 0.85,
+  "name": "pas (1)"
+ },
+ {
+  "id": "flop01",
+  "t": 5.59,
+  "frame": 168,
+  "dur": 0.22,
+  "file": "flop.wav",
+  "vol": 0.85,
+  "name": "pas (2)"
+ },
+ {
+  "id": "pop02",
+  "t": 5.67,
+  "frame": 170,
+  "dur": 0.18,
+  "file": "pop.wav",
+  "vol": 0.5,
+  "name": "pastille des pas"
+ },
+ {
+  "id": "flop02",
+  "t": 6.47,
+  "frame": 194,
+  "dur": 0.22,
+  "file": "flop.wav",
+  "vol": 0.6,
+  "name": "un pas sur la dalle du toit"
+ },
+ {
+  "id": "flop03",
+  "t": 6.89,
+  "frame": 207,
+  "dur": 0.22,
+  "file": "flop.wav",
+  "vol": 0.6,
+  "name": "un pas sur la dalle du toit"
+ },
+ {
+  "id": "flop04",
+  "t": 7.31,
+  "frame": 219,
+  "dur": 0.22,
+  "file": "flop.wav",
+  "vol": 0.6,
+  "name": "un pas sur la dalle du toit"
+ },
+ {
+  "id": "pop03",
+  "t": 6.892,
+  "frame": 207,
+  "dur": 0.18,
+  "file": "pop.wav",
+  "vol": 0.5,
+  "name": "pastille au-dessus de moi"
+ },
+ {
+  "id": "pop04",
+  "t": 8.189,
+  "frame": 246,
+  "dur": 0.18,
+  "file": "pop.wav",
+  "vol": 0.5,
+  "name": "pastille dernier étage"
+ },
+ {
+  "id": "pop05",
+  "t": 10.9,
+  "frame": 327,
+  "dur": 0.18,
+  "file": "pop.wav",
+  "vol": 0.5,
+  "name": "pastille pas de voisin"
+ },
+ {
+  "id": "slide22",
+  "t": 11.2,
+  "frame": 336,
+  "dur": 0.7,
+  "file": "whoosh.wav",
+  "vol": 0.3,
+  "name": "trait : voisin barré"
+ },
+ {
+  "id": "pop06",
+  "t": 12.9,
+  "frame": 387,
+  "dur": 0.18,
+  "file": "pop.wav",
+  "vol": 0.5,
+  "name": "pastille juste le toit"
+ },
+ {
+  "id": "hit00",
+  "t": 18.49,
+  "frame": 555,
+  "dur": 0.22,
+  "file": "flop.wav",
+  "vol": 0.95,
+  "name": "pic 1"
+ },
+ {
+  "id": "hit01",
+  "t": 19.41,
+  "frame": 582,
+  "dur": 0.22,
+  "file": "flop.wav",
+  "vol": 0.95,
+  "name": "pic 2"
+ },
+ {
+  "id": "hit02",
+  "t": 20.43,
+  "frame": 613,
+  "dur": 0.22,
+  "file": "flop.wav",
+  "vol": 0.95,
+  "name": "pic 3"
+ },
+ {
+  "id": "pop07",
+  "t": 22.445,
+  "frame": 673,
+  "dur": 0.18,
+  "file": "pop.wav",
+  "vol": 0.35,
+  "name": "pastille silence"
+ },
+ {
+  "id": "slide23",
+  "t": 25.52,
+  "frame": 766,
+  "dur": 0.7,
+  "file": "whoosh.wav",
+  "vol": 0.4,
+  "name": "les quatrièmes pics fantômes, barrés"
+ },
+ {
+  "id": "pop08",
+  "t": 27.43,
+  "frame": 823,
+  "dur": 0.18,
+  "file": "pop.wav",
+  "vol": 0.5,
+  "name": "la nuit 11 s'allume"
+ },
+ {
+  "id": "pop09",
+  "t": 28.56,
+  "frame": 857,
+  "dur": 0.18,
+  "file": "pop.wav",
+  "vol": 0.4,
+  "name": "la source dans l'étage"
+ },
+ {
+  "id": "slide24",
+  "t": 30.801,
+  "frame": 924,
+  "dur": 0.7,
+  "file": "whoosh.wav",
+  "vol": 0.4,
+  "name": "la flèche vers le toit"
+ },
+ {
+  "id": "slide25",
+  "t": 31.163,
+  "frame": 935,
+  "dur": 0.7,
+  "file": "whoosh.wav",
+  "vol": 0.45,
+  "name": "la flèche est barrée"
+ },
+ {
+  "id": "pop10",
+  "t": 31.9,
+  "frame": 957,
+  "dur": 0.18,
+  "file": "pop.wav",
+  "vol": 0.22,
+  "name": "nuit 1 : un point plus près"
+ },
+ {
+  "id": "pop11",
+  "t": 32.187,
+  "frame": 966,
+  "dur": 0.18,
+  "file": "pop.wav",
+  "vol": 0.265,
+  "name": "nuit 2 : un point plus près"
+ },
+ {
+  "id": "pop12",
+  "t": 32.455,
+  "frame": 974,
+  "dur": 0.18,
+  "file": "pop.wav",
+  "vol": 0.31,
+  "name": "nuit 3 : un point plus près"
+ },
+ {
+  "id": "pop13",
+  "t": 32.704,
+  "frame": 981,
+  "dur": 0.18,
+  "file": "pop.wav",
+  "vol": 0.355,
+  "name": "nuit 4 : un point plus près"
+ },
+ {
+  "id": "pop14",
+  "t": 32.933,
+  "frame": 988,
+  "dur": 0.18,
+  "file": "pop.wav",
+  "vol": 0.4,
+  "name": "nuit 5 : un point plus près"
+ },
+ {
+  "id": "pop15",
+  "t": 33.14,
+  "frame": 994,
+  "dur": 0.18,
+  "file": "pop.wav",
+  "vol": 0.44499999999999995,
+  "name": "nuit 6 : un point plus près"
+ },
+ {
+  "id": "pop16",
+  "t": 33.323,
+  "frame": 1000,
+  "dur": 0.18,
+  "file": "pop.wav",
+  "vol": 0.49,
+  "name": "nuit 7 : un point plus près"
+ },
+ {
+  "id": "pop17",
+  "t": 33.48,
+  "frame": 1004,
+  "dur": 0.18,
+  "file": "pop.wav",
+  "vol": 0.535,
+  "name": "nuit 8 : un point plus près"
+ },
+ {
+  "id": "pop18",
+  "t": 33.609,
+  "frame": 1008,
+  "dur": 0.18,
+  "file": "pop.wav",
+  "vol": 0.58,
+  "name": "nuit 9 : un point plus près"
+ },
+ {
+  "id": "pop19",
+  "t": 33.704,
+  "frame": 1011,
+  "dur": 0.18,
+  "file": "pop.wav",
+  "vol": 0.625,
+  "name": "nuit 10 : un point plus près"
+ },
+ {
+  "id": "pop20",
+  "t": 33.75,
+  "frame": 1013,
+  "dur": 0.18,
+  "file": "pop.wav",
+  "vol": 0.6699999999999999,
+  "name": "nuit 11 : un point plus près"
+ },
+ {
+  "id": "hit03",
+  "t": 41.29,
+  "frame": 1239,
+  "dur": 0.22,
+  "file": "flop.wav",
+  "vol": 0.9,
+  "name": "la voix coupe : l'horloge flippe"
+ },
+ {
+  "id": "step00",
+  "t": 42.19,
+  "frame": 1266,
+  "dur": 0.45,
+  "file": "step.wav",
+  "vol": 1,
+  "name": "pas 1"
+ },
+ {
+  "id": "step01",
+  "t": 42.99,
+  "frame": 1290,
+  "dur": 0.45,
+  "file": "step.wav",
+  "vol": 1,
+  "name": "pas 2"
+ },
+ {
+  "id": "step02",
+  "t": 43.79,
+  "frame": 1314,
+  "dur": 0.45,
+  "file": "step.wav",
+  "vol": 1,
+  "name": "pas 3"
+ },
+ {
+  "id": "step03",
+  "t": 45.19,
+  "frame": 1356,
+  "dur": 0.7,
+  "file": "step_heavy.wav",
+  "vol": 1,
+  "name": "le quatrième pas, dans la pièce"
+ },
+ {
+  "id": "slide26",
+  "t": 45.99,
+  "frame": 1380,
+  "dur": 0.7,
+  "file": "whoosh.wav",
+  "vol": 0.25,
+  "name": "les yeux s'ouvrent"
+ }
+]

@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+        #root { position: absolute; inset: 0; pointer-events: none; }
+        #clock-svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+      </style>
+      <div id="root" data-composition-id="counter" data-width="1080" data-height="1920"></div>
+      <script>
+        (function () {
+          // Fil rouge : l'heure (ambre) + « NUIT n ». Gros au début et à 03:11, petit entre les deux.
+          // Chaque état (heure, label, taille, opacité) est un groupe allumé/éteint par tl.set : rien ne dépend d'un callback (seek-safe).
+          const L = window.LS, w = L.w, T = window.LS_TIMELINE;
+          const root = document.querySelector('[data-composition-id="counter"]');
+          const AM = "#F5B85A", CREAM = "#F1EDE4";
+          const D = 106, C = 54, SIZE = 176;                       // cellules fixes (pas de gigue des chiffres)
+          function glyphs(str, size) {
+            const k = size / SIZE, d = D * k, c = C * k;
+            const cells = str.split("").map((ch) => (ch === ":" ? c : d));
+            const total = cells.reduce((a, b) => a + b, 0);
+            let x = 540 - total / 2, out = "";
+            str.split("").forEach((ch, i) => { out += '<tspan x="' + (x + cells[i] / 2).toFixed(1) + '">' + ch + "</tspan>"; x += cells[i]; });
+            return out;
+          }
+          root.innerHTML =
+            '<svg id="clock-svg" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg" data-layout-allow-overflow>' +
+            '<defs><filter id="cShadow" x="-20%" y="-50%" width="140%" height="200%"><feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000" flood-opacity=".55"/></filter></defs>' +
+            '<g id="cwrap"><g id="states"></g></g>' +
+            '<circle id="flipRing" cx="540" cy="285" r="120" fill="none" stroke="' + AM + '" stroke-width="8" opacity="0"/></svg>';
+          const wrap = root.querySelector("#cwrap"), states = root.querySelector("#states"), ringEl = root.querySelector("#flipRing");
+          gsap.set(ringEl, { svgOrigin: "540 285" });
+          const tl = gsap.timeline({ paused: true });
+          const SC = (id) => T.scenes[id].start;
+
+          // --- planning : [instant, heure, label, mode, opacité]
+          const list = [];
+          const push = (t, time, label, mode, op) => list.push([t, time, label, mode, op === undefined ? 1 : op]);
+          push(0, "03:11", "DEPUIS 21 NUITS", "big");
+          push(w("L01", 11), "03:12", "DEPUIS 21 NUITS", "big");
+          push(SC("p2"), "03:12", "NUIT 21", "small");
+          push(SC("p6"), "23:47", "NUIT 1", "small");
+          push(SC("p7"), "03:12", "NUIT 1", "small");
+          push(w("L06", 9), "03:12", "NUIT 1", "small", 0.4);                 // « un silence » : le compteur s'efface presque
+          push(SC("p8"), "03:12", "NUIT 1", "small");
+          const r0 = w("L07", 4), r1 = w("L07", 7);                          // « Onze nuits de suite » : NUIT 1 → 11 en défilement
+          for (let n = 2; n <= 11; n++) push(r0 + ((r1 - r0) * (n - 2)) / 9, "03:12", "NUIT " + n, "small");
+          push(SC("p11"), "03:11", "NUIT 12", "big");
+          const cut = w("L10", "end");
+          push(cut, "03:12", "NUIT 12", "big");                              // la voix coupe : l'horloge flippe
+          const gone = cut + 0.42;
+          push(gone, "", "", "big", 0);                                      // noir : plus rien en haut
+
+          // --- éléments
+          const mk = (tag, attrs) => { const e = document.createElementNS("http://www.w3.org/2000/svg", tag); for (const k in attrs) e.setAttribute(k, attrs[k]); return e; };
+          list.forEach((st, i) => {
+            const [t, time, label, mode, op] = st;
+            const g = mk("g", { opacity: "0" });
+            if (time) {
+              const big = mode === "big", size = big ? SIZE : 70, y = big ? 330 : 250;
+              const tx = mk("text", { y: String(y), "text-anchor": "middle", "font-family": "Nunito", "font-weight": "900", "font-size": String(size), fill: AM, "letter-spacing": big ? "4" : "2", filter: "url(#cShadow)" });
+              tx.innerHTML = glyphs(time, size);
+              g.appendChild(tx);
+              const lb = mk("text", { x: "540", y: big ? "179" : "292", "text-anchor": "middle", "font-family": "Nunito", "font-weight": "800", "font-size": big ? "27" : "20", "letter-spacing": big ? "8" : "6", fill: CREAM, "fill-opacity": big ? ".8" : ".6" });
+              lb.textContent = label;
+              g.appendChild(lb);
+            }
+            states.appendChild(g);
+            st.el = g;
+            const next = list[i + 1];
+            if (op > 0) { if (t <= 0.001) gsap.set(g, { opacity: op }); else tl.set(g, { opacity: op }, t); }
+            if (next) tl.set(g, { opacity: 0 }, next[0]);
+          });
+          // les anneaux de l'horloge qui flippe (03:11 → 03:12)
+          [w("L01", 11), cut].forEach((t) => tl.fromTo(ringEl, { opacity: 0.9, scale: 0.5 }, { opacity: 0, scale: 2.4, duration: 0.55, ease: "power2.out", immediateRender: false }, t));
+          window.__timelines["counter"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

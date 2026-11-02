@@ -1,0 +1,49 @@
+<!doctype html>
+<!-- GÉNÉRÉ par scripts/sync.mjs depuis src/scenes/p4-immeuble.js — éditer la source, pas ce fichier. -->
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+        #root { position: absolute; inset: 0; }
+      </style>
+      <div id="root" data-composition-id="p4" data-width="1080" data-height="1920"></div>
+      <script>
+        (function () {
+          const ID = "p4";
+          const L = window.LS;
+          const sc = L.scene(ID);
+          const A = L.art(ID + "-");
+          const root = document.querySelector('[data-composition-id="p4"]');
+          const tl = gsap.timeline({ paused: true });
+          const w = sc.w;
+          // PLAN 4 — « Au-dessus de moi. Je suis au dernier étage. » Coupe de l'immeuble : seul le dernier étage est allumé. Des pas tapent sur la dalle du toit
+          // (empreintes + anneaux), un chemin de points relie le bruit à la chambre.
+          const AM = L.C.amber, O = "540 1140";
+          const world = A.bg() + A.facade("fc") +
+            A.foot("f1", 430, 700, 0, 0.55) + A.foot("f2", 600, 700, 0, 0.55) + A.ring("r1", 430, 722, 70) + A.ring("r2", 430, 722, 130, AM, 4) + A.ring("r3", 600, 722, 70) +
+            A.dots("down", [[430, 750], [440, 790], [470, 800], [560, 812]], { step: 22, r: 6, color: AM, opacity: 0.85 }) +
+            A.pill("pAu", 220, 600, "au-dessus de moi", 430, 700, { size: 36, dot: AM }) + A.pill("pDe", 720, 1060, "dernier étage", 650, 820, { size: 36 });
+          const S = L.stage(root, ID, world, "");
+          gsap.set(S.cam, { scale: 1, svgOrigin: O });
+          tl.to(S.cam, { scale: 1.07, duration: sc.end - sc.start, ease: "none" }, 0);
+          const stomp = (f, r1, r2, t) => {
+            tl.fromTo(S.$(f), { opacity: 0, scale: 1.4 }, { opacity: 1, scale: 1, duration: 0.12, ease: "power3.in" }, t);
+            tl.to(S.$(f), { opacity: 0.35, duration: 0.5 }, t + 0.45);
+            [r1, r2].forEach((r, i) => r && tl.fromTo(S.$(r), { opacity: 0.8, scale: 0.4 }, { opacity: 0, scale: 1.8, duration: 0.7, ease: "power2.out", immediateRender: false }, t + 0.1 + i * 0.12));
+          };
+          const a = w("L03", 0), b = w("L03", 1);
+          stomp("f1", "r1", "r2", a);
+          stomp("f2", "r3", null, a + 0.42);
+          stomp("f1", "r1", "r2", a + 0.84);
+          L.pill(tl, S, "pAu", b + 0.05);
+          L.drawDots(tl, S.$("down"), w("L03", 3) - 0.05, 0.7, { ir: true });
+          L.pill(tl, S, "pDe", w("L03", 6));
+          tl.fromTo(S.$("fc-win"), { opacity: 0.95 }, { opacity: 0.6, duration: 0.08, yoyo: true, repeat: 3, ease: "none", immediateRender: false }, w("L03", 7));
+
+          window.__timelines[ID] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

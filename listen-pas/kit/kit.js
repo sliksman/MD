@@ -155,6 +155,33 @@
       <ellipse cx="470" cy="1345" rx="60" ry="40" fill="url(#${P}gSkin)"/></g>`;
     // téléphone qui voyage entre la main et la table (dos du téléphone ; le groupe name se translate, name-in tourne/grossit autour de son centre)
     A.flyer = (name) => `<g id="${P}${name}" opacity="0"><g id="${P}${name}-in"><rect x="-72" y="-128" width="144" height="256" rx="26" fill="#0b0d1a" stroke="#9cc8ff" stroke-opacity=".9" stroke-width="5" filter="url(#${P}fGlowS)"/><rect x="-52" y="-108" width="38" height="38" rx="10" fill="#1d2140"/></g></g>`;
+    // ---- « Des pas » : empreintes, anneaux, formes d'onde, immeuble, pièce ----
+    // empreinte (semelle + talon, vue de dessus) ; data-ox/oy = centre, épinglé par stage()
+    A.foot = (name, x, y, rot = 0, k = 1, col = C.amber) => `<g id="${P}${name}" data-ox="${x}" data-oy="${y}" opacity="0"><g transform="translate(${x} ${y}) rotate(${rot}) scale(${k})" filter="${u("fGlowS")}"><ellipse cx="0" cy="-34" rx="30" ry="52" fill="${col}"/><ellipse cx="0" cy="48" rx="22" ry="26" fill="${col}"/></g></g>`;
+    A.ring = (name, x, y, r, col = C.amber, w = 5) => `<circle id="${P}${name}" data-ox="${x}" data-oy="${y}" cx="${x}" cy="${y}" r="${r}" fill="none" stroke="${col}" stroke-width="${w}" opacity="0"/>`;
+    // forme d'onde : bruit de fond + pics {x, h, w} ; draw:true → tracé progressif (strokeDashoffset L → 0), data-len = longueur
+    A.wave = (name, x0, x1, y, spikes = [], o = {}) => {
+      const step = o.step || 7, noise = o.noise ?? 5; let k = o.seed || 3; const pts = [];
+      const rnd = () => ((k = (k * 9301 + 49297) % 233280) / 233280);
+      for (let x = x0; x <= x1; x += step) {
+        let a = (rnd() - 0.5) * 2 * noise;
+        for (const sp of spikes) { const d = Math.abs(x - sp.x); if (d < (sp.w || 22)) a += (rnd() > 0.5 ? 1 : -1) * sp.h * (1 - d / (sp.w || 22)); }
+        pts.push([x, y + a]);
+      }
+      let len = 0; for (let i = 1; i < pts.length; i++) len += Math.hypot(pts[i][0] - pts[i - 1][0], pts[i][1] - pts[i - 1][1]);
+      const L0 = Math.ceil(len) + 2;
+      return `<polyline id="${P}${name}" data-len="${L0}" points="${pts.map((q) => q[0] + "," + q[1].toFixed(1)).join(" ")}" fill="none" stroke="${o.color || "#fff"}" stroke-width="${o.w || 4}" stroke-linejoin="round" stroke-linecap="round" opacity="${o.op ?? 0.9}"${o.draw ? ` stroke-dasharray="${L0}" stroke-dashoffset="${L0}"` : ""}/>`;
+    };
+    // façade d'immeuble en coupe : 5 étages, le dernier (top) allumé ; toit + antenne. Repère : x 250..830, y 640..1520
+    A.facade = (name, o = {}) => `<g id="${P}${name}">
+      <rect x="250" y="760" width="580" height="760" rx="14" fill="#1a1f4d" stroke="#fff" stroke-opacity=".12" stroke-width="3"/>
+      ${Array.from({ length: 5 }, (_, i) => `<line x1="250" y1="${910 + i * 152}" x2="830" y2="${910 + i * 152}" stroke="#fff" stroke-opacity=".12" stroke-width="3"/>` + [0, 1].map((j) => `<rect ${i === 0 && j === 0 ? `id="${P}${name}-win"` : ""} x="${330 + j * 260}" y="${790 + i * 152}" width="130" height="92" rx="8" fill="${i === 0 ? "#ffd28a" : "#0c0f2a"}" opacity="${i === 0 ? 0.95 : 0.9}"/>`).join("")).join("")}
+      <rect x="215" y="716" width="650" height="44" rx="10" fill="#3a4290"/><rect x="520" y="640" width="12" height="76" fill="#aab0c8"/><circle cx="526" cy="636" r="10" fill="${C.amber}"/>
+      <rect x="590" y="805" width="60" height="30" rx="8" fill="${C.cream}" opacity=".9"/><circle cx="610" cy="832" r="12" fill="${u("gSkin")}"/></g>`;
+    // chambre vue de dessus : sol, murs, porte en haut à droite ; repère : x 150..930, y 560..1500
+    A.room = (name = "room") => `<g id="${P}${name}"><rect x="150" y="560" width="780" height="940" rx="22" fill="#14183f" stroke="#fff" stroke-opacity=".10" stroke-width="4"/>
+      <rect x="700" y="540" width="180" height="40" rx="6" fill="#3a4290"/><text x="790" y="535" text-anchor="middle" font-family="Nunito" font-weight="800" font-size="24" letter-spacing="4" fill="${C.cream}" fill-opacity=".6">PORTE</text></g>`;
+
     // fond sombre et large (le hors-champ quand la caméra s'éloigne)
     A.void = () => `<rect x="-1200" y="-1200" width="3480" height="4320" fill="${C.night0}"/>`;
 
