@@ -1,7 +1,7 @@
 {
   "version": 1,
   "historyId": "16368d80-7cf5-4d9d-a586-037c74ba7986",
-  "currentRevision": "43236c43-af42-441b-aae2-565b7c748219",
+  "currentRevision": "0ee01792-4595-403f-bcc0-a9c440a4da8f",
   "pendingChanges": false,
   "files": {
     "AGENTS.md": {
@@ -101,8 +101,8 @@
       "content": "/root/.cache/hyperframes/history/16368d80-7cf5-4d9d-a586-037c74ba7986/blobs/ec/eca32bdbd6e992b35e98c9551a508b22dae5354512efd81fc582a8283ad23621"
     },
     "compositions/p3-alarme.html": {
-      "hash": "989f7544d1f6098518ef9970386354d773c19833bc353171f79af512c2184d91",
-      "content": "/root/.cache/hyperframes/history/16368d80-7cf5-4d9d-a586-037c74ba7986/blobs/98/989f7544d1f6098518ef9970386354d773c19833bc353171f79af512c2184d91"
+      "hash": "acd6494c352d93a640693f4d69889e73075167cd7d770b6a977397c33c92be64",
+      "content": "/root/.cache/hyperframes/history/16368d80-7cf5-4d9d-a586-037c74ba7986/blobs/ac/acd6494c352d93a640693f4d69889e73075167cd7d770b6a977397c33c92be64"
     },
     "compositions/p4-regle2.html": {
       "hash": "91b37464a524653a892f5d6aa0653783e17234f6097451bee4dc623c6f7338be",
@@ -177,8 +177,8 @@
       "content": "/root/.cache/hyperframes/history/16368d80-7cf5-4d9d-a586-037c74ba7986/blobs/39/3999bb8c98214171033a26ff65a8023f2c9411ee28e3372067fcb1b3edeb3ec7"
     },
     "src/scenes/p3-alarme.js": {
-      "hash": "18ba06178b2a8f13fb08dd9f3f483271d4151c155380103cc44bdf973d7b7353",
-      "content": "/root/.cache/hyperframes/history/16368d80-7cf5-4d9d-a586-037c74ba7986/blobs/18/18ba06178b2a8f13fb08dd9f3f483271d4151c155380103cc44bdf973d7b7353"
+      "hash": "b00ef60a2951ae01ed1f58503401a811b3f55225fd5ec4bb5144add5dbd948a2",
+      "content": "/root/.cache/hyperframes/history/16368d80-7cf5-4d9d-a586-037c74ba7986/blobs/b0/b00ef60a2951ae01ed1f58503401a811b3f55225fd5ec4bb5144add5dbd948a2"
     },
     "src/scenes/p4-regle2.js": {
       "hash": "26244a1dd8685d10745e4a19fbf0fe6fc21cae93d58f3fa0512018d80b977862",
@@ -894,6 +894,25 @@
         "out/listen-fin-sons-separes.zip": {
           "before": "/root/.cache/hyperframes/history/16368d80-7cf5-4d9d-a586-037c74ba7986/blobs/c0/c045f40b43a91eb458fa699ebaf9606a1f581024748076be5abd20b565223358",
           "after": "/root/.cache/hyperframes/history/16368d80-7cf5-4d9d-a586-037c74ba7986/blobs/15/1521ed06c7b2bb1480d9cb573d2327dd80cfc6a882fd83dbdb3be499d72f4bf4"
+        }
+      }
+    },
+    "0ee01792-4595-403f-bcc0-a9c440a4da8f": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1793634244009,
+      "endedAt": 1793634244040,
+      "files": {
+        "compositions/p3-alarme.html": {
+          "before": "/root/.cache/hyperframes/history/16368d80-7cf5-4d9d-a586-037c74ba7986/blobs/98/989f7544d1f6098518ef9970386354d773c19833bc353171f79af512c2184d91",
+          "after": "/root/.cache/hyperframes/history/16368d80-7cf5-4d9d-a586-037c74ba7986/blobs/ac/acd6494c352d93a640693f4d69889e73075167cd7d770b6a977397c33c92be64"
+        },
+        "src/scenes/p3-alarme.js": {
+          "before": "/root/.cache/hyperframes/history/16368d80-7cf5-4d9d-a586-037c74ba7986/blobs/18/18ba06178b2a8f13fb08dd9f3f483271d4151c155380103cc44bdf973d7b7353",
+          "after": "/root/.cache/hyperframes/history/16368d80-7cf5-4d9d-a586-037c74ba7986/blobs/b0/b00ef60a2951ae01ed1f58503401a811b3f55225fd5ec4bb5144add5dbd948a2"
         }
       }
     }
@@ -4671,15 +4690,15 @@
   },
   "renders": {
     "latest": {
-      "id": "1b47a648-9f78-4774-8805-0211c5aff3ed",
-      "completedAt": 1793632571832,
+      "id": "6b3fab70-e0a0-465d-9b34-63b2be5c0a5c",
+      "completedAt": 1793634741939,
       "output": "/home/user/MD/listen-fin/out/fin-render.mp4",
       "status": "completed",
-      "revision": "00a01350-1d27-4d91-bf0f-c4da4df83ae1"
+      "revision": "0ee01792-4595-403f-bcc0-a9c440a4da8f"
     },
     "retainedRevisions": [
-      "00a01350-1d27-4d91-bf0f-c4da4df83ae1",
-      "3c9d57c9-249d-4486-95ac-3cd480e7d628"
+      "0ee01792-4595-403f-bcc0-a9c440a4da8f",
+      "00a01350-1d27-4d91-bf0f-c4da4df83ae1"
     ]
   },
   "pendingArtifactCleanup": []
