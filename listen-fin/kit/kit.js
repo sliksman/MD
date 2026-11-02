@@ -621,7 +621,7 @@
     const P = id + "-";
     root.innerHTML = `<div class="ls-stage" id="${P}stage"><div class="ls-tilt" id="${P}tilt">
       <svg viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" data-layout-allow-overflow>${defs(P)}
-      <g id="${P}cam" data-layout-allow-overflow>${world}</g><g id="${P}hud">${hud || ""}</g>${art(P).vignette()}${art(P).grain()}</svg></div></div>`;
+      <g id="${P}cam" data-layout-allow-overflow>${world}</g><g id="${P}hud">${hud || ""}</g>${art(P).vignette()}</svg></div></div>`;
     const $ = (name) => root.querySelector("#" + P + name);
     const lidEls = root.querySelectorAll('[id$="-lidL"],[id$="-lidR"]');
     root.querySelectorAll("[data-ox]").forEach((el) => gsap.set(el, { svgOrigin: el.getAttribute("data-ox") + " " + el.getAttribute("data-oy") }));   // origine épinglée une fois pour toutes
