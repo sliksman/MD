@@ -25,14 +25,14 @@
             ${A.wave("rpw", 208, 252, 750, [{ x: 230, h: 14, w: 12 }], { step: 4, noise: 3, color: "#9cc8ff", w: 3, op: 1 })}<circle id="${A.id("rdot")}" cx="230" cy="708" r="7" fill="${AM}" filter="url(#${A.id("fGlowS")})"/></g>`;
           const world = A.void() + A.bg() + `<g opacity=".72">${A.bedTop({ clock: ["03:11", "03:12"] })}</g>` + `<rect id="${A.id("dk")}" x="-1200" y="-1200" width="3480" height="4320" fill="#04050d" opacity="0"/>` + recPhone;
           const gBk = `<g id="${A.id("gBk")}" opacity="0"><rect x="-100" y="-100" width="1280" height="2120" fill="#030409"/></g>`;   // NOIR TOTAL : le script dit « Noir », les pas ne s'entendent que
-          // Gros plan du visage du personnage (même dessin que partout : tête ronde, yeux ronds blancs à petite pupille, paupière couleur peau),
-          // paupières closes du noir de la chambre jusqu'à l'ouverture : un seul long zoom centré sur l'axe des yeux (540, 960)
-          const SKIN = "#d9ad8d", FR = 64, EX = 125;
+          // Gros plan des yeux seuls (pas de visage), au dessin des personnages : ronds blancs à petite pupille, paupière qui se lève, « ︶ » quand ils sont fermés.
+          // Noir de la chambre jusqu'à l'ouverture, un seul long zoom centré sur l'axe des yeux (540, 960).
+          const PATCH = "#2d2229", FR = 100, EX = 170;
           const gEy = `<g id="${A.id("gEy")}" opacity="0"><rect x="-100" y="-100" width="1280" height="2120" fill="#030409"/><g id="${A.id("ez")}">
-            <rect x="140" y="640" width="800" height="560" rx="200" fill="url(#${A.id("gPillow")})" opacity=".8"/>
-            <circle cx="540" cy="980" r="380" fill="${SKIN}"/>${A.eyes("cy", 540 - EX, 540 + EX, 960, FR).replace(/#dcb391/g, SKIN)}
-            <circle id="${A.id("gl1")}" cx="${540 - EX + 24}" cy="935" r="9" fill="${AM}" filter="url(#${A.id("fGlowS")})" opacity="0"/><circle id="${A.id("gl2")}" cx="${540 + EX + 24}" cy="935" r="9" fill="${AM}" filter="url(#${A.id("fGlowS")})" opacity="0"/>
-            <rect x="-100" y="-100" width="1280" height="2120" fill="#04050d" opacity=".5" id="${A.id("gDim")}"/></g></g>`;
+            <ellipse cx="${540 - EX}" cy="960" rx="${FR * 1.9}" ry="${FR * 1.45}" fill="${PATCH}"/><ellipse cx="${540 + EX}" cy="960" rx="${FR * 1.9}" ry="${FR * 1.45}" fill="${PATCH}"/>
+            ${A.eyes("cy", 540 - EX, 540 + EX, 960, FR).replace(/#dcb391/g, PATCH).replace(/#5b4636/g, "#a8836d")}
+            <circle id="${A.id("gl1")}" cx="${540 - EX + 38}" cy="925" r="12" fill="${AM}" filter="url(#${A.id("fGlowS")})" opacity="0"/><circle id="${A.id("gl2")}" cx="${540 + EX + 38}" cy="925" r="12" fill="${AM}" filter="url(#${A.id("fGlowS")})" opacity="0"/>
+            <rect x="-100" y="-100" width="1280" height="2120" fill="#04050d" opacity=".35" id="${A.id("gDim")}"/></g></g>`;
           const S = L.stage(root, ID, world, gBk + gEy);
           gsap.set(S.$("phone"), { opacity: 0 });
           gsap.set(S.$("eyes-open"), { opacity: 0 }); gsap.set(S.$("eyes-shut"), { opacity: 1 }); gsap.set([S.$("eyes-lidL"), S.$("eyes-lidR")], { opacity: 0 });
@@ -53,7 +53,7 @@
           gsap.set(S.$("cy-shut"), { opacity: 1 });
           tl.set(S.$("cy-shut"), { opacity: 0 }, tE);
           tl.to([S.$("cy-lidL"), S.$("cy-lidR")], { scaleY: 0, duration: 0.55, ease: "power2.out" }, tE);
-          tl.to(S.$("gDim"), { opacity: 0.2, duration: 0.6 }, tE);
+          tl.to(S.$("gDim"), { opacity: 0, duration: 0.6 }, tE);
           [1, 2].forEach((n) => tl.fromTo(S.$("gl" + n), { opacity: 0 }, { opacity: 1, duration: 0.3 }, tE + 0.4));
 
           window.__timelines[ID] = tl;
