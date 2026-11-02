@@ -6,15 +6,17 @@ const recPhone = `<g id="${A.id("rp")}"><rect x="195" y="680" width="70" height=
   ${A.wave("rpw", 208, 252, 750, [{ x: 230, h: 14, w: 12 }], { step: 4, noise: 3, color: "#9cc8ff", w: 3, op: 1 })}<circle id="${A.id("rdot")}" cx="230" cy="708" r="7" fill="${AM}" filter="url(#${A.id("fGlowS")})"/></g>`;
 const world = A.void() + A.bg() + `<g opacity=".72">${A.bedTop({ clock: ["03:11", "03:12"] })}</g>` + `<rect id="${A.id("dk")}" x="-1200" y="-1200" width="3480" height="4320" fill="#04050d" opacity="0"/>` + recPhone;
 const gBk = `<g id="${A.id("gBk")}" opacity="0"><rect x="-100" y="-100" width="1280" height="2120" fill="#030409"/></g>`;   // NOIR TOTAL : le script dit « Noir », les pas ne s'entendent que
-const eye = (cx, n) => `<g id="${A.id("eye" + n)}" data-ox="${cx}" data-oy="960"><ellipse cx="${cx}" cy="960" rx="185" ry="135" fill="#e9e6f2"/><circle cx="${cx}" cy="960" r="82" fill="#2a1d3a"/><circle cx="${cx}" cy="960" r="30" fill="#05060c"/>
-  <circle id="${A.id("gl" + n)}" cx="${cx + 27}" cy="932" r="14" fill="${AM}" filter="url(#${A.id("fGlowS")})" opacity="0"/><path d="M${cx - 185} 960 Q${cx} 812 ${cx + 185} 960" fill="none" stroke="#030409" stroke-width="12" stroke-linecap="round"/></g>`;
-// Gros plan du visage, paupières closes, du noir de la chambre jusqu'à l'ouverture : un seul long zoom centré sur l'axe des yeux (540, 960)
-const lid = (cx, n) => `<ellipse cx="${cx}" cy="975" rx="215" ry="120" fill="#2a1f26" opacity=".9"/><path id="${A.id("lid" + n)}" d="M${cx - 175} 955 Q${cx} 1020 ${cx + 175} 955" fill="none" stroke="#0a0709" stroke-width="12" stroke-linecap="round"/>`;
-const gEy = `<g id="${A.id("gEy")}" opacity="0"><rect x="-100" y="-100" width="1280" height="2120" fill="#030409"/><g id="${A.id("ez")}"><ellipse cx="540" cy="960" rx="640" ry="330" fill="#1b1318"/>${lid(325, 1)}${lid(735, 2)}<g id="${A.id("eyeGrp")}" opacity="0">${eye(325, 1)}${eye(735, 2)}</g></g></g>`;
+// Gros plan du visage du personnage (même dessin que partout : tête ronde, yeux ronds blancs à petite pupille, paupière couleur peau),
+// paupières closes du noir de la chambre jusqu'à l'ouverture : un seul long zoom centré sur l'axe des yeux (540, 960)
+const SKIN = "#d9ad8d", FR = 64, EX = 125;
+const gEy = `<g id="${A.id("gEy")}" opacity="0"><rect x="-100" y="-100" width="1280" height="2120" fill="#030409"/><g id="${A.id("ez")}">
+  <rect x="140" y="640" width="800" height="560" rx="200" fill="url(#${A.id("gPillow")})" opacity=".8"/>
+  <circle cx="540" cy="980" r="380" fill="${SKIN}"/>${A.eyes("cy", 540 - EX, 540 + EX, 960, FR).replace(/#dcb391/g, SKIN)}
+  <circle id="${A.id("gl1")}" cx="${540 - EX + 24}" cy="935" r="9" fill="${AM}" filter="url(#${A.id("fGlowS")})" opacity="0"/><circle id="${A.id("gl2")}" cx="${540 + EX + 24}" cy="935" r="9" fill="${AM}" filter="url(#${A.id("fGlowS")})" opacity="0"/>
+  <rect x="-100" y="-100" width="1280" height="2120" fill="#04050d" opacity=".5" id="${A.id("gDim")}"/></g></g>`;
 const S = L.stage(root, ID, world, gBk + gEy);
 gsap.set(S.$("phone"), { opacity: 0 });
 gsap.set(S.$("eyes-open"), { opacity: 0 }); gsap.set(S.$("eyes-shut"), { opacity: 1 }); gsap.set([S.$("eyes-lidL"), S.$("eyes-lidR")], { opacity: 0 });
-gsap.set([S.$("eye1"), S.$("eye2")], { scaleY: 0.03 });
 gsap.set(S.cam, { scale: 1.38, svgOrigin: O });
 const tC = w("L10", "end"), tS = tC + 0.38, tE = tC + 4.7;
 tl.to(S.cam, { scale: 1.5, duration: tS, ease: "none" }, 0);
@@ -27,7 +29,10 @@ tl.to(S.$("dk"), { opacity: 0.92, duration: 0.3, ease: "power2.in" }, tC);
 gsap.set(S.$("ez"), { scale: 0.8, svgOrigin: "540 960" });
 tl.set(S.$("gEy"), { opacity: 1 }, tS);
 tl.to(S.$("ez"), { scale: 1.12, duration: tE + 0.9 - tS, ease: "none" }, tS);
-// DERNIER PLAN : les yeux s'ouvrent
-tl.set(S.$("eyeGrp"), { opacity: 1 }, tE);
-tl.to([S.$("lid1"), S.$("lid2")], { opacity: 0, duration: 0.1 }, tE);
-[1, 2].forEach((n) => { tl.fromTo(S.$("eye" + n), { scaleY: 0.03 }, { scaleY: 1, duration: 0.6, ease: "power2.out", immediateRender: false }, tE); tl.fromTo(S.$("gl" + n), { opacity: 0 }, { opacity: 1, duration: 0.3 }, tE + 0.35); });
+// DERNIER PLAN : les paupières se lèvent, les yeux s'ouvrent (un point ambre se reflète dans chaque pupille)
+gsap.set([S.$("cy-lidL"), S.$("cy-lidR")], { scaleY: 1 });
+gsap.set(S.$("cy-shut"), { opacity: 1 });
+tl.set(S.$("cy-shut"), { opacity: 0 }, tE);
+tl.to([S.$("cy-lidL"), S.$("cy-lidR")], { scaleY: 0, duration: 0.55, ease: "power2.out" }, tE);
+tl.to(S.$("gDim"), { opacity: 0.2, duration: 0.6 }, tE);
+[1, 2].forEach((n) => tl.fromTo(S.$("gl" + n), { opacity: 0 }, { opacity: 1, duration: 0.3 }, tE + 0.4));
