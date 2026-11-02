@@ -5,7 +5,7 @@ const bedG = A.bedTop({ clock: ["00:45"] });
 const world = A.void() + A.bg() + bedG +
   `<rect id="${A.id("dk")}" x="-1200" y="-1200" width="3480" height="4320" fill="#04050d" opacity=".42"/>` +
   A.heldPhone("held") + A.downPhone("dph") + A.flyer("fl");
-const gA = `<g id="${A.id("gA")}"><rect width="1080" height="1920" fill="#10132c"/>${A.alarmPhone("aph")}</g>`;
+const gA = `<g id="${A.id("gA")}"><rect width="1080" height="1920" fill="url(#${A.id("gNight")})"/><ellipse cx="540" cy="900" rx="760" ry="900" fill="url(#${A.id("gFog")})" opacity=".55"/>${A.alarmPhone("aph")}</g>`;
 const gD = `<g id="${A.id("gD")}" opacity="0"><rect x="-100" y="-100" width="1280" height="2120" fill="#070914"/>
   <rect x="190" y="700" width="700" height="440" rx="150" fill="url(#${A.id("gPillow")})" opacity=".85"/>
   <circle cx="540" cy="930" r="230" fill="url(#${A.id("gSkin")})"/>${A.eyes("eyesD", 463, 617, 905, 36)}
