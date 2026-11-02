@@ -1,7 +1,7 @@
 {
   "version": 1,
   "historyId": "16368d80-7cf5-4d9d-a586-037c74ba7986",
-  "currentRevision": "52525013-d3b8-4e2b-bc40-1c15187653ff",
+  "currentRevision": "00a01350-1d27-4d91-bf0f-c4da4df83ae1",
   "pendingChanges": false,
   "files": {
     "AGENTS.md": {
@@ -101,8 +101,8 @@
       "content": "/root/.cache/hyperframes/history/16368d80-7cf5-4d9d-a586-037c74ba7986/blobs/ec/eca32bdbd6e992b35e98c9551a508b22dae5354512efd81fc582a8283ad23621"
     },
     "compositions/p3-alarme.html": {
-      "hash": "1f775cab056aff1b20f702f438c044c9b58c1d6f666f6cad665e7edf00304dca",
-      "content": "/root/.cache/hyperframes/history/16368d80-7cf5-4d9d-a586-037c74ba7986/blobs/1f/1f775cab056aff1b20f702f438c044c9b58c1d6f666f6cad665e7edf00304dca"
+      "hash": "989f7544d1f6098518ef9970386354d773c19833bc353171f79af512c2184d91",
+      "content": "/root/.cache/hyperframes/history/16368d80-7cf5-4d9d-a586-037c74ba7986/blobs/98/989f7544d1f6098518ef9970386354d773c19833bc353171f79af512c2184d91"
     },
     "compositions/p4-regle2.html": {
       "hash": "91b37464a524653a892f5d6aa0653783e17234f6097451bee4dc623c6f7338be",
@@ -177,8 +177,8 @@
       "content": "/root/.cache/hyperframes/history/16368d80-7cf5-4d9d-a586-037c74ba7986/blobs/39/3999bb8c98214171033a26ff65a8023f2c9411ee28e3372067fcb1b3edeb3ec7"
     },
     "src/scenes/p3-alarme.js": {
-      "hash": "74d93d7e7b688e365562dea1e830cfbb73052d9e85a4d7f6d7c51df817d98d73",
-      "content": "/root/.cache/hyperframes/history/16368d80-7cf5-4d9d-a586-037c74ba7986/blobs/74/74d93d7e7b688e365562dea1e830cfbb73052d9e85a4d7f6d7c51df817d98d73"
+      "hash": "18ba06178b2a8f13fb08dd9f3f483271d4151c155380103cc44bdf973d7b7353",
+      "content": "/root/.cache/hyperframes/history/16368d80-7cf5-4d9d-a586-037c74ba7986/blobs/18/18ba06178b2a8f13fb08dd9f3f483271d4151c155380103cc44bdf973d7b7353"
     },
     "src/scenes/p4-regle2.js": {
       "hash": "26244a1dd8685d10745e4a19fbf0fe6fc21cae93d58f3fa0512018d80b977862",
@@ -856,6 +856,25 @@
         "out/listen-fin-sons-separes.zip": {
           "before": "/root/.cache/hyperframes/history/16368d80-7cf5-4d9d-a586-037c74ba7986/blobs/52/528dccff50a79e0a8a72ed732477b8897ab1c52ce8d8b00d1d8b34912368e933",
           "after": "/root/.cache/hyperframes/history/16368d80-7cf5-4d9d-a586-037c74ba7986/blobs/c0/c045f40b43a91eb458fa699ebaf9606a1f581024748076be5abd20b565223358"
+        }
+      }
+    },
+    "00a01350-1d27-4d91-bf0f-c4da4df83ae1": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1793632036124,
+      "endedAt": 1793632036149,
+      "files": {
+        "compositions/p3-alarme.html": {
+          "before": "/root/.cache/hyperframes/history/16368d80-7cf5-4d9d-a586-037c74ba7986/blobs/1f/1f775cab056aff1b20f702f438c044c9b58c1d6f666f6cad665e7edf00304dca",
+          "after": "/root/.cache/hyperframes/history/16368d80-7cf5-4d9d-a586-037c74ba7986/blobs/98/989f7544d1f6098518ef9970386354d773c19833bc353171f79af512c2184d91"
+        },
+        "src/scenes/p3-alarme.js": {
+          "before": "/root/.cache/hyperframes/history/16368d80-7cf5-4d9d-a586-037c74ba7986/blobs/74/74d93d7e7b688e365562dea1e830cfbb73052d9e85a4d7f6d7c51df817d98d73",
+          "after": "/root/.cache/hyperframes/history/16368d80-7cf5-4d9d-a586-037c74ba7986/blobs/18/18ba06178b2a8f13fb08dd9f3f483271d4151c155380103cc44bdf973d7b7353"
         }
       }
     }
