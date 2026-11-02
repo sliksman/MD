@@ -2268,15 +2268,15 @@
   },
   "renders": {
     "latest": {
-      "id": "206e0608-f040-40c4-8aee-9cea521d92b2",
-      "completedAt": 1793630968854,
+      "id": "176f2a6d-d7b3-410a-9531-092e43f9ec23",
+      "completedAt": 1793631460854,
       "output": "/home/user/MD/listen-pas/out/pas-render.mp4",
       "status": "completed",
-      "revision": "acb6c059-dfdd-46b1-a263-6e2d1238361b"
+      "revision": "1074cd0b-c3b5-470e-a0a8-ca37dc958357"
     },
     "retainedRevisions": [
-      "acb6c059-dfdd-46b1-a263-6e2d1238361b",
-      "8ca6e1a3-0168-4419-87de-01bccc9e229b"
+      "1074cd0b-c3b5-470e-a0a8-ca37dc958357",
+      "acb6c059-dfdd-46b1-a263-6e2d1238361b"
     ]
   },
   "pendingArtifactCleanup": []
