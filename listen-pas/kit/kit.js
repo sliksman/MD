@@ -180,7 +180,7 @@
       <rect x="590" y="805" width="60" height="30" rx="8" fill="${C.cream}" opacity=".9"/><circle cx="610" cy="832" r="12" fill="${u("gSkin")}"/></g>`;
     // chambre vue de dessus : sol, murs, porte en haut à droite ; repère : x 150..930, y 560..1500
     A.room = (name = "room") => `<g id="${P}${name}"><rect x="150" y="560" width="780" height="940" rx="22" fill="#14183f" stroke="#fff" stroke-opacity=".10" stroke-width="4"/>
-      <rect x="700" y="540" width="180" height="40" rx="6" fill="#3a4290"/><text x="790" y="535" text-anchor="middle" font-family="Nunito" font-weight="800" font-size="24" letter-spacing="4" fill="${C.cream}" fill-opacity=".6">PORTE</text></g>`;
+      <rect x="700" y="540" width="180" height="40" rx="6" fill="#3a4290"/></g>`;
 
     // fond sombre et large (le hors-champ quand la caméra s'éloigne)
     A.void = () => `<rect x="-1200" y="-1200" width="3480" height="4320" fill="${C.night0}"/>`;
