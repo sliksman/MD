@@ -109,8 +109,8 @@
  },
  {
   "id": "slide20",
-  "t": 4.644,
-  "frame": 139,
+  "t": 4.444,
+  "frame": 133,
   "dur": 0.7,
   "file": "whoosh.wav",
   "vol": 0.3,
@@ -118,8 +118,8 @@
  },
  {
   "id": "slide21",
-  "t": 4.824,
-  "frame": 145,
+  "t": 4.624,
+  "frame": 139,
   "dur": 0.7,
   "file": "whoosh.wav",
   "vol": 0.3,
@@ -217,8 +217,8 @@
  },
  {
   "id": "pop06",
-  "t": 12.9,
-  "frame": 387,
+  "t": 12.1,
+  "frame": 363,
   "dur": 0.18,
   "file": "pop.wav",
   "vol": 0.5,
