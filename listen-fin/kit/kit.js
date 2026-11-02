@@ -64,7 +64,8 @@
     A.u = u;
     A.id = (name) => P + name;
 
-    A.bg = () => `<rect width="1080" height="1920" fill="${u("gNight")}"/><ellipse cx="540" cy="900" rx="760" ry="900" fill="${u("gFog")}" opacity=".55"/>`;
+    // le fond (dégradé + halo) est dessiné par stage(), FIXE à l'écran, sous la caméra : un fond dans le décor est agrandi par les zooms et change de luminosité d'un plan à l'autre
+    A.bg = () => "";
     A.floorTop = () => {
       let l = `<rect x="-200" y="-200" width="1480" height="2320" fill="#171b40"/>`;
       for (let i = -2; i < 11; i++) l += `<rect x="${i * 120}" y="-200" width="118" height="2320" fill="${Math.abs(i) % 2 ? "#1a1f47" : "#181c42"}"/>`;
@@ -156,7 +157,7 @@
     // téléphone qui voyage entre la main et la table (dos du téléphone ; le groupe name se translate, name-in tourne/grossit autour de son centre)
     A.flyer = (name) => `<g id="${P}${name}" opacity="0"><g id="${P}${name}-in"><rect x="-72" y="-128" width="144" height="256" rx="26" fill="#0b0d1a" stroke="#9cc8ff" stroke-opacity=".9" stroke-width="5" filter="url(#${P}fGlowS)"/><rect x="-52" y="-108" width="38" height="38" rx="10" fill="#1d2140"/></g></g>`;
     // fond sombre et large (le hors-champ quand la caméra s'éloigne)
-    A.void = () => `<rect x="-1200" y="-1200" width="3480" height="4320" fill="${C.night0}"/>`;
+    A.void = () => "";
 
     // points lumineux le long d'une polyligne ; chaque point est un <circle class="dot">
     A.dots = (name, pts, o = {}) => {
@@ -620,7 +621,7 @@
   function stage(root, id, world, hud) {
     const P = id + "-";
     root.innerHTML = `<div class="ls-stage" id="${P}stage"><div class="ls-tilt" id="${P}tilt">
-      <svg viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" data-layout-allow-overflow>${defs(P)}
+      <svg viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" data-layout-allow-overflow>${defs(P)}<rect width="1080" height="1920" fill="url(#${P}gNight)"/><ellipse cx="540" cy="900" rx="760" ry="900" fill="url(#${P}gFog)" opacity=".55"/>
       <g id="${P}cam" data-layout-allow-overflow>${world}</g><g id="${P}hud">${hud || ""}</g>${art(P).vignette()}</svg></div></div>`;
     const $ = (name) => root.querySelector("#" + P + name);
     const lidEls = root.querySelectorAll('[id$="-lidL"],[id$="-lidR"]');
