@@ -27,7 +27,9 @@
           const gBk = `<g id="${A.id("gBk")}" opacity="0"><rect x="-100" y="-100" width="1280" height="2120" fill="#030409"/></g>`;   // NOIR TOTAL : le script dit « Noir », les pas ne s'entendent que
           const eye = (cx, n) => `<g id="${A.id("eye" + n)}" data-ox="${cx}" data-oy="960"><ellipse cx="${cx}" cy="960" rx="185" ry="135" fill="#e9e6f2"/><circle cx="${cx}" cy="960" r="82" fill="#2a1d3a"/><circle cx="${cx}" cy="960" r="30" fill="#05060c"/>
             <circle id="${A.id("gl" + n)}" cx="${cx + 27}" cy="932" r="14" fill="${AM}" filter="url(#${A.id("fGlowS")})" opacity="0"/><path d="M${cx - 185} 960 Q${cx} 812 ${cx + 185} 960" fill="none" stroke="#030409" stroke-width="12" stroke-linecap="round"/></g>`;
-          const gEy = `<g id="${A.id("gEy")}" opacity="0"><rect x="-100" y="-100" width="1280" height="2120" fill="#030409"/>${eye(325, 1)}${eye(735, 2)}</g>`;
+          // Gros plan du visage, paupières closes, du noir de la chambre jusqu'à l'ouverture : un seul long zoom centré sur l'axe des yeux (540, 960)
+          const lid = (cx, n) => `<ellipse cx="${cx}" cy="975" rx="215" ry="120" fill="#2a1f26" opacity=".9"/><path id="${A.id("lid" + n)}" d="M${cx - 175} 955 Q${cx} 1020 ${cx + 175} 955" fill="none" stroke="#0a0709" stroke-width="12" stroke-linecap="round"/>`;
+          const gEy = `<g id="${A.id("gEy")}" opacity="0"><rect x="-100" y="-100" width="1280" height="2120" fill="#030409"/><g id="${A.id("ez")}"><ellipse cx="540" cy="960" rx="640" ry="330" fill="#1b1318"/>${lid(325, 1)}${lid(735, 2)}<g id="${A.id("eyeGrp")}" opacity="0">${eye(325, 1)}${eye(735, 2)}</g></g></g>`;
           const S = L.stage(root, ID, world, gBk + gEy);
           gsap.set(S.$("phone"), { opacity: 0 });
           gsap.set(S.$("eyes-open"), { opacity: 0 }); gsap.set(S.$("eyes-shut"), { opacity: 1 }); gsap.set([S.$("eyes-lidL"), S.$("eyes-lidR")], { opacity: 0 });
@@ -40,10 +42,13 @@
           // la voix coupe : l'horloge flippe (aussi en haut), la chambre s'éteint
           tl.set(S.$("clk-0"), { opacity: 0 }, tC).set(S.$("clk-1"), { opacity: 1 }, tC);
           tl.to(S.$("dk"), { opacity: 0.92, duration: 0.3, ease: "power2.in" }, tC);
-          // coupe sèche : NOIR TOTAL. Aucune image pendant les quatre pas (bruitages seuls : trois pas, un silence, puis un quatrième, plus lourd, dans la pièce)
-          tl.set(S.$("gBk"), { opacity: 1 }, tS);
+          // coupe sèche sur le gros plan des yeux fermés (plus de noir : l'image reste vivante pendant les quatre pas) + long zoom centré
+          gsap.set(S.$("ez"), { scale: 0.8, svgOrigin: "540 960" });
+          tl.set(S.$("gEy"), { opacity: 1 }, tS);
+          tl.to(S.$("ez"), { scale: 1.12, duration: tE + 0.9 - tS, ease: "none" }, tS);
           // DERNIER PLAN : les yeux s'ouvrent
-          tl.set(S.$("gEy"), { opacity: 1 }, tE);
+          tl.set(S.$("eyeGrp"), { opacity: 1 }, tE);
+          tl.to([S.$("lid1"), S.$("lid2")], { opacity: 0, duration: 0.1 }, tE);
           [1, 2].forEach((n) => { tl.fromTo(S.$("eye" + n), { scaleY: 0.03 }, { scaleY: 1, duration: 0.6, ease: "power2.out", immediateRender: false }, tE); tl.fromTo(S.$("gl" + n), { opacity: 0 }, { opacity: 1, duration: 0.3 }, tE + 0.35); });
 
           window.__timelines[ID] = tl;
