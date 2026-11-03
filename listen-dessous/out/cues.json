@@ -1,0 +1,380 @@
+[
+ {
+  "id": "lea00",
+  "t": 0.9,
+  "frame": 27,
+  "dur": 1.6,
+  "file": "breath.wav",
+  "vol": 0.22,
+  "name": "respiration de Léa (disparaît à « respirer… non »)"
+ },
+ {
+  "id": "lea01",
+  "t": 3.8,
+  "frame": 114,
+  "dur": 1.6,
+  "file": "breath.wav",
+  "vol": 0.22,
+  "name": "respiration de Léa (disparaît à « respirer… non »)"
+ },
+ {
+  "id": "lea02",
+  "t": 6.7,
+  "frame": 201,
+  "dur": 1.6,
+  "file": "breath.wav",
+  "vol": 0.22,
+  "name": "respiration de Léa (disparaît à « respirer… non »)"
+ },
+ {
+  "id": "lea03",
+  "t": 9.6,
+  "frame": 288,
+  "dur": 1.6,
+  "file": "breath.wav",
+  "vol": 0.22,
+  "name": "respiration de Léa (disparaît à « respirer… non »)"
+ },
+ {
+  "id": "lea04",
+  "t": 12.5,
+  "frame": 375,
+  "dur": 1.6,
+  "file": "breath.wav",
+  "vol": 0.22,
+  "name": "respiration de Léa (disparaît à « respirer… non »)"
+ },
+ {
+  "id": "lea05",
+  "t": 15.4,
+  "frame": 462,
+  "dur": 1.6,
+  "file": "breath.wav",
+  "vol": 0.22,
+  "name": "respiration de Léa (disparaît à « respirer… non »)"
+ },
+ {
+  "id": "lea06",
+  "t": 18.3,
+  "frame": 549,
+  "dur": 1.6,
+  "file": "breath.wav",
+  "vol": 0.22,
+  "name": "respiration de Léa (disparaît à « respirer… non »)"
+ },
+ {
+  "id": "lea07",
+  "t": 21.2,
+  "frame": 636,
+  "dur": 1.6,
+  "file": "breath.wav",
+  "vol": 0.22,
+  "name": "respiration de Léa (disparaît à « respirer… non »)"
+ },
+ {
+  "id": "lea08",
+  "t": 24.1,
+  "frame": 723,
+  "dur": 1.6,
+  "file": "breath.wav",
+  "vol": 0.22,
+  "name": "respiration de Léa (disparaît à « respirer… non »)"
+ },
+ {
+  "id": "lea09",
+  "t": 27,
+  "frame": 810,
+  "dur": 1.6,
+  "file": "breath.wav",
+  "vol": 0.22,
+  "name": "respiration de Léa (disparaît à « respirer… non »)"
+ },
+ {
+  "id": "lea10",
+  "t": 29.9,
+  "frame": 897,
+  "dur": 1.6,
+  "file": "breath.wav",
+  "vol": 0.22,
+  "name": "respiration de Léa (disparaît à « respirer… non »)"
+ },
+ {
+  "id": "lea11",
+  "t": 32.8,
+  "frame": 984,
+  "dur": 1.6,
+  "file": "breath.wav",
+  "vol": 0.22,
+  "name": "respiration de Léa (disparaît à « respirer… non »)"
+ },
+ {
+  "id": "him00",
+  "t": 21.62,
+  "frame": 649,
+  "dur": 0.8,
+  "file": "breath_in.wav",
+  "vol": 0.45,
+  "name": "inspiration (le relief gagne un cran)"
+ },
+ {
+  "id": "him01",
+  "t": 22.25,
+  "frame": 668,
+  "dur": 0.8,
+  "file": "breath_in.wav",
+  "vol": 0.45,
+  "name": "inspiration (le relief gagne un cran)"
+ },
+ {
+  "id": "him02",
+  "t": 23.25,
+  "frame": 698,
+  "dur": 0.8,
+  "file": "breath_in.wav",
+  "vol": 0.5,
+  "name": "inspiration (le relief gagne un cran)"
+ },
+ {
+  "id": "him03",
+  "t": 26.78,
+  "frame": 803,
+  "dur": 0.8,
+  "file": "breath_in.wav",
+  "vol": 0.85,
+  "name": "il aspire de force (« Je peux pas »)"
+ },
+ {
+  "id": "hrt00",
+  "t": 24.5,
+  "frame": 735,
+  "dur": 0.7,
+  "file": "thump.wav",
+  "vol": 0.7,
+  "name": "cœur qui bat (il retient son souffle)"
+ },
+ {
+  "id": "hrt01",
+  "t": 25.4,
+  "frame": 762,
+  "dur": 0.7,
+  "file": "thump.wav",
+  "vol": 0.7,
+  "name": "cœur qui bat (il retient son souffle)"
+ },
+ {
+  "id": "hrt02",
+  "t": 26.2,
+  "frame": 786,
+  "dur": 0.7,
+  "file": "thump.wav",
+  "vol": 0.7,
+  "name": "cœur qui bat (il retient son souffle)"
+ },
+ {
+  "id": "wet00",
+  "t": 6.8,
+  "frame": 204,
+  "dur": 0.6,
+  "file": "wet.wav",
+  "vol": 0.25,
+  "name": "humide, étouffé"
+ },
+ {
+  "id": "wet01",
+  "t": 11.55,
+  "frame": 347,
+  "dur": 0.6,
+  "file": "wet.wav",
+  "vol": 0.35,
+  "name": "humide, étouffé"
+ },
+ {
+  "id": "wet02",
+  "t": 12.05,
+  "frame": 362,
+  "dur": 0.6,
+  "file": "wet.wav",
+  "vol": 0.35,
+  "name": "humide, étouffé"
+ },
+ {
+  "id": "wet03",
+  "t": 12.5,
+  "frame": 375,
+  "dur": 0.6,
+  "file": "wet.wav",
+  "vol": 0.3,
+  "name": "humide, étouffé"
+ },
+ {
+  "id": "drn00",
+  "t": 5.7,
+  "frame": 171,
+  "dur": 3.5,
+  "file": "drone.wav",
+  "vol": 0.3,
+  "name": "drone grave (un cran de plus)"
+ },
+ {
+  "id": "drn01",
+  "t": 15.6,
+  "frame": 468,
+  "dur": 3.5,
+  "file": "drone.wav",
+  "vol": 0.3,
+  "name": "drone grave (un cran de plus)"
+ },
+ {
+  "id": "drn02",
+  "t": 17.45,
+  "frame": 524,
+  "dur": 3.5,
+  "file": "drone.wav",
+  "vol": 0.35,
+  "name": "drone grave (un cran de plus)"
+ },
+ {
+  "id": "drn03",
+  "t": 21.8,
+  "frame": 654,
+  "dur": 3.5,
+  "file": "drone.wav",
+  "vol": 0.35,
+  "name": "drone grave (un cran de plus)"
+ },
+ {
+  "id": "drn04",
+  "t": 23.5,
+  "frame": 705,
+  "dur": 3.5,
+  "file": "drone.wav",
+  "vol": 0.4,
+  "name": "drone grave (un cran de plus)"
+ },
+ {
+  "id": "drn05",
+  "t": 43.3,
+  "frame": 1299,
+  "dur": 4,
+  "file": "swell.wav",
+  "vol": 0.5,
+  "name": "la lueur monte comme une marée"
+ },
+ {
+  "id": "cut00",
+  "t": 3.2,
+  "frame": 96,
+  "dur": 0.45,
+  "file": "thud.wav",
+  "vol": 0.3,
+  "name": "coupe sèche / à-coup"
+ },
+ {
+  "id": "cut01",
+  "t": 7.6,
+  "frame": 228,
+  "dur": 0.45,
+  "file": "thud.wav",
+  "vol": 0.3,
+  "name": "coupe sèche / à-coup"
+ },
+ {
+  "id": "cut02",
+  "t": 11.3,
+  "frame": 339,
+  "dur": 0.45,
+  "file": "thud.wav",
+  "vol": 0.3,
+  "name": "coupe sèche / à-coup"
+ },
+ {
+  "id": "cut03",
+  "t": 14.11,
+  "frame": 423,
+  "dur": 0.45,
+  "file": "thud.wav",
+  "vol": 0.5,
+  "name": "coupe sèche / à-coup"
+ },
+ {
+  "id": "cut04",
+  "t": 15.4,
+  "frame": 462,
+  "dur": 0.45,
+  "file": "thud.wav",
+  "vol": 0.3,
+  "name": "coupe sèche / à-coup"
+ },
+ {
+  "id": "cut05",
+  "t": 17.53,
+  "frame": 526,
+  "dur": 0.45,
+  "file": "thud.wav",
+  "vol": 0.4,
+  "name": "coupe sèche / à-coup"
+ },
+ {
+  "id": "cut06",
+  "t": 21,
+  "frame": 630,
+  "dur": 0.45,
+  "file": "thud.wav",
+  "vol": 0.3,
+  "name": "coupe sèche / à-coup"
+ },
+ {
+  "id": "cut07",
+  "t": 26.83,
+  "frame": 805,
+  "dur": 0.45,
+  "file": "thud.wav",
+  "vol": 0.6,
+  "name": "coupe sèche / à-coup"
+ },
+ {
+  "id": "cut08",
+  "t": 27.7,
+  "frame": 831,
+  "dur": 0.45,
+  "file": "thud.wav",
+  "vol": 0.3,
+  "name": "coupe sèche / à-coup"
+ },
+ {
+  "id": "cut09",
+  "t": 37.86,
+  "frame": 1136,
+  "dur": 0.45,
+  "file": "thud.wav",
+  "vol": 0.3,
+  "name": "coupe sèche / à-coup"
+ },
+ {
+  "id": "cut10",
+  "t": 43.3,
+  "frame": 1299,
+  "dur": 0.45,
+  "file": "thud.wav",
+  "vol": 0.3,
+  "name": "coupe sèche / à-coup"
+ },
+ {
+  "id": "bed00",
+  "t": 37.9,
+  "frame": 1137,
+  "dur": 2.2,
+  "file": "bed_breath.wav",
+  "vol": 0.5,
+  "name": "le lit respire (cycle ≈ 4 s)"
+ },
+ {
+  "id": "bed01",
+  "t": 39.85,
+  "frame": 1196,
+  "dur": 2.2,
+  "file": "bed_breath.wav",
+  "vol": 0.5,
+  "name": "le lit respire (cycle ≈ 4 s)"
+ }
+]
