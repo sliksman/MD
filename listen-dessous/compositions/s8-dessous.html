@@ -1,0 +1,54 @@
+<!doctype html>
+<!-- GÉNÉRÉ par scripts/sync.mjs depuis src/scenes/s8-dessous.js — éditer la source, pas ce fichier. -->
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+        #root { position: absolute; inset: 0; }
+      </style>
+      <div id="root" data-composition-id="s8" data-width="1080" data-height="1920"></div>
+      <script>
+        (function () {
+          const ID = "s8";
+          const L = window.LS;
+          const sc = L.scene(ID);
+          const A = L.art(ID + "-");
+          const root = document.querySelector('[data-composition-id="s8"]');
+          const tl = gsap.timeline({ paused: true });
+          const w = sc.w;
+          // PLAN 8 — « Non. C'est pas toi. C'est dessous. C'est lent. » : retour au plafond, et c'est le lit qui respire. Le relief est à hauteur du menton, la lueur remplit le bas du cadre.
+          const hud = `<g id="${ID}-vg2" opacity=".5"><rect width="1080" height="1920" fill="url(#${ID}-gVig)"/><rect width="1080" height="1920" fill="url(#${ID}-gVig)"/></g>
+            <g id="${ID}-ds" opacity="0"><g id="${ID}-dsg1" opacity=".16"><text x="540" y="590" text-anchor="middle" font-family="Nunito" font-weight="900" font-size="80" fill="#fff">C'est dessous.</text></g>
+            <g id="${ID}-dsg2" opacity=".32"><text x="540" y="535" text-anchor="middle" font-family="Nunito" font-weight="900" font-size="80" fill="#fff">C'est dessous.</text></g>
+            <g id="${ID}-dsm"><text x="540" y="480" text-anchor="middle" font-family="Nunito" font-weight="900" font-size="80" fill="#fff" filter="url(#${ID}-fShadow)">C'est <tspan fill="#F5B85A">dessous.</tspan></text></g></g>`;
+          const S = L.stage(root, ID, A.pov("pv"), hud);
+          gsap.set(S.cam, { svgOrigin: "540 960" });
+          gsap.set(S.$("pv-glw"), { opacity: 1 });
+          const lv = (b) => 280 - b, D = sc.end - sc.start;
+          gsap.set(S.$("pv-hump"), { y: lv(450) });
+          // le lit respire : cycle de ≈ 4 s, beaucoup plus lent et plus fort que le sien ; il ralentit encore sur « C'est lent »
+          const t1 = w("L08", 15) - 0.05;
+          tl.fromTo(S.cam, { y: 0, scale: 1 }, { y: -70, scale: 1.03, duration: 1.9, ease: "sine.inOut", immediateRender: false }, 0);
+          tl.to(S.cam, { y: 0, scale: 1, duration: 2.2, ease: "sine.inOut" }, 1.9);
+          tl.fromTo(S.$("pv-hump"), { y: lv(450) }, { y: lv(480), duration: 1.9, ease: "sine.inOut", immediateRender: false }, 0);
+          tl.to(S.$("pv-hump"), { y: lv(450), duration: 2.2, ease: "sine.inOut" }, 1.9);
+          tl.fromTo(S.$("vg2"), { opacity: 0.5 }, { opacity: 0.9, duration: 1.9, ease: "sine.inOut", immediateRender: false }, 0);
+          tl.to(S.$("vg2"), { opacity: 0.5, duration: 2.2, ease: "sine.inOut" }, 1.9);
+          // « dessous » : le mot s'enfonce vers le bas du cadre, avec des traînées (il remplace le sous-titre normal)
+          const d0 = w("L08", 13) - 0.02, d1 = w("L08", 14);
+          tl.set(S.$("ds"), { opacity: 1 }, d0);
+          tl.set(S.$("dsm"), { opacity: 0 }, d0);
+          tl.set(S.$("dsg1"), { opacity: 0 }, d0); tl.set(S.$("dsg2"), { opacity: 0 }, d0);
+          tl.fromTo(S.$("dsm"), { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.2, ease: "back.out(3)", immediateRender: false }, d0 + 0.01);
+          tl.to(S.$("dsm"), { y: 70, duration: 0.8, ease: "power2.in" }, d1 + 0.2);
+          tl.to(S.$("dsg2"), { opacity: 0.32, y: 70, duration: 0.8, ease: "power2.in" }, d1 + 0.2);
+          tl.to(S.$("dsg1"), { opacity: 0.16, y: 70, duration: 0.8, ease: "power2.in" }, d1 + 0.2);
+          tl.set(S.$("ds"), { opacity: 0 }, t1);
+
+          window.__timelines[ID] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

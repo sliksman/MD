@@ -32,6 +32,10 @@
   function defs(P) {
     return `<defs>
   <radialGradient id="${P}gVig" cx="50%" cy="45%" r="75%"><stop offset=".6" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".55"/></radialGradient>
+  <radialGradient id="${P}gWm" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#ee7a55" stop-opacity=".95"/><stop offset=".5" stop-color="#e0674d" stop-opacity=".4"/><stop offset="1" stop-color="#b93d3a" stop-opacity="0"/></radialGradient>
+  <radialGradient id="${P}gMd" cx="38%" cy="32%" r="75%"><stop offset="0" stop-color="#fff" stop-opacity=".26"/><stop offset=".6" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".42"/></radialGradient>
+  <linearGradient id="${P}gCe" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0b0e24"/><stop offset=".5" stop-color="#171c42"/><stop offset="1" stop-color="#0a0c1f"/></linearGradient>
+  <linearGradient id="${P}gFa" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#34418a"/><stop offset="1" stop-color="#232d6c"/></linearGradient>
   <linearGradient id="${P}gFloor" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1c2150"/><stop offset="1" stop-color="#0f1230"/></linearGradient>
   <radialGradient id="${P}gNight" cx="50%" cy="42%" r="75%"><stop offset="0" stop-color="${C.night1}"/><stop offset="1" stop-color="${C.night0}"/></radialGradient>
   <radialGradient id="${P}gFog" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="${C.fog}" stop-opacity=".22"/><stop offset="1" stop-color="${C.fog}" stop-opacity="0"/></radialGradient>
@@ -642,6 +646,52 @@
     // dormeur en coupe (tête sur l'oreiller, bosse sous la couette)
     A.sleeperSec = () => `<g id="${P}sleeper"><ellipse cx="560" cy="926" rx="250" ry="34" fill="#2f3b86" opacity=".55"/>
       <circle cx="252" cy="912" r="44" fill="${u("gSkin")}"/><path d="M232 912 q10 9 20 0 M262 912 q10 9 20 0" stroke="#5b4636" stroke-width="5" fill="none" stroke-linecap="round"/></g>`;
+
+    // ============ « Dessous » : vue subjective et plans rapprochés ============
+    const arcP = (cx, y, r, col = "#5b4636") => `<path d="M${cx - r} ${y} q${r} ${r * 0.8} ${2 * r} 0" stroke="${col}" stroke-width="${r * 0.45}" fill="none" stroke-linecap="round"/>`;
+    // plafond vu d'un lit, allongé sur le dos. Sous-groupes animables : name-hump (relief du drap : y = 280 - hauteur), name-glw (lueur chaude du bas)
+    A.pov = (name, o = {}) => `<g id="${P}${name}">
+      <rect x="-160" y="-260" width="1400" height="2440" fill="${u("gCe")}"/>
+      <circle cx="540" cy="640" r="160" fill="#1b2150" opacity=".85"/><circle cx="540" cy="640" r="112" fill="#262e68" opacity=".6"/>
+      <path d="M130 260 q140 130 70 280 q-50 130 50 230" stroke="#fff" stroke-opacity=".07" stroke-width="5" fill="none"/>
+      <g filter="${u("fBlurL")}"><path d="M-160 800 Q110 860 170 1180 L-160 1600z" fill="#222a62"/><path d="M1240 760 Q960 830 920 1160 L1240 1600z" fill="#222a62"/><path d="M1240 800 Q1010 860 990 1060 Q1100 1120 1240 1100z" fill="#4a2d26"/></g>
+      ${A.clock(name + "-clk", 6, 980, [o.time || "03:12"], 22, 92, 48)}
+      <path d="M-160 2300 L-160 1700 Q540 1590 1240 1700 L1240 2300z" fill="${u("gDuvet")}"/><path d="M-160 1700 Q540 1590 1240 1700 L1240 1735 Q540 1625 -160 1735z" fill="${C.duvetEdge}"/>
+      <g id="${P}${name}-hump"><path d="M200 2400 Q215 1700 540 1650 Q865 1700 880 2400z" fill="${u("gDuvet")}"/><path d="M200 2400 Q215 1700 540 1650 Q865 1700 880 2400z" fill="${u("gMd")}"/></g>
+      <g id="${P}${name}-glw" opacity="0"><ellipse cx="540" cy="1960" rx="700" ry="480" fill="${u("gWm")}"/><rect x="-160" y="-260" width="1400" height="2440" fill="#c4483f" opacity=".1"/></g></g>`;
+    // paupières par-dessus la vue subjective : name-lt (haut) / name-lb (bas), ouvertes en y = -1300 / +1300, fermées en y = 0, fente de h px : y = ∓(h/2 + 20)
+    A.povLids = (name) => `<g id="${P}${name}-lt"><path d="M-160 -1400 H1240 V980 Q540 780 -160 980Z" fill="#220a0c"/></g>
+      <g id="${P}${name}-lb"><path d="M-160 3400 H1240 V940 Q540 1140 -160 940Z" fill="#220a0c"/></g>`;
+    // Léa de près. Cheveux AU-DESSUS et SUR LES CÔTÉS du visage (chignon + frange + mèches courtes), jamais autour du menton.
+    A.lea = (name, o = {}) => {
+      const HAIR = "#6a3f2f", HI = "#92604a", skin = u("gSkin");
+      const head = `<circle r="100" fill="${skin}"/><circle cx="0" cy="-128" r="38" fill="${HAIR}"/><path d="M-22 -128 q22 -26 44 0 M-14 -120 q14 -14 28 0" stroke="${HI}" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <path d="M-97 -18 q-12 40 -4 74 M97 -18 q12 40 4 74" stroke="${HAIR}" stroke-width="12" fill="none" stroke-linecap="round"/>
+        <path d="M-97 -18 Q-92 -98 0 -102 Q92 -98 97 -18 Q76 -62 42 -64 Q16 -42 0 -64 Q-16 -42 -42 -64 Q-76 -62 -97 -18Z" fill="${HAIR}"/><path d="M-60 -78 Q-20 -96 30 -86" stroke="${HI}" stroke-width="6" fill="none" stroke-linecap="round"/>${arcP(-38, 14, 15)}${arcP(38, 14, 15)}`;
+      return `<g id="${P}${name}"><rect x="-160" y="-260" width="1400" height="2440" fill="#0a0c1f"/><ellipse cx="540" cy="1080" rx="640" ry="470" fill="#232a60"/><ellipse cx="540" cy="1080" rx="640" ry="470" fill="${u("gMd")}" opacity=".5"/>
+        <g id="${P}${name}-g" data-ox="540" data-oy="1020"><g transform="translate(540 1020) scale(${o.s || 2.5})">${head}</g></g>
+        <g id="${P}${name}-duv"><rect x="-160" y="1330" width="1400" height="1000" rx="40" fill="${u("gDuvet")}"/><rect x="-160" y="1330" width="1400" height="40" fill="${C.duvetEdge}"/></g>
+        <g id="${P}${name}-tide" opacity="0"><ellipse cx="540" cy="1900" rx="900" ry="720" fill="${u("gWm")}"/><path d="M-160 2100 Q540 1330 1240 2100z" fill="${u("gDuvet")}" opacity=".92"/></g></g>`;
+    };
+    // main qui tremble : name-g
+    A.hand = (name) => `<g id="${P}${name}"><g id="${P}${name}-g"><rect x="-220" y="1560" width="560" height="150" rx="75" fill="${u("gSkin")}" transform="rotate(-14 -220 1630)"/><circle cx="380" cy="1510" r="86" fill="${u("gSkin")}"/>
+      <g stroke="#fff" stroke-opacity=".35" stroke-width="7" stroke-linecap="round" id="${P}${name}-tr"><path d="M490 1430 l34 -22 M505 1500 l40 0 M490 1570 l34 22"/></g></g></g>`;
+    // drap en très gros plan : name-glw (lueur), name-stain (tache), name-press (empreinte qui dépasse le cadre)
+    A.fabric = (name) => `<g id="${P}${name}"><rect x="-160" y="-260" width="1400" height="2440" fill="${u("gFa")}"/>
+      <g fill="none" stroke-linecap="round">${[0, 1, 2, 3, 4, 5, 6].map((i) => `<path d="M-160 ${150 + i * 300} Q300 ${80 + i * 300} 540 ${200 + i * 300} T1240 ${140 + i * 300}" stroke="#000" stroke-opacity=".16" stroke-width="${26 + (i % 3) * 8}"/><path d="M-160 ${180 + i * 300} Q300 ${110 + i * 300} 540 ${230 + i * 300} T1240 ${170 + i * 300}" stroke="#fff" stroke-opacity=".06" stroke-width="12"/>`).join("")}</g>
+      <g id="${P}${name}-glw" opacity="0"><ellipse cx="540" cy="1200" rx="640" ry="540" fill="${u("gWm")}"/></g>
+      <g id="${P}${name}-stain" data-ox="540" data-oy="1150" opacity="0"><g transform="translate(540 1150) scale(3.2)"><path d="M-70 -20 q20 -50 70 -40 q55 -6 75 38 q40 20 25 62 q-10 45 -60 40 q-30 36 -70 8 q-62 8 -66 -40 q-30 -34 26 -68z" fill="#1a0b14" opacity=".62"/><path d="M-30 -30 q30 -20 60 -4" fill="none" stroke="#fff" stroke-opacity=".25" stroke-width="5" stroke-linecap="round"/></g></g>
+      <g id="${P}${name}-press" data-ox="560" data-oy="1130" opacity="0"><ellipse cx="560" cy="1130" rx="780" ry="610" fill="${u("gMd")}"/><g stroke="#000" stroke-opacity=".24" stroke-width="10" stroke-linecap="round" fill="none">${[-70, -40, -12, 14, 42, 70].map((a) => { const r = (a * Math.PI) / 180, R = 780; return `<path d="M${(560 + Math.sin(r) * R * 0.62).toFixed(0)} ${(1130 - Math.cos(r) * R * 0.5).toFixed(0)} Q${(560 + Math.sin(r) * R * 0.95).toFixed(0)} ${(1130 - Math.cos(r) * R * 0.74).toFixed(0)} ${(560 + Math.sin(r) * R * 1.3).toFixed(0)} ${(1130 - Math.cos(r) * R * 1.0).toFixed(0)}"/>`; }).join("")}</g></g></g>`;
+    // ses yeux seuls, gros plan : name-pup (pupilles), name-lidA/B (paupières, scaleY 0 = ouvertes), name-shut (traits « ︶ »), name-tear
+    A.eyesBig = (name, o = {}) => {
+      const r = o.r || 100, ex = o.ex || 170, y = o.y || 960, PAT = "#2d2229";
+      const one = (cx, k) => `<ellipse cx="${cx}" cy="${y}" rx="${r * 1.9}" ry="${r * 1.45}" fill="${PAT}"/><circle cx="${cx}" cy="${y}" r="${r}" fill="#fff"/>
+        <circle id="${P}${name}-pup${k}" cx="${cx + 2}" cy="${y}" r="${r * (o.pup || 0.2)}" fill="${C.ink}"/>
+        <rect id="${P}${name}-lid${k === 1 ? "A" : "B"}" data-ox="${cx}" data-oy="${y - r - 2}" x="${cx - r - 2}" y="${y - r - 2}" width="${2 * r + 4}" height="${2 * r + 4}" fill="${PAT}"/>`;
+      return `<g id="${P}${name}"><rect x="-160" y="-260" width="1400" height="2440" fill="#030409"/>${one(540 - ex, 1)}${one(540 + ex, 2)}
+        <g id="${P}${name}-shut" opacity="0">${arcP(540 - ex, y, r * 0.8, "#a8836d")}${arcP(540 + ex, y, r * 0.8, "#a8836d")}</g>
+        <path id="${P}${name}-tear" d="M${540 - ex - 20} ${y + r * 1.1} q-14 36 0 54 q14 -18 0 -54z" fill="#9cc8ff" opacity="0"/></g>`;
+    };
     return A;
   }
 
@@ -704,6 +754,15 @@
     tl.to(S.$(name + "-shut"), { opacity: closed ? 1 : 0, duration: 0.2 }, t);
     tl.to([S.$(name + "-lidL"), S.$(name + "-lidR")], { opacity: closed ? 0 : 1, duration: 0.2 }, t);
   }
+  // respiration du cadre : oscillation lente de la caméra (y), segments successifs de t0 à t1, période per, amplitude amp (px)
+  function sway(tl, S, t0, t1, per, amp, prop = "y") {
+    let t = t0, up = true, cur = 0;
+    while (t < t1 - 0.01) {
+      const d = Math.min(per / 2, t1 - t), to = up ? -amp : 0;
+      tl.fromTo(S.cam, { [prop]: cur }, { [prop]: to, duration: d, ease: "sine.inOut", immediateRender: false }, t);
+      cur = to; t += d; up = !up;
+    }
+  }
   // fondu d'entrée de scène (chevauchement avec la précédente)
   function fadeIn(tl, S, sc) { if (sc.fadeIn > 0) tl.fromTo(S.stage, { opacity: 0 }, { opacity: 1, duration: sc.fadeIn, ease: "none" }, 0); }
   // caméra : transformations SVG sur #cam autour du centre 540,960
@@ -729,5 +788,5 @@
     tl.fromTo(o, { v: 0 }, { v: values.length - 1, duration: d, ease: "power1.inOut", onUpdate: () => { el.textContent = values[Math.round(o.v)]; } }, t);
   }
 
-  window.LS = { C, og, w, scene, art, stage, pop, slam, punch, hide, pill, pillOut, drawDots, shimmer, blink, lids, initLids, shut, fadeIn, cam, setText, esc };
+  window.LS = { C, og, w, sway, scene, art, stage, pop, slam, punch, hide, pill, pillOut, drawDots, shimmer, blink, lids, initLids, shut, fadeIn, cam, setText, esc };
 })();

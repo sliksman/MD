@@ -1,0 +1,1507 @@
+{
+ "_doc": "GÉNÉRÉ par scripts/breathe.py depuis timeline.base.json — éditer la base, pas ce fichier.",
+ "duration": 48.4,
+ "fade": 0,
+ "scenes": [
+  {
+   "id": "s1",
+   "file": "s1-hook",
+   "start": 0,
+   "end": 3.2
+  },
+  {
+   "id": "s2",
+   "file": "s2-plafond",
+   "start": 3.2,
+   "end": 7.6
+  },
+  {
+   "id": "s3",
+   "file": "s3-paupieres",
+   "start": 7.6,
+   "end": 11.3
+  },
+  {
+   "id": "s4",
+   "file": "s4-tissu",
+   "start": 11.3,
+   "end": 15.4
+  },
+  {
+   "id": "s5",
+   "file": "s5-remonte",
+   "start": 15.4,
+   "end": 21.0
+  },
+  {
+   "id": "s6",
+   "file": "s6-respire",
+   "start": 21.0,
+   "end": 27.7
+  },
+  {
+   "id": "s7",
+   "file": "s7-lea",
+   "start": 27.7,
+   "end": 37.86
+  },
+  {
+   "id": "s8",
+   "file": "s8-dessous",
+   "start": 37.86,
+   "end": 41.4
+  },
+  {
+   "id": "s9",
+   "file": "s9-fin",
+   "start": 41.4,
+   "end": 48.4
+  }
+ ],
+ "captions": {
+  "enabled": true,
+  "maxWords": 3,
+  "y": 450,
+  "tail": 0.5,
+  "lead": 0.08
+ },
+ "captionY": [
+  [
+   19.05,
+   20.98,
+   3000
+  ],
+  [
+   39.6,
+   40.65,
+   3000
+  ],
+  [
+   0,
+   99,
+   450
+  ]
+ ],
+ "wipes": [],
+ "aliases": [
+  [
+   "\\bIl y a\\b",
+   "Y'a"
+  ],
+  [
+   "\\bJe ne sens\\b",
+   "Je sens"
+  ],
+  [
+   "\\bne plus respirer\\b",
+   "de plus respirer"
+  ],
+  [
+   "\\bdit le\\b",
+   "dis-le"
+  ],
+  [
+   "\\.\\.\\.",
+   "."
+  ]
+ ],
+ "sfx": [
+  {
+   "id": "lea00",
+   "file": "breath.wav",
+   "at": 0.9,
+   "vol": 0.22,
+   "note": "respiration de Léa (disparaît à « respirer… non »)"
+  },
+  {
+   "id": "lea01",
+   "file": "breath.wav",
+   "at": 3.8,
+   "vol": 0.22,
+   "note": "respiration de Léa (disparaît à « respirer… non »)"
+  },
+  {
+   "id": "lea02",
+   "file": "breath.wav",
+   "at": 6.7,
+   "vol": 0.22,
+   "note": "respiration de Léa (disparaît à « respirer… non »)"
+  },
+  {
+   "id": "lea03",
+   "file": "breath.wav",
+   "at": 9.6,
+   "vol": 0.22,
+   "note": "respiration de Léa (disparaît à « respirer… non »)"
+  },
+  {
+   "id": "lea04",
+   "file": "breath.wav",
+   "at": 12.5,
+   "vol": 0.22,
+   "note": "respiration de Léa (disparaît à « respirer… non »)"
+  },
+  {
+   "id": "lea05",
+   "file": "breath.wav",
+   "at": 15.4,
+   "vol": 0.22,
+   "note": "respiration de Léa (disparaît à « respirer… non »)"
+  },
+  {
+   "id": "lea06",
+   "file": "breath.wav",
+   "at": 18.3,
+   "vol": 0.22,
+   "note": "respiration de Léa (disparaît à « respirer… non »)"
+  },
+  {
+   "id": "lea07",
+   "file": "breath.wav",
+   "at": 21.2,
+   "vol": 0.22,
+   "note": "respiration de Léa (disparaît à « respirer… non »)"
+  },
+  {
+   "id": "lea08",
+   "file": "breath.wav",
+   "at": 24.1,
+   "vol": 0.22,
+   "note": "respiration de Léa (disparaît à « respirer… non »)"
+  },
+  {
+   "id": "lea09",
+   "file": "breath.wav",
+   "at": 27.0,
+   "vol": 0.22,
+   "note": "respiration de Léa (disparaît à « respirer… non »)"
+  },
+  {
+   "id": "lea10",
+   "file": "breath.wav",
+   "at": 29.9,
+   "vol": 0.22,
+   "note": "respiration de Léa (disparaît à « respirer… non »)"
+  },
+  {
+   "id": "lea11",
+   "file": "breath.wav",
+   "at": 32.8,
+   "vol": 0.22,
+   "note": "respiration de Léa (disparaît à « respirer… non »)"
+  },
+  {
+   "id": "him00",
+   "file": "breath_in.wav",
+   "at": 21.62,
+   "vol": 0.45,
+   "note": "inspiration (le relief gagne un cran)"
+  },
+  {
+   "id": "him01",
+   "file": "breath_in.wav",
+   "at": 22.25,
+   "vol": 0.45,
+   "note": "inspiration (le relief gagne un cran)"
+  },
+  {
+   "id": "him02",
+   "file": "breath_in.wav",
+   "at": 23.25,
+   "vol": 0.5,
+   "note": "inspiration (le relief gagne un cran)"
+  },
+  {
+   "id": "him03",
+   "file": "breath_in.wav",
+   "at": 26.78,
+   "vol": 0.85,
+   "note": "il aspire de force (« Je peux pas »)"
+  },
+  {
+   "id": "hrt00",
+   "file": "thump.wav",
+   "at": 24.5,
+   "vol": 0.7,
+   "note": "cœur qui bat (il retient son souffle)"
+  },
+  {
+   "id": "hrt01",
+   "file": "thump.wav",
+   "at": 25.4,
+   "vol": 0.7,
+   "note": "cœur qui bat (il retient son souffle)"
+  },
+  {
+   "id": "hrt02",
+   "file": "thump.wav",
+   "at": 26.2,
+   "vol": 0.7,
+   "note": "cœur qui bat (il retient son souffle)"
+  },
+  {
+   "id": "wet00",
+   "file": "wet.wav",
+   "at": 6.8,
+   "vol": 0.25,
+   "note": "humide, étouffé"
+  },
+  {
+   "id": "wet01",
+   "file": "wet.wav",
+   "at": 11.55,
+   "vol": 0.35,
+   "note": "humide, étouffé"
+  },
+  {
+   "id": "wet02",
+   "file": "wet.wav",
+   "at": 12.05,
+   "vol": 0.35,
+   "note": "humide, étouffé"
+  },
+  {
+   "id": "wet03",
+   "file": "wet.wav",
+   "at": 12.5,
+   "vol": 0.3,
+   "note": "humide, étouffé"
+  },
+  {
+   "id": "drn00",
+   "file": "drone.wav",
+   "at": 5.7,
+   "vol": 0.3,
+   "note": "drone grave (un cran de plus)"
+  },
+  {
+   "id": "drn01",
+   "file": "drone.wav",
+   "at": 15.6,
+   "vol": 0.3,
+   "note": "drone grave (un cran de plus)"
+  },
+  {
+   "id": "drn02",
+   "file": "drone.wav",
+   "at": 17.45,
+   "vol": 0.35,
+   "note": "drone grave (un cran de plus)"
+  },
+  {
+   "id": "drn03",
+   "file": "drone.wav",
+   "at": 21.8,
+   "vol": 0.35,
+   "note": "drone grave (un cran de plus)"
+  },
+  {
+   "id": "drn04",
+   "file": "drone.wav",
+   "at": 23.5,
+   "vol": 0.4,
+   "note": "drone grave (un cran de plus)"
+  },
+  {
+   "id": "drn05",
+   "file": "swell.wav",
+   "at": 43.3,
+   "vol": 0.5,
+   "note": "la lueur monte comme une marée"
+  },
+  {
+   "id": "cut00",
+   "file": "thud.wav",
+   "at": 3.2,
+   "vol": 0.3,
+   "note": "coupe sèche / à-coup"
+  },
+  {
+   "id": "cut01",
+   "file": "thud.wav",
+   "at": 7.6,
+   "vol": 0.3,
+   "note": "coupe sèche / à-coup"
+  },
+  {
+   "id": "cut02",
+   "file": "thud.wav",
+   "at": 11.3,
+   "vol": 0.3,
+   "note": "coupe sèche / à-coup"
+  },
+  {
+   "id": "cut03",
+   "file": "thud.wav",
+   "at": 14.11,
+   "vol": 0.5,
+   "note": "coupe sèche / à-coup"
+  },
+  {
+   "id": "cut04",
+   "file": "thud.wav",
+   "at": 15.4,
+   "vol": 0.3,
+   "note": "coupe sèche / à-coup"
+  },
+  {
+   "id": "cut05",
+   "file": "thud.wav",
+   "at": 17.53,
+   "vol": 0.4,
+   "note": "coupe sèche / à-coup"
+  },
+  {
+   "id": "cut06",
+   "file": "thud.wav",
+   "at": 21.0,
+   "vol": 0.3,
+   "note": "coupe sèche / à-coup"
+  },
+  {
+   "id": "cut07",
+   "file": "thud.wav",
+   "at": 26.83,
+   "vol": 0.6,
+   "note": "coupe sèche / à-coup"
+  },
+  {
+   "id": "cut08",
+   "file": "thud.wav",
+   "at": 27.7,
+   "vol": 0.3,
+   "note": "coupe sèche / à-coup"
+  },
+  {
+   "id": "cut09",
+   "file": "thud.wav",
+   "at": 37.86,
+   "vol": 0.3,
+   "note": "coupe sèche / à-coup"
+  },
+  {
+   "id": "cut10",
+   "file": "thud.wav",
+   "at": 43.3,
+   "vol": 0.3,
+   "note": "coupe sèche / à-coup"
+  },
+  {
+   "id": "bed00",
+   "file": "bed_breath.wav",
+   "at": 37.9,
+   "vol": 0.5,
+   "note": "le lit respire (cycle ≈ 4 s)"
+  },
+  {
+   "id": "bed01",
+   "file": "bed_breath.wav",
+   "at": 39.85,
+   "vol": 0.5,
+   "note": "le lit respire (cycle ≈ 4 s)"
+  }
+ ],
+ "overrides": [
+  [
+   "L01",
+   0,
+   0.19
+  ],
+  [
+   "L01",
+   1,
+   0.97
+  ],
+  [
+   "L01",
+   2,
+   2.47
+  ],
+  [
+   "L01",
+   3,
+   2.66
+  ],
+  [
+   "L02",
+   2,
+   6.32
+  ],
+  [
+   "L02",
+   3,
+   6.52
+  ],
+  [
+   "L02",
+   4,
+   6.7
+  ],
+  [
+   "L02",
+   5,
+   6.84
+  ],
+  [
+   "L02",
+   6,
+   6.95
+  ],
+  [
+   "L03",
+   2,
+   8.34
+  ],
+  [
+   "L03",
+   3,
+   8.91
+  ],
+  [
+   "L03",
+   4,
+   9.07
+  ],
+  [
+   "L03",
+   5,
+   9.3
+  ],
+  [
+   "L03",
+   6,
+   9.5
+  ],
+  [
+   "L03",
+   7,
+   9.66
+  ],
+  [
+   "L03",
+   8,
+   9.76
+  ],
+  [
+   "L03",
+   9,
+   10.0
+  ],
+  [
+   "L04",
+   3,
+   12.02
+  ]
+ ],
+ "endOverrides": {},
+ "vo": [
+  {
+   "id": "L01",
+   "start": 0.19,
+   "end": 5.27,
+   "text": "Léa. Réveille-toi mon amour. Je suis terrifié.",
+   "hl": [
+    "terrifié."
+   ],
+   "words": [
+    [
+     "Léa.",
+     0.19
+    ],
+    [
+     "Réveille-toi",
+     0.97
+    ],
+    [
+     "mon",
+     2.47
+    ],
+    [
+     "amour.",
+     2.66
+    ],
+    [
+     "Je",
+     3.28
+    ],
+    [
+     "suis",
+     3.455
+    ],
+    [
+     "terrifié.",
+     3.73
+    ]
+   ]
+  },
+  {
+   "id": "L02",
+   "start": 5.96,
+   "end": 7.8,
+   "text": "Y'a un truc chaud sur mes pieds.",
+   "hl": [
+    "chaud"
+   ],
+   "words": [
+    [
+     "Y'a",
+     5.96
+    ],
+    [
+     "un",
+     6.215
+    ],
+    [
+     "truc",
+     6.32
+    ],
+    [
+     "chaud",
+     6.52
+    ],
+    [
+     "sur",
+     6.7
+    ],
+    [
+     "mes",
+     6.84
+    ],
+    [
+     "pieds.",
+     6.95
+    ]
+   ]
+  },
+  {
+   "id": "L03",
+   "start": 7.91,
+   "end": 11.28,
+   "text": "Je regarde pas. Je te jure que je regarde pas.",
+   "hl": [
+    "pas."
+   ],
+   "words": [
+    [
+     "Je",
+     7.91
+    ],
+    [
+     "regarde",
+     8.005
+    ],
+    [
+     "pas.",
+     8.34
+    ],
+    [
+     "Je",
+     8.91
+    ],
+    [
+     "te",
+     9.07
+    ],
+    [
+     "jure",
+     9.3
+    ],
+    [
+     "que",
+     9.5
+    ],
+    [
+     "je",
+     9.66
+    ],
+    [
+     "regarde",
+     9.76
+    ],
+    [
+     "pas.",
+     10.0
+    ]
+   ]
+  },
+  {
+   "id": "L04",
+   "start": 11.47,
+   "end": 15.4,
+   "text": "C'est doux et humide. Ça tient comme une main, mais trop grande.",
+   "hl": [
+    "humide.",
+    "grande."
+   ],
+   "words": [
+    [
+     "C'est",
+     11.47
+    ],
+    [
+     "doux",
+     11.75
+    ],
+    [
+     "et",
+     11.92
+    ],
+    [
+     "humide.",
+     12.02
+    ],
+    [
+     "Ça",
+     12.98
+    ],
+    [
+     "tient",
+     13.13
+    ],
+    [
+     "comme",
+     13.39
+    ],
+    [
+     "une",
+     13.56
+    ],
+    [
+     "main,",
+     13.775
+    ],
+    [
+     "mais",
+     13.88
+    ],
+    [
+     "trop",
+     14.113
+    ],
+    [
+     "grande.",
+     14.347
+    ]
+   ]
+  },
+  {
+   "id": "L05",
+   "start": 15.5,
+   "end": 20.96,
+   "text": "Ça remonte. Doucement. Là, c'est la cheville. Je sens plus mes orteils.",
+   "hl": [
+    "cheville.",
+    "orteils."
+   ],
+   "words": [
+    [
+     "Ça",
+     15.5
+    ],
+    [
+     "remonte.",
+     15.68
+    ],
+    [
+     "Doucement.",
+     16.58
+    ],
+    [
+     "Là,",
+     17.53
+    ],
+    [
+     "c'est",
+     17.88
+    ],
+    [
+     "la",
+     18.12
+    ],
+    [
+     "cheville.",
+     18.27
+    ],
+    [
+     "Je",
+     19.1
+    ],
+    [
+     "sens",
+     19.277
+    ],
+    [
+     "plus",
+     19.453
+    ],
+    [
+     "mes",
+     19.52
+    ],
+    [
+     "orteils.",
+     19.607
+    ]
+   ]
+  },
+  {
+   "id": "L06",
+   "start": 21.06,
+   "end": 27.27,
+   "text": "À chaque fois que je respire, ça remonte d'un cran. Alors j'essaie de plus respirer. Je peux pas.",
+   "hl": [
+    "cran.",
+    "respirer."
+   ],
+   "words": [
+    [
+     "À",
+     21.06
+    ],
+    [
+     "chaque",
+     21.185
+    ],
+    [
+     "fois",
+     21.435
+    ],
+    [
+     "que",
+     21.48
+    ],
+    [
+     "je",
+     21.708
+    ],
+    [
+     "respire,",
+     21.935
+    ],
+    [
+     "ça",
+     22.29
+    ],
+    [
+     "remonte",
+     22.497
+    ],
+    [
+     "d'un",
+     22.84
+    ],
+    [
+     "cran.",
+     23.57
+    ],
+    [
+     "Alors",
+     24.41
+    ],
+    [
+     "j'essaie",
+     24.56
+    ],
+    [
+     "de",
+     24.84
+    ],
+    [
+     "plus",
+     24.92
+    ],
+    [
+     "respirer.",
+     25.075
+    ],
+    [
+     "Je",
+     26.83
+    ],
+    [
+     "peux",
+     26.977
+    ],
+    [
+     "pas.",
+     27.123
+    ]
+   ]
+  },
+  {
+   "id": "L07",
+   "start": 27.73,
+   "end": 33.56,
+   "text": "Léa. Soulève la couette. Dis-moi que c'est rien. Juste dis-le.",
+   "hl": [
+    "couette.",
+    "dis-le."
+   ],
+   "words": [
+    [
+     "Léa.",
+     27.73
+    ],
+    [
+     "Soulève",
+     28.43
+    ],
+    [
+     "la",
+     28.76
+    ],
+    [
+     "couette.",
+     28.955
+    ],
+    [
+     "Dis-moi",
+     29.48
+    ],
+    [
+     "que",
+     29.795
+    ],
+    [
+     "c'est",
+     29.952
+    ],
+    [
+     "rien.",
+     30.97
+    ],
+    [
+     "Juste",
+     31.69
+    ],
+    [
+     "dis-le.",
+     32.115
+    ]
+   ]
+  },
+  {
+   "id": "L08",
+   "start": 33.83,
+   "end": 41.96,
+   "text": "Tu réponds pas. Tu bouges plus. Je t'entends respirer… non. C'est pas toi. C'est dessous. C'est lent.",
+   "hl": [
+    "non.",
+    "dessous.",
+    "lent."
+   ],
+   "words": [
+    [
+     "Tu",
+     33.83
+    ],
+    [
+     "réponds",
+     33.968
+    ],
+    [
+     "pas.",
+     34.242
+    ],
+    [
+     "Tu",
+     34.95
+    ],
+    [
+     "bouges",
+     35.147
+    ],
+    [
+     "plus.",
+     35.343
+    ],
+    [
+     "Je",
+     35.93
+    ],
+    [
+     "t'entends",
+     36.123
+    ],
+    [
+     "respirer…",
+     36.4
+    ],
+    [
+     "non.",
+     37.86
+    ],
+    [
+     "C'est",
+     38.66
+    ],
+    [
+     "pas",
+     38.867
+    ],
+    [
+     "toi.",
+     39.073
+    ],
+    [
+     "C'est",
+     39.68
+    ],
+    [
+     "dessous.",
+     39.883
+    ],
+    [
+     "C'est",
+     40.71
+    ],
+    [
+     "lent.",
+     40.925
+    ]
+   ]
+  },
+  {
+   "id": "L09",
+   "start": 42.1,
+   "end": 43.32,
+   "text": "Léa ?",
+   "hl": [
+    "Léa"
+   ],
+   "words": [
+    [
+     "Léa ?",
+     42.1
+    ]
+   ]
+  },
+  {
+   "id": "L10",
+   "start": 43.42,
+   "end": 46.82,
+   "text": "Ça vient de dire mon prénom. Avec ta voix.",
+   "hl": [
+    "voix."
+   ],
+   "words": [
+    [
+     "Ça",
+     43.42
+    ],
+    [
+     "vient",
+     43.533
+    ],
+    [
+     "de",
+     43.647
+    ],
+    [
+     "dire",
+     43.88
+    ],
+    [
+     "mon",
+     44.065
+    ],
+    [
+     "prénom.",
+     44.25
+    ],
+    [
+     "Avec",
+     45.91
+    ],
+    [
+     "ta",
+     46.37
+    ],
+    [
+     "voix.",
+     46.595
+    ]
+   ]
+  }
+ ],
+ "capGroups": [
+  [
+   [
+    "L01",
+    0
+   ]
+  ],
+  [
+   [
+    "L01",
+    1
+   ],
+   [
+    "L01",
+    2
+   ],
+   [
+    "L01",
+    3
+   ]
+  ],
+  [
+   [
+    "L01",
+    4
+   ],
+   [
+    "L01",
+    5
+   ],
+   [
+    "L01",
+    6
+   ]
+  ],
+  [
+   [
+    "L02",
+    0
+   ],
+   [
+    "L02",
+    1
+   ],
+   [
+    "L02",
+    2
+   ],
+   [
+    "L02",
+    3
+   ]
+  ],
+  [
+   [
+    "L02",
+    4
+   ],
+   [
+    "L02",
+    5
+   ],
+   [
+    "L02",
+    6
+   ]
+  ],
+  [
+   [
+    "L03",
+    0
+   ],
+   [
+    "L03",
+    1
+   ],
+   [
+    "L03",
+    2
+   ]
+  ],
+  [
+   [
+    "L03",
+    3
+   ],
+   [
+    "L03",
+    4
+   ],
+   [
+    "L03",
+    5
+   ],
+   [
+    "L03",
+    6
+   ],
+   [
+    "L03",
+    7
+   ]
+  ],
+  [
+   [
+    "L03",
+    8
+   ],
+   [
+    "L03",
+    9
+   ]
+  ],
+  [
+   [
+    "L04",
+    0
+   ],
+   [
+    "L04",
+    1
+   ],
+   [
+    "L04",
+    2
+   ],
+   [
+    "L04",
+    3
+   ]
+  ],
+  [
+   [
+    "L04",
+    4
+   ],
+   [
+    "L04",
+    5
+   ],
+   [
+    "L04",
+    6
+   ],
+   [
+    "L04",
+    7
+   ],
+   [
+    "L04",
+    8
+   ]
+  ],
+  [
+   [
+    "L04",
+    9
+   ],
+   [
+    "L04",
+    10
+   ],
+   [
+    "L04",
+    11
+   ]
+  ],
+  [
+   [
+    "L05",
+    0
+   ],
+   [
+    "L05",
+    1
+   ]
+  ],
+  [
+   [
+    "L05",
+    2
+   ]
+  ],
+  [
+   [
+    "L05",
+    3
+   ],
+   [
+    "L05",
+    4
+   ],
+   [
+    "L05",
+    5
+   ],
+   [
+    "L05",
+    6
+   ]
+  ],
+  [
+   [
+    "L05",
+    7
+   ],
+   [
+    "L05",
+    8
+   ],
+   [
+    "L05",
+    9
+   ],
+   [
+    "L05",
+    10
+   ],
+   [
+    "L05",
+    11
+   ]
+  ],
+  [
+   [
+    "L06",
+    0
+   ],
+   [
+    "L06",
+    1
+   ],
+   [
+    "L06",
+    2
+   ],
+   [
+    "L06",
+    3
+   ],
+   [
+    "L06",
+    4
+   ],
+   [
+    "L06",
+    5
+   ]
+  ],
+  [
+   [
+    "L06",
+    6
+   ],
+   [
+    "L06",
+    7
+   ],
+   [
+    "L06",
+    8
+   ],
+   [
+    "L06",
+    9
+   ]
+  ],
+  [
+   [
+    "L06",
+    10
+   ],
+   [
+    "L06",
+    11
+   ],
+   [
+    "L06",
+    12
+   ],
+   [
+    "L06",
+    13
+   ],
+   [
+    "L06",
+    14
+   ]
+  ],
+  [
+   [
+    "L06",
+    15
+   ],
+   [
+    "L06",
+    16
+   ],
+   [
+    "L06",
+    17
+   ]
+  ],
+  [
+   [
+    "L07",
+    0
+   ]
+  ],
+  [
+   [
+    "L07",
+    1
+   ],
+   [
+    "L07",
+    2
+   ],
+   [
+    "L07",
+    3
+   ]
+  ],
+  [
+   [
+    "L07",
+    4
+   ],
+   [
+    "L07",
+    5
+   ],
+   [
+    "L07",
+    6
+   ],
+   [
+    "L07",
+    7
+   ]
+  ],
+  [
+   [
+    "L07",
+    8
+   ],
+   [
+    "L07",
+    9
+   ]
+  ],
+  [
+   [
+    "L08",
+    0
+   ],
+   [
+    "L08",
+    1
+   ],
+   [
+    "L08",
+    2
+   ]
+  ],
+  [
+   [
+    "L08",
+    3
+   ],
+   [
+    "L08",
+    4
+   ],
+   [
+    "L08",
+    5
+   ]
+  ],
+  [
+   [
+    "L08",
+    6
+   ],
+   [
+    "L08",
+    7
+   ],
+   [
+    "L08",
+    8
+   ],
+   [
+    "L08",
+    9
+   ]
+  ],
+  [
+   [
+    "L08",
+    10
+   ],
+   [
+    "L08",
+    11
+   ],
+   [
+    "L08",
+    12
+   ]
+  ],
+  [
+   [
+    "L08",
+    13
+   ],
+   [
+    "L08",
+    14
+   ]
+  ],
+  [
+   [
+    "L08",
+    15
+   ],
+   [
+    "L08",
+    16
+   ]
+  ],
+  [
+   [
+    "L09",
+    0
+   ]
+  ],
+  [
+   [
+    "L10",
+    0
+   ],
+   [
+    "L10",
+    1
+   ],
+   [
+    "L10",
+    2
+   ],
+   [
+    "L10",
+    3
+   ],
+   [
+    "L10",
+    4
+   ],
+   [
+    "L10",
+    5
+   ]
+  ],
+  [
+   [
+    "L10",
+    6
+   ],
+   [
+    "L10",
+    7
+   ],
+   [
+    "L10",
+    8
+   ]
+  ]
+ ],
+ "voFile": "assets/audio/vo_v2.mp3",
+ "voDuration": 48.405
+}

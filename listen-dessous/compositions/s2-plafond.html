@@ -1,0 +1,46 @@
+<!doctype html>
+<!-- GÉNÉRÉ par scripts/sync.mjs depuis src/scenes/s2-plafond.js — éditer la source, pas ce fichier. -->
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+        #root { position: absolute; inset: 0; }
+      </style>
+      <div id="root" data-composition-id="s2" data-width="1080" data-height="1920"></div>
+      <script>
+        (function () {
+          const ID = "s2";
+          const L = window.LS;
+          const sc = L.scene(ID);
+          const A = L.art(ID + "-");
+          const root = document.querySelector('[data-composition-id="s2"]');
+          const tl = gsap.timeline({ paused: true });
+          const w = sc.w;
+          // PLAN 2 — « Je suis terrifié. » / « Y a un truc chaud sur mes pieds. » : vue subjective, plafond. La lueur monte par le bas du cadre. Insert : le drap.
+          const S = L.stage(root, ID, A.pov("pv") + A.fabric("fb"), "");
+          gsap.set(S.cam, { svgOrigin: "540 960" });
+          gsap.set(S.$("fb"), { opacity: 0 });
+          gsap.set(S.$("pv-hump"), { y: 280 });
+          const ins = w("L02", 5) - 0.12, D = sc.end - sc.start;
+          // le cadre respire avec lui, et pousse très lentement
+          L.sway(tl, S, 0, ins, 3.0, 14);
+          tl.fromTo(S.cam, { scale: 1 }, { scale: 1.06, duration: ins, ease: "none", immediateRender: false }, 0);
+          // la lueur : d'abord à peine, puis nette sur « chaud », qui pulse
+          tl.to(S.$("pv-glw"), { opacity: 0.3, duration: 0.6, ease: "power1.in" }, w("L02", 0) - 0.1);
+          tl.to(S.$("pv-glw"), { opacity: 0.78, duration: 0.5, ease: "power2.in" }, w("L02", 3) - 0.1);
+          tl.fromTo(S.$("pv-glw").querySelector("ellipse"), { opacity: 1 }, { opacity: 0.6, duration: 0.45, yoyo: true, repeat: 8, ease: "sine.inOut", immediateRender: false }, w("L02", 3) + 0.4);
+          // insert : le drap de si près que c'est abstrait, la lueur transparaît
+          tl.set(S.cam, { scale: 1, y: 0 }, ins);
+          tl.set(S.$("pv"), { opacity: 0 }, ins);
+          tl.set(S.$("fb"), { opacity: 1 }, ins);
+          tl.set(S.$("fb-glw"), { opacity: 0.9 }, ins);
+          tl.fromTo(S.$("fb-glw").querySelector("ellipse"), { opacity: 1 }, { opacity: 0.55, duration: 0.3, yoyo: true, repeat: 4, ease: "sine.inOut", immediateRender: false }, ins);
+          tl.fromTo(S.cam, { scale: 1.04 }, { scale: 1.12, duration: D - ins, ease: "none", immediateRender: false }, ins);
+
+          window.__timelines[ID] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>
