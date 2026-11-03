@@ -1,0 +1,557 @@
+[
+ {
+  "stem": "02_ambiance-chambre.wav",
+  "niveau_crete_dBFS": -34,
+  "role": "Chambre la nuit : air, un très léger ronflement de frigo/immeuble, jamais du silence numérique. S'éteint presque complètement dans la pause de « … non » (37,0 → 37,9), revient après.",
+  "evenements": []
+ },
+ {
+  "stem": "03_respiration-lea.wav",
+  "niveau_crete_dBFS": -26,
+  "role": "Léa, à droite, endormie. Cycles réguliers pendant tout le film ; le dernier (35,5 s) est une inspiration qui n'est JAMAIS expirée : c'est le moment où tout s'arrête.",
+  "evenements": [
+   {
+    "t": 0.2,
+    "what": "souffle de Léa"
+   },
+   {
+    "t": 3.41,
+    "what": "souffle de Léa"
+   },
+   {
+    "t": 6.63,
+    "what": "souffle de Léa"
+   },
+   {
+    "t": 9.84,
+    "what": "souffle de Léa"
+   },
+   {
+    "t": 13.05,
+    "what": "souffle de Léa"
+   },
+   {
+    "t": 16.27,
+    "what": "souffle de Léa"
+   },
+   {
+    "t": 19.48,
+    "what": "souffle de Léa"
+   },
+   {
+    "t": 22.7,
+    "what": "souffle de Léa"
+   },
+   {
+    "t": 25.91,
+    "what": "souffle de Léa"
+   },
+   {
+    "t": 29.12,
+    "what": "souffle de Léa"
+   },
+   {
+    "t": 32.34,
+    "what": "souffle de Léa"
+   },
+   {
+    "t": 35.55,
+    "what": "inspiration (jamais expirée)"
+   }
+  ]
+ },
+ {
+  "stem": "04_respiration-lui.wav",
+  "niveau_crete_dBFS": -24,
+  "role": "Lui, au centre, très proche. Souffles courts et tremblants ; 3 inspirations nettes sur les « crans » (21,6 / 22,3 / 23,3) ; APNÉE de 24,4 à 26,8 ; grande aspiration rauque à « Je peux pas » ; souffle saccadé qui se calme jusqu'à 35.",
+  "evenements": [
+   {
+    "t": 3.75,
+    "what": "souffle court (peur)"
+   },
+   {
+    "t": 5.55,
+    "what": "souffle court (peur)"
+   },
+   {
+    "t": 6.4,
+    "what": "souffle court (peur)"
+   },
+   {
+    "t": 8.2,
+    "what": "souffle court (peur)"
+   },
+   {
+    "t": 10.3,
+    "what": "souffle court (peur)"
+   },
+   {
+    "t": 11.9,
+    "what": "souffle court (peur)"
+   },
+   {
+    "t": 13.7,
+    "what": "souffle court (peur)"
+   },
+   {
+    "t": 15.7,
+    "what": "souffle court (peur)"
+   },
+   {
+    "t": 17.5,
+    "what": "souffle court (peur)"
+   },
+   {
+    "t": 19.2,
+    "what": "souffle court (peur)"
+   },
+   {
+    "t": 21.55,
+    "what": "inspiration sur un cran"
+   },
+   {
+    "t": 22.2,
+    "what": "inspiration sur un cran"
+   },
+   {
+    "t": 23.2,
+    "what": "inspiration sur un cran"
+   },
+   {
+    "t": 26.62,
+    "what": "GRANDE aspiration (« Je peux pas »)"
+   },
+   {
+    "t": 27.9,
+    "what": "souffle saccadé qui se calme"
+   },
+   {
+    "t": 29.4,
+    "what": "souffle saccadé qui se calme"
+   },
+   {
+    "t": 31.0,
+    "what": "souffle saccadé qui se calme"
+   },
+   {
+    "t": 32.7,
+    "what": "souffle saccadé qui se calme"
+   },
+   {
+    "t": 34.3,
+    "what": "souffle saccadé qui se calme"
+   }
+  ]
+ },
+ {
+  "stem": "05_coeur.wav",
+  "niveau_crete_dBFS": -22,
+  "role": "Battement de cœur sourd (sub). Plus fort et plus rapide dans les plans « intérieurs » (paupières, yeux écarquillés), 140 bpm pendant l'apnée. S'arrête net à 36,95 s ; reprend lent et profond (52 bpm) à 38,0 et s'éteint vers 43.",
+  "evenements": [
+   {
+    "t": 3.2,
+    "what": "cœur (lub-dub) 64 bpm"
+   },
+   {
+    "t": 7.85,
+    "what": "plan « paupières » : cœur étouffé, plus fort"
+   },
+   {
+    "t": 24.4,
+    "what": "apnée : le cœur s'emballe"
+   },
+   {
+    "t": 26.8,
+    "what": "pic (aspiration)"
+   },
+   {
+    "t": 36.95,
+    "what": "STOP net"
+   },
+   {
+    "t": 38.0,
+    "what": "reprise lente et profonde (52 bpm)"
+   }
+  ]
+ },
+ {
+  "stem": "06_acouphene-interieur.wav",
+  "niveau_crete_dBFS": -38,
+  "role": "Sifflement aigu très discret quand il ferme les yeux et dans le contrechamp de la panique : on est dans sa tête.",
+  "evenements": [
+   {
+    "t": 7.85,
+    "what": "acouphène"
+   },
+   {
+    "t": 9.65,
+    "what": "acouphène"
+   },
+   {
+    "t": 10.4,
+    "what": "acouphène"
+   },
+   {
+    "t": 25.6,
+    "what": "acouphène"
+   }
+  ]
+ },
+ {
+  "stem": "07_chaleur-impalpable.wav",
+  "niveau_crete_dBFS": -29,
+  "role": "La chaleur, sans forme : souffle chaud grave qui pulse (~1 Hz), crépitements microscopiques dont la densité suit le front de chaleur (même courbe que l'image). Naît à 5,9 s, s'arrête avec le noir.",
+  "evenements": [
+   {
+    "t": 5.9,
+    "what": "la chaleur naît (« Il y a un truc chaud »)"
+   },
+   {
+    "t": 17.5,
+    "what": "cran : « Là, c'est la cheville »"
+   },
+   {
+    "t": 21.6,
+    "what": "3 crans sur les inspirations (21,6 / 22,3 / 23,3)"
+   },
+   {
+    "t": 27.0,
+    "what": "saut de deux crans (« Je peux pas »)"
+   },
+   {
+    "t": 41.4,
+    "what": "presque sur lui"
+   }
+  ]
+ },
+ {
+  "stem": "08_humide.wav",
+  "niveau_crete_dBFS": -28,
+  "role": "Sons mouillés étouffés (bulles, gel) : l'insert du drap (11,5 → 12,9), l'empreinte (13 → 14,1), un petit à chaque cran, et trois gouttes dans la marée finale. Jamais clair, toujours sous le reste.",
+  "evenements": [
+   {
+    "t": 6.85,
+    "what": "humide"
+   },
+   {
+    "t": 11.55,
+    "what": "humide"
+   },
+   {
+    "t": 11.9,
+    "what": "humide"
+   },
+   {
+    "t": 12.1,
+    "what": "humide"
+   },
+   {
+    "t": 12.45,
+    "what": "humide"
+   },
+   {
+    "t": 12.8,
+    "what": "humide"
+   },
+   {
+    "t": 13.2,
+    "what": "humide"
+   },
+   {
+    "t": 13.7,
+    "what": "humide"
+   },
+   {
+    "t": 14.05,
+    "what": "humide"
+   },
+   {
+    "t": 17.55,
+    "what": "humide"
+   },
+   {
+    "t": 18.3,
+    "what": "humide"
+   },
+   {
+    "t": 18.9,
+    "what": "humide"
+   },
+   {
+    "t": 19.6,
+    "what": "humide"
+   },
+   {
+    "t": 20.3,
+    "what": "humide"
+   },
+   {
+    "t": 21.7,
+    "what": "humide"
+   },
+   {
+    "t": 22.3,
+    "what": "humide"
+   },
+   {
+    "t": 23.3,
+    "what": "humide"
+   },
+   {
+    "t": 27.05,
+    "what": "humide"
+   },
+   {
+    "t": 44.1,
+    "what": "humide"
+   },
+   {
+    "t": 45.3,
+    "what": "humide"
+   },
+   {
+    "t": 46.2,
+    "what": "humide"
+   }
+  ]
+ },
+ {
+  "stem": "09_drone-tension.wav",
+  "niveau_crete_dBFS": -27,
+  "role": "Drone grave (~40-50 Hz + quinte + octave) qui monte avec la progression de la chaleur. S'éteint dans la pause de « non » (37,0 → 37,9), revient avec le lit. De 43,3 à 47,4 : marée montante, coupée net au noir.",
+  "evenements": [
+   {
+    "t": 5.4,
+    "what": "le drone naît"
+   },
+   {
+    "t": 21,
+    "what": "monte avec les crans"
+   },
+   {
+    "t": 37.0,
+    "what": "SE TAIT (pause de « non »)"
+   },
+   {
+    "t": 37.95,
+    "what": "revient avec le lit"
+   },
+   {
+    "t": 43.3,
+    "what": "marée finale (montée)"
+   },
+   {
+    "t": 47.4,
+    "what": "COUPÉ NET (noir)"
+   }
+  ]
+ },
+ {
+  "stem": "10_coupes-et-a-coups.wav",
+  "niveau_crete_dBFS": -23,
+  "role": "Impacts graves courts (sub + queue de bruit) sur les coupes de plan ; gros sur « trop » (14,1) et sur l'aspiration (26,8). Aucun impact sur « non » (37,86) : le silence est le choc.",
+  "evenements": [
+   {
+    "t": 0.93,
+    "what": "coupe"
+   },
+   {
+    "t": 3.18,
+    "what": "coupe"
+   },
+   {
+    "t": 6.7,
+    "what": "coupe"
+   },
+   {
+    "t": 7.58,
+    "what": "coupe"
+   },
+   {
+    "t": 8.83,
+    "what": "coupe"
+   },
+   {
+    "t": 9.63,
+    "what": "coupe"
+   },
+   {
+    "t": 11.28,
+    "what": "coupe"
+   },
+   {
+    "t": 15.38,
+    "what": "coupe"
+   },
+   {
+    "t": 17.43,
+    "what": "coupe"
+   },
+   {
+    "t": 25.58,
+    "what": "coupe"
+   },
+   {
+    "t": 27.68,
+    "what": "coupe"
+   },
+   {
+    "t": 41.38,
+    "what": "coupe"
+   },
+   {
+    "t": 43.28,
+    "what": "coupe"
+   },
+   {
+    "t": 14.11,
+    "what": "« trop » : l'empreinte serre"
+   },
+   {
+    "t": 17.53,
+    "what": "cran « Là »"
+   },
+   {
+    "t": 18.27,
+    "what": "cran « cheville »"
+   },
+   {
+    "t": 21.6,
+    "what": "cran (inspiration)"
+   },
+   {
+    "t": 22.25,
+    "what": "cran"
+   },
+   {
+    "t": 23.25,
+    "what": "cran"
+   },
+   {
+    "t": 26.83,
+    "what": "« Je peux pas » : aspiration"
+   },
+   {
+    "t": 27.1,
+    "what": "saut de crans"
+   }
+  ]
+ },
+ {
+  "stem": "11_tissu-et-matelas.wav",
+  "niveau_crete_dBFS": -27,
+  "role": "Frottements de tissu (oreiller, drap, sa main) et grincements du matelas, chaque fois que quelque chose bouge sous la couette. Le grincement du lit est ce qui trahit la chose.",
+  "evenements": [
+   {
+    "t": 0.95,
+    "what": "tissu"
+   },
+   {
+    "t": 3.2,
+    "what": "tissu"
+   },
+   {
+    "t": 17.4,
+    "what": "tissu"
+   },
+   {
+    "t": 21.3,
+    "what": "tissu"
+   },
+   {
+    "t": 26.8,
+    "what": "tissu"
+   },
+   {
+    "t": 28.85,
+    "what": "tissu"
+   },
+   {
+    "t": 29.9,
+    "what": "tissu"
+   },
+   {
+    "t": 33.7,
+    "what": "tissu"
+   },
+   {
+    "t": 35.8,
+    "what": "tissu"
+   },
+   {
+    "t": 43.4,
+    "what": "tissu"
+   },
+   {
+    "t": 17.5,
+    "what": "grincement du matelas"
+   },
+   {
+    "t": 18.25,
+    "what": "grincement du matelas"
+   },
+   {
+    "t": 22.1,
+    "what": "grincement du matelas"
+   },
+   {
+    "t": 22.7,
+    "what": "grincement du matelas"
+   },
+   {
+    "t": 23.6,
+    "what": "grincement du matelas"
+   },
+   {
+    "t": 27.0,
+    "what": "grincement du matelas"
+   },
+   {
+    "t": 38.4,
+    "what": "grincement du matelas"
+   },
+   {
+    "t": 40.4,
+    "what": "grincement du matelas"
+   },
+   {
+    "t": 44.8,
+    "what": "grincement du matelas"
+   }
+  ]
+ },
+ {
+  "stem": "12_le-lit-respire.wav",
+  "niveau_crete_dBFS": -23,
+  "role": "La respiration du lit (sub + souffle grave) : inspiration 37,9 → 39,85 (le cadre monte), expiration 39,85 → 42,0 (déborde sous le noir et « Léa ? »). Prend la suite de la respiration de Léa, 10 fois plus grave : c'est ce qu'il prenait pour elle.",
+  "evenements": [
+   {
+    "t": 37.9,
+    "what": "inspiration du lit"
+   },
+   {
+    "t": 39.85,
+    "what": "expiration du lit"
+   },
+   {
+    "t": 43.3,
+    "what": "inspiration (finale)"
+   }
+  ]
+ },
+ {
+  "stem": "13_pause-et-final.wav",
+  "niveau_crete_dBFS": -26,
+  "role": "Un souffle inversé presque inaudible qui monte dans les derniers 0,4 s du silence (37,5 → 37,86) et prépare l'entrée du lit ; un battement de cœur lent et grave à 42,1 (« Léa ? ») ; puis RIEN : coupe nette à 47,4 (noir) suivie de 1 s de silence total avant la boucle (aucun impact, aucune queue de réverbération).",
+  "evenements": [
+   {
+    "t": 37.5,
+    "what": "souffle inversé (la pause se referme)"
+   },
+   {
+    "t": 42.1,
+    "what": "cœur lent sur « Léa ? »"
+   }
+  ]
+ }
+]
