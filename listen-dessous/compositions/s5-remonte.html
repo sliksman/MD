@@ -17,26 +17,34 @@
           const root = document.querySelector('[data-composition-id="s5"]');
           const tl = gsap.timeline({ paused: true });
           const w = sc.w;
-          // PLAN 5 — « Ça remonte. Doucement. Là, c'est la cheville. Je sens plus mes orteils. » : retour au plafond. Le relief du drap entre par le bas, cran par cran. « orteils » s'éteint lettre par lettre.
+          // PLAN 5 — « Ça remonte. Doucement. Là, c'est la cheville. Je sens plus mes orteils. » : le regard le long de son corps. La chaleur avance vers lui, sans forme ni contour. « orteils » s'éteint lettre par lettre.
           const hud = `<g id="${ID}-ot" opacity="0"><text x="540" y="450" text-anchor="middle" font-family="Nunito" font-weight="900" font-size="76" fill="#fff" filter="url(#${ID}-fShadow)">Je sens plus mes</text>
             <text id="${ID}-ot2" x="540" y="548" text-anchor="middle" font-family="Nunito" font-weight="900" font-size="104" filter="url(#${ID}-fShadow)">${"orteils.".split("").map((c, i) => `<tspan id="${ID}-ol${i}" fill="#F5B85A">${c}</tspan>`).join("")}</text></g>`;
-          const S = L.stage(root, ID, A.pov("pv"), hud);
+          const S = L.stage(root, ID, A.along("al"), hud);
           gsap.set(S.cam, { svgOrigin: "540 960" });
-          gsap.set(S.$("pv-glw"), { opacity: 0.75 });
           gsap.set(S.$("ot2"), { opacity: 0 });
-          const lv = (b) => 280 - b, D = sc.end - sc.start;
-          gsap.set(S.$("pv-hump"), { y: lv(90) });
+          const U = (u) => 640 + 1340 * u, K = (u) => (210 + 590 * u) / 400, D = sc.end - sc.start;
+          let cu = 0.1;
+          gsap.set(S.$("al-swell"), { y: U(cu), scale: K(cu), opacity: 1 });
+          gsap.set(S.$("al-warm"), { y: U(cu) - 1000 });
+          gsap.set(S.$("al-fg"), { opacity: 0.85 });
+          const mv = (t, u, d, ease = "power2.inOut") => {
+            tl.fromTo(S.$("al-swell"), { y: U(cu), scale: K(cu) }, { y: U(u), scale: K(u), duration: d, ease, immediateRender: false }, t);
+            tl.fromTo(S.$("al-warm"), { y: U(cu) - 1000 }, { y: U(u) - 1000, duration: d, ease, immediateRender: false }, t);
+            cu = u;
+          };
           const cut2 = w("L05", 3) - 0.08;                    // « Là » : changement de cadrage (la tête bouge)
-          L.sway(tl, S, 0, D, 3.2, 12);
-          tl.fromTo(S.cam, { scale: 1 }, { scale: 1.05, duration: cut2, ease: "none", immediateRender: false }, 0);
-          tl.set(S.cam, { scale: 1.12, rotation: -2.2, x: -24, y: 18 }, cut2);
-          tl.fromTo(S.cam, { scale: 1.12 }, { scale: 1.17, duration: D - cut2, ease: "none", immediateRender: false }, cut2 + 0.01);
-          // le relief monte : doucement, puis un cran net sur « Là », un autre sur « cheville »
-          tl.fromTo(S.$("pv-hump"), { y: lv(90) }, { y: lv(170), duration: w("L05", 3) - w("L05", 1) - 0.1, ease: "power1.inOut", immediateRender: false }, w("L05", 1));
-          tl.fromTo(S.$("pv-hump"), { y: lv(170) }, { y: lv(230), duration: 0.22, ease: "power3.out", immediateRender: false }, w("L05", 3));
-          tl.fromTo(S.$("pv-hump"), { y: lv(230) }, { y: lv(270), duration: 0.22, ease: "power3.out", immediateRender: false }, w("L05", 6));
-          tl.fromTo(S.$("pv-hump"), { y: lv(270) }, { y: lv(300), duration: D - w("L05", 6) - 0.3, ease: "power1.inOut", immediateRender: false }, w("L05", 6) + 0.3);
-          tl.to(S.$("pv-glw"), { opacity: 0.9, duration: 1.2 }, w("L05", 3));
+          L.sway(tl, S, 0, D, 3.2, 8);
+          L.sway(tl, { cam: S.$("al-chest") }, 0, D, 3.2, 16);
+          tl.fromTo(S.cam, { scale: 1 }, { scale: 1.03, duration: cut2, ease: "none", immediateRender: false }, 0);
+          tl.set(S.cam, { scale: 1.06, rotation: -2.2, x: -24, y: 14 }, cut2);
+          tl.fromTo(S.cam, { scale: 1.06 }, { scale: 1.1, duration: D - cut2, ease: "none", immediateRender: false }, cut2 + 0.01);
+          // la chaleur avance : doucement, puis un cran net sur « Là », un autre sur « cheville »
+          mv(w("L05", 1), 0.2, w("L05", 3) - w("L05", 1) - 0.1, "power1.inOut");
+          mv(w("L05", 3), 0.3, 0.25, "power3.out");
+          mv(w("L05", 6), 0.37, 0.25, "power3.out");
+          mv(w("L05", 6) + 0.3, 0.43, D - w("L05", 6) - 0.35, "power1.inOut");
+          tl.fromTo(S.$("al-shim"), { y: -10 }, { y: -70, duration: 1.2, ease: "sine.inOut", yoyo: true, repeat: 4, immediateRender: false }, 0);
           // sous-titre « orteils » : il s'éteint lettre par lettre
           const o0 = w("L05", 7) - 0.02, o1 = w("L05", 11);
           tl.set(S.$("ot"), { opacity: 1 }, o0);

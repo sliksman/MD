@@ -677,11 +677,11 @@
     A.hand = (name) => `<g id="${P}${name}"><g id="${P}${name}-g"><rect x="-220" y="1560" width="560" height="150" rx="75" fill="${u("gSkin")}" transform="rotate(-14 -220 1630)"/><circle cx="380" cy="1510" r="86" fill="${u("gSkin")}"/>
       <g stroke="#fff" stroke-opacity=".35" stroke-width="7" stroke-linecap="round" id="${P}${name}-tr"><path d="M490 1430 l34 -22 M505 1500 l40 0 M490 1570 l34 22"/></g></g></g>`;
     // drap en très gros plan : name-glw (lueur), name-stain (tache), name-press (empreinte qui dépasse le cadre)
-    A.fabric = (name) => `<g id="${P}${name}"><rect x="-160" y="-260" width="1400" height="2440" fill="${u("gFa")}"/>
+    A.fabric = (name) => `<g id="${P}${name}"><defs><filter id="${P}${name}-fs" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="38"/></filter></defs><rect x="-160" y="-260" width="1400" height="2440" fill="${u("gFa")}"/>
       <g fill="none" stroke-linecap="round">${[0, 1, 2, 3, 4, 5, 6].map((i) => `<path d="M-160 ${150 + i * 300} Q300 ${80 + i * 300} 540 ${200 + i * 300} T1240 ${140 + i * 300}" stroke="#000" stroke-opacity=".16" stroke-width="${26 + (i % 3) * 8}"/><path d="M-160 ${180 + i * 300} Q300 ${110 + i * 300} 540 ${230 + i * 300} T1240 ${170 + i * 300}" stroke="#fff" stroke-opacity=".06" stroke-width="12"/>`).join("")}</g>
       <g id="${P}${name}-glw" opacity="0"><ellipse cx="540" cy="1200" rx="640" ry="540" fill="${u("gWm")}"/></g>
-      <g id="${P}${name}-stain" data-ox="540" data-oy="1150" opacity="0"><g transform="translate(540 1150) scale(3.2)"><path d="M-70 -20 q20 -50 70 -40 q55 -6 75 38 q40 20 25 62 q-10 45 -60 40 q-30 36 -70 8 q-62 8 -66 -40 q-30 -34 26 -68z" fill="#1a0b14" opacity=".62"/><path d="M-30 -30 q30 -20 60 -4" fill="none" stroke="#fff" stroke-opacity=".25" stroke-width="5" stroke-linecap="round"/></g></g>
-      <g id="${P}${name}-press" data-ox="560" data-oy="1130" opacity="0"><ellipse cx="560" cy="1130" rx="780" ry="610" fill="${u("gMd")}"/><g stroke="#000" stroke-opacity=".24" stroke-width="10" stroke-linecap="round" fill="none">${[-70, -40, -12, 14, 42, 70].map((a) => { const r = (a * Math.PI) / 180, R = 780; return `<path d="M${(560 + Math.sin(r) * R * 0.62).toFixed(0)} ${(1130 - Math.cos(r) * R * 0.5).toFixed(0)} Q${(560 + Math.sin(r) * R * 0.95).toFixed(0)} ${(1130 - Math.cos(r) * R * 0.74).toFixed(0)} ${(560 + Math.sin(r) * R * 1.3).toFixed(0)} ${(1130 - Math.cos(r) * R * 1.0).toFixed(0)}"/>`; }).join("")}</g></g></g>`;
+      <g id="${P}${name}-stain" data-ox="540" data-oy="1150" opacity="0" filter="url(#${P}${name}-fs)"><ellipse cx="540" cy="1150" rx="330" ry="260" fill="#1a0b14" opacity=".55"/><ellipse cx="640" cy="1230" rx="260" ry="200" fill="#1a0b14" opacity=".14"/></g>
+      <g id="${P}${name}-press" data-ox="560" data-oy="1130" opacity="0" filter="url(#${P}${name}-fs)"><ellipse cx="520" cy="1060" rx="640" ry="500" fill="#fff" opacity=".13"/><ellipse cx="640" cy="1220" rx="700" ry="520" fill="#000" opacity=".26"/></g></g>`;
     // ses yeux seuls, gros plan : name-pup (pupilles), name-lidA/B (paupières, scaleY 0 = ouvertes), name-shut (traits « ︶ »), name-tear
     A.eyesBig = (name, o = {}) => {
       const r = o.r || 100, ex = o.ex || 170, y = o.y || 960, PAT = "#2d2229";
@@ -691,6 +691,31 @@
       return `<g id="${P}${name}"><rect x="-160" y="-260" width="1400" height="2440" fill="#030409"/>${one(540 - ex, 1)}${one(540 + ex, 2)}
         <g id="${P}${name}-shut" opacity="0">${arcP(540 - ex, y, r * 0.8, "#a8836d")}${arcP(540 + ex, y, r * 0.8, "#a8836d")}</g>
         <path id="${P}${name}-tear" d="M${540 - ex - 20} ${y + r * 1.1} q-14 36 0 54 q14 -18 0 -54z" fill="#9cc8ff" opacity="0"/></g>`;
+    };
+
+    // Regard baissé le long de son corps (première personne) : couette en perspective, pieds au fond, pied du lit, fenêtre.
+    // Ce n'est PAS un objet : name-warm = une chaleur diffuse dont le FRONT avance vers lui (y = profondeur(u).y - 1000) ; name-swell = léger gonflement doux + humidité + voile de chaleur, sans contour.
+    // Profondeur u (0 = pieds, 1 = poitrine) → y = 640 + 1340 u ; échelle k = (210 + 590 u) / 400.
+    A.along = (name) => {
+      const hw0 = 210, hw1 = 800, y0 = 640, y1 = 1980;
+      const poly = `M${540 - hw0} ${y0} L${540 + hw0} ${y0} L${540 + hw1} ${y1} L${540 - hw1} ${y1}Z`;
+      const wavy = [0, 1, 2, 3].map((i) => `<path d="M${400 + i * 90} -40 q22 -40 0 -80 t0 -80 t0 -80" fill="none" stroke="#ffd9b8" stroke-opacity=".10" stroke-width="5" stroke-linecap="round"/>`).join("");
+      return `<g id="${P}${name}"><defs><clipPath id="${P}${name}-clip"><path d="${poly}"/></clipPath><filter id="${P}${name}-fs" x="-50%" y="-80%" width="200%" height="260%"><feGaussianBlur stdDeviation="26"/></filter><filter id="${P}${name}-fh" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="3"/></filter>
+        <linearGradient id="${P}${name}-gw" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e8794f" stop-opacity=".3"/><stop offset=".83" stop-color="#e8794f" stop-opacity=".3"/><stop offset="1" stop-color="#e0674d" stop-opacity="0"/></linearGradient>
+        <linearGradient id="${P}${name}-gs" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#000" stop-opacity=".45"/><stop offset="1" stop-color="#fff" stop-opacity=".08"/></linearGradient></defs>
+        <rect x="-200" y="-200" width="1480" height="2320" fill="#0b0e28"/>
+        <rect x="150" y="150" width="270" height="340" rx="6" fill="#26306a" opacity=".8"/><path d="M285 150 V490 M150 320 H420" stroke="#0b0e28" stroke-width="10"/>
+        <rect x="300" y="560" width="480" height="64" rx="10" fill="${u("gWood")}"/><rect x="288" y="520" width="34" height="140" rx="8" fill="${u("gWoodDark")}"/><rect x="758" y="520" width="34" height="140" rx="8" fill="${u("gWoodDark")}"/>
+        <path d="${poly}" fill="${C.duvet}"/><path d="${poly}" fill="url(#${P}${name}-gs)"/>
+        <path d="M${540 - hw0} ${y0} L${540 + hw0} ${y0}" stroke="${C.duvetEdge}" stroke-width="14" stroke-linecap="round"/>
+        <g stroke="#000" stroke-opacity=".16" stroke-width="8" fill="none" stroke-linecap="round"><path d="M470 660 L210 1900 M610 660 L870 1900"/></g>
+        ${[-1, 1].map((sg) => `<path d="M${540 + sg * 28} 668 L${540 + sg * 22 - sg * 150} 1800 L${540 + sg * 160 + sg * 30} 1800 L${540 + sg * 90} 668Z" fill="#fff" opacity=".055"/>`).join("")}
+        <ellipse cx="490" cy="690" rx="38" ry="22" fill="#fff" opacity=".1"/><ellipse cx="592" cy="690" rx="38" ry="22" fill="#fff" opacity=".1"/>
+        <g clip-path="url(#${P}${name}-clip)"><g id="${P}${name}-fg" opacity="0"><ellipse cx="540" cy="720" rx="200" ry="120" fill="${u("gWm")}"/></g>
+          <g id="${P}${name}-warmw"><g id="${P}${name}-warm" transform="translate(0 -400)"><rect x="0" y="-1400" width="1080" height="2400" fill="url(#${P}${name}-gw)"/></g></g>
+          <g id="${P}${name}-swell" data-ox="540" data-oy="0" transform="translate(0 640)" opacity="1"><g filter="url(#${P}${name}-fs)"><ellipse cx="540" cy="-170" rx="170" ry="100" fill="#1a0b14" opacity=".2"/><ellipse cx="520" cy="-20" rx="250" ry="105" fill="#fff" opacity=".1"/><ellipse cx="560" cy="70" rx="270" ry="95" fill="#000" opacity=".2"/><ellipse cx="540" cy="0" rx="320" ry="190" fill="${u("gWm")}" opacity=".7"/></g>
+            <g filter="url(#${P}${name}-fh)"><g id="${P}${name}-shim" transform="translate(140 -10)">${wavy}</g></g></g></g>
+        <g id="${P}${name}-chest"><ellipse cx="540" cy="1990" rx="640" ry="290" fill="#000" opacity=".3"/><ellipse cx="540" cy="1960" rx="620" ry="270" fill="${C.duvet}"/><ellipse cx="540" cy="1960" rx="620" ry="270" fill="${u("gMd")}"/></g></g>`;
     };
     return A;
   }

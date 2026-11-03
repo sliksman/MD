@@ -3,17 +3,21 @@ const hud = `<g id="${ID}-vg2" opacity=".5"><rect width="1080" height="1920" fil
   <g id="${ID}-ds" opacity="0"><g id="${ID}-dsg1" opacity=".16"><text x="540" y="590" text-anchor="middle" font-family="Nunito" font-weight="900" font-size="80" fill="#fff">C'est dessous.</text></g>
   <g id="${ID}-dsg2" opacity=".32"><text x="540" y="535" text-anchor="middle" font-family="Nunito" font-weight="900" font-size="80" fill="#fff">C'est dessous.</text></g>
   <g id="${ID}-dsm"><text x="540" y="480" text-anchor="middle" font-family="Nunito" font-weight="900" font-size="80" fill="#fff" filter="url(#${ID}-fShadow)">C'est <tspan fill="#F5B85A">dessous.</tspan></text></g></g>`;
-const S = L.stage(root, ID, A.pov("pv"), hud);
+const S = L.stage(root, ID, A.along("al"), hud);
 gsap.set(S.cam, { svgOrigin: "540 960" });
-gsap.set(S.$("pv-glw"), { opacity: 1 });
-const lv = (b) => 280 - b, D = sc.end - sc.start;
-gsap.set(S.$("pv-hump"), { y: lv(450) });
-// le lit respire : cycle de ≈ 4 s, beaucoup plus lent et plus fort que le sien ; il ralentit encore sur « C'est lent »
+gsap.set(S.cam, { svgOrigin: "540 960", scale: 1.1, rotation: -2.2, x: -24, y: 14 });
+gsap.set(S.$("al-fg"), { opacity: 0.85 });
+const U = (u) => 640 + 1340 * u, K = (u) => (210 + 590 * u) / 400, D = sc.end - sc.start;
+gsap.set(S.$("al-swell"), { y: U(0.78), scale: K(0.78), opacity: 1 });
+gsap.set(S.$("al-warm"), { y: U(0.78) - 1000 });
+// le lit respire : cycle de ≈ 4 s, beaucoup plus lent et plus fort que le sien ; la chaleur est presque sur lui et ralentit encore sur « C'est lent »
 const t1 = w("L08", 15) - 0.05;
-tl.fromTo(S.cam, { y: 0, scale: 1 }, { y: -70, scale: 1.03, duration: 1.9, ease: "sine.inOut", immediateRender: false }, 0);
-tl.to(S.cam, { y: 0, scale: 1, duration: 2.2, ease: "sine.inOut" }, 1.9);
-tl.fromTo(S.$("pv-hump"), { y: lv(450) }, { y: lv(480), duration: 1.9, ease: "sine.inOut", immediateRender: false }, 0);
-tl.to(S.$("pv-hump"), { y: lv(450), duration: 2.2, ease: "sine.inOut" }, 1.9);
+tl.fromTo(S.cam, { y: 14, scale: 1.1 }, { y: -50, scale: 1.14, duration: 1.9, ease: "sine.inOut", immediateRender: false }, 0);
+tl.to(S.cam, { y: 14, scale: 1.1, duration: 2.2, ease: "sine.inOut" }, 1.9);
+tl.fromTo(S.$("al-chest"), { y: 0 }, { y: -70, duration: 1.9, ease: "sine.inOut", immediateRender: false }, 0);
+tl.to(S.$("al-chest"), { y: 0, duration: 2.2, ease: "sine.inOut" }, 1.9);
+tl.fromTo(S.$("al-swell"), { y: U(0.78), scale: K(0.78) }, { y: U(0.9), scale: K(0.9), duration: D, ease: "power1.inOut", immediateRender: false }, 0);
+tl.fromTo(S.$("al-warm"), { y: U(0.78) - 1000 }, { y: U(0.9) - 1000, duration: D, ease: "power1.inOut", immediateRender: false }, 0);
 tl.fromTo(S.$("vg2"), { opacity: 0.5 }, { opacity: 0.9, duration: 1.9, ease: "sine.inOut", immediateRender: false }, 0);
 tl.to(S.$("vg2"), { opacity: 0.5, duration: 2.2, ease: "sine.inOut" }, 1.9);
 // « dessous » : le mot s'enfonce vers le bas du cadre, avec des traînées (il remplace le sous-titre normal)

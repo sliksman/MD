@@ -1,19 +1,26 @@
-// PLAN 2 — « Je suis terrifié. » / « Y a un truc chaud sur mes pieds. » : vue subjective, plafond. La lueur monte par le bas du cadre. Insert : le drap.
-const S = L.stage(root, ID, A.pov("pv") + A.fabric("fb"), "");
+// PLAN 2 — « Je suis terrifié. » / « Y a un truc chaud sur mes pieds. » : première personne, il baisse les yeux le long de son corps (la couette en perspective, ses pieds au fond). Une chaleur diffuse naît sur ses pieds. Insert : le drap.
+const S = L.stage(root, ID, A.along("al") + A.fabric("fb"), "");
 gsap.set(S.cam, { svgOrigin: "540 960" });
 gsap.set(S.$("fb"), { opacity: 0 });
-gsap.set(S.$("pv-hump"), { y: 280 });
+const U = (u) => 640 + 1340 * u, K = (u) => (210 + 590 * u) / 400;
+gsap.set(S.$("al-swell"), { y: U(0.05), scale: K(0.05), opacity: 0 });
+gsap.set(S.$("al-warm"), { y: U(0.05) - 1000 });
 const ins = w("L02", 5) - 0.12, D = sc.end - sc.start;
-// le cadre respire avec lui, et pousse très lentement
-L.sway(tl, S, 0, ins, 3.0, 14);
-tl.fromTo(S.cam, { scale: 1 }, { scale: 1.06, duration: ins, ease: "none", immediateRender: false }, 0);
-// la lueur : d'abord à peine, puis nette sur « chaud », qui pulse
-tl.to(S.$("pv-glw"), { opacity: 0.3, duration: 0.6, ease: "power1.in" }, w("L02", 0) - 0.1);
-tl.to(S.$("pv-glw"), { opacity: 0.78, duration: 0.5, ease: "power2.in" }, w("L02", 3) - 0.1);
-tl.fromTo(S.$("pv-glw").querySelector("ellipse"), { opacity: 1 }, { opacity: 0.6, duration: 0.45, yoyo: true, repeat: 8, ease: "sine.inOut", immediateRender: false }, w("L02", 3) + 0.4);
+// le cadre respire avec lui (très peu) ; son torse, au premier plan, monte et descend
+L.sway(tl, S, 0, ins, 3.0, 8);
+L.sway(tl, { cam: S.$("al-chest") }, 0, ins, 3.0, 16);
+tl.fromTo(S.cam, { scale: 1 }, { scale: 1.03, duration: ins, ease: "none", immediateRender: false }, 0);
+// la chaleur : à peine perceptible au fond, puis nette sur « chaud », qui pulse ; un voile de chaleur se lève
+tl.to(S.$("al-fg"), { opacity: 0.4, duration: 0.7, ease: "power1.in" }, w("L02", 0) - 0.1);
+tl.to(S.$("al-fg"), { opacity: 0.85, duration: 0.6, ease: "power2.in" }, w("L02", 3) - 0.1);
+tl.fromTo(S.$("al-fg").querySelector("ellipse"), { opacity: 1 }, { opacity: 0.6, duration: 0.5, yoyo: true, repeat: 6, ease: "sine.inOut", immediateRender: false }, w("L02", 3) + 0.3);
+tl.to(S.$("al-swell"), { opacity: 1, duration: 0.9, ease: "power1.in" }, w("L02", 3));
+tl.fromTo(S.$("al-swell"), { y: U(0.05), scale: K(0.05) }, { y: U(0.09), scale: K(0.09), duration: ins - w("L02", 3), ease: "power1.inOut", immediateRender: false }, w("L02", 3));
+tl.fromTo(S.$("al-warm"), { y: U(0.05) - 1000 }, { y: U(0.09) - 1000, duration: ins - w("L02", 3), ease: "power1.inOut", immediateRender: false }, w("L02", 3));
+tl.fromTo(S.$("al-shim"), { y: -10 }, { y: -60, duration: 1.1, ease: "sine.inOut", yoyo: true, repeat: 4, immediateRender: false }, w("L02", 3));
 // insert : le drap de si près que c'est abstrait, la lueur transparaît
 tl.set(S.cam, { scale: 1, y: 0 }, ins);
-tl.set(S.$("pv"), { opacity: 0 }, ins);
+tl.set(S.$("al"), { opacity: 0 }, ins);
 tl.set(S.$("fb"), { opacity: 1 }, ins);
 tl.set(S.$("fb-glw"), { opacity: 0.9 }, ins);
 tl.fromTo(S.$("fb-glw").querySelector("ellipse"), { opacity: 1 }, { opacity: 0.55, duration: 0.3, yoyo: true, repeat: 4, ease: "sine.inOut", immediateRender: false }, ins);
