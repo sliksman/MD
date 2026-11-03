@@ -22,7 +22,17 @@ Changements vs script d'origine : coupé « Qu'est-ce qui nous arrive ? » (seul
 Direction de voix : chuchoté, micro très proche, jamais de cri, ne pas jouer la peur (la dire à plat est plus inquiétant). Pauses : ~0,8 s sur « … non » ; ~1 s avant « Léa ? » ; ~0,6 s avant « Avec ta voix ».
 Durée estimée : ~50 s (à confirmer avec la voix).
 
-## Principe de mise en scène
+## MISE À JOUR v2 (retour du user) : plans rapprochés + première personne
+
+La v1 ci-dessous (plongée sur le lit, plans larges) est abandonnée : trop frontale, le plan large révèle et tue la tension. Voir `storyboard.html` (v2, 18 croquis) ; l'ancienne version est dans `storyboard-v1.html`.
+- Plus aucun plan large : tout est vu de très près (inserts de tissu, visage de Léa) ou en caméra subjective (il est allongé sur le dos : plafond, bord du drap en bas de cadre, horloge à gauche, Léa à droite).
+- Le cadre respire avec lui ; il se fige quand il retient son souffle ; c'est le lit qui respire dans « C'est dessous ».
+- La chose se lit par le bas du cadre : lueur chaude qui monte, relief du drap qui entre dans le champ (cliquet : monte à chaque inspiration, ne redescend jamais).
+- Un seul contrechamp : ses yeux (début, panique, « Léa ? »).
+- Design de Léa : la v1 lisait « voilée ». Piste A retenue en attendant validation : chignon de nuit + frange + mèches courtes, cheveux jamais autour du menton.
+- Dernier plan : le visage de Léa, sans bouche dessinée, la lueur monte du bas. Puis noir sec, boucle sur ses yeux.
+
+## Principe de mise en scène (v1, remplacé par la v2 ci-dessus)
 
 On ne voit JAMAIS la chose. Tout passe par le drap (relief, chaleur, humidité, respiration). Pas de main dessinée, pas de bouche, pas de monstre : le spectateur remplit. Chaque beat monte d'un cran d'un seul paramètre (lueur, tache, relief, vignette) pour qu'on sente la progression sans qu'elle soit expliquée.
 

@@ -6,7 +6,7 @@ global.window = {};
 global.gsap = { set() {} };
 require("../kit/kit.js");
 const L = window.LS, C = L.C, AMB = C.amber, CREAM = C.cream, WARM = "#e0674d";
-const VERSION = "v1";
+const VERSION = "v2";
 const font = (f) => `url(data:font/woff2;base64,${readFileSync(new URL(`../assets/fonts/${f}`, import.meta.url)).toString("base64")})`;
 
 // ---------- aides ----------
@@ -34,73 +34,96 @@ const eyesOnly = (id, o = {}) => { // yeux seuls, même dessin que les personnag
 };
 const arc = (cx, y, r, col = "#5b4636") => `<path d="M${cx - r} ${y} q${r} ${r * 0.8} ${2 * r} 0" stroke="${col}" stroke-width="${r * 0.45}" fill="none" stroke-linecap="round"/>`;
 
-// lit double en plongée : lui à gauche (x≈385), Léa à droite (x≈695). o.lea = "sleep" | "flat" ; o.him = "open" | "shut"
-function bed(A, id, o = {}) {
-  const u = (n) => A.u(n);
-  const body = (cx, op) => `<path d="M${cx - 62} 850 Q${cx} 815 ${cx + 62} 850 L${cx + 46} 1540 Q${cx} 1575 ${cx - 46} 1540 Z" fill="#fff" opacity="${op}"/><path d="M${cx + 62} 850 L${cx + 46} 1540" stroke="#000" stroke-opacity=".25" stroke-width="10" fill="none"/>
-    <ellipse cx="${cx - 24}" cy="1590" rx="24" ry="40" fill="#fff" opacity="${op * 1.2}"/><ellipse cx="${cx + 24}" cy="1590" rx="24" ry="40" fill="#fff" opacity="${op * 1.2}"/>`;
-  const him = o.himBody === false ? "" : body(385, 0.08), lea = o.lea === "flat" ? body(695, 0.015) : body(695, 0.08);
-  return `<rect x="190" y="545" width="700" height="1210" rx="46" fill="${u("gWood")}"/><rect x="222" y="582" width="636" height="1140" rx="32" fill="#cfc8bb"/>
-  <rect x="100" y="600" width="86" height="120" rx="12" fill="${u("gWood")}"/>${o.clock === false ? "" : A.clock("clk", 105, 640, [o.clock || "03:12"], 18, 70, 36)}
-  <rect x="262" y="600" width="250" height="150" rx="52" fill="${u("gPillow")}"/><rect x="572" y="600" width="250" height="150" rx="52" fill="${u("gPillow")}"/>
-  <g id="${id}-hair"><ellipse cx="695" cy="705" rx="104" ry="96" fill="#2b1d1f"/><path d="M600 700 Q560 780 590 830 M790 700 Q830 780 800 830" stroke="#2b1d1f" stroke-width="22" fill="none" stroke-linecap="round"/></g>
-  <circle cx="385" cy="690" r="66" fill="${u("gSkin")}"/>${o.him === "shut" ? arc(363, 694, 11) + arc(407, 694, 11) : A.eyes("eyes", 363, 407, 694, 11)}
-  <circle cx="695" cy="690" r="62" fill="${u("gSkin")}"/>${arc(675, 694, 11)}${arc(715, 694, 11)}
-  <rect x="222" y="790" width="636" height="915" rx="26" fill="${u("gDuvet")}"/><rect x="222" y="790" width="636" height="44" rx="14" fill="${C.duvetEdge}"/><line x1="540" y1="834" x2="540" y2="1705" stroke="#000" stroke-opacity=".15" stroke-width="4"/>
-  ${him}${lea}`;
+// ---------- art : vue subjective (il est allongé sur le dos), plans rapprochés ----------
+// plafond + périphérie (oreiller à gauche, Léa à droite) + drap en bas de champ + paupières. o.glow : lueur chaude qui monte du bas ; o.bulge : hauteur du relief qui entre par le bas ; o.lid : fermeture des paupières (0..1) ; o.dy : décalage vertical (respiration)
+function pov(A, id, o = {}) {
+  const u = (n) => A.u(n), dy = o.dy || 0, bulge = o.bulge || 0, glw = o.glow || 0, lid = o.lid || 0;
+  const hump = bulge ? `<path d="M200 1990 Q215 ${1700 - bulge} 540 ${1650 - bulge} Q865 ${1700 - bulge} 880 1990z" fill="${u("gDuvet")}"/><path d="M200 1990 Q215 ${1700 - bulge} 540 ${1650 - bulge} Q865 ${1700 - bulge} 880 1990z" fill="url(#${id}-gMd)"/>` : "";
+  return `<defs><linearGradient id="${id}-gCe" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0b0e24"/><stop offset=".5" stop-color="#171c42"/><stop offset="1" stop-color="#0a0c1f"/></linearGradient></defs>
+  <g transform="translate(0 ${dy})"><rect x="-80" y="-120" width="1240" height="2240" fill="url(#${id}-gCe)"/>
+  <circle cx="540" cy="640" r="160" fill="#1b2150" opacity=".85"/><circle cx="540" cy="640" r="112" fill="#262e68" opacity=".6"/><path d="M130 260 q140 130 70 280 q-50 130 50 230" stroke="#fff" stroke-opacity=".07" stroke-width="5" fill="none"/>
+  <g filter="url(#${id}-fBlurL)"><path d="M-40 800 Q110 860 170 1180 L-40 1600z" fill="#222a62"/><path d="M1120 760 Q960 830 920 1160 L1120 1600z" fill="#222a62"/><path d="M1120 800 Q1010 860 990 1060 Q1060 1120 1120 1100z" fill="#4a2d26"/></g>
+  ${o.clock === false ? "" : A.clock("clk", 6, 980, [o.time || "03:12"], 22, 92, 48)}
+  <path d="M-60 1990 L-60 1700 Q540 1590 1140 1700 L1140 1990z" fill="${u("gDuvet")}"/><path d="M-60 1700 Q540 1590 1140 1700 L1140 1735 Q540 1625 -60 1735z" fill="${C.duvetEdge}"/>${hump}
+  ${glw ? `<ellipse cx="540" cy="1960" rx="680" ry="460" fill="url(#${id}-gWm)" opacity="${glw}"/><rect x="-80" y="-120" width="1240" height="2240" fill="#c4483f" opacity="${glw * 0.1}"/>` : ""}</g>
+  ${lid ? `<path d="M-10 -10 H1090 V${lid * 980} Q540 ${lid * 980 + 300 * lid} -10 ${lid * 980}Z" fill="#150609"/><path d="M-10 1930 H1090 V${1920 - lid * 980} Q540 ${1920 - lid * 980 - 300 * lid} -10 ${1920 - lid * 980}Z" fill="#150609"/>` : ""}`;
 }
+// Léa vue de près. variante A (retenue) : chignon de nuit + frange + mèches courtes ; B : longs cheveux sur un seul côté ; C : carré. Repère local : visage rayon 100 au centre.
+function leaHead(A, v = "A", closed = true) {
+  const HAIR = "#6a3f2f", HI = "#92604a", skin = A.u("gSkin");
+  const cap = `<path d="M-97 -18 Q-92 -98 0 -102 Q92 -98 97 -18 Q76 -62 42 -64 Q16 -42 0 -64 Q-16 -42 -42 -64 Q-76 -62 -97 -18Z" fill="${HAIR}"/><path d="M-60 -78 Q-20 -96 30 -86" stroke="${HI}" stroke-width="6" fill="none" stroke-linecap="round"/>`;
+  const extra = v === "A" ? `<circle cx="0" cy="-128" r="38" fill="${HAIR}"/><path d="M-22 -128 q22 -26 44 0 M-14 -120 q14 -14 28 0" stroke="${HI}" stroke-width="5" fill="none" stroke-linecap="round"/><path d="M-97 -18 q-12 40 -4 74 M97 -18 q12 40 4 74" stroke="${HAIR}" stroke-width="12" fill="none" stroke-linecap="round"/>`
+    : v === "B" ? `<path d="M84 -50 Q170 10 138 150 Q118 196 78 184 Q106 100 80 20Z" fill="${HAIR}"/><path d="M110 20 Q140 80 118 150" stroke="${HI}" stroke-width="5" fill="none" stroke-linecap="round"/>`
+    : `<path d="M-100 -30 Q-122 50 -92 96 L-66 84 Q-84 30 -78 -20Z M100 -30 Q122 50 92 96 L66 84 Q84 30 78 -20Z" fill="${HAIR}"/>`;
+  const eyes = closed ? `${arc(-38, 14, 15)}${arc(38, 14, 15)}` : `<circle cx="-38" cy="12" r="15" fill="#fff"/><circle cx="38" cy="12" r="15" fill="#fff"/><circle cx="-37" cy="14" r="7" fill="${C.ink}"/><circle cx="39" cy="14" r="7" fill="${C.ink}"/>`;
+  return `${v === "B" ? "" : ""}<circle r="100" fill="${skin}"/>${extra}${cap}${eyes}`;
+}
+const leaClose = (A, id, o = {}) => `<rect x="-80" y="-120" width="1240" height="2240" fill="#0a0c1f"/><ellipse cx="540" cy="1080" rx="640" ry="470" fill="#232a60"/><ellipse cx="540" cy="1080" rx="640" ry="470" fill="url(#${id}-gMd)" opacity=".5"/>
+  <g transform="translate(${o.x || 540} ${o.y || 1020}) scale(${o.s || 2.5})">${leaHead(A, o.v || "A")}</g>
+  ${o.glow ? `<ellipse cx="540" cy="2000" rx="760" ry="520" fill="url(#${id}-gWm)" opacity="${o.glow}"/>` : ""}`;
+// drap en très gros plan : plis, lueur, tache, empreinte qui dépasse le cadre
+const fabric = (A, id, o = {}) => `<defs><linearGradient id="${id}-gFa" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#34418a"/><stop offset="1" stop-color="#232d6c"/></linearGradient></defs><rect x="-80" y="-120" width="1240" height="2240" fill="url(#${id}-gFa)"/>
+  <g fill="none" stroke-linecap="round">${[0, 1, 2, 3, 4, 5].map((i) => `<path d="M-60 ${250 + i * 300} Q300 ${180 + i * 300} 540 ${300 + i * 300} T1140 ${240 + i * 300}" stroke="#000" stroke-opacity=".16" stroke-width="${26 + (i % 3) * 8}"/><path d="M-60 ${280 + i * 300} Q300 ${210 + i * 300} 540 ${330 + i * 300} T1140 ${270 + i * 300}" stroke="#fff" stroke-opacity=".06" stroke-width="12"/>`).join("")}</g>
+  ${o.glow ? `<ellipse cx="540" cy="${o.gy || 1250}" rx="620" ry="520" fill="url(#${id}-gWm)" opacity="${o.glow}"/>` : ""}
+  ${o.stain ? stain(540, 1150, o.stain, 0.62) : ""}
+  ${o.press ? `<ellipse cx="560" cy="1130" rx="${o.press}" ry="${o.press * 0.78}" fill="url(#${id}-gMd)"/><g stroke="#000" stroke-opacity=".22" stroke-width="9" stroke-linecap="round" fill="none">${[-70, -40, -12, 14, 42, 70].map((a) => { const r = (a * Math.PI) / 180, R = o.press; return `<path d="M${(560 + Math.sin(r) * R * 0.62).toFixed(0)} ${(1130 - Math.cos(r) * R * 0.5).toFixed(0)} Q${(560 + Math.sin(r) * R * 0.95).toFixed(0)} ${(1130 - Math.cos(r) * R * 0.74).toFixed(0)} ${(560 + Math.sin(r) * R * 1.3).toFixed(0)} ${(1130 - Math.cos(r) * R * 1.0).toFixed(0)}"/>`; }).join("")}</g>` : ""}`;
+const hand = (A) => `<g><rect x="-140" y="1560" width="520" height="150" rx="75" fill="${A.u("gSkin")}" transform="rotate(-14 -140 1630)"/><circle cx="420" cy="1520" r="86" fill="${A.u("gSkin")}"/><g stroke="#fff" stroke-opacity=".35" stroke-width="7" stroke-linecap="round"><path d="M530 1440 l34 -22 M545 1510 l40 0 M530 1580 l34 22"/></g></g>`;
 
 // ---------- les croquis ----------
 const F = [
-  { id: "f01", name: "LÉA.", words: 1, pause: 0.8, breath: 0.2, tag: "Hook · ses yeux", voice: "Léa.",
-    note: "<b>Image 1 = ses yeux, en gros plan, grands ouverts, fixés au plafond</b>, pupilles minuscules, avec un tremblement de 1 px. Le premier mot est un prénom, dit à plat, en chuchotant. Fond noir, rien d'autre : le regard fait le hook. <b>Durée ≈ 1,2 s.</b>",
-    seam: "coupe sèche", build: (A, id) => ({ world: eyesOnly(id, { pup: 0.14 }), hud: cap(id, "*Léa.*"), noGrain: true }) },
-  { id: "f02", name: "RÉVEILLE-TOI MON AMOUR", words: 6, tag: "Plan large · le lit, Léa à côté", voice: "Réveille-toi mon amour. Je suis terrifié.",
-    note: "<b>Plongée sur le lit double, quasi noir.</b> Lui à gauche, yeux ouverts ; Léa à droite, immobile, cheveux étalés sur l'oreiller. Horloge de chevet 03:12 (option). <b>Poussée lente</b> pendant « Je suis terrifié ». On voit que le lit est trop grand, trop calme.",
-    seam: "coupe sèche (≈ 2,5 s max)", build: (A, id) => ({ world: defs(id) + cam(540, 1000, 1)(bed(A, id)) + dark(0.42), hud: cap(id, "Réveille-toi *mon amour.*") + vig(id, 0.9) }) },
-  { id: "f03", name: "UN TRUC CHAUD", words: 7, tag: "Le bas du lit · la lueur naît", voice: "Y'a un truc chaud sur mes pieds.",
-    note: "<b>Coupe sur le pied du lit.</b> Sous le drap, au niveau de ses pieds, <b>une lueur chaude sale (rose-ambre) apparaît et pulse lentement</b>, comme un battement. Rien d'autre ne change. C'est la première chose « anormale » : une source de lumière qui ne devrait pas être là.",
-    seam: "coupe sèche", build: (A, id) => ({ world: defs(id) + cam(385, 1560, 1.9)(bed(A, id) + glow(id, 385, 1590, 190, 150, 0.9)) + dark(0.38), hud: cap(id, "un truc *chaud*") + vig(id, 0.9) }) },
-  { id: "f04", name: "JE REGARDE PAS", words: 10, tag: "Gros plan · il fait le contraire", voice: "Je regarde pas. Je te jure que je regarde pas.",
-    note: "<b>Ses yeux, paupières serrées</b> sur « Je regarde pas ». Sur « je te jure », <b>elles s'entrouvrent un quart de seconde et les pupilles glissent vers le bas</b> (vers ses pieds), puis se referment. Il dit une chose et fait l'autre : on sent qu'il a besoin de regarder. <b>Croquis : instant où il regarde.</b>",
-    seam: "continu", build: (A, id) => ({ world: eyesOnly(id, { pup: 0.2, dy: 46, lid: 0.55 }), hud: cap(id, "Je regarde *pas.*") }) },
-  { id: "f05", name: "DOUX ET HUMIDE", words: 4, tag: "Plan serré · la tache s'étend", voice: "C'est doux et humide.",
-    note: "<b>Plan serré sur le drap, bas du lit.</b> Une <b>tache sombre brillante s'étend lentement</b> autour de ses pieds (humide), la lueur chaude passe derrière. Le drap se froisse légèrement. On ne voit toujours rien de la chose.",
-    seam: "continu", build: (A, id) => ({ world: defs(id) + cam(385, 1560, 2.1)(bed(A, id) + glow(id, 385, 1590, 210, 170, 0.8) + stain(385, 1560, 1.3, 0.6)) + dark(0.35), hud: cap(id, "doux et *humide.*") + vig(id, 0.9) }) },
-  { id: "f06", name: "COMME UNE MAIN, TROP GRANDE", words: 7, tag: "★ L'empreinte · l'échelle", voice: "Ça tient comme une main, mais trop grande.",
-    note: "<b>Le drap se creuse en une empreinte plus large que son pied</b> (≈ 2× sa taille) : un relief arrondi, des plis qui rayonnent, <b>jamais de doigts dessinés</b>. Au mot « trop », l'empreinte grossit d'un coup (à-coup caméra). C'est l'image la plus explicite de l'épisode, et elle ne montre rien.",
-    seam: "à-coup caméra sur « trop »", build: (A, id) => ({ world: defs(id) + cam(385, 1540, 1.6)(bed(A, id) + glow(id, 385, 1560, 250, 200, 0.75) + stain(385, 1580, 1.5, 0.5) + mound(id, 385, 1540, 175, 130)) + dark(0.35), hud: cap(id, "mais *trop grande.*") + vig(id, 1) }) },
-  { id: "f07", name: "ÇA REMONTE", words: 7, tag: "La cheville · premier cran", voice: "Ça remonte. Doucement. Là, c'est la cheville.",
-    note: "<b>L'empreinte a monté d'un cran</b> : elle est maintenant au niveau de la cheville, la tache la suit, la lueur est plus grande. <b>La vignette se resserre d'un cran</b> (à chaque cran, un paramètre monte : lueur, vignette, drone grave). Coupe franche sur « Là ».",
-    seam: "coupe sur « Là »", build: (A, id) => ({ world: defs(id) + cam(385, 1430, 1.35)(bed(A, id) + glow(id, 385, 1480, 260, 260, 0.8) + stain(385, 1540, 1.7, 0.55) + mound(id, 385, 1440, 120, 100)) + dark(0.35), hud: cap(id, "Là, c'est la *cheville.*") + vig(id, 1) }) },
-  { id: "f08", name: "JE SENS PLUS MES ORTEILS", words: 5, tag: "★ Cinq points qui s'éteignent", voice: "Je sens plus mes orteils.",
-    note: "<b>Une icône de pied (cinq points ambre) s'allume en haut du cadre</b>, puis <b>les points s'éteignent un par un</b> sur « orteils » (ici 3 sur 5 éteints). Lecture instantanée de l'engourdissement, sans effet gore. Le fond reste le lit, en plus sombre.",
-    seam: "continu", build: (A, id) => ({ world: defs(id) + cam(385, 1380, 1.35)(bed(A, id) + glow(id, 385, 1450, 280, 280, 0.8) + stain(385, 1500, 1.7, 0.55) + mound(id, 385, 1400, 130, 105)) + dark(0.5), hud: cap(id, "Je sens plus mes *orteils.*") + `<g transform="translate(540 800)"><path d="M-70 -120 q-20 80 -10 150 q20 40 80 30 q60 -10 60 -60 q0 -80 -30 -120 z" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="5"/>${[-52, -20, 12, 40, 66].map((x, i) => `<circle cx="${x}" cy="${-150 + Math.abs(i - 1.6) * 10}" r="12" fill="${i < 2 ? AMB : "#fff"}" opacity="${i < 2 ? 1 : 0.18}"/>`).join("")}</g>` + vig(id, 1) }) },
-  { id: "f09", name: "À CHAQUE FOIS QUE JE RESPIRE", words: 10, tag: "★ La règle · cause → effet", voice: "À chaque fois que je respire, ça remonte d'un cran.",
-    note: "<b>Deuxième hook (≈ 25 s) : la règle.</b> Plan sur son torse : le drap se soulève à chaque inspiration et <b>un anneau part de la poitrine</b> ; <b>au même instant l'empreinte monte d'un cran</b> (genou). Il faut que la cause et l'effet soient lisibles sans explication : on les voit se produire ensemble trois fois, de plus en plus vite.",
-    seam: "coupes rapides (3 respirations)", build: (A, id) => ({ world: defs(id) + cam(385, 1180, 1.15)(bed(A, id) + `<ellipse cx="385" cy="1000" rx="95" ry="70" fill="#fff" opacity=".1"/>` + [90, 150, 210].map((r, i) => `<ellipse cx="385" cy="1000" rx="${r}" ry="${r * 0.7}" fill="none" stroke="${AMB}" stroke-opacity="${0.55 - i * 0.17}" stroke-width="6"/>`).join("") + glow(id, 385, 1330, 270, 240, 0.8) + stain(385, 1420, 1.9, 0.5) + mound(id, 385, 1330, 125, 100)) + dark(0.4), hud: cap(id, "ça remonte d'un *cran.*") + vig(id, 1) }) },
-  { id: "f10", name: "JE PEUX PAS", words: 8, tag: "Gros plan · il retient son souffle", voice: "Alors j'essaie de plus respirer. Je peux pas.",
-    note: "<b>Gros plan sur son visage</b> : yeux écarquillés, bouche minuscule serrée, joues un peu plus claires, deux gouttes de sueur. Tout est figé (le relief aussi). Sur « Je peux pas » : <b>le torse reprend de force et la chambre fait un à-coup</b> (cran suivant). Les coupes accélèrent.",
-    seam: "à-coup sur « Je peux pas »", build: (A, id) => ({ world: `<rect x="-200" y="-200" width="1480" height="2320" fill="#05060f"/><circle cx="540" cy="930" r="300" fill="${A.u("gSkin")}"/><circle cx="420" cy="1010" r="52" fill="#fff" opacity=".12"/><circle cx="660" cy="1010" r="52" fill="#fff" opacity=".12"/>
-      <circle cx="450" cy="900" r="58" fill="#fff"/><circle cx="630" cy="900" r="58" fill="#fff"/><circle cx="452" cy="903" r="11" fill="${C.ink}"/><circle cx="632" cy="903" r="11" fill="${C.ink}"/>
-      <path d="M510 1060 q30 -10 60 0" stroke="#5b4636" stroke-width="9" fill="none" stroke-linecap="round"/><path d="M705 760 q14 28 0 40 q-14 -12 0 -40z M740 810 q10 22 0 32 q-10 -10 0 -32z" fill="#9cc8ff" opacity=".8"/>` + dark(0.3), hud: cap(id, "plus *respirer.*") + vig(id, 1) }) },
-  { id: "f11", name: "SOULÈVE LA COUETTE", words: 11, tag: "Léa · son bras s'arrête", voice: "Léa. Soulève la couette. Dis-moi que c'est rien. Juste dis-le.",
-    note: "<b>Coupe sur Léa</b> : visage endormi, yeux fermés. <b>Son bras à lui entre dans le cadre depuis la gauche, tremble, et s'arrête à mi-chemin de son épaule.</b> Lecture : il n'ose pas la toucher, ni lever la couette. Sur « Juste dis-le » : poussée très lente sur son visage. <b>À la relecture</b> : sa silhouette sous la couette est plus aplatie qu'au plan 2.",
-    seam: "coupe sèche", build: (A, id) => ({ world: defs(id) + cam(700, 820, 1.9)(bed(A, id, { lea: "flat" }) + `<g stroke="#fff" stroke-opacity=".3" stroke-width="5" stroke-linecap="round"><path d="M520 840 l-18 -10 M520 880 l-20 0 M520 920 l-18 10"/></g><rect x="230" y="830" width="310" height="62" rx="31" fill="${A.u("gSkin")}"/><circle cx="548" cy="861" r="40" fill="${A.u("gSkin")}"/>`) + dark(0.3), hud: cap(id, "Juste *dis-le.*") + vig(id, 0.9) }) },
-  { id: "f12", name: "JE T'ENTENDS RESPIRER… NON", words: 9, pause: 0.8, tag: "★ Le son coupe · Léa ne respire pas", voice: "Tu réponds pas. Tu bouges plus. Je t'entends respirer… non.",
-    note: "<b>Plan large.</b> Son torse à elle ne bouge pas : le drap est plat de son côté. Sur « … non », <b>le son coupe net (sa respiration, présente depuis le début, disparaît)</b> et une ligne de points plate traverse son côté du lit. Le spectateur comprend avant lui. 0,8 s de silence.",
-    seam: "coupe sèche + silence", build: (A, id) => ({ world: defs(id) + cam(540, 1000, 1)(bed(A, id, { lea: "flat" }) + glow(id, 385, 1470, 300, 280, 0.7) + mound(id, 385, 1340, 125, 100)) + dark(0.42) + dots(580, 840, 1000, 5, 30, 0.6), hud: cap(id, "Je t'entends respirer… *non.*") + vig(id, 1) }) },
-  { id: "f13", name: "C'EST DESSOUS. C'EST LENT.", words: 7, tag: "★ Le lit respire", voice: "C'est pas toi. C'est dessous. C'est lent.",
-    note: "<b>Tout le matelas se soulève puis redescend, très lentement (cycle ≈ 4 s)</b> ; la caméra suit, la vignette bat au même rythme (croquis : lit à l'échelle 1,03 et son contour de repos en pointillé). <b>Le mot « dessous » s'enfonce physiquement vers le bas du cadre</b> (traînées). Sur « C'est lent », le cycle ralentit encore. Presque aucun son.",
-    seam: "continu (long)", build: (A, id) => ({ world: defs(id) + cam(540, 1000, 1)(`<rect x="190" y="545" width="700" height="1210" rx="46" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="3" stroke-dasharray="12 10"/>` + `<g transform="translate(540 1150) scale(1.035) translate(-540 -1150)">${bed(A, id, { lea: "flat" })}</g>` + [260, 330, 400].map((r, i) => `<rect x="${190 - 14 * (i + 1)}" y="${545 - 14 * (i + 1)}" width="${700 + 28 * (i + 1)}" height="${1210 + 28 * (i + 1)}" rx="${46 + 12 * (i + 1)}" fill="none" stroke="${WARM}" stroke-opacity="${0.3 - i * 0.09}" stroke-width="5"/>`).join("")) + dark(0.45), hud: `<g opacity=".28"><text x="540" y="512" text-anchor="middle" font-family="Nunito" font-weight="900" font-size="76" fill="#fff">C'est dessous.</text></g><g opacity=".5"><text x="540" y="482" text-anchor="middle" font-family="Nunito" font-weight="900" font-size="76" fill="#fff">C'est dessous.</text></g>` + cap(id, "C'est *dessous.*") + vig(id, 1) }) },
-  { id: "f14", name: "LÉA ?", words: 1, pause: 1.0, tag: "★ Presque noir · le blanc de ses yeux", voice: "Léa ?",
-    note: "<b>Presque noir pendant 0,3 s.</b> Seul le <b>blanc de ses yeux</b> se détache, très petit, les pupilles minuscules. Un seul mot, centré. Un temps mort d'une seconde avant, pour que le spectateur retienne son souffle comme lui.",
+  { id: "f01", name: "LÉA.", words: 1, pause: 0.8, breath: 0.2, tag: "Hook · ses yeux (contrechamp)", voice: "Léa.",
+    note: "<b>Image 1 = ses yeux, gros plan, grands ouverts, fixés au plafond</b>, pupilles minuscules, 1 px de tremblement. C'est le <b>seul contrechamp</b> de l'épisode : on le revoit pour ses moments de panique (f12, f16), le reste est <b>sa vision à lui</b>.",
+    seam: "coupe sèche", build: (A, id) => ({ world: eyesOnly(id, { pup: 0.14 }), hud: cap(id, "*Léa.*") }) },
+  { id: "f02", name: "RÉVEILLE-TOI MON AMOUR", words: 3, tag: "Subjectif · il tourne la tête vers elle", voice: "Réveille-toi mon amour.",
+    note: "<b>Première personne.</b> Il tourne la tête : <b>Léa, de près, 40 cm</b>, endormie, yeux fermés, la chambre presque noire derrière. On ne voit rien d'autre du lit. Le cadre fait un très léger mouvement de respiration (le sien).",
+    seam: "coupe sèche", build: (A, id) => ({ world: defs(id) + leaClose(A, id) + dark(0.32), hud: cap(id, "Réveille-toi *mon amour.*") + vig(id, 1) }) },
+  { id: "f03", name: "JE SUIS TERRIFIÉ", words: 3, tag: "Subjectif · le plafond", voice: "Je suis terrifié.",
+    note: "<b>Retour au plafond</b> (il a remis la tête droite). On voit : une lampe éteinte, une fissure, le bord du drap en bas de cadre, <b>l'horloge 03:12 à gauche</b>, et à droite, flou, le bord de l'oreiller de Léa. <b>Le cadre monte et descend avec sa respiration</b> (le spectateur la sent). Poussée très lente.",
+    seam: "coupe sèche", build: (A, id) => ({ world: defs(id) + pov(A, id) + dark(0.2), hud: cap(id, "Je suis *terrifié.*") + vig(id, 1) }) },
+  { id: "f04", name: "UN TRUC CHAUD", words: 7, tag: "Subjectif · la lueur monte par le bas", voice: "Y'a un truc chaud sur mes pieds.",
+    note: "<b>Même plan.</b> Rien ne bouge, sauf <b>une lueur chaude sale qui apparaît tout en bas du cadre</b> (là où seraient ses pieds, hors champ) et teinte à peine le plafond. Elle pulse lentement. Il ne regarde pas : on ne voit pas. L'inquiétude vient de ce qu'on ne voit pas.",
+    seam: "continu", build: (A, id) => ({ world: defs(id) + pov(A, id, { glow: 0.55 }) + dark(0.2), hud: cap(id, "un truc *chaud*") + vig(id, 1) }) },
+  { id: "f05", name: "SUR MES PIEDS", words: 0, tag: "Insert · le drap, de très près", voice: "(même phrase, sans nouveau mot)",
+    note: "<b>Insert de 0,6 s : le tissu du drap, de si près que ça devient abstrait.</b> La lueur transparaît à travers la toile, pulse. Un plan de détail, pas un plan de situation : on ne sait pas où on est. Sert de coupe pour casser la fixité du plafond.",
+    seam: "coupe sèche", build: (A, id) => ({ world: defs(id) + fabric(A, id, { glow: 0.85, gy: 1250 }) + dark(0.25), hud: vig(id, 0.9) }) },
+  { id: "f06", name: "JE REGARDE PAS", words: 10, tag: "★ Subjectif · paupières", voice: "Je regarde pas. Je te jure que je regarde pas.",
+    note: "<b>Il ferme les yeux : l'écran devient rouge-noir (l'intérieur des paupières).</b> Sur « je te jure », <b>une fente s'ouvre un quart de seconde en bas : on aperçoit, très flou, la lueur au pied du lit</b>, puis la fente se referme. Le spectateur voit un quart de seconde de ce qu'il ne doit pas voir. Croquis : la fente ouverte.",
+    seam: "continu", build: (A, id) => ({ world: defs(id) + pov(A, id, { glow: 0.7, lid: 0.46, bulge: 20 }), hud: cap(id, "Je regarde *pas.*") + vig(id, 1) }) },
+  { id: "f07", name: "DOUX ET HUMIDE", words: 4, tag: "Insert · le tissu fonce", voice: "C'est doux et humide.",
+    note: "<b>Insert très serré sur le drap</b> : <b>une tache sombre brillante s'étend lentement</b> dans le tissu, la lueur chaude derrière. Le grain du tissu s'écrase. Aucun repère d'échelle, aucun corps.",
+    seam: "coupe sèche", build: (A, id) => ({ world: defs(id) + fabric(A, id, { glow: 0.8, stain: 3.2, gy: 1180 }) + dark(0.25), hud: cap(id, "doux et *humide.*") + vig(id, 0.9) }) },
+  { id: "f08", name: "COMME UNE MAIN, TROP GRANDE", words: 7, tag: "★ Insert · l'empreinte dépasse le cadre", voice: "Ça tient comme une main, mais trop grande.",
+    note: "<b>L'empreinte dans le drap est plus grande que le cadre</b> : on n'en voit ni le bord ni la forme, seulement les plis qui rayonnent. « Trop grande » est dit par l'échelle, pas par un dessin. <b>Au mot « trop », léger à-coup de caméra et les plis se resserrent.</b> Aucun doigt, aucune main.",
+    seam: "à-coup sur « trop »", build: (A, id) => ({ world: defs(id) + fabric(A, id, { glow: 0.6, press: 760, gy: 1150 }) + dark(0.3), hud: cap(id, "mais *trop grande.*") + vig(id, 1) }) },
+  { id: "f09", name: "ÇA REMONTE", words: 7, tag: "★ Subjectif · le relief entre dans le champ", voice: "Ça remonte. Doucement. Là, c'est la cheville.",
+    note: "<b>Retour au plafond.</b> <b>Un relief du drap entre dans le cadre par le bas</b>, lentement : c'est la progression de la chose, vue uniquement à travers le tissu. Il monte d'un cran sur « Là ». La lueur éclaire davantage le plafond. On ne voit toujours pas ses jambes.",
+    seam: "coupe sur « Là »", build: (A, id) => ({ world: defs(id) + pov(A, id, { glow: 0.75, bulge: 70 }) + dark(0.2), hud: cap(id, "Là, c'est la *cheville.*") + vig(id, 1) }) },
+  { id: "f10", name: "JE SENS PLUS MES ORTEILS", words: 5, tag: "★ Le mot s'éteint", voice: "Je sens plus mes orteils.",
+    note: "<b>Le sous-titre fait le travail</b> : <b>les lettres de « orteils » s'éteignent une à une</b> (de gauche à droite, comme l'engourdissement). Le plan reste le plafond, avec le relief un peu plus haut. Pas d'icône, pas d'infographie : c'est le texte qui meurt.",
+    seam: "continu", build: (A, id) => ({ world: defs(id) + pov(A, id, { glow: 0.75, bulge: 110 }) + dark(0.2), hud: `<text x="540" y="450" text-anchor="middle" font-family="Nunito" font-weight="900" font-size="64" fill="#fff" filter="url(#${id}-fShadow)">Je sens plus mes</text><text x="540" y="535" text-anchor="middle" font-family="Nunito" font-weight="900" font-size="88" filter="url(#${id}-fShadow)">${"orteils.".split("").map((ch, i) => `<tspan fill="${AMB}" fill-opacity="${Math.max(0.1, 1 - i * 0.15)}">${ch}</tspan>`).join("")}</text>` + vig(id, 1) }) },
+  { id: "f11", name: "À CHAQUE FOIS QUE JE RESPIRE", words: 10, tag: "★ La règle · le cadre respire", voice: "À chaque fois que je respire, ça remonte d'un cran.",
+    note: "<b>Deuxième hook : la règle.</b> Le cadre entier monte à l'inspiration et redescend à l'expiration (croquis : l'image fantôme est la position « inspiré »). <b>À chaque inspiration, le relief monte d'un cran et ne redescend jamais</b> : c'est un cliquet. Trois fois, de plus en plus vite, avec une coupe à chaque inspiration.",
+    seam: "coupes rapides (3 inspirations)", build: (A, id) => ({ world: defs(id) + `<g opacity=".28">${pov(A, id, { glow: 0.7, bulge: 140, dy: -46, clock: false })}</g>` + pov(A, id, { glow: 0.8, bulge: 180, clock: false }) + dark(0.2), hud: cap(id, "ça remonte d'un *cran.*") + vig(id, 1) }) },
+  { id: "f12", name: "JE PEUX PAS", words: 8, tag: "★ Contrechamp · il retient son souffle", voice: "Alors j'essaie de plus respirer. Je peux pas.",
+    note: "<b>« Alors j'essaie de plus respirer » : le cadre se fige complètement</b>, plus aucun mouvement, plus un son. Cut sur <b>ses yeux, écarquillés, vignette serrée</b> (la tension se lit dans le visage). Sur « Je peux pas » : <b>il aspire de force, le cadre fait un grand à-coup et le relief saute de deux crans</b>.",
+    seam: "à-coup sur « Je peux pas »", build: (A, id) => ({ world: eyesOnly(id, { pup: 0.1, r: 112, ex: 180 }) + `<path d="M310 1130 q-14 36 0 54 q14 -18 0 -54z" fill="#9cc8ff" opacity=".85"/>`, hud: cap(id, "plus *respirer.*") + vig(id, 1) }) },
+  { id: "f13", name: "SOULÈVE LA COUETTE", words: 11, tag: "Subjectif · sa main tremble", voice: "Léa. Soulève la couette. Dis-moi que c'est rien. Juste dis-le.",
+    note: "<b>Il tourne la tête vers Léa.</b> Son visage de près, immobile. <b>Sa main entre dans le champ par le bas, tremble, et s'arrête à mi-chemin de l'épaule de Léa.</b> Sur « Juste dis-le » : poussée très lente sur son visage. Elle ne bouge pas, ne respire pas : on le comprend en regardant le drap sous son menton.",
+    seam: "coupe sèche", build: (A, id) => ({ world: defs(id) + leaClose(A, id, { glow: 0.35 }) + hand(A) + dark(0.28), hud: cap(id, "Juste *dis-le.*") + vig(id, 1) }) },
+  { id: "f14", name: "JE T'ENTENDS RESPIRER… NON", words: 9, pause: 0.8, tag: "★ Le son coupe", voice: "Tu réponds pas. Tu bouges plus. Je t'entends respirer… non.",
+    note: "<b>Plan fixe, serré, sur Léa</b> : <b>le drap sous son menton ne bouge pas</b>. Sur « … non », <b>le son coupe net</b> (sa respiration, présente depuis le début, disparaît) et <b>une ligne de points plate traverse le cadre</b>. 0,8 s de silence. Le spectateur comprend avant lui.",
+    seam: "coupe sèche + silence", build: (A, id) => ({ world: defs(id) + leaClose(A, id, { y: 880, s: 2.3 }) + `<rect x="-80" y="1260" width="1240" height="900" rx="40" fill="${A.u("gDuvet")}"/><rect x="-80" y="1260" width="1240" height="40" fill="${C.duvetEdge}"/>` + dots(40, 1040, 1240, 5, 30, 0.6) + dark(0.35), hud: cap(id, "Je t'entends respirer… *non.*") + vig(id, 1) }) },
+  { id: "f15", name: "C'EST DESSOUS. C'EST LENT.", words: 7, tag: "★ Subjectif · le lit respire", voice: "C'est pas toi. C'est dessous. C'est lent.",
+    note: "<b>Retour au plafond, et c'est le lit qui respire</b> : tout le cadre monte et descend, beaucoup plus lentement et plus fort que sa respiration (cycle ≈ 4 s, croquis : image fantôme). <b>Le relief du drap est maintenant à hauteur de son menton</b>, la lueur remplit le bas du cadre. « dessous » s'enfonce vers le bas. Sur « C'est lent », le cycle ralentit encore.",
+    seam: "continu (long)", build: (A, id) => ({ world: defs(id) + `<g opacity=".3">${pov(A, id, { glow: 0.9, bulge: 260, dy: -90, clock: false })}</g>` + pov(A, id, { glow: 1, bulge: 300, clock: false }) + dark(0.15), hud: `<g opacity=".28"><text x="540" y="512" text-anchor="middle" font-family="Nunito" font-weight="900" font-size="76" fill="#fff">C'est dessous.</text></g><g opacity=".5"><text x="540" y="482" text-anchor="middle" font-family="Nunito" font-weight="900" font-size="76" fill="#fff">C'est dessous.</text></g>` + cap(id, "C'est *dessous.*") + vig(id, 1) }) },
+  { id: "f16", name: "LÉA ?", words: 1, pause: 1.0, tag: "★ Presque noir · le blanc de ses yeux", voice: "Léa ?",
+    note: "<b>Presque noir 0,3 s</b> : seul le blanc de ses yeux, très petit, pupilles minuscules. Un temps mort d'une seconde avant pour que le spectateur retienne son souffle comme lui.",
     seam: "coupe sèche", build: (A, id) => ({ world: `<rect x="-200" y="-200" width="1480" height="2320" fill="#020309"/>` + [430, 650].map((cx) => `<ellipse cx="${cx}" cy="960" rx="62" ry="44" fill="#fff" opacity=".9"/><circle cx="${cx + 2}" cy="962" r="8" fill="${C.ink}"/>`).join(""), hud: cap(id, "*Léa ?*", 560, 110) }) },
-  { id: "f15", name: "AVEC TA VOIX", words: 9, pause: 0.6, tag: "★ Le plan final · immobile", voice: "Ça vient de dire mon prénom. Avec ta voix.",
-    note: "<b>Retour au plan large.</b> Les deux silhouettes sont aplaties, <b>un seul gonflement doux au centre du lit</b>, lent. Lui, tête sur l'oreiller, regard fixe. Sur « Avec ta voix » : <b>plus rien ne bouge</b>. Son prénom n'est jamais dit ni écrit.",
-    seam: "immobile", build: (A, id) => ({ world: defs(id) + cam(540, 1000, 1)(bed(A, id, { lea: "flat", himBody: false }) + glow(id, 540, 1150, 330, 300, 0.45) + `<ellipse cx="540" cy="1150" rx="170" ry="260" fill="url(#${id}-gMd)" opacity=".9"/>`) + dark(0.5), hud: cap(id, "Avec *ta voix.*") + vig(id, 1) }) },
-  { id: "f16", name: "FIN", words: 0, tag: "★ Noir sec · boucle", voice: "(aucune voix)",
-    note: "<b>Coupe au noir sec, aucune end card, aucun texte.</b> Environ 0,5 s de noir. Le premier plan de la vidéo étant ses yeux ouverts sur « Léa. », la boucle TikTok enchaîne naturellement : la fin ne se « termine » pas.",
+  { id: "f17", name: "AVEC TA VOIX", words: 9, pause: 0.6, tag: "★ Le plan final · son visage", voice: "Ça vient de dire mon prénom. Avec ta voix.",
+    note: "<b>Dernier plan : le visage de Léa, de très près.</b> Yeux fermés, pas de bouche dessinée : <b>c'est elle qui n'a pas parlé</b>. En bas de cadre, <b>la lueur chaude monte comme une marée</b> et recouvre lentement le bas de son visage. Le cadre ne respire plus. Sur « Avec ta voix » : plus rien ne bouge.",
+    seam: "immobile", build: (A, id) => ({ world: defs(id) + leaClose(A, id, { glow: 0.95, s: 2.6, y: 1000 }) + `<path d="M-80 1950 Q540 1450 1160 1950z" fill="${A.u("gDuvet")}" opacity=".95"/>` + dark(0.3), hud: cap(id, "Avec *ta voix.*") + vig(id, 1) }) },
+  { id: "f18", name: "FIN", words: 0, tag: "★ Noir sec · boucle", voice: "(aucune voix)",
+    note: "<b>Coupe au noir sec, aucune end card, aucun texte.</b> Environ 0,5 s de noir. Le premier plan de la vidéo étant ses yeux sur « Léa. », la boucle TikTok enchaîne : la fin ne se « termine » pas.",
     seam: "fin (boucle sur 01)", build: () => ({ world: `<rect x="-200" y="-200" width="1480" height="2320" fill="#020309"/>`, hud: "" }) },
 ];
 
@@ -129,18 +152,20 @@ const cell = (f) => {
 </article>`;
 };
 
-const principles = `<article class="cell meta wide"><h3>Principes</h3><ol class="seams">
-<li><b>On ne voit jamais la chose.</b> Tout passe par le drap : lueur, humidité, relief, respiration. Pas de main, pas de bouche, pas de monstre dessinés.</li>
-<li><b>Chaque beat monte d'un cran d'un seul paramètre</b> (lueur, tache, relief, vignette, drone grave) : la progression se sent sans être expliquée.</li>
-<li><b>Même DA que « Des pas »</b> (plongée, personnages ronds, yeux ronds à petite pupille), en plus noir : pas de néon, pas de produit, pas d'end card. Lueur chaude sale (rose-ambre) à la place du bleu/ambre habituel.</li>
-<li><b>Une image qui change toutes les ≈ 2 à 3 s</b>, coupes sèches sur les phrases courtes, plans longs sur la montée (f13) et le silence (f12).</li>
-<li><b>Deux hooks</b> : ses yeux dès l'image 1, puis la règle de la respiration (f09, ≈ 25 s).</li>
-<li><b>À la relecture</b> : la silhouette de Léa s'aplatit au fil de l'épisode (f02 → f11 → f12 → f15).</li></ol></article>`;
+const principles = `<article class="cell meta wide"><h3>Principes (v2 : plans rapprochés, première personne)</h3><ol class="seams">
+<li><b>Plus aucun plan large.</b> Le lit, le corps, la chose : jamais montrés. Tout est vu de très près ou par ce que le tissu en dit.</li>
+<li><b>Première personne.</b> Le spectateur est allongé sur le dos : plafond, bord du drap en bas de cadre, horloge à gauche, Léa à droite. <b>Le cadre respire avec lui</b> ; quand il retient son souffle, il se fige ; quand c'est le lit qui respire, il bouge plus lentement et plus fort.</li>
+<li><b>La chose se lit par le bas du cadre</b> : lueur chaude qui monte, relief du drap qui entre dans le champ (cliquet : monte à chaque inspiration, ne redescend jamais), jusqu'au menton.</li>
+<li><b>Inserts de détail</b> (drap, tache, empreinte plus grande que le cadre) pour casser la fixité du plafond, sans jamais situer l'action. Pas de plan > 2,5 s.</li>
+<li><b>Un seul contrechamp : ses yeux</b> (début, panique, « Léa ? »). C'est ce qui garde le personnage et le lien avec « Des pas ».</li>
+<li><b>Dernier plan : le visage de Léa</b>, immobile, sans bouche dessinée. Elle n'a pas parlé.</li></ol></article>
+<article class="cell meta wide"><h3>Design de Léa : trois pistes (la v1 lisait « voilée »)</h3>
+<div style="display:flex;gap:18px;flex-wrap:wrap">${["A", "B", "C"].map((v) => { const A = L.art("lea" + v + "-"); return `<figure style="margin:0;flex:1 1 160px;max-width:230px"><svg viewBox="-190 -230 380 420" style="width:100%;background:#232a60;border-radius:12px"><defs><radialGradient id="lea${v}-gSkin" cx="38%" cy="32%" r="75%"><stop offset="0" stop-color="#e8c4a2"/><stop offset="1" stop-color="${C.skinDark}"/></radialGradient></defs>${leaHead(A, v)}</svg><figcaption style="font-size:13px;line-height:1.4;margin-top:6px"><b style="color:${AMB}">${v}${v === "A" ? " · retenue" : ""}</b> — ${v === "A" ? "chignon de nuit + frange + mèches courtes. Les cheveux restent au-dessus et sur les côtés du visage, jamais autour du menton : impossible à lire comme un voile." : v === "B" ? "longs cheveux, sur un seul côté du visage. Plus féminin, mais risque de masquer le visage de près." : "carré court. Lisible, mais la forme « casque » ressemble à un capuchon en gros plan."}</figcaption></figure>`; }).join("")}</div></article>`;
 const questions = `<article class="cell meta"><h3>À trancher avant la voix</h3><ol class="seams">
-<li><b>« Qu'est-ce qui nous arrive ? »</b> est coupée (voir BRIEF.md).</li>
-<li><b>Horloge 03:12</b> sur la table de nuit (clin d'œil à « Des pas ») : dessinée ici, à garder ou retirer.</li>
-<li><b>Fin</b> : noir sec en boucle (recommandé) ou dernier plan sur ses yeux qui se tournent vers Léa.</li>
-<li><b>Sons</b> : respiration de Léa (présente dès le début, coupée à « … non »), respiration lente du lit, humide étouffé, drone grave. Mes versions synthétiques seront faibles : de vrais enregistrements feront beaucoup mieux.</li>
+<li><b>Design de Léa</b> : A (recommandé), B ou C.</li>
+<li><b>Première personne partout sauf ses yeux</b> : on perd le personnage « qu'on regarde dormir » de « Des pas ». Je pense que ça vaut le coup pour l'oppression, mais c'est un changement de langage pour le compte.</li>
+<li><b>Horloge 03:12</b> en périphérie gauche (clin d'œil à « Des pas ») : à garder ou retirer.</li>
+<li><b>Sons</b> : respiration de Léa (présente dès le début, coupée à « … non »), respiration du lit, humide étouffé, drone grave, cœur qui bat quand il retient son souffle. De vrais enregistrements feront beaucoup mieux que mes versions synthétiques.</li>
 <li>Durée estimée ≈ ${Math.round(total)} s (0,36 s par mot en chuchoté, plus les pauses) : ta prise fera foi.</li></ol></article>`;
 
 const html = `<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
@@ -179,7 +204,7 @@ main{max-width:1500px;margin:0 auto;display:grid;grid-template-columns:repeat(au
 </style></head><body>
 <input type="checkbox" id="hide" hidden>
 <header><h1>Dessous — <em>storytelling horreur</em> · storyboard ${VERSION}</h1>
-<p>Script v2 (${totalWords} mots). Croquis statiques : cadrage, hiérarchie, textes et mouvements à valider avant l'animation. Durées estimées à 0,36 s par mot (chuchoté) plus les pauses ; ta prise fera foi.</p>
+<p>Script v2 (${totalWords} mots), mise en scène v2 : plans rapprochés et première personne. Croquis statiques : cadrage, hiérarchie, textes et mouvements à valider avant l'animation. Durées estimées à 0,36 s par mot (chuchoté) plus les pauses ; ta prise fera foi.</p>
 <span class="tag">1080×1920 · ≈ ${Math.round(total)} s · ${F.length} croquis</span>
 <label class="toggle" for="hide">☐ masquer les zones TikTok</label></header>
 <main>${principles}${F.map(cell).join("\n")}${questions}</main>
