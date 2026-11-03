@@ -7,8 +7,7 @@ ROOT = Path(__file__).resolve().parent.parent
 T = json.loads((ROOT / "timeline.json").read_text()); D = T["duration"]
 cues = json.loads((ROOT / "out/cues.json").read_text())
 OUT = ROOT / "out/stems"; OUT.mkdir(parents=True, exist_ok=True)
-GROUPS = [("02_respiration-lea", "lea"), ("03_respiration-lui", "him"), ("04_coeur", "hrt"), ("05_humide", "wet"),
-          ("06_drone-grave", "drn"), ("07_coupes-a-coups", "cut"), ("08_lit-qui-respire", "bed")]
+GROUPS = []   # les bruitages sont désormais dans scripts/sounddesign.py (sound design synthétisé, une piste par famille)
 def run(args): subprocess.run(["ffmpeg", "-v", "error", "-y"] + args, check=True)
 run(["-i", str(ROOT / T["voFile"]), "-af", f"apad,atrim=0:{D}", "-ar", "48000", "-ac", "2", "-c:a", "pcm_s16le", str(OUT / "01_voix.wav")])
 for name, prefix in GROUPS:

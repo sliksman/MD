@@ -1,9 +1,14 @@
-// PLAN 5 — « Ça remonte. Doucement. Là, c'est la cheville. Je sens plus mes orteils. » : le regard le long de son corps. La chaleur avance vers lui, sans forme ni contour. « orteils » s'éteint lettre par lettre.
-const hud = `<g id="${ID}-ot" opacity="0"><text x="540" y="450" text-anchor="middle" font-family="Nunito" font-weight="900" font-size="76" fill="#fff" filter="url(#${ID}-fShadow)">Je sens plus mes</text>
+// PLAN 5 — « Ça remonte… Je sens plus mes orteils. À chaque fois que je respire, ça remonte d'un cran. Alors j'essaie de ne plus respirer. Je peux pas. » (UN SEUL PLAN : plus de coupe à 21 s)
+// Le regard le long de son corps. La chaleur avance vers lui, sans forme ni contour : doucement, puis par crans. « orteils » s'éteint lettre par lettre.
+// À chaque inspiration le torse (premier plan) se soulève et la chaleur gagne un cran, qu'elle ne reperd jamais. Il retient son souffle : tout se fige. Contrechamp : ses yeux. Il aspire de force.
+const hud = `<g id="${ID}-vg2" opacity="0"><rect width="1080" height="1920" fill="url(#${ID}-gVig)"/><rect width="1080" height="1920" fill="url(#${ID}-gVig)"/><rect width="1080" height="1920" fill="url(#${ID}-gVig)"/></g>
+  <g id="${ID}-ot" opacity="0"><text x="540" y="450" text-anchor="middle" font-family="Nunito" font-weight="900" font-size="76" fill="#fff" filter="url(#${ID}-fShadow)">Je sens plus mes</text>
   <text id="${ID}-ot2" x="540" y="548" text-anchor="middle" font-family="Nunito" font-weight="900" font-size="104" filter="url(#${ID}-fShadow)">${"orteils.".split("").map((c, i) => `<tspan id="${ID}-ol${i}" fill="#F5B85A">${c}</tspan>`).join("")}</text></g>`;
-const S = L.stage(root, ID, A.along("al"), hud);
+const S = L.stage(root, ID, A.along("al") + A.eyesBig("eb", { r: 112, ex: 180, pup: 0.1 }), hud);
 gsap.set(S.cam, { svgOrigin: "540 960" });
 gsap.set(S.$("ot2"), { opacity: 0 });
+gsap.set(S.$("eb"), { opacity: 0 });
+[S.$("eb-lidA"), S.$("eb-lidB")].forEach((e) => gsap.set(e, { scaleY: 0 }));
 const U = (u) => 640 + 1340 * u, K = (u) => (210 + 590 * u) / 400, D = sc.end - sc.start;
 let cu = 0.1;
 gsap.set(S.$("al-swell"), { y: U(cu), scale: K(cu), opacity: 1 });
@@ -14,22 +19,45 @@ const mv = (t, u, d, ease = "power2.inOut") => {
   tl.fromTo(S.$("al-warm"), { y: U(cu) - 1000 }, { y: U(u) - 1000, duration: d, ease, immediateRender: false }, t);
   cu = u;
 };
-const cut2 = w("L05", 3) - 0.08;                    // « Là » : changement de cadrage (la tête bouge)
-L.sway(tl, S, 0, D, 3.2, 8);
-L.sway(tl, { cam: S.$("al-chest") }, 0, D, 3.2, 16);
+const inh = [w("L06", 5), w("L06", 7) - 0.05, w("L06", 9)];   // « respire », « remonte », « cran » : trois inspirations
+const cut2 = w("L05", 3) - 0.1, frz = w("L06", 10), eIn = w("L06", 14) - 0.05, gulp = w("L06", 15) - 0.03;
+const chest = S.$("al-chest");
+// la caméra : poussée très lente ; sur « Là » la tête bouge UN PEU, mouvement continu (plus de coupe)
+L.sway(tl, S, 0, inh[0] - 0.35, 3.2, 8);
+L.sway(tl, { cam: chest }, 0, inh[0] - 0.35, 3.2, 16);
 tl.fromTo(S.cam, { scale: 1 }, { scale: 1.03, duration: cut2, ease: "none", immediateRender: false }, 0);
-tl.set(S.cam, { scale: 1.06, rotation: -2.2, x: -24, y: 14 }, cut2);
-tl.fromTo(S.cam, { scale: 1.06 }, { scale: 1.1, duration: D - cut2, ease: "none", immediateRender: false }, cut2 + 0.01);
+tl.fromTo(S.cam, { scale: 1.03, rotation: 0, x: 0 }, { scale: 1.06, rotation: -2.2, x: -24, duration: 0.5, ease: "power2.inOut", immediateRender: false }, cut2);
+tl.fromTo(S.cam, { scale: 1.06 }, { scale: 1.1, duration: frz - cut2 - 0.5, ease: "none", immediateRender: false }, cut2 + 0.5);
 // la chaleur avance : doucement, puis un cran net sur « Là », un autre sur « cheville »
 mv(w("L05", 1), 0.2, w("L05", 3) - w("L05", 1) - 0.1, "power1.inOut");
 mv(w("L05", 3), 0.3, 0.25, "power3.out");
 mv(w("L05", 6), 0.37, 0.25, "power3.out");
-mv(w("L05", 6) + 0.3, 0.43, D - w("L05", 6) - 0.35, "power1.inOut");
-tl.fromTo(S.$("al-shim"), { y: -10 }, { y: -70, duration: 1.2, ease: "sine.inOut", yoyo: true, repeat: 4, immediateRender: false }, 0);
+mv(w("L05", 6) + 0.3, 0.43, w("L06", 0) - w("L05", 6) - 0.4, "power1.inOut");
+tl.fromTo(S.$("al-shim"), { y: -10 }, { y: -70, duration: 1.2, ease: "sine.inOut", yoyo: true, repeat: 9, immediateRender: false }, 0);
 // sous-titre « orteils » : il s'éteint lettre par lettre
 const o0 = w("L05", 7) - 0.02, o1 = w("L05", 11);
 tl.set(S.$("ot"), { opacity: 1 }, o0);
 tl.fromTo(S.$("ot"), { scale: 0.8 }, { scale: 1, duration: 0.2, ease: "back.out(3)", immediateRender: false }, o0);
 tl.set(S.$("ot2"), { opacity: 1 }, o1 - 0.02);
-tl.set(S.$("ot"), { opacity: 0 }, D - 0.02);
+tl.set(S.$("ot"), { opacity: 0 }, w("L06", 0) - 0.02);
 "orteils.".split("").forEach((_, i) => tl.to(S.$("ol" + i), { attr: { "fill-opacity": 0.07 }, duration: 0.14 }, o1 + 0.28 + i * 0.13));
+// à chaque inspiration : le torse monte, la chaleur gagne un cran ; il ne reperd jamais ce cran
+inh.forEach((t) => {
+  tl.fromTo(chest, { y: 0 }, { y: -52, duration: 0.32, ease: "power2.out", immediateRender: false }, t - 0.32);
+  tl.to(chest, { y: -8, duration: 0.5, ease: "power2.inOut" }, t + 0.1);
+  mv(t - 0.2, cu + 0.06, 0.3, "power3.out");
+});
+// « ne plus respirer » : tout se fige, la vignette se resserre
+tl.to(S.$("vg2"), { opacity: 1, duration: 0.9, ease: "power1.in" }, frz);
+tl.to(S.cam, { scale: 1.14, duration: eIn - frz, ease: "none" }, frz);
+// contrechamp : ses yeux écarquillés, une larme
+tl.set(S.$("eb"), { opacity: 1 }, eIn);
+tl.fromTo(S.$("eb-tear"), { opacity: 0, y: -10 }, { opacity: 0.9, y: 18, duration: 0.8, ease: "power1.in", immediateRender: false }, eIn + 0.2);
+tl.fromTo(S.$("eb"), { x: -2 }, { x: 2, duration: 0.05, yoyo: true, repeat: Math.round((gulp - eIn) / 0.05), ease: "none", immediateRender: false }, eIn);
+// « Je peux pas » : il aspire de force, à-coup, la chaleur saute de deux crans
+tl.set(S.$("eb"), { opacity: 0, x: 0 }, gulp);
+tl.to(S.$("vg2"), { opacity: 0.2, duration: 0.15 }, gulp);
+tl.fromTo(S.cam, { y: 0 }, { y: -50, duration: 0.14, ease: "power3.out", immediateRender: false }, gulp);
+tl.to(S.cam, { y: 0, duration: 0.7, ease: "power2.inOut" }, gulp + 0.14);
+tl.fromTo(chest, { y: -8 }, { y: -90, duration: 0.2, ease: "power3.out", immediateRender: false }, gulp);
+mv(gulp, cu + 0.12, 0.25);

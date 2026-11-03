@@ -11,9 +11,9 @@ tl.fromTo(S.$("wh"), { x: -1.5 }, { x: 1.5, duration: 0.06, yoyo: true, repeat: 
 tl.set(S.$("dk"), { opacity: 0 }, lea);
 tl.set(S.$("lea"), { opacity: 1 }, lea);
 // Léa, de très près, immobile (elle ne respire plus) ; la lueur monte du bas comme une marée
-tl.fromTo(S.$("lea-g"), { scale: 1.06 }, { scale: 1.22, duration: tight - lea, ease: "none", immediateRender: false }, lea);
+
 tl.fromTo(S.$("lea-tide"), { opacity: 0, y: 360 }, { opacity: 1, y: 0, duration: black - lea - 0.2, ease: "power1.inOut", immediateRender: false }, lea + 0.4);
-tl.set(S.cam, { scale: 1.32, y: -120 }, tight);
-tl.fromTo(S.cam, { scale: 1.32 }, { scale: 1.4, duration: black - tight, ease: "none", immediateRender: false }, tight + 0.01);
+// une seule poussée continue, sans coupe sur le visage
+tl.fromTo(S.cam, { scale: 1.06, y: 0 }, { scale: 1.4, y: -120, duration: black - lea, ease: "none", immediateRender: false }, lea);
 // noir sec
 tl.set(S.$("bk"), { opacity: 1 }, black);

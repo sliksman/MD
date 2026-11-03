@@ -67,3 +67,11 @@ Respiration de Léa (discrète, présente dès le début, coupée net sur « …
 ## À construire (nouveau dans le kit)
 
 Drap en relief (empreinte, paliers), tache d'humidité, lueur sous la couette, lit qui respire (scale cyclique + vignette synchro), Léa (silhouette + cheveux), torse qui respire, mot qui s'enfonce. Le reste (plongée, yeux, paupières, sous-titres, pipeline voix/SRT, stems) est repris de « Des pas ».
+
+
+## MISE À JOUR v3 (construction, retours du user)
+
+- Piste retenue : « le long du corps » (POV regard baissé : couette en perspective, pieds au fond). La chaleur est un FRONT diffus qui avance (aucun objet, aucun contour), avec léger gonflement du drap et filets de chaleur.
+- Raccords : plus aucune coupe sur le même cadrage (« jump cut » à 21 s et 36 s corrigés) ; plans de Léa = un seul plan, caméra qui descend sur le drap puis remonte sur le visage ; poussée continue sur le visage final.
+- Pipeline : `voix.mp3` + `voix.srt` (du user) → `scripts/srt_align.py` → `scripts/breathe.py` (aucune respiration ajoutée, queue noire 0,6 s) → `scripts/sync.mjs` → rendu → `scripts/stems.py` (voix) + `scripts/sounddesign.py` (12 pistes de sound design synthétisé) ; pièges : le SRT du user étend les blocs jusqu'aux souffles de fin, d'où des `overrides` à la main dans `timeline.base.json`.
+- Sound design : `out/stems/LISEZMOI-sound-design.md` + `out/sound-design.json`. Sons synthétiques, à remplacer par de vrais enregistrements.
