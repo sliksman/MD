@@ -1,0 +1,292 @@
+[
+ {
+  "stem": "02_ambiance-grotte.wav",
+  "niveau_crete_dBFS": -33,
+  "role": "L'air des lieux : la grotte (souffle grave, humidité), le grenier chaud et poussiéreux, la grotte d'hiver (vent sourd, froid), la chambre chaude presque silencieuse. Jamais de pluie ni de musique.",
+  "evenements": [
+   {
+    "t": 4.2,
+    "what": "goutte"
+   }
+  ]
+ },
+ {
+  "stem": "03_respiration-dormeur.wav",
+  "niveau_crete_dBFS": -28,
+  "role": "Le souffle lent de la personne dans le lit : à la fin (chambre, 43,5 → fin) et pendant le plan chaud (35,9 → 38).",
+  "evenements": [
+   {
+    "t": 36.02,
+    "what": "souffle calme"
+   },
+   {
+    "t": 45.1,
+    "what": "souffle calme"
+   }
+  ]
+ },
+ {
+  "stem": "04_chauves-souris.wav",
+  "niveau_crete_dBFS": -26,
+  "role": "Ailes de cuir qui se replient (froissement), cliquetis des griffes, colonie qui murmure (« en colonie ») et fantôme qui s'élève (« mourais »). Les cris de sonar sont sur la piste 09.",
+  "evenements": [
+   {
+    "t": 0.45,
+    "what": "la chauve-souris traverse la lune"
+   },
+   {
+    "t": 4.8,
+    "what": "elle se retourne : tête en bas"
+   },
+   {
+    "t": 11.45,
+    "what": "griffes qui serrent"
+   },
+   {
+    "t": 10.46,
+    "what": "le fantôme s'élève"
+   },
+   {
+    "t": 15.51,
+    "what": "colonie"
+   },
+   {
+    "t": 17.15,
+    "what": "grenier"
+   },
+   {
+    "t": 35.02,
+    "what": "elle passe à la fenêtre"
+   }
+  ]
+ },
+ {
+  "stem": "05_verrous-pieds.wav",
+  "niveau_crete_dBFS": -25,
+  "role": "Les pieds qui se verrouillent : petit « clac » métallique sec sur chaque cadenas (« bloquent »), tendon qui se tend (grincement court).",
+  "evenements": [
+   {
+    "t": 8.22,
+    "what": "tendons"
+   },
+   {
+    "t": 8.62,
+    "what": "cadenas"
+   }
+  ]
+ },
+ {
+  "stem": "06_temperature-hiver.wav",
+  "niveau_crete_dBFS": -26,
+  "role": "Le mercure qui chute sur « descendre » (glissando descendant), craquement de givre sur la grotte, puis le vent d'hiver (« cinq ou six mois ») et six lunes qui passent (tintements graves).",
+  "evenements": [
+   {
+    "t": 18.88,
+    "what": "mercure qui descend"
+   },
+   {
+    "t": 20.18,
+    "what": "givre"
+   },
+   {
+    "t": 20.91,
+    "what": "vent d'hiver"
+   },
+   {
+    "t": 23.31,
+    "what": "lune"
+   },
+   {
+    "t": 24.16,
+    "what": "« mois »"
+   }
+  ]
+ },
+ {
+  "stem": "07_badges-medaille.wav",
+  "niveau_crete_dBFS": -25,
+  "role": "Les badges 1, 2, 3 (pop + petit tintement) sur chaque « nouvelle », tintements du cadran (16 → 20 h) et fanfare discrète de la médaille + confettis sur « champions ».",
+  "evenements": [
+   {
+    "t": 2.74,
+    "what": "badge 1"
+   },
+   {
+    "t": 13.1,
+    "what": "badge 2"
+   },
+   {
+    "t": 24.81,
+    "what": "badge 3"
+   },
+   {
+    "t": 28.44,
+    "what": "tic du cadran"
+   },
+   {
+    "t": 31.55,
+    "what": "médaille"
+   },
+   {
+    "t": 31.65,
+    "what": "confettis"
+   }
+  ]
+ },
+ {
+  "stem": "08_sonar-oreilles.wav",
+  "niveau_crete_dBFS": -27,
+  "role": "« Elle voit le monde avec ses oreilles » : cris de sonar (chirps descendants rapides), échos qui reviennent de la mite et des troncs.",
+  "evenements": [
+   {
+    "t": 34.5,
+    "what": "cri de sonar"
+   },
+   {
+    "t": 34.78,
+    "what": "écho"
+   },
+   {
+    "t": 34.69,
+    "what": "cri de sonar"
+   },
+   {
+    "t": 34.98,
+    "what": "cri de sonar"
+   },
+   {
+    "t": 35.32,
+    "what": "cri de sonar"
+   }
+  ]
+ },
+ {
+  "stem": "09_listen-neon.wav",
+  "niveau_crete_dBFS": -25,
+  "role": "Seul moment brillant : le téléphone s'allume (« Listen »), le néon s'étend en cercle, trois bulles (forêt, mer, montagne), le globe et ses repères, carillon + « pop » de la carte de fin.",
+  "evenements": [
+   {
+    "t": 38.11,
+    "what": "le téléphone s'allume"
+   },
+   {
+    "t": 38.5,
+    "what": "le néon s'étend"
+   },
+   {
+    "t": 39.04,
+    "what": "bulle 1"
+   },
+   {
+    "t": 39.48,
+    "what": "bulle 2"
+   },
+   {
+    "t": 40.13,
+    "what": "bulle 3"
+   },
+   {
+    "t": 40.3,
+    "what": "le globe"
+   },
+   {
+    "t": 41.15,
+    "what": "repère 1"
+   },
+   {
+    "t": 41.71,
+    "what": "repère 2"
+   },
+   {
+    "t": 42.07,
+    "what": "repère 3"
+   },
+   {
+    "t": 45.17,
+    "what": "carte de fin : carillon"
+   },
+   {
+    "t": 45.88,
+    "what": "« lien en bio »"
+   }
+  ]
+ },
+ {
+  "stem": "10_coupes.wav",
+  "niveau_crete_dBFS": -24,
+  "role": "Impacts graves courts sur les coupes de plan (début de chaque scène sauf le premier plan).",
+  "evenements": [
+   {
+    "t": 2.68,
+    "what": "coupe"
+   },
+   {
+    "t": 7.98,
+    "what": "coupe"
+   },
+   {
+    "t": 9.56,
+    "what": "coupe"
+   },
+   {
+    "t": 13.04,
+    "what": "coupe"
+   },
+   {
+    "t": 16.94,
+    "what": "coupe"
+   },
+   {
+    "t": 17.82,
+    "what": "coupe"
+   },
+   {
+    "t": 20.56,
+    "what": "coupe"
+   },
+   {
+    "t": 24.76,
+    "what": "coupe"
+   },
+   {
+    "t": 28.4,
+    "what": "coupe"
+   },
+   {
+    "t": 30.72,
+    "what": "coupe"
+   },
+   {
+    "t": 32.32,
+    "what": "coupe"
+   },
+   {
+    "t": 34.28,
+    "what": "coupe"
+   },
+   {
+    "t": 35.9,
+    "what": "coupe"
+   }
+  ]
+ },
+ {
+  "stem": "11_retournement-lit.wav",
+  "niveau_crete_dBFS": -27,
+  "role": "Le lit qui se retourne (0,2 → 1,8) : souffle d'air qui tourne, objets qui montent (froissements) ; à la fin, couette qui retombe et petit souffle d'endormissement.",
+  "evenements": [
+   {
+    "t": 0.15,
+    "what": "le lit se retourne"
+   },
+   {
+    "t": 0.5,
+    "what": "objet qui monte"
+   },
+   {
+    "t": 44.5,
+    "what": "elle s'endort"
+   }
+  ]
+ }
+]
