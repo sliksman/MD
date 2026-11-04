@@ -184,7 +184,7 @@ for l in T["vo"]:
     n = len(words_of(l["text"])); cur = []
     for i in range(n):
         cur.append(k0 + i)
-        if re.search(r"[.?!,;:]$", SW[k0 + i][1]) or re.search(r" [?!]$", SW[k0 + i][1]) or i == n - 1:
+        if re.search(r"[.?!,;:…]$", SW[k0 + i][1]) or re.search(r" [?!]$", SW[k0 + i][1]) or i == n - 1:   # « … » coupe aussi : « respirer… » / « Non, c'est pas toi. »
             segs.append(cur); cur = []
     k0 += n
 # fusion des mots seuls (sauf fin de phrase) avec le segment suivant de la même réplique
@@ -192,7 +192,8 @@ merged = []
 for sg in segs:
     if merged and len(sg) == 1 and re.search(r"[.?!]$", SW[sg[0]][1]) and SW[merged[-1][-1]][1].endswith(",") and len(merged[-1]) <= 4 and SW[merged[-1][0]][0] == SW[sg[0]][0]:
         merged[-1] = merged[-1] + sg   # « …la fatigue, ça. » reste ensemble
-    elif merged and len(merged[-1]) == 1 and not re.search(r"[.?!]$", SW[merged[-1][0]][1]) and SW[merged[-1][0]][0] == SW[sg[0]][0] and times[sg[0]] - times[merged[-1][0]] < 0.55:
+    elif merged and len(merged[-1]) == 1 and not re.search(r"[.?!]$", SW[merged[-1][0]][1]) and SW[merged[-1][0]][0] == SW[sg[0]][0] and times[sg[0]] - times[merged[-1][0]] < 1.0:   # « Non, » + « c'est pas toi. » restent ensemble
+
         merged[-1] = merged[-1] + sg
     else: merged.append(sg)
 cap_groups = []
@@ -218,6 +219,14 @@ while changed:
         g, n = list(g), list(n)
         while len(n) > 2 and times[n[0]] - times[g[0]] < 0.45: g.append(n.pop(0))
         cap_groups[gi], cap_groups[gi + 1] = g, n
+# le dernier mot d'un sous-titre doit rester lisible : le sous-titre suivant apparaît `lead` (0,08 s) avant son premier mot ; si le dernier mot du précédent n'a alors que < 0,12 s à l'écran
+# (parole rapide, bloc SRT trop court), il passe en tête du suivant (un seul mot déplacé par frontière, pas de cascade)
+LEAD = float(T.get("captions", {}).get("lead", 0.08))
+for _pass in range(1):
+  for gi in range(len(cap_groups) - 1):
+    g, n = cap_groups[gi], cap_groups[gi + 1]
+    if len(g) > 1 and (times[n[0]] - LEAD) - times[g[-1]] < 0.12 and SW[g[-1]][0] == SW[n[0]][0]:
+        n.insert(0, g.pop())
 T["capGroups"] = [[list(gidx[k]) for k in g] for g in cap_groups]
 # --- écriture
 j = 0

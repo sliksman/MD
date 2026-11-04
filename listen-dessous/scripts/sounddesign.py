@@ -123,7 +123,7 @@ def deep_breath(d, rising, amp=1.0):
 
 # ---------------------------------------------------------------- la chaleur : position du front (même courbe que l'image)
 U = [(0, 0), (5.9, 0.0), (6.52, 0.05), (6.72, 0.09), (10, 0.10), (15.4, 0.10), (16.9, 0.20), (17.53, 0.30), (18.27, 0.37), (20.9, 0.43),
-     (21.62, 0.49), (22.25, 0.55), (23.25, 0.61), (26.8, 0.61), (27.0, 0.73), (37.86, 0.78), (41.4, 0.90), (END, 0.95)]
+     (21.73, 0.43), (22.03, 0.49), (22.25, 0.49), (22.55, 0.55), (22.72, 0.55), (23.02, 0.61), (26.8, 0.61), (27.0, 0.73), (37.86, 0.78), (41.4, 0.90), (END, 0.95)]
 u = curve(U, TT)
 
 def mask(pts): return curve(pts, TT)
@@ -149,10 +149,10 @@ for k in range(12):
 tracks.append(lea)
 
 # --- 04 RESPIRATION DE LUI : proche, centrée ; courte et tremblante quand il a peur ; il retient son souffle ; il aspire de force à « Je peux pas »
-him = Trk("04_respiration-lui", "Lui, au centre, très proche. Souffles courts et tremblants ; 3 inspirations nettes sur les « crans » (21,6 / 22,3 / 23,3) ; APNÉE de 24,4 à 26,8 ; grande aspiration rauque à « Je peux pas » ; souffle saccadé qui se calme jusqu'à 35.", -24)
+him = Trk("04_respiration-lui", "Lui, au centre, très proche. Souffles courts et tremblants ; 3 inspirations nettes sur les « crans » (21,6 / 22,1 / 22,6) ; APNÉE de 24,4 à 26,8 ; grande aspiration rauque à « Je peux pas » ; souffle saccadé qui se calme jusqu'à 35.", -24)
 for t0, a, r in [(3.75, .45, 0), (5.55, .45, 0), (6.4, .7, .25), (8.2, .55, .35), (10.3, .55, .4), (11.9, .5, .3), (13.7, .5, .3), (15.7, .5, .3), (17.5, .55, .3), (19.2, .55, .35)]:
     him.add(breath(.55, .45, a, rasp=r, tight=1), t0, 1.0, 0.0, 0, "souffle court (peur)")
-for t0 in (21.55, 22.2, 23.2): him.add(breath(.32, 0, .85, rasp=.4, tight=1), t0, 1.0, 0.0, 0, "inspiration sur un cran")
+for t0 in (21.6, 22.12, 22.6): him.add(breath(.32, 0, .85, rasp=.4, tight=1), t0, 1.0, 0.0, 0, "inspiration sur un cran")
 g = breath(.62, .5, 1.0, rasp=.6, tight=1); g[:int(.62 * SR)] *= 1.25
 him.add(g, 26.62, 1.0, 0.0, 0, "GRANDE aspiration (« Je peux pas »)")
 for t0, a in [(27.9, .6), (29.4, .55), (31.0, .5), (32.7, .45), (34.3, .4)]: him.add(breath(.5, .45, a, rasp=.35, tight=1), t0, 1.0, 0.0, 0, "souffle saccadé qui se calme")
@@ -194,13 +194,13 @@ while t < END:
     if t >= END: break
     k = int(0.003 * SR + rng.random() * 0.006 * SR); c = fft_filter(rng.standard_normal(k), 700, 4500, 2) * np.exp(-np.arange(k) / (k * 0.35))
     warm.add(c / (np.max(np.abs(c)) + 1e-9), t, 0.05 + 0.25 * rng.random(), rng.uniform(-.8, .8), 0, "")
-warm.events = [{"t": 5.9, "what": "la chaleur naît (« Il y a un truc chaud »)"}, {"t": 17.5, "what": "cran : « Là, c'est la cheville »"}, {"t": 21.6, "what": "3 crans sur les inspirations (21,6 / 22,3 / 23,3)"}, {"t": 27.0, "what": "saut de deux crans (« Je peux pas »)"}, {"t": 41.4, "what": "presque sur lui"}]
+warm.events = [{"t": 5.9, "what": "la chaleur naît (« Il y a un truc chaud »)"}, {"t": 17.5, "what": "cran : « Là, c'est la cheville »"}, {"t": 21.6, "what": "3 crans sur les inspirations (21,6 / 22,1 / 22,6)"}, {"t": 27.0, "what": "saut de deux crans (« Je peux pas »)"}, {"t": 41.4, "what": "presque sur lui"}]
 tracks.append(warm)
 
 # --- 08 HUMIDE : bulles étouffées, frottements de gel
 wet = Trk("08_humide", "Sons mouillés étouffés (bulles, gel) : l'insert du drap (11,5 → 12,9), l'empreinte (13 → 14,1), un petit à chaque cran, et trois gouttes dans la marée finale. Jamais clair, toujours sous le reste.", -28)
 for t0, a, d in [(6.85, .30, .3), (11.55, .55, .45), (11.9, .5, .4), (12.1, .6, .4), (12.45, .5, .35), (12.8, .45, .3), (13.2, .5, .5), (13.7, .55, .5), (14.05, .9, .6),
-                 (17.55, .45, .4), (18.3, .45, .4), (18.9, .35, .4), (19.6, .35, .4), (20.3, .35, .4), (21.7, .4, .3), (22.3, .4, .3), (23.3, .45, .3), (27.05, .7, .5),
+                 (17.55, .45, .4), (18.3, .45, .4), (18.9, .35, .4), (19.6, .35, .4), (20.3, .35, .4), (21.8, .4, .3), (22.35, .4, .3), (22.85, .45, .3), (27.05, .7, .5),
                  (44.1, .3, .5), (45.3, .3, .5), (46.2, .3, .5)]:
     wet.add(squelch(a, d), t0, 1.0, rng.uniform(-.4, .4), 0, "humide")
 tracks.append(wet)
@@ -225,7 +225,7 @@ tracks.append(dr)
 cuts = Trk("10_coupes-et-a-coups", "Impacts graves courts (sub + queue de bruit) sur les coupes de plan ; gros sur « trop » (14,1) et sur l'aspiration (26,8). Aucun impact sur « non » (37,86) : le silence est le choc.", -23)
 for t0, a in [(0.95, .30), (3.2, .45), (6.72, .35), (7.6, .35), (8.85, .22), (9.65, .22), (11.3, .45), (15.4, .45), (17.45, .30), (25.6, .35), (27.7, .5), (41.4, .55), (43.3, .4)]:
     cuts.add(sub_hit(a, .55), t0 - 0.02, 1.0, 0, 0, "coupe")
-for t0, a, label in [(14.11, 1.0, "« trop » : l'empreinte serre"), (17.53, .6, "cran « Là »"), (18.27, .5, "cran « cheville »"), (21.6, .4, "cran (inspiration)"), (22.25, .4, "cran"), (23.25, .5, "cran"), (26.83, 1.0, "« Je peux pas » : aspiration"), (27.1, .5, "saut de crans")]:
+for t0, a, label in [(14.11, 1.0, "« trop » : l'empreinte serre"), (17.53, .6, "cran « Là »"), (18.27, .5, "cran « cheville »"), (21.9, .4, "cran (inspiration)"), (22.45, .4, "cran"), (22.92, .5, "cran « cran »"), (26.83, 1.0, "« Je peux pas » : aspiration"), (27.1, .5, "saut de crans")]:
     cuts.add(sub_hit(a, .8, 90, 33), t0, 1.0, 0, 0, label)
 tracks.append(cuts)
 
@@ -233,7 +233,7 @@ tracks.append(cuts)
 fab = Trk("11_tissu-et-matelas", "Frottements de tissu (oreiller, drap, sa main) et grincements du matelas, chaque fois que quelque chose bouge sous la couette. Le grincement du lit est ce qui trahit la chose.", -27)
 for t0, d, a, p in [(0.95, .5, .5, -.2), (3.2, .35, .3, 0), (17.4, .5, .5, 0), (21.3, .3, .3, 0), (26.8, .9, .9, 0), (28.85, .8, .55, -.3), (29.9, .6, .4, -.3), (33.7, .6, .3, 0), (35.8, .5, .25, 0), (43.4, .6, .3, .3)]:
     fab.add(rustle(d, a), t0, 1.0, p, 0, "tissu")
-for t0, d, a, f in [(17.5, .7, .55, 38), (18.25, .6, .5, 44), (22.1, .6, .5, 40), (22.7, .5, .45, 46), (23.6, .8, .6, 36), (27.0, 1.0, .75, 33), (38.4, 1.4, .5, 30), (40.4, 1.2, .5, 28), (44.8, 1.0, .35, 30)]:
+for t0, d, a, f in [(17.5, .7, .55, 38), (18.25, .6, .5, 44), (22.0, .6, .5, 40), (22.5, .5, .45, 46), (22.95, .8, .6, 36), (27.0, 1.0, .75, 33), (38.4, 1.4, .5, 30), (40.4, 1.2, .5, 28), (44.8, 1.0, .35, 30)]:
     fab.add(creak(d, a, f), t0, 1.0, rng.uniform(-.3, .3), 6, "grincement du matelas")
 tracks.append(fab)
 
