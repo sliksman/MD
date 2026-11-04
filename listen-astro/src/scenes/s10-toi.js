@@ -1,0 +1,26 @@
+// PLAN 10 — « Toi, si. Sur Listen, t'écoutes des vrais endroits de la Terre, enregistrés sur place. » (UN SEUL PLAN : le néon se déploie depuis le téléphone)
+// On revient dans ton lit (chaud, la pluie à la fenêtre, une gravité : tout est posé). Sur « Listen », l'écran du téléphone s'allume et son néon (cyan → violet → magenta) s'étend à tout le cadre :
+// le toit, la terrasse, la rue en bulles néon, un globe où se posent trois repères « enregistré sur place ».
+const rain = Array.from({ length: 22 }, (_, i) => `<line x1="${760 + ((i * 37) % 150)}" y1="${640 + ((i * 53) % 130)}" x2="${752 + ((i * 37) % 150)}" y2="${668 + ((i * 53) % 130)}" stroke="#bfe0ff" stroke-opacity=".7" stroke-width="3"/>`).join("");
+const warm = `<rect x="-200" y="-200" width="1480" height="2320" fill="#14122e"/><ellipse cx="300" cy="860" rx="520" ry="620" fill="#F5B85A" opacity=".14"/>${A.bedTop({ clock: ["23:40"] })}
+  <g><rect x="760" y="640" width="150" height="150" rx="14" fill="#1a1638" stroke="#F5B85A" stroke-opacity=".5" stroke-width="5"/><path d="M835 640 V790 M760 715 H910" stroke="#F5B85A" stroke-opacity=".5" stroke-width="5"/><g id="${ID}-wr" clip-path="url(#${ID}-wc)">${rain}<g transform="translate(0 -150)">${rain}</g></g></g><defs><clipPath id="${ID}-wc"><rect x="762" y="642" width="146" height="146"/></clipPath></defs>
+  <path d="M520 1560 h60 v70 q0 30 -30 30 q-30 0 -30 -30z" fill="#f1ede4"/><path d="M700 1500 h40 v60 q0 30 -26 32 q-24 2 -24 -18z" fill="#8fa0d8"/><rect x="-60" y="-60" width="1200" height="2040" fill="#04050d" opacity=".12"/>`;
+const circ = [[300, 740, 150, "roof"], [770, 800, 150, "cafe"], [540, 1000, 170, "street"]];
+const neon = `<rect x="-200" y="-200" width="1480" height="2320" fill="#0d0f2a"/><ellipse cx="540" cy="1380" rx="560" ry="420" fill="url(#${ID}-gNeonGlow)" opacity=".9"/>` +
+  circ.map(([x, y, r, k], i) => `<g id="${ID}-nb${i}" data-ox="${x}" data-oy="${y}" opacity="0">${A.dioPorthole("np" + i, k, x, y, r).replace(/#2a3358|#4a5584|#1b2142/g, "#0d0f2a")}<circle cx="${x}" cy="${y}" r="${r + 36}" fill="none" stroke="url(#${ID}-gNeon)" stroke-width="9" filter="url(#${ID}-fGlowN)"/></g>`).join("") +
+  `<path d="M450 1200 L540 1255 L630 1200" stroke="url(#${ID}-gNeon)" stroke-width="7" fill="none" stroke-dasharray="14 12" opacity=".7"/>
+  <rect x="410" y="1275" width="260" height="250" rx="44" fill="#0b0d1a" stroke="url(#${ID}-gNeon)" stroke-width="12" filter="url(#${ID}-fGlowN)"/><rect x="426" y="1291" width="228" height="218" rx="30" fill="#12153a"/>
+  ${[20, 40, 24, 60, 36, 52, 20].map((h, i) => `<g id="${ID}-wv${i}" data-ox="${462 + i * 26}" data-oy="1430"><path d="M${462 + i * 26} ${1430 - h} v${h * 2}" stroke="#a98bff" stroke-width="9" stroke-linecap="round"/></g>`).join("")}` + A.globe("gl", 860, 1380, 90);
+const hud = `<defs><clipPath id="${ID}-rvc"><circle id="${ID}-rvr" cx="230" cy="744" r="0"/></clipPath></defs><g clip-path="url(#${ID}-rvc)">${neon}</g>`;
+const S = L.stage(root, ID, warm, hud);
+gsap.set(S.cam, { svgOrigin: "540 960" });
+const D = sc.end - sc.start, lis = w("L12", 3) - 0.1, ect = w("L12", 4) - 0.05;
+tl.fromTo(S.cam, { scale: 1 }, { scale: 1.04, duration: ect, ease: "none", immediateRender: false }, 0);
+tl.fromTo(S.$("wr"), { y: 0 }, { y: 150, duration: 0.5, ease: "none", repeat: 14, immediateRender: false }, 0);
+tl.to(S.$("phone-on"), { opacity: 1, duration: 0.3, ease: "power2.out" }, lis);
+// le néon s'étend depuis le téléphone
+tl.fromTo(S.$("rvr"), { attr: { r: 0 } }, { attr: { r: 2500 }, duration: 0.9, ease: "power2.in", immediateRender: false }, ect);
+[[0, w("L12", 4)], [1, w("L12", 6)], [2, w("L12", 7) + 0.1]].forEach(([i, t]) => tl.fromTo(S.$("nb" + i), { opacity: 0, scale: 0.2, y: 120 }, { opacity: 1, scale: 1, y: 0, duration: 0.5, ease: "back.out(1.8)", immediateRender: false }, Math.max(t, ect + 0.45)));
+for (let i = 0; i < 7; i++) tl.fromTo(S.$("wv" + i), { scaleY: 0.4 }, { scaleY: 1.5, duration: 0.3 + (i % 3) * 0.08, yoyo: true, repeat: 20, ease: "sine.inOut", immediateRender: false }, ect + 0.5);
+tl.fromTo(S.$("gl"), { opacity: 0, scale: 0.3 }, { opacity: 1, scale: 1, duration: 0.45, ease: "back.out(2)", immediateRender: false }, w("L12", 10));
+[[0, w("L12", 11)], [1, w("L12", 12) + 0.05], [2, w("L12", 13)]].forEach(([i, t]) => tl.fromTo(S.$("gl-pin" + i), { scale: 0.2 }, { scale: 1.3, duration: 0.3, yoyo: true, repeat: 1, ease: "back.out(3)", immediateRender: false }, t));

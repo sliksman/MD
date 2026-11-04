@@ -1,0 +1,17 @@
+// PLAN 2 — « Première nouvelle, pas sympa… » : le module de couchage. Il dort à la verticale, sanglé au mur. Trois plans de profondeur qui dérivent à des vitesses différentes. Badge « 1 ».
+const bg = `<g id="${ID}-pb">${A.wall("w")}${A.vent(60, 520, 220, 150)}${A.vent(800, 1280, 220, 150, 6)}${A.rail(0, 1620, 1080, 1620)}${A.placard(780, 640)}${A.placard(110, 1250, 130)}${A.led("l0", 960, 900)}${A.led("l1", 130, 800, "#8fe39a")}</g>`;
+const mid = `<g id="${ID}-pm">${A.porthole("ph", 800, 960, 190, `<rect x="400" y="500" width="800" height="900" fill="#02040f"/>${A.stars(30, 9, 760, 1160)}${A.earth("ea", 760, 1300, 520, 5)}`)}${A.sleeper("sl", 380, 700, 1.15)}</g>`;
+const fg = `<g id="${ID}-pf">${A.cable("M-20 480 C260 560 300 760 120 960", 26)}${A.cable("M1100 700 C820 760 900 1000 760 1200", 22)}${A.floaters("fl", 11, 7)}</g>`;
+const world = bg + mid + fg + `<rect x="-60" y="-60" width="1200" height="2040" fill="#02040f" opacity=".28"/>`;
+const hud = A.badge("b1", 1);
+const S = L.stage(root, ID, world, hud);
+gsap.set(S.cam, { svgOrigin: "540 960" });
+const D = sc.end - sc.start;
+tl.fromTo(S.$("pb"), { x: 0 }, { x: -26, duration: D, ease: "none", immediateRender: false }, 0);
+tl.fromTo(S.$("pm"), { x: 0 }, { x: -60, duration: D, ease: "none", immediateRender: false }, 0);
+tl.fromTo(S.$("pf"), { x: 0 }, { x: -120, duration: D, ease: "none", immediateRender: false }, 0);
+Array.from(S.$("fl").children).forEach((c, i) => tl.fromTo(c, { y: 0, rotation: 0 }, { y: (i % 2 ? -1 : 1) * (50 + i * 12), rotation: (i % 2 ? 1 : -1) * 40, duration: D, ease: "none", immediateRender: false }, 0));
+tl.fromTo(S.$("ea"), { rotation: 0 }, { rotation: 6, duration: D, ease: "none", immediateRender: false }, 0);
+tl.fromTo(S.$("sl"), { scale: 1 }, { scale: 1.012, duration: 1.1, yoyo: true, repeat: 3, ease: "sine.inOut", immediateRender: false }, 0);
+tl.fromTo(S.cam, { scale: 1 }, { scale: 1.07, duration: D, ease: "none", immediateRender: false }, 0);
+tl.fromTo(S.$("b1"), { opacity: 0, scale: 0.3 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(2.6)", immediateRender: false }, w("L02", 0) + 0.04);

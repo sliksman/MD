@@ -1,0 +1,20 @@
+// PLAN 3 — « Dans l'espace, tu peux t'étouffer… en dormant. Sans gravité, l'air que tu expires reste en bulle autour de ta tête. » (UN SEUL PLAN : poussée continue)
+// Gros plan sur son visage. L'air qu'il expire s'accumule autour de sa tête (particules grisâtres), puis la bulle apparaît, irrégulière (pas un casque), et ne part pas.
+const blurred = `<g filter="url(#${ID}-fBlurL)">${A.led("l0", 220, 760)}${A.led("l1", 900, 540, "#8fe39a")}${A.porthole("ph", 860, 1260, 130, `<rect width="1080" height="1920" fill="#02040f"/>${A.earth("ea", 860, 1500, 300, 2)}`)}${A.vent(120, 1160, 220, 150)}</g>`;
+const world = A.wall("w", { sat: 30 }) + blurred + `<rect x="-60" y="-60" width="1200" height="2040" fill="#0a0e26" opacity=".4"/>` +
+  A.sleeper("sl", 540, 1000, 3.2) + A.co2("co", 540, 1000, 380, 80, 7) + A.bubble("bb", 540, 1000, 420) +
+  `<g id="${ID}-jets" fill="none" stroke="#bfe6e0" stroke-opacity=".6" stroke-width="6" stroke-linecap="round">${[-1, 1].map((s) => `<path class="jt" data-len="200" d="M${540 + s * 20} 1110 q${s * 70} 30 ${s * 120} -10"/><path class="jt" data-len="200" d="M${540 + s * 20} 1130 q${s * 50} 70 ${s * 110} 40"/>`).join("")}</g>`;
+const hud = A.pill("pAir", 620, 1480, "air expiré", 760, 1100, { size: 40, w: 330, dot: "#F5B85A" });
+const S = L.stage(root, ID, world, hud);
+gsap.set(S.cam, { svgOrigin: "540 960" });
+const D = sc.end - sc.start, b0 = w("L02", 6) - 0.2, b1 = w("L03", 0);   // « tu peux » : la bulle commence ; « Sans gravité » : elle est nette
+const dots = Array.from(S.$("co").children);
+dots.forEach((d, i) => { gsap.set(d, { opacity: 0 }); tl.to(d, { opacity: 0.25 + ((i * 37) % 10) / 16, duration: 0.5, ease: "power1.out" }, b0 - 0.8 + (i / dots.length) * (b1 + 1.2 - (b0 - 0.8))); });
+gsap.set(S.$("jets").querySelectorAll(".jt"), { strokeDasharray: 200, strokeDashoffset: 200 });
+tl.fromTo(S.$("jets").querySelectorAll(".jt"), { strokeDashoffset: 200 }, { strokeDashoffset: 0, duration: 0.6, ease: "power1.out", stagger: 0.12, immediateRender: false }, b0);
+tl.fromTo(S.$("bb"), { opacity: 0, scale: 0.55 }, { opacity: 1, scale: 1, duration: b1 - b0 + 0.4, ease: "power1.out", immediateRender: false }, b0);
+tl.fromTo(S.$("bb"), { scale: 1 }, { scale: 1.035, duration: 1.3, yoyo: true, repeat: 4, ease: "sine.inOut", immediateRender: false }, b1 + 0.5);
+tl.fromTo(S.$("co"), { rotation: 0 }, { rotation: 140, duration: D, ease: "none", immediateRender: false }, 0);
+tl.fromTo(S.$("sl-head"), { scale: 1 }, { scale: 1.014, duration: 1.2, yoyo: true, repeat: 5, ease: "sine.inOut", immediateRender: false }, 0);
+tl.fromTo(S.cam, { scale: 1, y: 0 }, { scale: 1.12, y: -30, duration: D, ease: "none", immediateRender: false }, 0);
+L.pill(tl, S, "pAir", w("L03", 2));
