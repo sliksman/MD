@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+        #root { position: absolute; inset: 0; pointer-events: none; }
+        #counter-svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+      </style>
+      <div id="root" data-composition-id="counter" data-width="1080" data-height="1920"></div>
+      <script>
+        (function () {
+          // Pas de fil rouge dans cet épisode : seulement le grain global, unique, par-dessus tous les plans
+          // (un grain par scène fuyait d'un plan à l'autre et changeait la luminosité aux coupes).
+          const root = document.querySelector('[data-composition-id="counter"]');
+          root.innerHTML =
+            '<svg id="counter-svg" viewBox="0 0 1080 1920" xmlns="http://www.w3.org/2000/svg" data-layout-allow-overflow>' +
+            '<defs><filter id="cGrain"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="3"/><feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 1 0"/></filter></defs>' +
+            '<rect width="1080" height="1920" filter="url(#cGrain)" opacity=".07" style="pointer-events:none"/></svg>';
+          window.__timelines["counter"] = gsap.timeline({ paused: true });
+        })();
+      </script>
+    </template>
+  </body>
+</html>

@@ -1,0 +1,12 @@
+// PLAN 5 — « Deuxième nouvelle : tu dors en plein jour, en colonie, dans une grotte » : le grand plan large, la colonie. Des dizaines de chauves-souris suspendues en rangées, en perspective ; au fond, l'entrée de la grotte, éclatante (plein jour). La caméra avance. Badge « 2 ».
+const rings = [0, 1, 2, 3, 4, 5].map((i) => { const k = 1 - i * 0.15; return `<path d="M${540 - 640 * k} ${900 - 760 * k} Q540 ${900 - 980 * k} ${540 + 640 * k} ${900 - 760 * k} L${540 + 560 * k} ${900 + 760 * k} Q540 ${900 + 960 * k} ${540 - 560 * k} ${900 + 760 * k}Z" fill="hsl(232 ${34 - i * 3}% ${Math.max(8, 22 - i * 2.4)}%)" stroke="#3a4278" stroke-opacity="${0.4 - i * 0.05}" stroke-width="${8 * k}"/>`; }).join("");
+const bats = [[0, 520, 0.85], [1, 560, 0.6], [2, 585, 0.42], [3, 600, 0.3]].map(([i, y, s]) => [-3, -2, -1, 1, 2, 3].map((k) => `<g opacity="${0.95 - i * 0.12}">${A.bat(`c${i}${k + 3}`, 540 + k * 170 * s * 1.1 + (k > 0 ? 30 : -30) * s, y, s, { ledge: false })}</g>`).join("")).join("");
+const world = `<rect x="-160" y="-160" width="1400" height="2240" fill="#0a0d26"/><g id="${ID}-rg" data-ox="540" data-oy="900">${rings}<circle cx="540" cy="900" r="150" fill="#ffd9a0" opacity=".35"/><circle cx="540" cy="900" r="86" fill="#fff4dc"/>${bats}</g>${A.shaft("sh", 540, 900, 160, 760, 1100, "#F5B85A", 0.16)}${A.mist("ms", 3, 5)}${A.dust("du", 4, 40)}<rect x="-160" y="-160" width="1400" height="2240" fill="#04050d" opacity=".1"/>`;
+const S = L.stage(root, ID, world, A.badge("b2", 2));
+gsap.set(S.cam, { svgOrigin: "540 900" });
+const D = sc.end - sc.start;
+tl.fromTo(S.$("rg"), { scale: 1 }, { scale: 1.45, duration: D, ease: "power1.in", immediateRender: false }, 0);
+tl.fromTo(S.$("sh"), { opacity: 0.12 }, { opacity: 0.26, duration: 1.4, yoyo: true, repeat: 3, ease: "sine.inOut", immediateRender: false }, 0);
+tl.fromTo(S.$("du"), { y: 0 }, { y: -160, duration: D, ease: "none", immediateRender: false }, 0);
+tl.fromTo(S.cam, { scale: 1, rotation: 0 }, { scale: 1.04, rotation: 1.2, duration: D, ease: "none", immediateRender: false }, 0);
+tl.fromTo(S.$("b2"), { opacity: 0, scale: 0.3 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(2.6)", immediateRender: false }, w("L05", 0) + 0.04);

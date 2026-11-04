@@ -1,0 +1,39 @@
+<!doctype html>
+<!-- GÉNÉRÉ par scripts/sync.mjs depuis src/scenes/s11-medaille.js — éditer la source, pas ce fichier. -->
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+        #root { position: absolute; inset: 0; }
+      </style>
+      <div id="root" data-composition-id="s11" data-width="1080" data-height="1920"></div>
+      <script>
+        (function () {
+          const ID = "s11";
+          const L = window.LS;
+          const sc = L.scene(ID);
+          const A = L.art(ID + "-");
+          const root = document.querySelector('[data-composition-id="s11"]');
+          const tl = gsap.timeline({ paused: true });
+          const w = sc.w;
+          // PLAN 11 — « Tu fais partie des champions. » : gag rapide. Une médaille d'or pend à son pied (elle aussi est pendue), des confettis qui montent (la gravité est à l'envers).
+          const conf = Array.from({ length: 42 }, (_, i) => { const r = ((i * 9301 + 49297) % 233280) / 233280, r2 = ((i * 4919 + 7919) % 233280) / 233280, col = ["#F5B85A", "#e0674d", "#7fd8d0", "#c9a0ff"][i % 4]; return `<g class="cf" data-ox="${(60 + r * 960).toFixed(0)}" data-oy="${(900 + r2 * 700).toFixed(0)}"><rect x="${(60 + r * 960).toFixed(0)}" y="${(900 + r2 * 700).toFixed(0)}" width="${10 + r * 10}" height="${18 + r2 * 14}" rx="3" fill="${col}"/></g>`; }).join("");
+          const world = A.caveBg(3) + A.crystals("cr", 9, 6, 0, 1080, 700, 1700) + A.caveCeil() + A.stalac("st2", 8, 8, 520, 90, 300, 0, 1080, "#2a3060") + A.bat("bt", 540, 640, 1.5) +
+            `<g id="${ID}-md" data-ox="540" data-oy="690" opacity="0"><path d="M470 690 L540 920 L610 690" stroke="#e0674d" stroke-width="22" fill="none" stroke-linecap="round"/><circle cx="540" cy="960" r="64" fill="#f5c24a" stroke="#c98f1c" stroke-width="10"/><text x="540" y="984" text-anchor="middle" font-family="Nunito" font-weight="900" font-size="72" fill="#8a5a10">1</text></g><g id="${ID}-cf" opacity="0">${conf}</g><rect x="-160" y="-160" width="1400" height="2240" fill="#04050d" opacity=".14"/>`;
+          const S = L.stage(root, ID, world, "");
+          gsap.set(S.cam, { svgOrigin: "540 960" });
+          const D = sc.end - sc.start, c0 = w("L10", 4) - 0.1;
+          tl.fromTo(S.$("md"), { opacity: 0, scale: 0.3, rotation: 0 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(2.4)", immediateRender: false }, c0);
+          tl.fromTo(S.$("md"), { rotation: -6 }, { rotation: 6, duration: 0.5, yoyo: true, repeat: 3, ease: "sine.inOut", immediateRender: false }, c0 + 0.4);
+          tl.set(S.$("cf"), { opacity: 1 }, c0);
+          Array.from(S.$("cf").children).forEach((c, i) => tl.fromTo(c, { y: 0, rotation: 0 }, { y: -(300 + (i % 5) * 80), rotation: (i % 2 ? 1 : -1) * 220, duration: D - c0 + 0.4, ease: "power1.out", immediateRender: false }, c0));
+          tl.fromTo(S.$("bt-body"), { scale: 1 }, { scale: 1.012, duration: 0.9, yoyo: true, repeat: 2, ease: "sine.inOut", immediateRender: false }, 0);
+          tl.fromTo(S.cam, { scale: 1 }, { scale: 1.06, duration: D, ease: "none", immediateRender: false }, 0);
+
+          window.__timelines[ID] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

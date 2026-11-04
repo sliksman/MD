@@ -1,0 +1,14 @@
+// PLAN 7 — « Ta température peut descendre jusqu'à celle de la grotte. » : deux thermomètres, « toi » (rouge, qui descend) et « la grotte » (bleu, stable). Le rouge glisse jusqu'à exactement le niveau du bleu ; la chauve-souris, en haut, se couvre de givre.
+const frost = Array.from({ length: 22 }, (_, i) => { const r = ((i * 9301 + 49297) % 233280) / 233280, r2 = ((i * 4919 + 7919) % 233280) / 233280; return `<path class="fr" d="M${340 + r * 400} ${360 + r2 * 240} l8 -12 l8 12 l-8 12z" fill="#e8f4ff" opacity="0"/>`; }).join("");
+const world = A.caveBg(5) + A.mist("ms", 8, 5) + `<rect x="-160" y="-160" width="1400" height="860" fill="#1c2150" opacity=".8"/>${A.stalac("st1", 5, 8, 0, 100, 300, -20, 1100, "#2a3060")}${A.bat("bt", 540, 330, 0.85)}<g id="${ID}-fr">${frost}</g>` +
+  A.thermo("th1", 300, 900, 560, 0.28, "#e0674d", "toi") + A.thermo("th2", 780, 900, 560, 0.28, "#6aa8e8", "la grotte") +
+  `<path id="${ID}-eq" d="M360 1230 H720" stroke="#fff" stroke-opacity=".6" stroke-width="5" stroke-dasharray="10 12" opacity="0"/><circle id="${ID}-clk" data-ox="540" data-oy="1230" cx="540" cy="1230" r="30" fill="none" stroke="#F5B85A" stroke-width="8" opacity="0"/><rect x="-160" y="-160" width="1400" height="2240" fill="#04050d" opacity=".15"/>`;
+const S = L.stage(root, ID, world, "");
+gsap.set(S.cam, { svgOrigin: "540 960" });
+const D = sc.end - sc.start, t0 = w("L06", 2), t1 = w("L06", 8) + 0.2;   // « peut descendre » ... « grotte »
+tl.fromTo(S.$("th1-hg"), { scaleY: 0.78 / 0.28 }, { scaleY: 1, duration: t1 - t0, ease: "power2.inOut", immediateRender: false }, t0);
+S.$("fr").querySelectorAll(".fr").forEach((f, i, a) => tl.fromTo(f, { opacity: 0 }, { opacity: 0.8, duration: 0.3 }, t0 + ((t1 - t0) * i) / a.length));
+tl.fromTo(S.$("bt"), { scale: 1 }, { scale: 0.96, duration: t1 - t0, ease: "none", immediateRender: false }, t0);
+tl.fromTo(S.$("eq"), { opacity: 0 }, { opacity: 1, duration: 0.2 }, t1 - 0.1);
+tl.fromTo(S.$("clk"), { opacity: 1, scale: 0.4 }, { opacity: 0, scale: 2.2, duration: 0.5, ease: "power2.out", immediateRender: false }, t1);
+tl.fromTo(S.cam, { scale: 1 }, { scale: 1.05, duration: D, ease: "none", immediateRender: false }, 0);

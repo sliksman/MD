@@ -1,0 +1,35 @@
+<!doctype html>
+<!-- GÉNÉRÉ par scripts/sync.mjs depuis src/scenes/s12-lit.js — éditer la source, pas ce fichier. -->
+<html lang="fr">
+  <head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+        #root { position: absolute; inset: 0; }
+      </style>
+      <div id="root" data-composition-id="s12" data-width="1080" data-height="1920"></div>
+      <script>
+        (function () {
+          const ID = "s12";
+          const L = window.LS;
+          const sc = L.scene(ID);
+          const A = L.art(ID + "-");
+          const root = document.querySelector('[data-composition-id="s12"]');
+          const tl = gsap.timeline({ paused: true });
+          const w = sc.w;
+          // PLAN 12 — « Mais toi, t'es pas une chauve-souris. » : coupe sur le lit de la série, chaud, à plat, la tête vers le haut cette fois, tout est posé. À la fenêtre, une chauve-souris vole devant la lune et s'éloigne.
+          const win = `<rect x="720" y="620" width="200" height="200" rx="14" fill="#101840" stroke="#F5B85A" stroke-opacity=".5" stroke-width="5"/><circle cx="830" cy="700" r="40" fill="#e8f0ff" opacity=".9"/><g clip-path="url(#${ID}-wc)">${A.flyBat("fb", 900, 740, 0.22, "#05060c")}</g><path d="M820 620 V820 M720 720 H920" stroke="#F5B85A" stroke-opacity=".5" stroke-width="5"/><defs><clipPath id="${ID}-wc"><rect x="722" y="622" width="196" height="196"/></clipPath></defs>`;
+          const world = `<rect x="-200" y="-200" width="1480" height="2320" fill="#14122e"/><ellipse cx="300" cy="860" rx="520" ry="620" fill="#F5B85A" opacity=".14"/>${A.bedTop({ clock: ["23:40"] })}<g>${win}</g><path d="M520 1560 h60 v70 q0 30 -30 30 q-30 0 -30 -30z" fill="#f1ede4"/><path d="M700 1500 h40 v60 q0 30 -26 32 q-24 2 -24 -18z" fill="#8fa0d8"/><rect x="-60" y="-60" width="1200" height="2040" fill="#04050d" opacity=".12"/>`;
+          const S = L.stage(root, ID, world, "");
+          gsap.set(S.cam, { svgOrigin: "540 960" });
+          const D = sc.end - sc.start;
+          tl.fromTo(S.$("fb"), { x: 0 }, { x: -280, duration: D, ease: "none", immediateRender: false }, 0);
+          tl.fromTo(S.$("fb-w"), { scaleY: 1 }, { scaleY: 0.45, duration: 0.16, yoyo: true, repeat: 14, ease: "sine.inOut", immediateRender: false }, 0);
+          tl.fromTo(S.cam, { scale: 1 }, { scale: 1.1, duration: D, ease: "none", immediateRender: false }, 0);
+
+          window.__timelines[ID] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

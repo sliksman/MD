@@ -1,0 +1,13 @@
+// PLAN 13 — « Elle voit le monde avec ses oreilles. » : la chauve-souris en vol, de profil. Elle envoie des ondes pâles (gris-bleu, pas néon) vers une forêt la nuit presque invisible ; le monde ne se dessine que là où les ondes le touchent : un papillon de nuit, quelques troncs.
+const trunks = [[640, 1380, 300], [900, 1450, 260], [560, 1560, 200]].map(([x, y, h], i) => `<rect id="${ID}-tr${i}" x="${x - 18}" y="${y}" width="36" height="${h}" fill="#7fa6d6" opacity=".12"/>`).join("");
+const world = `<rect x="-160" y="-160" width="1400" height="2240" fill="#080b22"/><g opacity=".22" transform="translate(-60 380) scale(1.2)">${A.dio("forest", "fo")}</g>${A.stars(40, 5, 0, 700, 0.6)}${A.flyBat("fb", 300, 780, 1.1, "#05060c")}<path d="M300 700 L240 600 M300 700 L360 600" stroke="#05060c" stroke-width="14" stroke-linecap="round"/><g id="${ID}-ears" data-ox="300" data-oy="640" opacity="0"><circle cx="270" cy="620" r="60" fill="#F5B85A" opacity=".25"/><circle cx="330" cy="620" r="60" fill="#F5B85A" opacity=".25"/></g>${A.sonar("so", 330, 800, 6, 90, 120)}${A.moth("mo", 820, 1120, 1.6)}<circle id="${ID}-mg" cx="820" cy="1120" r="120" fill="#e8e0ff" opacity="0"/>${trunks}`;
+const S = L.stage(root, ID, world, "");
+gsap.set(S.cam, { svgOrigin: "540 960" });
+const D = sc.end - sc.start, o0 = w("L12", 6);
+tl.fromTo(S.$("fb-w"), { scaleY: 1 }, { scaleY: 0.5, duration: 0.15, yoyo: true, repeat: 12, ease: "sine.inOut", immediateRender: false }, 0);
+tl.fromTo(S.$("fb"), { y: 0 }, { y: -30, duration: D, ease: "sine.inOut", immediateRender: false }, 0);
+for (let i = 0; i < 6; i++) tl.fromTo(S.$("so" + i), { opacity: 0.9, scale: 0.4 }, { opacity: 0, scale: 1.7, duration: 1.0, ease: "power1.out", immediateRender: false }, 0.05 + i * 0.22);
+tl.fromTo(S.$("mg"), { opacity: 0 }, { opacity: 0.18, duration: 0.2, yoyo: true, repeat: 3, immediateRender: false }, 0.6);
+[0, 1, 2].forEach((i) => tl.fromTo(S.$("tr" + i), { opacity: 0.12 }, { opacity: 0.6, duration: 0.25, yoyo: true, repeat: 1, immediateRender: false }, 0.55 + i * 0.2));
+tl.fromTo(S.$("ears"), { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1.2, duration: 0.35, yoyo: true, repeat: 1, immediateRender: false }, o0 - 0.1);
+tl.fromTo(S.cam, { scale: 1 }, { scale: 1.06, duration: D, ease: "none", immediateRender: false }, 0);

@@ -1,0 +1,15 @@
+// PLAN 3 — « tes pieds se bloquent tout seuls » : macro sur ses deux pieds agrippés à l'arête. Un tendon ambre s'illumine le long de la patte, un cadenas se ferme d'un clic sur chaque pied.
+const legs = [-1, 1].map((sd, k) => `<g><rect x="${540 + sd * 190 - 52}" y="800" width="104" height="1000" rx="52" fill="#6b5a82"/><ellipse cx="${540 + sd * 190}" cy="800" rx="86" ry="56" fill="#9484b4"/>${[-1.5, -0.5, 0.5, 1.5].map((q) => `<g id="${ID}-toe${k}${Math.round(q * 2)}" data-ox="${540 + sd * 190 + q * 26}" data-oy="800"><path d="M${540 + sd * 190 + q * 26} 780 q${q * 20} -90 ${-q * 8} -140" stroke="#9484b4" stroke-width="22" stroke-linecap="round" fill="none"/><path d="M${540 + sd * 190 - q * 8} 640 q${-q * 6} -22 ${q * 2} -36" stroke="#e8e0f8" stroke-width="7" stroke-linecap="round" fill="none"/></g>`).join("")}
+  <path id="${ID}-tn${k}" data-len="900" d="M${540 + sd * 190} 1700 L${540 + sd * 190} 840" stroke="#F5B85A" stroke-width="10" stroke-linecap="round" fill="none" filter="url(#${ID}-fGlowS)" stroke-dasharray="900" stroke-dashoffset="900"/>
+  <g id="${ID}-lk${k}" data-ox="${540 + sd * 190}" data-oy="960" opacity="0"><g transform="translate(${540 + sd * 190} 960)"><path d="M-30 -34 v-26 q0 -34 30 -34 q30 0 30 34 v26" fill="none" stroke="#e8e0f8" stroke-width="12"/><rect x="-44" y="-36" width="88" height="68" rx="14" fill="#F5B85A"/><circle cx="0" cy="-6" r="9" fill="#1a1a2a"/><rect x="-3" y="-6" width="6" height="22" rx="3" fill="#1a1a2a"/></g></g></g>`).join("");
+const world = A.caveBg(11) + `<rect x="-160" y="-160" width="1400" height="960" fill="#1c2150"/><rect x="60" y="640" width="960" height="120" rx="60" fill="#2a2f55"/><rect x="60" y="640" width="960" height="26" rx="13" fill="#fff" opacity=".1"/>${legs}<rect x="-160" y="-160" width="1400" height="2240" fill="#04050d" opacity=".12"/>`;
+const S = L.stage(root, ID, world, A.pill("pVer", 760, 1340, "verrou", 540, 960, { size: 40, w: 220, dot: "#F5B85A" }));
+gsap.set(S.cam, { svgOrigin: "540 960" });
+const D = sc.end - sc.start, b0 = w("L03", 5) - 0.05;   // « bloquent »
+[0, 1].forEach((k) => {
+  tl.fromTo(S.$("tn" + k), { strokeDashoffset: 900 }, { strokeDashoffset: 0, duration: 0.5, ease: "power1.inOut", immediateRender: false }, b0 - 0.2 + k * 0.08);
+  tl.fromTo(S.$("lk" + k), { opacity: 0, scale: 0.2 }, { opacity: 1, scale: 1, duration: 0.25, ease: "back.out(3)", immediateRender: false }, b0 + 0.3 + k * 0.1);
+  [-3, -1, 1, 3].forEach((q) => tl.fromTo(S.$(`toe${k}${q}`), { rotation: 0 }, { rotation: (k ? -1 : 1) * 6, duration: 0.2, ease: "power2.out", immediateRender: false }, b0 + 0.28));
+});
+tl.fromTo(S.cam, { scale: 1 }, { scale: 1.12, duration: D, ease: "none", immediateRender: false }, 0);
+L.pill(tl, S, "pVer", w("L03", 8));

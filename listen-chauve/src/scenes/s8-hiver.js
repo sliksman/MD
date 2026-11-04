@@ -1,0 +1,16 @@
+// PLAN 8 — « Et en hiver, chez certaines, ça dure carrément cinq ou six mois. » : l'hiver dans la grotte. À l'entrée, la neige tombe ; dedans, des stalactites de glace ; elle est poudrée de givre. Six lunes défilent au bas du cadre, de plus en plus vite ; « 5-6 mois » en gros.
+const frost = Array.from({ length: 28 }, (_, i) => { const r = ((i * 9301 + 49297) % 233280) / 233280, r2 = ((i * 4919 + 7919) % 233280) / 233280; return `<path d="M${280 + r * 260} ${660 + r2 * 360} l7 -11 l7 11 l-7 11z" fill="#eaf6ff" opacity=".8"/>`; }).join("");
+const snow = Array.from({ length: 50 }, (_, i) => `<circle cx="${560 + ((i * 53) % 460)}" cy="${900 + ((i * 97) % 480)}" r="${2 + (i % 3)}" fill="#fff" opacity=".85"/>`).join("");
+const moons = [0, 1, 2, 3, 4, 5].map((i) => `<g id="${ID}-mo${i}" data-ox="${150 + i * 150}" data-oy="1560" opacity="0"><circle cx="${150 + i * 150}" cy="1560" r="48" fill="#e8f0ff" opacity="${0.55 + i * 0.09}"/><circle cx="${150 + i * 150 + 16 + i * 5}" cy="1560" r="44" fill="#0b0e2a"/></g>`).join("");
+const world = A.caveBg(7) + A.mist("ms", 9, 6) + A.caveCeil() + A.stalac("st2", 8, 8, 540, 110, 360, 0, 1080, "#7fa8d8") + A.bat("bt", 400, 640, 1.2) + `<g id="${ID}-fr" opacity="0">${frost}</g>` +
+  A.porthole("win", 790, 1120, 200, `<rect x="560" y="900" width="460" height="480" fill="#12183c"/><g id="${ID}-sn">${snow}<g transform="translate(0 -480)">${snow}</g></g><path d="M560 1300 q120 -50 230 0 t230 -20 V1380 H560z" fill="#e8f0ff"/>`) + moons +
+  `<g id="${ID}-tx" data-ox="540" data-oy="1400" opacity="0"><text x="540" y="1440" text-anchor="middle" font-family="Nunito" font-weight="900" font-size="130" fill="#F5B85A" filter="url(#${ID}-fShadow)">5-6 mois</text></g><rect x="-160" y="-160" width="1400" height="2240" fill="#04050d" opacity=".18"/>`;
+const S = L.stage(root, ID, world, "");
+gsap.set(S.cam, { svgOrigin: "540 960" });
+const D = sc.end - sc.start, m0 = w("L07", 5) - 0.1, c5 = w("L07", 8);
+tl.fromTo(S.$("sn"), { y: 0 }, { y: 480, duration: 1.1, ease: "none", repeat: 8, immediateRender: false }, 0);
+tl.fromTo(S.$("fr"), { opacity: 0 }, { opacity: 1, duration: D - 0.4, ease: "power1.in", immediateRender: false }, 0);
+for (let i = 0; i < 6; i++) tl.fromTo(S.$("mo" + i), { opacity: 0, scale: 0.3 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2)", immediateRender: false }, m0 + (D - 0.4 - m0) * Math.pow(i / 5, 0.8));
+tl.fromTo(S.$("tx"), { opacity: 0, scale: 0.4 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(3)", immediateRender: false }, c5);
+tl.fromTo(S.$("bt-body"), { scale: 1 }, { scale: 1.01, duration: 1.4, yoyo: true, repeat: 3, ease: "sine.inOut", immediateRender: false }, 0);
+tl.fromTo(S.cam, { scale: 1 }, { scale: 1.07, duration: D, ease: "none", immediateRender: false }, 0);
