@@ -1,0 +1,15 @@
+/* Listen — Nuits blanches ép. 3 — kit partagé (polices + tokens). */
+@font-face { font-family: "Fraunces"; font-style: italic; font-weight: 500; font-display: block; src: url("../assets/fonts/Fraunces-Italic-500.woff2") format("woff2"); }
+@font-face { font-family: "Fraunces"; font-style: italic; font-weight: 700; font-display: block; src: url("../assets/fonts/Fraunces-Italic-700.woff2") format("woff2"); }
+@font-face { font-family: "Nunito"; font-weight: 700; font-display: block; src: url("../assets/fonts/Nunito-700.woff2") format("woff2"); }
+@font-face { font-family: "Nunito"; font-weight: 800; font-display: block; src: url("../assets/fonts/Nunito-800.woff2") format("woff2"); }
+@font-face { font-family: "Nunito"; font-weight: 900; font-display: block; src: url("../assets/fonts/Nunito-900.woff2") format("woff2"); }
+@font-face { font-family: "Poppins"; font-weight: 400; font-display: block; src: url("../assets/fonts/Poppins-400.woff2") format("woff2"); }
+@font-face { font-family: "Poppins"; font-weight: 600; font-display: block; src: url("../assets/fonts/Poppins-600.woff2") format("woff2"); }
+@font-face { font-family: "Poppins"; font-weight: 700; font-display: block; src: url("../assets/fonts/Poppins-700.woff2") format("woff2"); }
+:root {
+  --night0: #121633; --night1: #1d2350; --amber: #F5B85A; --cream: #F1EDE4;
+}
+.ls-stage { position: absolute; inset: 0; overflow: hidden; perspective: 2200px; background: var(--night0); }
+.ls-tilt { position: absolute; inset: 0; transform-origin: 50% 62%; }
+.ls-stage svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }

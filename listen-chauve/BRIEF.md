@@ -1,0 +1,6 @@
+# « Chauve-souris » — épisode Listen, même direction que « Astronaute » (décors immersifs, 3 « nouvelles », néon à « Sur Listen », carte de fin)
+
+Script (user) : « Si t'étais une chauve-souris, tu dormirais comment ? … Sur Listen, c'est des vrais endroits de la Terre, enregistrés sur place, pour te détendre ou changer d'air. Si t'en mettais un ce soir ? » (≈ 138 mots, ≈ 50 s estimées).
+Décors : grotte (froid bleu-violet) et grenier (chaud ambre), 3 plans de profondeur, un seul plan large (la colonie). Personnage : chauve-souris ronde, ailes en cape, visage vu à l'envers. Néon (cyan → violet → magenta) réservé à « Sur Listen ». Carte de fin comme « Astronaute » (Listen · Sounds of the World · lien en bio). Boucle sur le lit qui se retourne.
+Storyboard : `storyboard.html` (17 croquis, `node scripts/build-storyboard.mjs`). À faire : voix + SRT du user, puis pipeline de `listen-astro` (srt_align → breathe → sync → rendu → stems + sounddesign) ; pièges : blocs SRT étendus jusqu'au souffle de fin (mots mal calés → overrides), vérifier le dernier mot de chaque sous-titre, aucun raccord sur le même cadrage.
+Points ouverts : gag « fantôme » du plan 05 ; les noms réels des pistes de l'appli ne sont pas vérifiés (forêt/mer/montagne = propositions) ; « pour te détendre ou changer d'air » = allégation à valider ; mention « Publicité ».
