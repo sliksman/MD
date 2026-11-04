@@ -63,7 +63,7 @@
  {
   "stem": "04_respiration-lui.wav",
   "niveau_crete_dBFS": -24,
-  "role": "Lui, au centre, très proche. Souffles courts et tremblants ; 3 inspirations nettes sur les « crans » (21,6 / 22,3 / 23,3) ; APNÉE de 24,4 à 26,8 ; grande aspiration rauque à « Je peux pas » ; souffle saccadé qui se calme jusqu'à 35.",
+  "role": "Lui, au centre, très proche. Souffles courts et tremblants ; 3 inspirations nettes sur les « crans » (21,6 / 22,1 / 22,6) ; APNÉE de 24,4 à 26,8 ; grande aspiration rauque à « Je peux pas » ; souffle saccadé qui se calme jusqu'à 35.",
   "evenements": [
    {
     "t": 3.75,
@@ -106,15 +106,15 @@
     "what": "souffle court (peur)"
    },
    {
-    "t": 21.55,
+    "t": 21.6,
     "what": "inspiration sur un cran"
    },
    {
-    "t": 22.2,
+    "t": 22.12,
     "what": "inspiration sur un cran"
    },
    {
-    "t": 23.2,
+    "t": 22.6,
     "what": "inspiration sur un cran"
    },
    {
@@ -212,7 +212,7 @@
    },
    {
     "t": 21.6,
-    "what": "3 crans sur les inspirations (21,6 / 22,3 / 23,3)"
+    "what": "3 crans sur les inspirations (21,6 / 22,1 / 22,6)"
    },
    {
     "t": 27.0,
@@ -286,15 +286,15 @@
     "what": "humide"
    },
    {
-    "t": 21.7,
+    "t": 21.8,
     "what": "humide"
    },
    {
-    "t": 22.3,
+    "t": 22.35,
     "what": "humide"
    },
    {
-    "t": 23.3,
+    "t": 22.85,
     "what": "humide"
    },
    {
@@ -416,16 +416,16 @@
     "what": "cran « cheville »"
    },
    {
-    "t": 21.6,
+    "t": 21.9,
     "what": "cran (inspiration)"
    },
    {
-    "t": 22.25,
+    "t": 22.45,
     "what": "cran"
    },
    {
-    "t": 23.25,
-    "what": "cran"
+    "t": 22.92,
+    "what": "cran « cran »"
    },
    {
     "t": 26.83,
@@ -491,15 +491,15 @@
     "what": "grincement du matelas"
    },
    {
-    "t": 22.1,
+    "t": 22.0,
     "what": "grincement du matelas"
    },
    {
-    "t": 22.7,
+    "t": 22.5,
     "what": "grincement du matelas"
    },
    {
-    "t": 23.6,
+    "t": 22.95,
     "what": "grincement du matelas"
    },
    {
