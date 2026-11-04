@@ -35,6 +35,7 @@
   <radialGradient id="${P}gWm" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#ee7a55" stop-opacity=".95"/><stop offset=".5" stop-color="#e0674d" stop-opacity=".4"/><stop offset="1" stop-color="#b93d3a" stop-opacity="0"/></radialGradient>
   <radialGradient id="${P}gMd" cx="38%" cy="32%" r="75%"><stop offset="0" stop-color="#fff" stop-opacity=".26"/><stop offset=".6" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".42"/></radialGradient>
   <linearGradient id="${P}gCe" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0b0e24"/><stop offset=".5" stop-color="#171c42"/><stop offset="1" stop-color="#0a0c1f"/></linearGradient>
+  <radialGradient id="${P}gSkinL" cx="38%" cy="32%" r="75%"><stop offset="0" stop-color="#f1cbc3"/><stop offset="1" stop-color="#c8968e"/></radialGradient>
   <linearGradient id="${P}gFa" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#34418a"/><stop offset="1" stop-color="#232d6c"/></linearGradient>
   <linearGradient id="${P}gFloor" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1c2150"/><stop offset="1" stop-color="#0f1230"/></linearGradient>
   <radialGradient id="${P}gNight" cx="50%" cy="42%" r="75%"><stop offset="0" stop-color="${C.night1}"/><stop offset="1" stop-color="${C.night0}"/></radialGradient>
@@ -664,7 +665,7 @@
       <g id="${P}${name}-lb"><path d="M-160 3400 H1240 V940 Q540 1140 -160 940Z" fill="#220a0c"/></g>`;
     // Léa de près. Cheveux AU-DESSUS et SUR LES CÔTÉS du visage (chignon + frange + mèches courtes), jamais autour du menton.
     A.lea = (name, o = {}) => {
-      const HAIR = "#6a3f2f", HI = "#92604a", skin = u("gSkin");
+      const HAIR = "#6a3f2f", HI = "#92604a", skin = u("gSkinL");
       const head = `<circle r="100" fill="${skin}"/><circle cx="0" cy="-128" r="38" fill="${HAIR}"/><path d="M-22 -128 q22 -26 44 0 M-14 -120 q14 -14 28 0" stroke="${HI}" stroke-width="5" fill="none" stroke-linecap="round"/>
         <path d="M-97 -18 q-12 40 -4 74 M97 -18 q12 40 4 74" stroke="${HAIR}" stroke-width="12" fill="none" stroke-linecap="round"/>
         <path d="M-97 -18 Q-92 -98 0 -102 Q92 -98 97 -18 Q76 -62 42 -64 Q16 -42 0 -64 Q-16 -42 -42 -64 Q-76 -62 -97 -18Z" fill="${HAIR}"/><path d="M-60 -78 Q-20 -96 30 -86" stroke="${HI}" stroke-width="6" fill="none" stroke-linecap="round"/>${arcP(-38, 14, 15)}${arcP(38, 14, 15)}`;
