@@ -1,0 +1,302 @@
+[
+ {
+  "stem": "02_ambiance-station.wav",
+  "niveau_crete_dBFS": -33,
+  "role": "L'air d'une station : souffle grave, bourdonnement de machines. Presque rien dans la chambre du début et de la fin ; dense dans le tunnel (« bruit »), étouffé par les bouchons (« bouchons dans les oreilles » : tout s'assourdit) ; discret pendant les souvenirs de la Terre.",
+  "evenements": []
+ },
+ {
+  "stem": "03_respiration-astronaute.wav",
+  "niveau_crete_dBFS": -26,
+  "role": "L'astronaute endormi, au centre. Souffle lent et régulier dans le module (2,6 → 7), de plus en plus court et rauque quand l'air expiré reste autour de sa tête (7,5 → 12,2). S'arrête quand le ventilateur démarre.",
+  "evenements": [
+   {
+    "t": 2.6,
+    "what": "souffle calme"
+   },
+   {
+    "t": 5.9,
+    "what": "souffle calme"
+   },
+   {
+    "t": 8.02,
+    "what": "souffle court"
+   },
+   {
+    "t": 9.27,
+    "what": "souffle court"
+   },
+   {
+    "t": 10.39,
+    "what": "souffle court"
+   },
+   {
+    "t": 11.39,
+    "what": "souffle court"
+   }
+  ]
+ },
+ {
+  "stem": "04_ventilateurs.wav",
+  "niveau_crete_dBFS": -27,
+  "role": "Les ventilateurs : démarrage en montée à « ventilateurs » (12,7), puis un ronronnement constant (plus présent quand on le voit : 12,3 → 14,9 et pendant le roulis 24,9 → 30,7) qui continue sous la suite, comme la nuit. S'éteint avec la carte.",
+  "evenements": [
+   {
+    "t": 12.28,
+    "what": "démarrage du ventilateur"
+   }
+  ]
+ },
+ {
+  "stem": "05_machines-bruit.wav",
+  "niveau_crete_dBFS": -27,
+  "role": "La station qui vit : pompe qui bat (0,9 s), bips de voyants, trois ondes de bruit sur « bruit » (16,8), montée brillante sur « lumière » (17,8). Se coupe net avec la scène du soleil.",
+  "evenements": [
+   {
+    "t": 14.86,
+    "what": "tunnel : pompe + bips"
+   },
+   {
+    "t": 16.78,
+    "what": "ondes de bruit sur « bruit »"
+   },
+   {
+    "t": 17.78,
+    "what": "montée de lumière sur « lumière »"
+   }
+  ]
+ },
+ {
+  "stem": "06_soleil-x16.wav",
+  "niveau_crete_dBFS": -26,
+  "role": "Le lever de soleil (montée chaude 19,2 → 20,4), puis 16 petits tintements qui s'accélèrent et montent en hauteur (même courbe que les 16 repères du cadran à l'image), et un impact brillant sur « ×16 ».",
+  "evenements": [
+   {
+    "t": 19.13,
+    "what": "lever de soleil"
+   },
+   {
+    "t": 20.39,
+    "what": "repère 1"
+   },
+   {
+    "t": 21.71,
+    "what": "repère 16"
+   },
+   {
+    "t": 20.49,
+    "what": "« ×16 »"
+   }
+  ]
+ },
+ {
+  "stem": "07_masque-bouchons.wav",
+  "niveau_crete_dBFS": -25,
+  "role": "Le masque glisse (tissu), la sangle claque ; deux « pop » étouffés quand les bouchons se plantent, suivis d'un creux grave (l'oreille qui se bouche).",
+  "evenements": [
+   {
+    "t": 22.02,
+    "what": "le masque glisse"
+   },
+   {
+    "t": 22.47,
+    "what": "la sangle claque"
+   },
+   {
+    "t": 23.37,
+    "what": "pop (bouchon gauche)"
+   },
+   {
+    "t": 23.45,
+    "what": "pop (bouchon droit)"
+   },
+   {
+    "t": 23.42,
+    "what": "creux grave (l'oreille se bouche)"
+   }
+  ]
+ },
+ {
+  "stem": "08_roulis-haut-bas.wav",
+  "niveau_crete_dBFS": -26,
+  "role": "Le roulis : grand souffle qui monte puis redescend (26,1 → 28,1) ; « haut » et « bas » qui s'apposent et se barrent (grattement de stylo) ; petit « tic » sur « accroché au mur ».",
+  "evenements": [
+   {
+    "t": 26.12,
+    "what": "roulis"
+   },
+   {
+    "t": 26.95,
+    "what": "« haut » apparaît"
+   },
+   {
+    "t": 27.13,
+    "what": "barré (stylo)"
+   },
+   {
+    "t": 27.35,
+    "what": "« bas » apparaît"
+   },
+   {
+    "t": 27.53,
+    "what": "barré (stylo)"
+   },
+   {
+    "t": 29.48,
+    "what": "tic « accroché au mur »"
+   }
+  ]
+ },
+ {
+  "stem": "09_souvenirs-terre.wav",
+  "niveau_crete_dBFS": -28,
+  "role": "Le hublot qui devient un souvenir : montée douce et chaude à chaque changement (toit → terrasse → rue), un peu de parasite (crépitement) sur le bord, puis un petit « clic » par fenêtre qui s'éteint dans la rue. Aucun bruit de pluie, aucune musique (la voix porte).",
+  "evenements": [
+   {
+    "t": 32.63,
+    "what": "souvenir : toit"
+   },
+   {
+    "t": 35.19,
+    "what": "souvenir : terrasse"
+   },
+   {
+    "t": 36.62,
+    "what": "souvenir : rue"
+   },
+   {
+    "t": 37.85,
+    "what": "souvenir : retour à la vraie vue"
+   },
+   {
+    "t": 37.02,
+    "what": "fenêtre qui s'éteint"
+   },
+   {
+    "t": 30.82,
+    "what": "badge 3"
+   }
+  ]
+ },
+ {
+  "stem": "10_listen-neon.wav",
+  "niveau_crete_dBFS": -25,
+  "role": "Le téléphone qui s'allume (glissando montant, 40,0), le néon qui s'étend (souffle montant, 40,5), trois bulles qui éclosent (bloop montants), le globe puis trois repères (pings), et à la carte de fin un carillon doux + un petit « pop » sur « lien en bio ». C'est le seul moment « coloré » de l'épisode : les sons sont plus brillants.",
+  "evenements": [
+   {
+    "t": 39.91,
+    "what": "le téléphone s'allume"
+   },
+   {
+    "t": 40.47,
+    "what": "le néon s'étend"
+   },
+   {
+    "t": 40.92,
+    "what": "bulle 1"
+   },
+   {
+    "t": 41.2,
+    "what": "bulle 2"
+   },
+   {
+    "t": 41.52,
+    "what": "bulle 3"
+   },
+   {
+    "t": 41.9,
+    "what": "le globe"
+   },
+   {
+    "t": 42.45,
+    "what": "repère 1"
+   },
+   {
+    "t": 43.35,
+    "what": "repère 2"
+   },
+   {
+    "t": 43.52,
+    "what": "repère 3"
+   },
+   {
+    "t": 45.79,
+    "what": "carte de fin : carillon"
+   },
+   {
+    "t": 46.49,
+    "what": "« lien en bio »"
+   }
+  ]
+ },
+ {
+  "stem": "11_coupes.wav",
+  "niveau_crete_dBFS": -24,
+  "role": "Impacts graves courts sur les coupes (début de chaque plan). Aucun sur les raccords continus (le plan 3 de la bulle, le roulis, les souvenirs, le néon).",
+  "evenements": [
+   {
+    "t": 2.48,
+    "what": "coupe"
+   },
+   {
+    "t": 4.8,
+    "what": "coupe"
+   },
+   {
+    "t": 12.24,
+    "what": "coupe"
+   },
+   {
+    "t": 14.84,
+    "what": "coupe"
+   },
+   {
+    "t": 19.02,
+    "what": "coupe"
+   },
+   {
+    "t": 21.84,
+    "what": "coupe"
+   },
+   {
+    "t": 24.88,
+    "what": "coupe"
+   },
+   {
+    "t": 30.7,
+    "what": "coupe"
+   },
+   {
+    "t": 38.33,
+    "what": "coupe"
+   },
+   {
+    "t": 44.08,
+    "what": "coupe"
+   }
+  ]
+ },
+ {
+  "stem": "12_decollage.wav",
+  "niveau_crete_dBFS": -27,
+  "role": "Le lit qui décolle : grand souffle d'air qui monte (0,1 → 2,3), étoiles qui scintillent (tintements aigus doux), froissements de couette et d'oreiller, léger grondement sourd qui monte.",
+  "evenements": [
+   {
+    "t": 0.05,
+    "what": "décollage"
+   },
+   {
+    "t": 0.3,
+    "what": "étoile"
+   },
+   {
+    "t": 0.25,
+    "what": "objet qui se soulève"
+   },
+   {
+    "t": 0.0,
+    "what": "grondement sourd qui monte"
+   }
+  ]
+ }
+]
