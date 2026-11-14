@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="fr" data-resolution="landscape">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>SHAPE POC – Slide 13 Modèle de Fried</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Jakarta"; src: url("assets/fonts/plus-jakarta-sans-latin-500-normal.woff2") format("woff2"); font-weight: 500; }
+      @font-face { font-family: "Jakarta"; src: url("assets/fonts/plus-jakarta-sans-latin-600-normal.woff2") format("woff2"); font-weight: 600; }
+      @font-face { font-family: "Jakarta"; src: url("assets/fonts/plus-jakarta-sans-latin-700-normal.woff2") format("woff2"); font-weight: 700; }
+      @font-face { font-family: "Jakarta"; src: url("assets/fonts/plus-jakarta-sans-latin-800-normal.woff2") format("woff2"); font-weight: 800; }
+      :root { --navy: #262261; --mag: #EB008B; --magt: #C4007A; --lime: #C5FE00; --lav: #ECEBF6; --pink: #FDE6F3; --limet: #F3FFC4; --muted: #5B5880; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1920px; height: 1080px; overflow: hidden; background: #FFFFFF; }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; font-family: "Jakarta", Arial, sans-serif; color: var(--navy); }
+      .abs { position: absolute; }
+      #bg { position: absolute; inset: 0; background: #FFFFFF; }
+      #col { left: 0; top: 0; width: 630px; height: 1080px; background: var(--lav); overflow: hidden; }
+      #col-blob { left: -120px; top: 810px; width: 450px; height: 420px; border-radius: 48% 52% 40% 60%; background: var(--lime); opacity: 0.85; }
+      #logo { left: 48px; top: 42px; width: 195px; height: auto; }
+      #kicker { left: 726px; top: 84px; font-size: 21px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--magt); }
+      #title { left: 726px; top: 120px; width: 1110px; font-size: 66px; font-weight: 800; line-height: 1.08; letter-spacing: -0.01em; }
+      #crit-head { left: 726px; top: 262px; font-size: 21px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+      #crits { left: 726px; top: 304px; width: 560px; display: flex; flex-direction: column; }
+      .crit { display: flex; align-items: center; gap: 22px; padding: 16px 0; border-bottom: 2px solid #DCDAEE; }
+      .crit:last-child { border-bottom: none; }
+      .num { width: 52px; height: 52px; border-radius: 50%; background: var(--magt); color: #FFFFFF; font-size: 26px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+      .ctxt { display: flex; flex-direction: column; gap: 2px; }
+      .ct { font-size: 28px; font-weight: 700; }
+      .cd { font-size: 22px; font-weight: 700; color: var(--magt); }
+      #stats { left: 1350px; top: 262px; width: 486px; display: flex; flex-direction: column; gap: 30px; }
+      .st-head { font-size: 21px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+      .st { display: flex; flex-direction: column; gap: 10px; }
+      .st-num { font-size: 92px; font-weight: 800; line-height: 1; letter-spacing: -0.02em; }
+      .bar { width: 486px; height: 14px; border-radius: 999px; background: var(--lav); overflow: hidden; }
+      .fill { height: 14px; border-radius: 999px; }
+      .st-lab { font-size: 26px; font-weight: 700; }
+      #chips { display: flex; flex-wrap: wrap; gap: 10px; }
+      .chip { padding: 10px 18px; border-radius: 999px; background: var(--limet); font-size: 21px; font-weight: 700; }
+      #classes { left: 726px; top: 870px; display: flex; gap: 14px; align-items: center; }
+      .pill { padding: 14px 24px; border-radius: 999px; font-size: 26px; font-weight: 800; }
+      #predit span { display: inline-block; }
+      #predit { left: 726px; top: 950px; font-size: 26px; font-weight: 800; color: var(--magt); }
+      #source { left: 726px; top: 1030px; font-size: 17px; color: var(--muted); }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="s13" data-start="0" data-duration="48" data-width="1920" data-height="1080">
+      <div id="bg"></div>
+      <div id="col" class="abs">
+        <div id="col-blob" class="abs" data-layout-allow-overflow></div>
+        <img id="logo" class="abs" src="assets/img/shape-logo-navy.png" alt="SHAPE" />
+      </div>
+
+      <div id="kicker" class="abs">Partie 2 · La fragilité</div>
+      <h1 id="title" class="abs">Le modèle de Fried</h1>
+
+      <div id="crit-head" class="abs">Syndrome clinique physique · 5 critères</div>
+      <div id="crits" class="abs">
+        <div id="c1" class="crit"><div class="num">1</div><div class="ctxt"><div class="ct">Perte de poids involontaire</div><div id="c1d" class="cd">plus de 4,5 % en un an</div></div></div>
+        <div id="c2" class="crit"><div class="num">2</div><div class="ctxt"><div class="ct">Fatigue ressentie</div></div></div>
+        <div id="c3" class="crit"><div class="num">3</div><div class="ctxt"><div class="ct">Faiblesse musculaire</div></div></div>
+        <div id="c4" class="crit"><div class="num">4</div><div class="ctxt"><div class="ct">Marche ralentie</div><div id="c4d" class="cd">sous 0,8 m/s</div></div></div>
+        <div id="c5" class="crit"><div class="num">5</div><div class="ctxt"><div class="ct">Faible activité physique</div></div></div>
+      </div>
+
+      <div id="stats" class="abs">
+        <div id="st-head" class="st-head">En Europe, après 50 ans</div>
+        <div id="st1" class="st">
+          <div id="n1" class="st-num" style="color: #C4007A">40-50 %</div>
+          <div class="bar"><div id="f1" class="fill" style="width: 45%; background: #EB008B"></div></div>
+          <div class="st-lab">sont pré-fragiles</div>
+        </div>
+        <div id="st2" class="st">
+          <div id="n2" class="st-num">7-15 %</div>
+          <div class="bar"><div id="f2" class="fill" style="width: 11%; background: #262261"></div></div>
+          <div class="st-lab">sont fragiles</div>
+        </div>
+        <div id="chips">
+          <div id="ch1" class="chip">+ en Méditerranée</div>
+          <div id="ch2" class="chip">+ avec l'âge</div>
+          <div id="ch3" class="chip">+ chez les femmes</div>
+        </div>
+      </div>
+
+      <div id="classes" class="abs">
+        <div id="p0" class="pill" style="background: #F3FFC4">0 critère : robuste</div>
+        <div id="p1" class="pill" style="background: #FDE6F3">1 ou 2 : pré-fragile</div>
+        <div id="p2" class="pill" style="background: #262261; color: #FFFFFF">3 ou plus : fragile</div>
+      </div>
+      <div id="predit" class="abs"><span id="pr1">Dépistage rapide</span> <span id="pr2">· prédit la mortalité</span> <span id="pr3">et la perte d'autonomie</span></div>
+
+      <div id="source" class="abs">Fried et al., 2001 ; Kojima, 2018 ; Manfredi et al., 2019</div>
+    </div>
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      const E = "power3.out";
+      const up = (sel, t, d = 0.6) => tl.fromTo(sel, { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: d, ease: E }, t);
+      const slide = (sel, t) => tl.fromTo(sel, { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.55, ease: E }, t);
+      const pop = (sel, t) => tl.fromTo(sel, { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.45, ease: "back.out(2)" }, t);
+      const count = (sel, a, b, t) => {
+        const el = document.querySelector(sel);
+        const o = { a: 0, b: 0 };
+        tl.fromTo(o, { a: 0, b: 0 }, { a: a, b: b, duration: 1.2, ease: "power2.out", onUpdate: () => { el.textContent = Math.round(o.a) + "-" + Math.round(o.b) + " %"; } }, t);
+      };
+
+      up("#kicker", 0.15);
+      up("#title", 0.3, 0.7);
+      up("#crit-head", 5.0);
+
+      slide("#c1", 6.9);
+      up("#c1d", 8.87, 0.45);
+      slide("#c2", 11.7);
+      slide("#c3", 13.27);
+      slide("#c4", 14.75);
+      up("#c4d", 16.37, 0.45);
+      slide("#c5", 18.57);
+
+      pop("#p0", 20.8);
+      pop("#p1", 23.77);
+      pop("#p2", 26.37);
+      tl.fromTo("#p2", { scale: 1 }, { scale: 1.08, duration: 0.25, yoyo: true, repeat: 1, ease: "power1.inOut" }, 27.5);
+
+      tl.set("#predit", { opacity: 1 }, 0);
+      up("#pr1", 28.97);
+      up("#pr2", 31.0);
+      up("#pr3", 33.0);
+
+      up("#st-head", 34.4);
+      up("#st1", 36.4);
+      count("#n1", 40, 50, 36.4);
+      tl.fromTo("#f1", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 1.2, ease: "power2.out" }, 36.4);
+      up("#st2", 39.67);
+      count("#n2", 7, 15, 39.67);
+      tl.fromTo("#f2", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 1.2, ease: "power2.out" }, 39.67);
+
+      pop("#ch1", 42.8);
+      pop("#ch2", 44.3);
+      pop("#ch3", 45.3);
+
+      up("#source", 2.0);
+
+      window.__timelines["s13"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

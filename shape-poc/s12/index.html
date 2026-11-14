@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="fr" data-resolution="landscape">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>SHAPE POC – Slide 12 Trajectoires</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Jakarta"; src: url("assets/fonts/plus-jakarta-sans-latin-500-normal.woff2") format("woff2"); font-weight: 500; }
+      @font-face { font-family: "Jakarta"; src: url("assets/fonts/plus-jakarta-sans-latin-600-normal.woff2") format("woff2"); font-weight: 600; }
+      @font-face { font-family: "Jakarta"; src: url("assets/fonts/plus-jakarta-sans-latin-700-normal.woff2") format("woff2"); font-weight: 700; }
+      @font-face { font-family: "Jakarta"; src: url("assets/fonts/plus-jakarta-sans-latin-800-normal.woff2") format("woff2"); font-weight: 800; }
+      :root { --navy: #262261; --mag: #EB008B; --magt: #C4007A; --lime: #C5FE00; --lav: #ECEBF6; --pink: #FDE6F3; --limet: #F3FFC4; --muted: #5B5880; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1920px; height: 1080px; overflow: hidden; background: #FFFFFF; }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; font-family: "Jakarta", Arial, sans-serif; color: var(--navy); }
+      .abs { position: absolute; }
+      #bg { position: absolute; inset: 0; background: #FFFFFF; }
+      #col { left: 0; top: 0; width: 630px; height: 1080px; background: var(--lav); overflow: hidden; }
+      #col-blob { left: -120px; top: 810px; width: 450px; height: 420px; border-radius: 48% 52% 40% 60%; background: var(--lime); opacity: 0.85; }
+      #logo { left: 48px; top: 42px; width: 195px; height: auto; }
+      #kicker { left: 726px; top: 84px; font-size: 21px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mag); }
+      #title { left: 726px; top: 120px; width: 1110px; font-size: 66px; font-weight: 800; line-height: 1.08; letter-spacing: -0.01em; }
+      #graph { left: 726px; top: 250px; width: 1110px; height: 450px; border-radius: 24px; overflow: hidden; background: #FFFFFF; box-shadow: 0 16px 48px rgba(38, 34, 97, 0.12); }
+      #graph svg { position: absolute; left: 0; top: 0; width: 1110px; height: 450px; }
+      .zlabel { top: 22px; font-size: 18px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; }
+      #zl-r { left: 24px; }
+      #zl-p { left: 399px; color: var(--magt); }
+      #zl-f { left: 759px; }
+      #seuil-label { left: 24px; top: 362px; font-size: 18px; font-weight: 700; color: var(--muted); }
+      #stress-label { left: 122px; top: 194px; font-size: 22px; font-weight: 800; color: var(--magt); }
+      #badge { left: 399px; top: 388px; padding: 8px 18px; border-radius: 999px; background: var(--magt); color: #FFFFFF; font-size: 20px; font-weight: 800; letter-spacing: 0.04em; }
+      #phases { left: 726px; top: 728px; width: 1110px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 30px; }
+      .ph-t { font-size: 30px; font-weight: 800; }
+      .ph-d { font-size: 21px; font-weight: 500; color: var(--muted); margin-top: 4px; line-height: 1.35; }
+      .band { left: 726px; top: 862px; width: 1110px; display: flex; align-items: center; gap: 14px; }
+      .band-label { font-size: 18px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-right: 8px; }
+      .pill { padding: 12px 22px; border-radius: 999px; font-size: 22px; font-weight: 700; }
+      .pill-l { background: var(--limet); }
+      .pill-v { background: var(--lav); }
+      #banner { left: 726px; top: 846px; width: 1110px; height: 150px; border-radius: 24px; background: var(--navy); }
+      #msg1 { left: 766px; top: 876px; font-size: 34px; font-weight: 800; color: #FFFFFF; }
+      #msg2 { left: 766px; top: 928px; font-size: 34px; font-weight: 800; color: var(--lime); }
+      #source { left: 726px; top: 1030px; font-size: 17px; color: var(--muted); }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="s12" data-start="0" data-duration="50" data-width="1920" data-height="1080">
+      <div id="bg"></div>
+
+      <div id="col" class="abs">
+        <div id="col-blob" class="abs" data-layout-allow-overflow></div>
+        <img id="logo" class="abs" src="assets/img/shape-logo-navy.png" alt="SHAPE" />
+      </div>
+
+      <div id="kicker" class="abs">Partie 2 · La fragilité</div>
+      <h1 id="title" class="abs">Trajectoires fonctionnelles</h1>
+
+      <div id="graph" class="abs">
+        <svg viewBox="0 0 1110 450" aria-hidden="true">
+          <rect id="z-r" x="0" y="0" width="375" height="450" fill="#F3FFC4"></rect>
+          <rect id="z-p" x="375" y="0" width="360" height="450" fill="#FDE6F3"></rect>
+          <rect id="z-f" x="735" y="0" width="375" height="450" fill="#ECEBF6"></rect>
+          <line id="seuil" x1="0" y1="350" x2="1110" y2="350" stroke="#262261" stroke-width="3" stroke-dasharray="10 10" opacity="0.45"></line>
+          <polyline id="seg1" points="0,95 135,95 165,170 202,98 337,102 367,192 412,140" fill="none" stroke="#262261" stroke-width="9" stroke-linejoin="round" stroke-linecap="round"></polyline>
+          <polyline id="seg2" points="412,140 555,158 592,245 637,208 750,230" fill="none" stroke="#262261" stroke-width="9" stroke-linejoin="round" stroke-linecap="round"></polyline>
+          <polyline id="seg3" points="750,230 810,305 862,282 975,388 1110,425" fill="none" stroke="#262261" stroke-width="9" stroke-linejoin="round" stroke-linecap="round"></polyline>
+          <path id="inflex" d="M555 158 C 680 140 820 118 1110 100" fill="none" stroke="#C5FE00" stroke-width="10" stroke-linecap="round"></path>
+          <circle id="d1" cx="165" cy="170" r="11" fill="#EB008B"></circle>
+          <circle id="d2" cx="367" cy="192" r="11" fill="#EB008B"></circle>
+          <circle id="d3" cx="592" cy="245" r="11" fill="#EB008B"></circle>
+          <circle id="d4" cx="810" cy="305" r="11" fill="#EB008B"></circle>
+          <circle id="cross" cx="934" cy="350" r="14" fill="none" stroke="#EB008B" stroke-width="5"></circle>
+        </svg>
+        <div id="zl-r" class="abs zlabel">Robustesse</div>
+        <div id="zl-p" class="abs zlabel">Pré-fragilité</div>
+        <div id="zl-f" class="abs zlabel">Fragilité installée</div>
+        <div id="seuil-label" class="abs">Seuil d'incapacité</div>
+        <div id="stress-label" class="abs">stress</div>
+        <div id="badge" class="abs">PHASE LA PLUS RÉVERSIBLE</div>
+      </div>
+
+      <div id="phases" class="abs">
+        <div id="ph-r"><div class="ph-t">Robustesse</div><div class="ph-d">Réserves élevées, récupération complète</div></div>
+        <div id="ph-p"><div class="ph-t" style="color: #C4007A">Pré-fragilité</div><div class="ph-d">Déclin léger, récupération incomplète</div></div>
+        <div id="ph-f"><div class="ph-t">Fragilité installée</div><div class="ph-d">Déclin accéléré, seuil franchi</div></div>
+      </div>
+
+      <div id="levers" class="abs band">
+        <div class="band-label">Leviers</div>
+        <div id="lv1" class="pill pill-l">Activité physique adaptée</div>
+        <div id="lv2" class="pill pill-l">Nutrition</div>
+        <div id="lv3" class="pill pill-l">Lien social</div>
+      </div>
+
+      <div id="dets" class="abs band">
+        <div class="band-label">Déterminants</div>
+        <div id="dt1" class="pill pill-v">Biologiques</div>
+        <div id="dt2" class="pill pill-v">Psychosociaux</div>
+        <div id="dt3" class="pill pill-v">Environnementaux</div>
+      </div>
+
+      <div id="banner" class="abs"></div>
+      <div id="msg1" class="abs">La fragilité n'est pas une fatalité.</div>
+      <div id="msg2" class="abs">C'est une trajectoire que l'on peut infléchir.</div>
+
+      <div id="source" class="abs">Woolford et al., 2020</div>
+    </div>
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      const E = "power3.out";
+      const up = (sel, t, d = 0.6) => tl.fromTo(sel, { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: d, ease: E }, t);
+      const pop = (sel, t) => tl.fromTo(sel, { opacity: 0, scale: 0.4, transformOrigin: "50% 50%" }, { opacity: 1, scale: 1, duration: 0.45, ease: "back.out(2)" }, t);
+      const fade = (sel, t, d = 0.5) => tl.fromTo(sel, { opacity: 0 }, { opacity: 1, duration: d, ease: "power1.out" }, t);
+      const draw = (sel, t, d) => {
+        const el = document.querySelector(sel);
+        const len = el.getTotalLength();
+        el.setAttribute("stroke-dasharray", len + " " + len);
+        tl.set(el, { opacity: 0 }, 0);
+        tl.set(el, { opacity: 1 }, t);
+        tl.fromTo(el, { strokeDashoffset: len }, { strokeDashoffset: 0, duration: d, ease: "none" }, t);
+      };
+
+      // Intro
+      up("#kicker", 0.15);
+      up("#title", 0.3, 0.7);
+      tl.fromTo("#graph", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.8, ease: E }, 0.8);
+      ["#z-r", "#z-p", "#z-f"].forEach((z) => tl.set(z, { opacity: 0 }, 0));
+      fade("#seuil", 1.6, 0.6);
+      fade("#seuil-label", 1.8);
+      up("#source", 2.0);
+
+      // Robustesse — 4.77
+      fade("#z-r", 4.77, 0.6);
+      up("#zl-r", 4.8);
+      up("#ph-r", 5.0);
+      draw("#seg1", 4.9, 9.3);
+      pop("#d1", 8.25);
+      fade("#stress-label", 8.4);
+      pop("#d2", 13.2);
+
+      // Pré-fragilité — 14.23
+      fade("#z-p", 14.23, 0.6);
+      up("#zl-p", 14.3);
+      up("#ph-p", 14.5);
+      draw("#seg2", 14.3, 5.9);
+      pop("#d3", 17.75);
+      pop("#badge", 20.83);
+
+      // Leviers — 23.47
+      up("#levers .band-label", 23.4);
+      up("#lv1", 23.47);
+      up("#lv2", 24.9);
+      up("#lv3", 25.7);
+      tl.to("#levers", { opacity: 0, y: -16, duration: 0.4, ease: "power2.in" }, 26.9);
+
+      // Déterminants — 27.03
+      up("#dets .band-label", 27.2);
+      up("#dt1", 28.37);
+      up("#dt2", 29.8);
+      up("#dt3", 30.77);
+
+      // Fragilité installée — 34.37
+      fade("#z-f", 34.37, 0.6);
+      up("#zl-f", 34.4);
+      up("#ph-f", 35.67);
+      draw("#seg3", 35.7, 5.2);
+      pop("#d4", 36.85);
+      tl.to("#seuil", { attr: { stroke: "#EB008B" }, opacity: 1, duration: 0.3 }, 39.87);
+      tl.to("#seuil-label", { color: "#C4007A", duration: 0.3 }, 39.87);
+      pop("#cross", 39.9);
+
+      // Message clé — 41.7
+      tl.to("#dets", { opacity: 0, y: -16, duration: 0.4, ease: "power2.in" }, 41.4);
+      tl.fromTo("#banner", { opacity: 0, scaleX: 0.92, transformOrigin: "0% 50%" }, { opacity: 1, scaleX: 1, duration: 0.6, ease: E }, 41.7);
+      up("#msg1", 43.07);
+      up("#msg2", 45.47);
+      draw("#inflex", 46.77, 1.4);
+      tl.to(["#seg3", "#d4", "#cross"], { opacity: 0.25, duration: 0.8 }, 46.77);
+
+      window.__timelines["s12"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

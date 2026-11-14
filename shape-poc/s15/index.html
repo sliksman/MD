@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="fr" data-resolution="landscape">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>SHAPE POC – Slide 15 Coach en séance</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Grotesk"; src: url("assets/fonts/space-grotesk-latin-500-normal.woff2") format("woff2"); font-weight: 500; }
+      @font-face { font-family: "Grotesk"; src: url("assets/fonts/space-grotesk-latin-700-normal.woff2") format("woff2"); font-weight: 700; }
+      @font-face { font-family: "InterF"; src: url("assets/fonts/inter-latin-400-normal.woff2") format("woff2"); font-weight: 400; }
+      @font-face { font-family: "InterF"; src: url("assets/fonts/inter-latin-600-normal.woff2") format("woff2"); font-weight: 600; }
+      @font-face { font-family: "InterF"; src: url("assets/fonts/inter-latin-700-normal.woff2") format("woff2"); font-weight: 700; }
+      :root { --navy: #262261; --mag: #EB008B; --lime: #C5FE00; --soft: #DCDAEE; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1920px; height: 1080px; overflow: hidden; background: #262261; }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; font-family: "InterF", Arial, sans-serif; color: #FFFFFF; }
+      .abs { position: absolute; }
+      #bg { position: absolute; inset: 0; background: var(--navy); }
+      #blob-m { left: -180px; top: 180px; width: 900px; height: 900px; border-radius: 48% 52% 40% 60%; background: var(--mag); }
+      #blob-l { left: 540px; top: 800px; width: 210px; height: 210px; border-radius: 50% 50% 46% 54%; background: var(--lime); }
+      #logo { left: 48px; top: 42px; width: 210px; height: auto; }
+      #tag { left: 48px; top: 112px; padding: 12px 24px; border-radius: 999px; background: var(--lime); color: var(--navy); font-size: 22px; font-weight: 700; }
+      #words { left: 810px; top: 380px; width: 1020px; display: flex; flex-direction: column; gap: 6px; }
+      .w { font-family: "Grotesk", Arial, sans-serif; font-size: 104px; font-weight: 700; line-height: 1; letter-spacing: -0.02em; }
+      #badge { left: 810px; top: 84px; padding: 9px 21px; border-radius: 999px; border: 3px solid var(--lime); color: var(--lime); font-size: 20px; font-weight: 700; letter-spacing: 0.1em; }
+      #title { left: 810px; top: 150px; width: 1020px; font-family: "Grotesk", Arial, sans-serif; font-size: 68px; font-weight: 700; line-height: 1.05; letter-spacing: -0.02em; }
+      #t1, #t2, #q1, #q2, #k2b { display: inline-block; }
+      #t2 { color: var(--lime); }
+      #quote { left: 810px; top: 336px; width: 1020px; font-size: 31px; line-height: 1.45; color: var(--soft); }
+      #q2 { color: #FFFFFF; font-weight: 700; }
+      #cards { left: 810px; top: 478px; width: 1020px; display: flex; flex-direction: column; gap: 16px; }
+      .card { display: flex; gap: 28px; align-items: center; padding: 22px 30px; border-radius: 26px; background: rgba(255, 255, 255, 0.08); border: 2px solid rgba(255, 255, 255, 0.14); }
+      .cn { font-family: "Grotesk", Arial, sans-serif; font-size: 52px; font-weight: 700; color: var(--lime); width: 72px; flex-shrink: 0; }
+      .cb { display: flex; flex-direction: column; gap: 6px; }
+      .ct { font-size: 30px; font-weight: 700; }
+      .cd { font-size: 24px; color: var(--soft); }
+      .hl { color: var(--lime); font-weight: 700; }
+      .alert { display: inline-block; padding: 4px 14px; border-radius: 999px; background: var(--mag); color: #FFFFFF; font-size: 21px; font-weight: 700; margin-left: 10px; }
+      .mini { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+      .mc { padding: 6px 14px; border-radius: 999px; background: rgba(255, 255, 255, 0.14); font-size: 22px; font-weight: 600; }
+      .mc-to { padding: 6px 14px; border-radius: 999px; background: var(--lime); color: var(--navy); font-size: 22px; font-weight: 700; }
+      #final { left: 810px; top: 1000px; font-size: 26px; font-weight: 700; color: var(--lime); }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="s15" data-start="0" data-duration="40" data-width="1920" data-height="1080">
+      <div id="bg"></div>
+      <div id="blob-m" class="abs" data-layout-allow-overflow></div>
+      <div id="blob-l" class="abs"></div>
+      <img id="logo" class="abs" src="assets/img/shape-logo-lime.png" alt="SHAPE" />
+      <div id="tag" class="abs">Le coach APA · en séance</div>
+
+      <div id="words" class="abs">
+        <div id="w1" class="w">Des modèles.</div>
+        <div id="w2" class="w">Des critères.</div>
+        <div id="w3" class="w">Des courbes.</div>
+      </div>
+
+      <div id="badge" class="abs">EN SÉANCE</div>
+      <h1 id="title" class="abs"><span id="t1">Repérer la fragilité :</span> <span id="t2">mesurer pour agir</span></h1>
+
+      <div id="quote" class="abs"><span id="q1">« Je ne pose pas de diagnostic, </span><span id="q2">mais je vois la personne bouger chaque semaine. »</span></div>
+
+      <div id="cards" class="abs">
+        <div id="k1" class="card">
+          <div class="cn">01</div>
+          <div class="cb">
+            <div class="ct">Vitesse de marche</div>
+            <div class="cd">Sous <span id="k1v" class="hl">0,8 m/s</span><span id="k1a" class="alert">signal d'alerte</span></div>
+          </div>
+        </div>
+        <div id="k2" class="card">
+          <div class="cn">02</div>
+          <div class="cb">
+            <div class="ct">Force et lever de chaise</div>
+            <div class="cd">Dynamomètre de préhension <span id="k2b">· test des 5 levers de chaise</span></div>
+          </div>
+        </div>
+        <div id="k3" class="card">
+          <div class="cn">03</div>
+          <div class="cb">
+            <div class="ct">Écouter et transmettre</div>
+            <div class="mini">
+              <div id="m1" class="mc">Fatigue</div>
+              <div id="m2" class="mc">Perte de poids</div>
+              <div id="m3" class="mc">Baisse d'activité</div>
+              <div id="m4" class="mc-to">Équipe médicale</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="final" class="abs">Ces mesures = point de départ pour suivre les progrès</div>
+    </div>
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      const E = "power3.out";
+      const up = (sel, t, d = 0.6) => tl.fromTo(sel, { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: d, ease: E }, t);
+      const pop = (sel, t) => tl.fromTo(sel, { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.45, ease: "back.out(2)" }, t);
+
+      tl.fromTo("#blob-m", { scale: 0.85, transformOrigin: "50% 50%" }, { scale: 1, duration: 1.4, ease: E }, 0);
+      tl.fromTo("#blob-l", { scale: 0 }, { scale: 1, duration: 0.8, ease: "back.out(1.6)" }, 0.4);
+      up("#tag", 0.6);
+
+      // Des modèles, des critères, des courbes — 0.17
+      tl.fromTo("#w1", { opacity: 0, x: 60 }, { opacity: 1, x: 0, duration: 0.5, ease: E }, 0.2);
+      tl.fromTo("#w2", { opacity: 0, x: 60 }, { opacity: 1, x: 0, duration: 0.5, ease: E }, 1.0);
+      tl.fromTo("#w3", { opacity: 0, x: 60 }, { opacity: 1, x: 0, duration: 0.5, ease: E }, 1.8);
+      tl.to("#words", { opacity: 0, y: -60, duration: 0.45, ease: "power2.in" }, 2.8);
+
+      // Mais sur le terrain — 3.03
+      pop("#badge", 3.1);
+      up("#t1", 3.3, 0.7);
+      up("#t2", 4.6, 0.7);
+
+      // Je ne pose pas de diagnostic — 6.07 / je vois la personne — 10.47
+      up("#q1", 6.07);
+      up("#q2", 10.47);
+
+      // Vitesse de marche — 14.97
+      up("#k1", 14.97);
+      tl.fromTo("#k1v", { color: "#DCDAEE" }, { color: "#C5FE00", duration: 0.3 }, 17.6);
+      pop("#k1a", 19.67);
+
+      // Force — 21.2
+      up("#k2", 21.2);
+      up("#k2b", 24.6, 0.45);
+
+      // Écouter — 26.8
+      up("#k3", 26.8);
+      pop("#m1", 27.9);
+      pop("#m2", 28.77);
+      pop("#m3", 30.57);
+      pop("#m4", 33.2);
+
+      // Point de départ — 35.37
+      up("#final", 35.37);
+
+      window.__timelines["s15"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>
