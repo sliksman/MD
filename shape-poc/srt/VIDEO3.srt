@@ -1,0 +1,89 @@
+﻿1
+00:00:01,000 --> 00:00:02,200
+Des modèles, des
+
+2
+00:00:02,200 --> 00:00:04,200
+critères, des courbes.
+
+3
+00:00:04,400 --> 00:00:05,400
+Mais sur le terrain.
+
+4
+00:00:05,400 --> 00:00:07,400
+Concrètement,
+qu'est ce que je fais ?
+
+5
+00:00:07,400 --> 00:00:09,160
+Je pose pas de diagnostic.
+
+6
+00:00:09,160 --> 00:00:10,960
+Ça, c'est le rôle du médecin.
+
+7
+00:00:10,960 --> 00:00:13,840
+En revanche, je vois la
+personne bouger chaque semaine
+
+8
+00:00:14,000 --> 00:00:16,000
+dont je suis bien placé
+pour repérer.
+
+9
+00:00:16,160 --> 00:00:18,040
+Je mesure sa vitesse de marche
+
+10
+00:00:18,040 --> 00:00:20,600
+en dessous de 0,8
+mètres par seconde.
+
+11
+00:00:20,720 --> 00:00:22,280
+C'est un signal d'alerte.
+
+12
+00:00:22,280 --> 00:00:23,680
+J'évalue sa force
+
+13
+00:00:23,680 --> 00:00:25,640
+avec le dynamomètre
+de préhension
+
+14
+00:00:25,640 --> 00:00:27,640
+et le test des
+cinq levées de chaise.
+
+15
+00:00:27,720 --> 00:00:28,640
+Et j'écoute.
+
+16
+00:00:28,640 --> 00:00:30,480
+Une fatigue,
+Une perte de poids
+
+17
+00:00:30,480 --> 00:00:32,600
+involontaire,
+Une baisse d'activité.
+
+18
+00:00:32,840 --> 00:00:35,760
+Je les note et je les
+transmets à l'équipe médicale.
+
+19
+00:00:36,000 --> 00:00:37,920
+Ces mesures
+sont aussi mon point de départ
+
+20
+00:00:37,920 --> 00:00:39,040
+pour suivre ses progrès.

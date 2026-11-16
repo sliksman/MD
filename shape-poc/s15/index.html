@@ -44,7 +44,7 @@
     </style>
   </head>
   <body>
-    <div id="root" data-composition-id="s15" data-start="0" data-duration="40" data-width="1920" data-height="1080">
+    <div id="root" data-composition-id="s15" data-start="0" data-duration="41" data-width="1920" data-height="1080">
       <div id="bg"></div>
       <div id="blob-m" class="abs" data-layout-allow-overflow></div>
       <div id="blob-l" class="abs"></div>
@@ -104,38 +104,38 @@
       up("#tag", 0.6);
 
       // Des modèles, des critères, des courbes — 0.17
-      tl.fromTo("#w1", { opacity: 0, x: 60 }, { opacity: 1, x: 0, duration: 0.5, ease: E }, 0.2);
-      tl.fromTo("#w2", { opacity: 0, x: 60 }, { opacity: 1, x: 0, duration: 0.5, ease: E }, 1.0);
-      tl.fromTo("#w3", { opacity: 0, x: 60 }, { opacity: 1, x: 0, duration: 0.5, ease: E }, 1.8);
-      tl.to("#words", { opacity: 0, y: -60, duration: 0.45, ease: "power2.in" }, 2.8);
+      tl.fromTo("#w1", { opacity: 0, x: 60 }, { opacity: 1, x: 0, duration: 0.5, ease: E }, 1.0);
+      tl.fromTo("#w2", { opacity: 0, x: 60 }, { opacity: 1, x: 0, duration: 0.5, ease: E }, 2.3);
+      tl.fromTo("#w3", { opacity: 0, x: 60 }, { opacity: 1, x: 0, duration: 0.5, ease: E }, 3.2);
+      tl.to("#words", { opacity: 0, y: -60, duration: 0.45, ease: "power2.in" }, 4.1);
 
       // Mais sur le terrain — 3.03
-      pop("#badge", 3.1);
-      up("#t1", 3.3, 0.7);
-      up("#t2", 4.6, 0.7);
+      pop("#badge", 4.4);
+      up("#t1", 4.6, 0.7);
+      up("#t2", 5.9, 0.7);
 
       // Je ne pose pas de diagnostic — 6.07 / je vois la personne — 10.47
-      up("#q1", 6.07);
-      up("#q2", 10.47);
+      up("#q1", 7.4);
+      up("#q2", 11.6);
 
       // Vitesse de marche — 14.97
-      up("#k1", 14.97);
-      tl.fromTo("#k1v", { color: "#DCDAEE" }, { color: "#C5FE00", duration: 0.3 }, 17.6);
-      pop("#k1a", 19.67);
+      up("#k1", 16.16);
+      tl.fromTo("#k1v", { color: "#DCDAEE" }, { color: "#C5FE00", duration: 0.3 }, 18.6);
+      pop("#k1a", 20.72);
 
       // Force — 21.2
-      up("#k2", 21.2);
-      up("#k2b", 24.6, 0.45);
+      up("#k2", 22.28);
+      up("#k2b", 25.64, 0.45);
 
       // Écouter — 26.8
-      up("#k3", 26.8);
-      pop("#m1", 27.9);
-      pop("#m2", 28.77);
-      pop("#m3", 30.57);
-      pop("#m4", 33.2);
+      up("#k3", 27.72);
+      pop("#m1", 28.64);
+      pop("#m2", 29.6);
+      pop("#m3", 31.5);
+      pop("#m4", 34.6);
 
       // Point de départ — 35.37
-      up("#final", 35.37);
+      up("#final", 36.0);
 
       window.__timelines["s15"] = tl;
       tl.seek(0);

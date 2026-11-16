@@ -1,0 +1,82 @@
+﻿1
+00:00:00,800 --> 00:00:03,720
+Le modèle de Freed définit
+la fragilité comme un syndrome
+
+2
+00:00:03,720 --> 00:00:06,320
+clinique physique
+basé sur cinq critères.
+
+3
+00:00:07,080 --> 00:00:10,720
+Une perte de poids
+involontaire de plus de 4,5 %
+
+4
+00:00:10,720 --> 00:00:13,200
+en un an.
+Une fatigue ressentie.
+
+5
+00:00:13,680 --> 00:00:16,760
+Une faiblesse musculaire,
+une marche ralentie
+
+6
+00:00:16,840 --> 00:00:18,920
+sous 0,8 mètres par seconde
+
+7
+00:00:19,160 --> 00:00:21,160
+et une faible
+activité physique.
+
+8
+00:00:21,520 --> 00:00:22,680
+Aucun critère.
+
+9
+00:00:22,680 --> 00:00:24,480
+La personne est robuste.
+
+10
+00:00:24,480 --> 00:00:25,640
+Un ou deux.
+
+11
+00:00:25,640 --> 00:00:27,080
+Elle est très fragile.
+
+12
+00:00:27,080 --> 00:00:28,400
+Trois ou plus.
+
+13
+00:00:28,400 --> 00:00:29,840
+Elle est fragile.
+
+14
+00:00:29,840 --> 00:00:33,080
+Ce modèle permet un dépistage
+rapide et prédit la mortalité
+
+15
+00:00:33,080 --> 00:00:36,280
+et la perte d'autonomie
+en Europe après 50 ans.
+
+16
+00:00:36,440 --> 00:00:39,320
+40 à 50 %
+des personnes sont fragiles
+
+17
+00:00:39,440 --> 00:00:42,880
+et 7 à 15 % sont fragiles,
+avec une prévalence
+
+18
+00:00:42,880 --> 00:00:45,920
+plus élevée en Méditerranée
+avec l'âge et chez les femmes.

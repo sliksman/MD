@@ -136,52 +136,52 @@
       up("#source", 2.0);
 
       // Robustesse — 4.77
-      fade("#z-r", 4.77, 0.6);
-      up("#zl-r", 4.8);
-      up("#ph-r", 5.0);
-      draw("#seg1", 4.9, 9.3);
-      pop("#d1", 8.25);
-      fade("#stress-label", 8.4);
-      pop("#d2", 13.2);
+      fade("#z-r", 5.0, 0.6);
+      up("#zl-r", 5.05);
+      up("#ph-r", 5.25);
+      draw("#seg1", 5.1, 9.05);
+      pop("#d1", 8.36);
+      fade("#stress-label", 8.5);
+      pop("#d2", 13.15);
 
       // Pré-fragilité — 14.23
-      fade("#z-p", 14.23, 0.6);
-      up("#zl-p", 14.3);
-      up("#ph-p", 14.5);
-      draw("#seg2", 14.3, 5.9);
-      pop("#d3", 17.75);
-      pop("#badge", 20.83);
+      fade("#z-p", 14.64, 0.6);
+      up("#zl-p", 14.7);
+      up("#ph-p", 14.9);
+      draw("#seg2", 14.7, 5.9);
+      pop("#d3", 18.1);
+      pop("#badge", 21.6);
 
       // Leviers — 23.47
-      up("#levers .band-label", 23.4);
-      up("#lv1", 23.47);
-      up("#lv2", 24.9);
-      up("#lv3", 25.7);
-      tl.to("#levers", { opacity: 0, y: -16, duration: 0.4, ease: "power2.in" }, 26.9);
+      up("#levers .band-label", 23.9);
+      up("#lv1", 23.96);
+      up("#lv2", 25.6);
+      up("#lv3", 26.6);
+      tl.to("#levers", { opacity: 0, y: -16, duration: 0.4, ease: "power2.in" }, 27.9);
 
       // Déterminants — 27.03
-      up("#dets .band-label", 27.2);
-      up("#dt1", 28.37);
-      up("#dt2", 29.8);
-      up("#dt3", 30.77);
+      up("#dets .band-label", 28.3);
+      up("#dt1", 29.8);
+      up("#dt2", 30.76);
+      up("#dt3", 31.8);
 
       // Fragilité installée — 34.37
-      fade("#z-f", 34.37, 0.6);
-      up("#zl-f", 34.4);
-      up("#ph-f", 35.67);
-      draw("#seg3", 35.7, 5.2);
-      pop("#d4", 36.85);
-      tl.to("#seuil", { attr: { stroke: "#EB008B" }, opacity: 1, duration: 0.3 }, 39.87);
-      tl.to("#seuil-label", { color: "#C4007A", duration: 0.3 }, 39.87);
-      pop("#cross", 39.9);
+      fade("#z-f", 35.0, 0.6);
+      up("#zl-f", 35.05);
+      up("#ph-f", 36.4);
+      draw("#seg3", 36.4, 5.2);
+      pop("#d4", 37.55);
+      tl.to("#seuil", { attr: { stroke: "#EB008B" }, opacity: 1, duration: 0.3 }, 40.8);
+      tl.to("#seuil-label", { color: "#C4007A", duration: 0.3 }, 40.8);
+      pop("#cross", 40.85);
 
       // Message clé — 41.7
-      tl.to("#dets", { opacity: 0, y: -16, duration: 0.4, ease: "power2.in" }, 41.4);
-      tl.fromTo("#banner", { opacity: 0, scaleX: 0.92, transformOrigin: "0% 50%" }, { opacity: 1, scaleX: 1, duration: 0.6, ease: E }, 41.7);
-      up("#msg1", 43.07);
-      up("#msg2", 45.47);
-      draw("#inflex", 46.77, 1.4);
-      tl.to(["#seg3", "#d4", "#cross"], { opacity: 0.25, duration: 0.8 }, 46.77);
+      tl.to("#dets", { opacity: 0, y: -16, duration: 0.4, ease: "power2.in" }, 41.8);
+      tl.fromTo("#banner", { opacity: 0, scaleX: 0.92, transformOrigin: "0% 50%" }, { opacity: 1, scaleX: 1, duration: 0.6, ease: E }, 42.12);
+      up("#msg1", 43.36);
+      up("#msg2", 45.56);
+      draw("#inflex", 46.9, 1.4);
+      tl.to(["#seg3", "#d4", "#cross"], { opacity: 0.25, duration: 0.8 }, 46.9);
 
       window.__timelines["s12"] = tl;
       tl.seek(0);
