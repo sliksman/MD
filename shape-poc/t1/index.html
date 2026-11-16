@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="fr" data-resolution="landscape">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>SHAPE transition t1</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1920px; height: 1080px; overflow: hidden; background: transparent; }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; }
+      .panel { position: absolute; top: -260px; left: 0; width: 3400px; height: 1600px; border-radius: 800px; }
+      #lead { background: #C5FE00; }
+      #cover { background: #ECEBF6; }
+      #logo { position: absolute; left: 760px; top: 490px; width: 400px; height: auto; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="t1" data-start="0" data-duration="1.3" data-width="1920" data-height="1080">
+      <div id="lead" class="panel" data-layout-allow-overflow></div>
+      <div id="cover" class="panel" data-layout-allow-overflow></div>
+      <img id="logo" src="assets/img/shape-logo-navy.png" alt="SHAPE" />
+    </div>
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      tl.fromTo("#lead", { x: 1920 }, { x: -740, duration: 0.55, ease: "power2.inOut" }, 0);
+      tl.fromTo("#cover", { x: 1980 }, { x: -740, duration: 0.55, ease: "power2.inOut" }, 0.06);
+      tl.fromTo("#logo", { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.2, ease: "back.out(2)" }, 0.42);
+      tl.to("#logo", { opacity: 0, scale: 1.08, duration: 0.15, ease: "power2.in" }, 0.72);
+      tl.to("#cover", { x: -3500, duration: 0.55, ease: "power2.inOut" }, 0.7);
+      tl.to("#lead", { x: -3500, duration: 0.55, ease: "power2.inOut" }, 0.76);
+      window.__timelines["t1"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>
