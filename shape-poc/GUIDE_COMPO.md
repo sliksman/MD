@@ -4,12 +4,12 @@ Trois plaques animées en 1920×1080, 30 i/s, sans son, calées sur les SRT POC1
 
 | Fichier | Avatar | Durée | Zone avatar (laissée vide) |
 |---|---|---|---|
-| `renders/SHAPE_POC_slide12.mp4` | Narrateur (POC1) | 50 s | Colonne lavande, x 0 → 630 px, pleine hauteur |
-| `renders/SHAPE_POC_slide13.mp4` | Narrateur (POC2) | 48 s | Colonne lavande, x 0 → 630 px, pleine hauteur |
+| `renders/SHAPE_POC_slide12.mp4` | Narrateur (POC1) | 50 s | Carte arrondie x 45 → 585, y 200 → 875 (540×675, rayon 32 px) |
+| `renders/SHAPE_POC_slide13.mp4` | Narrateur (POC2) | 48 s | Carte arrondie x 45 → 585, y 200 → 875 (540×675, rayon 32 px) |
 | `renders/SHAPE_POC_slide15.mp4` | Coach (POC3) | 40 s | Moitié gauche, x 0 → 750 px, avatar ancré en bas, devant les formes magenta/citron |
 
 ## Placement conseillé
-- **Narrateur (B)** : plan taille centré sur x ≈ 315 px, épaules coupées par le bas du cadre, tête vers y ≈ 300 px. Le logo SHAPE est en haut à gauche : garder la tête sous y ≈ 140 px.
+- **Narrateur (B, carte)** : vidéo filmée posée sur la carte grise, masquée par `renders/MATTE_carte_narrateur.png` (blanc = visible, en track matte luma). Recadrer la vidéo en 4:5, visage dans le tiers haut. L'ombre portée et le nom (« Dr Martin · Médecin gériatre », à faire valider) sont déjà dans la plaque.
 - **Coach (C)** : plan taille centré sur x ≈ 380 px, bas du cadre ancré au bas de l'image. La pastille « Le coach APA · en séance » est en haut à gauche, sous le logo.
 - Avatar posé sur la vidéo : aligner le TC 00:00 de la vidéo d'avatar sur la frame 0 de la plaque.
 
